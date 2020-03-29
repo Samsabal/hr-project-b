@@ -52,19 +52,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Enny\\.nuget\\packages\\": {}
+    "C:\\Users\\rfred\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Enny\\Documents\\FestivityApp\\Festivity\\Festivity.csproj",
+      "projectUniqueName": "C:\\Users\\rfred\\Documents\\GitHub\\hr-project-b\\Festivity.csproj",
       "projectName": "Festivity",
-      "projectPath": "C:\\Users\\Enny\\Documents\\FestivityApp\\Festivity\\Festivity.csproj",
-      "packagesPath": "C:\\Users\\Enny\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Enny\\Documents\\FestivityApp\\Festivity\\obj\\",
+      "projectPath": "C:\\Users\\rfred\\Documents\\GitHub\\hr-project-b\\Festivity.csproj",
+      "packagesPath": "C:\\Users\\rfred\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rfred\\Documents\\GitHub\\hr-project-b\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Enny\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rfred\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -108,7 +108,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
