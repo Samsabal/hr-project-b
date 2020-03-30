@@ -12,7 +12,7 @@ namespace Festivity
 {
     class Program
     {
-    
+
         static void Main(string[] args)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
@@ -34,7 +34,7 @@ namespace Festivity
                             Console.BackgroundColor = ConsoleColor.White;
                         }
                         Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                        if  (Option == i)
+                        if (Option == i)
                         {
                             Console.ResetColor();
                         }
@@ -94,7 +94,8 @@ namespace Festivity
                 {
                     userID = 1;
                 }
-                else {
+                else
+                {
                     int item = users.users[users.users.Count - 1].Id;
                     userID = item + 1;
                 };
@@ -137,19 +138,21 @@ namespace Festivity
                             exists = true;
                             currentUser = user.Id;
                             Console.WriteLine("You are logged in!");
-                        } else
+                        }
+                        else
                         {
                             Console.WriteLine("Wrong password!");
                         }
-                    }                
-                } if (!exists)
+                    }
+                }
+                if (!exists)
                 {
                     Console.WriteLine("\nAccount exists: " + exists + "!");
                 }
 
             }
             homepage();
-         
+
         }
     }
 }
