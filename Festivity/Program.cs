@@ -8,20 +8,22 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 
+
 namespace Festivity
 {
     class Program
     {
-
-        static void Main(string[] args)
+    
+        public static void Main(string[] args)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
+            Console.SetWindowSize(150, 35);
             void homepage()
             {
                 int Option = 0;
-                string[] ConsoleOptions = new string[] { "Register", "Login", "Festivals", "Exit" };
+                string[] ConsoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit" };
 
                 while (true)
                 {
@@ -34,7 +36,7 @@ namespace Festivity
                             Console.BackgroundColor = ConsoleColor.White;
                         }
                         Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                        if (Option == i)
+                        if  (Option == i)
                         {
                             Console.ResetColor();
                         }
@@ -75,9 +77,15 @@ namespace Festivity
                                 break;
                             case 2: // Festival option
                                 Console.Clear();
+                                CatalogPage.catalog_main();
                                 Thread.Sleep(10000);
                                 break;
-                            case 3: // Exit option
+                            case 3: // Festival register
+                                Console.Clear();
+                                FestivalRegister.festival_register();
+                                Thread.Sleep(10000);
+                                break;
+                            case 4: // Exit option
                                 Environment.Exit(0);
                                 break;
                             default:
@@ -94,8 +102,7 @@ namespace Festivity
                 {
                     userID = 1;
                 }
-                else
-                {
+                else {
                     int item = users.users[users.users.Count - 1].Id;
                     userID = item + 1;
                 };
@@ -138,21 +145,19 @@ namespace Festivity
                             exists = true;
                             currentUser = user.Id;
                             Console.WriteLine("You are logged in!");
-                        }
-                        else
+                        } else
                         {
                             Console.WriteLine("Wrong password!");
                         }
-                    }
-                }
-                if (!exists)
+                    }                
+                } if (!exists)
                 {
                     Console.WriteLine("\nAccount exists: " + exists + "!");
                 }
 
             }
             homepage();
-
+         
         }
     }
 }
