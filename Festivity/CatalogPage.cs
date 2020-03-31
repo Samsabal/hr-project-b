@@ -8,6 +8,7 @@ namespace Festivity
     public class CatalogPage
     {
         static int Option;
+        static Festival[] testArray;
         public static void catalog_main()
         {
             Festival test1 = new Festival("Rotterdamse Rave", "Leukste techno feest van Rotterdam", new Date(31, 03, 2020), 18, new Address("Nederland", "Rotterdam", "1234GK", "Utrechtsesingel", "25"), "normaal/vip", 1);
@@ -15,7 +16,7 @@ namespace Festivity
             Festival test3 = new Festival("Into the woods", "Op twee na leukste techno feest van Rotteram", new Date(2, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1236GK", "Utrechtsesingel", "25"), "normaal/vip", 3);
             Festival test4 = new Festival("ADE", "Op drie na leukste techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 4);
             Festival test5 = new Festival("Atomic", "Minst leuke techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 5);
-            Festival[] testArray = new Festival[]{ test1, test2, test3, test4, test5 };
+            testArray = new Festival[]{ test1, test2, test3, test4, test5 };
             
             Option = 0;
 
@@ -28,13 +29,6 @@ namespace Festivity
         }
         public static void show_festivals()
         {
-            Festival test1 = new Festival("Rotterdamse Rave", "Leukste techno feest van Rotterdam", new Date(31, 03, 2020), 18, new Address("Nederland", "Rotterdam", "1234GK", "Utrechtsesingel", "25"), "normaal/vip", 1);
-            Festival test2 = new Festival("Soenda", "Op een na leukste techno feest van Rotterdam", new Date(1, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1235GK", "Utrechtselaan", "26"), "normaal/vip", 2);
-            Festival test3 = new Festival("Into the woods", "Op twee na leukste techno feest van Rotteram", new Date(2, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1236GK", "Utrechtsesingel", "25"), "normaal/vip", 3);
-            Festival test4 = new Festival("ADE", "Op drie na leukste techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 4);
-            Festival test5 = new Festival("Atomic", "Minst leuke techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 5);
-            Festival[] testArray = new Festival[] { test1, test2, test3, test4, test5 };
-
             for (int i = 0; i < testArray.Length; i++)
             {
                 Console.WriteLine("------------------------------------------------------------");
@@ -48,13 +42,6 @@ namespace Festivity
 
         public static void catalog_navigate()
         {
-            Festival test1 = new Festival("Rotterdamse Rave", "Leukste techno feest van Rotterdam", new Date(31, 03, 2020), 18, new Address("Nederland", "Rotterdam", "1234GK", "Utrechtsesingel", "25"), "normaal/vip", 1);
-            Festival test2 = new Festival("Soenda", "Op een na leukste techno feest van Rotterdam", new Date(1, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1235GK", "Utrechtselaan", "26"), "normaal/vip", 2);
-            Festival test3 = new Festival("Into the woods", "Op twee na leukste techno feest van Rotteram", new Date(2, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1236GK", "Utrechtsesingel", "25"), "normaal/vip", 3);
-            Festival test4 = new Festival("ADE", "Op drie na leukste techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 4);
-            Festival test5 = new Festival("Atomic", "Minst leuke techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 5);
-            Festival[] testArray = new Festival[] { test1, test2, test3, test4, test5 };
-
             string[] ConsoleOptions = new string[]{"Select festival " + testArray[0].Name, "Select festival " +
                 testArray[1].Name, "Select festival " + testArray[2].Name, "Select festival " + testArray[3].Name,
                 "Select festival " + testArray[4].Name, "Next page", "Previous page", "Exit" };

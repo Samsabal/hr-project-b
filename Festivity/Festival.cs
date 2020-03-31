@@ -4,8 +4,13 @@ using System.Text;
 
 namespace Festivity
 {
+
+    // Temporary Festival class for testing purposes
     class Festival
     {
+
+        // Fields for variables
+
         private string name;
         public string description;
         public Date date;
@@ -16,6 +21,8 @@ namespace Festivity
 
         public string Name { get => name; set => name = value; }
 
+
+        // Constructor for Festival class
         public Festival(string name, string description, Date date, int minimumAge, Address festivalLocation, string ticketInfo, int festivalID)
         {
             this.name = name;

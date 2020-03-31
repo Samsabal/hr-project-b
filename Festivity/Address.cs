@@ -4,6 +4,8 @@ using System.Text;
 
 namespace Festivity
 {
+
+    // Address class for location functionality
     class Address
     {
         private string country;
@@ -11,6 +13,8 @@ namespace Festivity
         private string zipCode;
         private string streetName;
         private string streetNumber;
+
+        // Constructor of Address class
 
         public Address(string country, string city, string zipCode, string street, string streetNumber)
         {
@@ -27,7 +31,9 @@ namespace Festivity
         public string StreetName { get => streetName; set => streetName = value; }
         public string StreetNumber { get => streetNumber; set => streetNumber = value; }
 
-        public bool isEqual(Address other)
+        // Checks if two addresses are the same
+
+        public bool is_equal(Address other)
         {
             if (this.country == other.country && this.city == other.city && this.zipCode == other.zipCode
                 && this.streetName == other.streetName && this.streetNumber == other.streetNumber)
@@ -40,7 +46,8 @@ namespace Festivity
             }
         }
 
-        public string toString()
+        // Converts the address object into a readable string
+        public string to_string()
         {
             string result = streetName + " " + streetNumber + ", " + zipCode + " " + city + ", " + country;
             return result;
