@@ -1,11 +1,5 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.IO;
 
 namespace Festivity
@@ -21,7 +15,16 @@ namespace Festivity
             {
                 foreach (var festival in Festivals.Festivals)
                 {
-                    Console.WriteLine(festival.Id);
+                    string _ = " ";
+                    string Lijn = "-----------------------------------";
+                    string DikkeLijn = "===================================";
+                    Console.WriteLine(DikkeLijn);
+                    Console.WriteLine(festival.Name, _, festival.Id);
+                    Console.WriteLine(festival.Address, _, festival.Location);
+                    Console.WriteLine(festival.Date, _, festival.Time);
+                    Console.WriteLine(Lijn);
+                    Console.WriteLine(festival.Description);
+                    Console.WriteLine(DikkeLijn);
 
                 }
             }

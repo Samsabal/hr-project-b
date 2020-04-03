@@ -11,10 +11,14 @@ namespace Festivity
         public string Name { get; set; }
         [JsonProperty("Location")]
         public string Location { get; set; }
+        [JsonProperty("Address")]
+        public string Address { get; set; }
         [JsonProperty("Date")]
         public string Date { get; set; }
         [JsonProperty("Time")]
         public string Time { get; set; }
+        [JsonProperty("Description")]
+        public string Description { get; set; }
     }
 
     class JSONFestivalList
