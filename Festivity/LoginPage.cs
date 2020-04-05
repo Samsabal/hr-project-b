@@ -25,13 +25,13 @@ namespace Festivity
             bool exists = false;
 
             Console.WriteLine("\nEnter Email: ");
-            var userFirstName = Console.ReadLine();
+            var userEmail = Console.ReadLine();
             Console.WriteLine("\nEnter Password: ");
             var userPassword = Console.ReadLine();
 
             foreach (var user in users.users)
             {
-                if (user.firstName == userFirstName)
+                if (user.email == userEmail)
                 {
                     if (user.password == userPassword)
                     {
@@ -47,7 +47,7 @@ namespace Festivity
             }
             if (!exists)
             {
-                Console.WriteLine("\nAccount exists: " + exists + "!");
+                Console.WriteLine("\nAccount exists does not exist!");
             }
 
         }
