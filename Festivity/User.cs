@@ -7,14 +7,19 @@ namespace Festivity
     {
         [JsonProperty("firstName")]
         public string firstName { get; set; }
+
         [JsonProperty("lastName")]
         public string lastName { get; set; }
+
         [JsonProperty("email")]
         public string email { get; set; }
+
         [JsonProperty("password")]
         public string password { get; set; }
+
         [JsonProperty("accountType")]
         public int accountType { get; set; }
+
         [JsonProperty("accountID")]
         public int accountID { get; set; }
     }
@@ -47,9 +52,8 @@ namespace Festivity
         [JsonProperty("companyName")]
         public string companyName { get; set; }
 
-        
-        [JsonObject("companyAddress")]
-        UserAddress companyAddress = new UserAddress();
+
+        public UserAddress companyAddress = new UserAddress();
         // Still figuring out how this will work
     }
 
@@ -58,7 +62,6 @@ namespace Festivity
         [JsonProperty("birthDate")]
         public string birthDate { get; set;}
 
-        [JsonObject("visitorAddress")]
         public string visitorAddress { get; set;}
         // Same deal as above
 

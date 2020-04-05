@@ -89,27 +89,85 @@ namespace Festivity
 
             void register()
             {
-                int userID;
+                int accountID;
                 if (users.users.Count == 0)
                 {
-                    userID = 1;
+                    accountID = 1;
                 }
                 else
                 {
-                    int item = users.users[users.users.Count - 1].Id;
-                    userID = item + 1;
+                    int item = users.users[users.users.Count - 1].accountID;
+                    accountID = item + 1;
                 };
 
-                Console.WriteLine("\nEnter Username: ");
-                var userName = Console.ReadLine();
-                Console.WriteLine("\nEnter Password: ");
-                var userPassword = Console.ReadLine();
-
-                User user = new User
+                string userEmailInput()
                 {
-                    Id = userID,
-                    Username = userName,
-                    Password = userPassword,
+                    return "test";
+                } // Tijdelijke email input functie
+
+                int userAccountTypeInput()
+                {
+                    return 1;
+                }
+
+                Console.WriteLine("\nEnter firstName: ");
+                var firstName = Console.ReadLine();
+                Console.WriteLine("\nEnter lastName: ");
+                var userName = Console.ReadLine();
+
+                Console.WriteLine("\nEnter email: ");
+                var email = userEmailInput(); // email loop functie
+
+                Console.WriteLine("\nEnter password: ");
+                var password = Console.ReadLine();
+
+                Console.WriteLine("\nEnter accountType: ");
+                var accountType = userAccountTypeInput(); //user account type functie
+
+                Console.WriteLine("\nEnter contactPerson: ");
+                var contactPerson = Console.ReadLine();
+
+                Console.WriteLine("\nEnter phoneNumber: ");
+                var phoneNumber = Console.ReadLine();
+
+                Console.WriteLine("\nEnter companyName: ");
+                var companyName = Console.ReadLine();
+
+                Console.WriteLine("\nEnter country: ");
+                var country = Console.ReadLine();
+
+                Console.WriteLine("\nEnter city: ");
+                var city = Console.ReadLine();
+
+                Console.WriteLine("\nEnter streetName: ");
+                var streetName = Console.ReadLine();
+
+                Console.WriteLine("\nEnter streetNumber: ");
+                var streetNumber = Console.ReadLine();
+
+                Console.WriteLine("\nEnter zipCode: ");
+                var zipCode = Console.ReadLine();
+
+
+
+                UserOrganisator user = new UserOrganisator
+                {
+                    firstName = firstName,
+                    lastName = userName,
+                    email = email,
+                    password = password,
+                    accountType = accountType,
+                    accountID = accountID,
+                    contactPerson = contactPerson,
+                    phoneNumber = phoneNumber,
+                    companyName = companyName,
+                    companyAddress = {
+                        country = country,
+                        city = city,
+                        streetName = streetName,
+                        streetNumber = streetNumber,
+                        zipCode = zipCode
+                    },
                 };
 
                 users.users.Add(user);
@@ -131,12 +189,12 @@ namespace Festivity
 
                 foreach (var user in users.users)
                 {
-                    if (user.Username == userName)
+                    if (user.firstName == userName)
                     {
-                        if (user.Password == userPassword)
+                        if (user.password == userPassword)
                         {
                             exists = true;
-                            currentUser = user.Id;
+                            currentUser = user.accountID;
                             Console.WriteLine("You are logged in!");
                         }
                         else
