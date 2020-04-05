@@ -70,7 +70,7 @@ namespace Festivity
                                 break;
                             case 1: // Login option
                                 Console.Clear();
-                                login();
+                                LoginPage.loginPage();
                                 Thread.Sleep(10000);
                                 break;
                             case 2: // Festival option
@@ -87,40 +87,6 @@ namespace Festivity
                 }
             }
 
-            
-
-            void login()
-            {
-                int currentUser;
-                bool exists = false;
-
-                Console.WriteLine("\nEnter Username: ");
-                var userName = Console.ReadLine();
-                Console.WriteLine("\nEnter Password: ");
-                var userPassword = Console.ReadLine();
-
-                foreach (var user in users.users)
-                {
-                    if (user.firstName == userName)
-                    {
-                        if (user.password == userPassword)
-                        {
-                            exists = true;
-                            currentUser = user.accountID;
-                            Console.WriteLine("You are logged in!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong password!");
-                        }
-                    }
-                }
-                if (!exists)
-                {
-                    Console.WriteLine("\nAccount exists: " + exists + "!");
-                }
-
-            }
             homepage();
 
         }
