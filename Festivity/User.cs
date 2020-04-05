@@ -3,43 +3,71 @@ using Newtonsoft.Json;
 
 namespace Festivity
 {
-    class User
+    class User // base class (parent)
     {
         [JsonProperty("firstName")]
-        public int Id { get; set; }
+        public string firstName { get; set; }
         [JsonProperty("lastName")]
-        public string Username { get; set; }
+        public string lastName { get; set; }
         [JsonProperty("email")]
-        public string Password { get; set; }
+        public string email { get; set; }
         [JsonProperty("password")]
         public string password { get; set; }
         [JsonProperty("accountType")]
-        public string accountType { get; set; }
+        public int accountType { get; set; }
         [JsonProperty("accountID")]
-        public string accountID { get; set; }
+        public int accountID { get; set; }
     }
 
-    class UserAdmin : User
+        class UserAddress // base class (parent)
+    {   
+        [JsonProperty("country")]
+        public string country { get; set; }
+        [JsonProperty("city")]
+        public string city { get; set; }
+        [JsonProperty("streetName")]
+        public string streetName { get; set; }
+        [JsonProperty("streetNumber")]
+        public string streetNumber { get; set; }
+        [JsonProperty("zipCode")]
+        public string zipCode { get; set; }
+    }
+
+    class UserAdmin : User // derived class (child)
     {
-
+        
     }
 
-    class UserOrganisator : User
+    class UserOrganisator : User // derived class (child)
     {
         [JsonProperty("contactPerson")]
-        public int ContactPerson { get; set; }
+        public string contactPerson { get; set; }
         [JsonProperty("phoneNumber")]
-        public int phoneNumber { get; set; }
+        public string phoneNumber { get; set; }
         [JsonProperty("companyName")]
-        public int companyName { get; set; }
-        [JsonProperty("companyAddress")]
-        public int phoneNumber { get; set; }
+        public string companyName { get; set; }
+
+        
+        [JsonObject("companyAddress")]
+        UserAddress companyAddress = new UserAddress();
+        // Still figuring out how this will work
     }
 
-    class UserVisitor : User
+    class UserVisitor : User // derived class (child)
     {
+        [JsonProperty("birthDate")]
+        public string birthDate { get; set;}
 
+        [JsonObject("visitorAddress")]
+        public string visitorAddress { get; set;}
+        // Same deal as above
+
+        [JsonProperty("newsLetter")]
+        public bool newsLetter { get; set;}
+        [JsonProperty("phoneNumber")]
+        public string phoneNumber { get; set;}
     }
+
 
     class JSONUserList
     {
