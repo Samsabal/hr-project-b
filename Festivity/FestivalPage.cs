@@ -12,20 +12,20 @@ namespace Festivity
 {
     class FestivalPage
     {
-        static void Main(string[] args)
-        {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+        //static void Main(string[] args)
+        //{
+        //    string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+        //    JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
-            void festival()
-            {
-                foreach (var festival in Festivals.Festivals)
-                {
-                    Console.WriteLine(festival.Id);
+        //    void festival()
+        //    {
+        //        foreach (var festival in Festivals.Festivals)
+        //        {
+        //            Console.WriteLine(festival.Id);
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
     }
 

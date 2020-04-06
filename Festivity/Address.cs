@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Festivity
 {
@@ -8,10 +6,15 @@ namespace Festivity
     // Address class for location functionality
     class Address
     {
+        [JsonProperty("Country")]
         private string country;
+        [JsonProperty("City")]
         private string city;
+        [JsonProperty("ZipCode")]
         private string zipCode;
+        [JsonProperty("StreetName")]
         private string streetName;
+        [JsonProperty("StreetNumber")]
         private string streetNumber;
 
         // Constructor of Address class
@@ -30,21 +33,6 @@ namespace Festivity
         public string ZipCode { get => zipCode; set => zipCode = value; }
         public string StreetName { get => streetName; set => streetName = value; }
         public string StreetNumber { get => streetNumber; set => streetNumber = value; }
-
-        // Checks if two addresses are the same
-
-        public bool is_equal(Address other)
-        {
-            if (this.country == other.country && this.city == other.city && this.zipCode == other.zipCode
-                && this.streetName == other.streetName && this.streetNumber == other.streetNumber)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         // Converts the address object into a readable string
         public string to_string()
