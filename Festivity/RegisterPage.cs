@@ -49,7 +49,7 @@ namespace Festivity
                 companyPhoneNumber = Console.ReadLine();
                 Console.WriteLine("\nEnter companyName: ");
                 companyName = Console.ReadLine();
-            } 
+            }
 
             if (accountType == 2)
             {
@@ -85,11 +85,13 @@ namespace Festivity
                 contactPerson = contactPerson,
                 companyPhoneNumber = companyPhoneNumber,
                 companyName = companyName,
-                country = country,
-                city = city,
-                streetName = streetName,
-                streetNumber = streetNumber,
-                zipCode = zipCode,
+                userAddress = {
+                    country = country,
+                    city = city,
+                    streetName = streetName,
+                    streetNumber = streetNumber,
+                    zipCode = zipCode 
+                },
                 birthDate = birthDate,
                 newsLetter = newsLetter,
                 phoneNumber = visitorPhoneNumber

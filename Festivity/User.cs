@@ -22,21 +22,7 @@ namespace Festivity
         [JsonProperty("password")]
         public string password { get; set; }
 
-
-        [JsonProperty("country")]
-        public string country { get; set; }
-
-        [JsonProperty("city")]
-        public string city { get; set; }
-
-        [JsonProperty("streetName")]
-        public string streetName { get; set; }
-
-        [JsonProperty("streetNumber")]
-        public string streetNumber { get; set; }
-
-        [JsonProperty("zipCode")]
-        public string zipCode { get; set; }
+        public UserAddress userAddress = new UserAddress();
 
         [JsonProperty("companyContactperson")]
         public string contactPerson { get; set; }
