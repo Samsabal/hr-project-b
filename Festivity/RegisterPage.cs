@@ -12,12 +12,12 @@ namespace Festivity
 {
     public class RegisterPage
     {
-        public static void registerPage()
+        public static void register_page()
         {
-            registerUser();
+            register_user();
         }
 
-        public static void registerUser()
+        public static void register_user()
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
@@ -27,11 +27,11 @@ namespace Festivity
             Console.WriteLine("\nEnter lastName: ");
             var userName = Console.ReadLine();
             Console.WriteLine("\nEnter email: ");
-            var email = userEmailInput(); // email loop functie
+            var email = user_email_input(); // email loop functie
             Console.WriteLine("\nEnter password: ");
             var password = Console.ReadLine();
 
-            var accountType = userAccountTypeInput(); //user account type functie
+            var accountType = user_account_type_input(); //user account type functie
 
             string contactPerson = null;
             string companyPhoneNumber = null;
@@ -55,7 +55,7 @@ namespace Festivity
             {
                 Console.WriteLine("\nEnter birthDate: ");
                 birthDate = Console.ReadLine();
-                newsLetter = userNewsLetterInput();
+                newsLetter = user_news_letter_input();
                 Console.WriteLine("\nEnter phoneNumber: ");
                 visitorPhoneNumber = Console.ReadLine();
             }
@@ -71,7 +71,7 @@ namespace Festivity
             Console.WriteLine("\nEnter zipCode: ");
             var zipCode = Console.ReadLine();
 
-            int accountID = userAccountID(users);
+            int accountID = user_account_id(users);
 
 
             User user = new User
@@ -101,12 +101,12 @@ namespace Festivity
 
             File.WriteAllText(PATH_USER, json);
 
-            string userEmailInput()
+            string user_email_input()
             {
                 return Console.ReadLine();
             } // Tijdelijke email input functie
 
-            int userAccountTypeInput()
+            int user_account_type_input()
             {
                 int userOutput = 0;
                 Console.WriteLine("\nAre you an Organisator or Visitor? ");
@@ -125,13 +125,13 @@ namespace Festivity
                 else
                 {
                     Console.WriteLine("Please try again");
-                    userAccountTypeInput();
+                    user_account_type_input();
                 };
 
                 return userOutput;
             }
 
-            int userAccountID(JSONUserList users)
+            int user_account_id(JSONUserList users)
             {
                 int accountID;
                 if (users.users.Count == 0)
@@ -147,7 +147,7 @@ namespace Festivity
                 return accountID;
             }
 
-            bool userNewsLetterInput()
+            bool user_news_letter_input()
             {
                 bool userOutput = true;
                 Console.WriteLine("\nDo you want to recieve newsletters?");
@@ -166,7 +166,7 @@ namespace Festivity
                 else
                 {
                     Console.WriteLine("Please try again");
-                    userAccountTypeInput();
+                    user_account_type_input();
                 };
 
                 return userOutput;
