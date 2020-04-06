@@ -5,16 +5,16 @@ namespace Festivity
 {
     class Transaction
     {
-        [JsonProperty("FestivalID")]
-        public int FestivalID { get; set; }
-        [JsonProperty("TicketID")]
-        public int TicketID { get; set; }
-        [JsonProperty("BuyerID")]
-        public int BuyerID { get; set; }
-        [JsonProperty("TicketNumber")]
-        public int TicketNumber { get; set; }
-        [JsonProperty("OrderNumber")]
-        public int OrderNumber { get; set; }
+        [JsonProperty("festivalID")]
+        public int festivalID { get; set; }
+        [JsonProperty("ticketID")]
+        public int ticketID { get; set; }
+        [JsonProperty("buyerID")]
+        public int buyerID { get; set; }
+        [JsonProperty("ticketNumber")]
+        public int ticketNumber { get; set; }
+        [JsonProperty("orderNumber")]
+        public int orderNumber { get; set; }
     }
 
     class JSONTransactionList
