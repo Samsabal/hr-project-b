@@ -20,21 +20,21 @@ namespace Festivity
 
             void homepage()
             {
-                int Option = 0;
-                string[] ConsoleOptions = new string[] { "Register", "Login", "Festivals", "Exit" };
+                int option = 0;
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Exit" };
 
                 while (true)
                 {
                     Console.Clear();
-                    for (int i = 0; i < ConsoleOptions.Length; i++)
+                    for (int i = 0; i < consoleOptions.Length; i++)
                     {
-                        if (Option == i)
+                        if (option == i)
                         {
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.BackgroundColor = ConsoleColor.White;
                         }
-                        Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                        if (Option == i)
+                        Console.WriteLine("{0}.{1}", i, consoleOptions[i]);
+                        if (option == i)
                         {
                             Console.ResetColor();
                         }
@@ -44,33 +44,33 @@ namespace Festivity
                     // When DownArrow key is pressed go down.
                     if (KeyPressed.Key == ConsoleKey.DownArrow)
                     {
-                        if (Option != ConsoleOptions.Length - 1)
+                        if (option != consoleOptions.Length - 1)
                         {
-                            Option++;
+                            option++;
                         }
                     }
                     // When UpArrow key is pressed go up.
                     else if (KeyPressed.Key == ConsoleKey.UpArrow)
                     {
-                        if (Option != 0)
+                        if (option != 0)
                         {
-                            Option--;
+                            option--;
                         }
                     }
 
                     // When Enter key is pressed execute selected option.
                     if (KeyPressed.Key == ConsoleKey.Enter)
                     {
-                        switch (Option)
+                        switch (option)
                         {
                             case 0: // Register option
                                 Console.Clear();
-                                RegisterPage.registerPage();
+                                RegisterPage.register_page();
                                 Thread.Sleep(10000);
                                 break;
                             case 1: // Login option
                                 Console.Clear();
-                                LoginPage.loginPage();
+                                LoginPage.login_page();
                                 Thread.Sleep(10000);
                                 break;
                             case 2: // Festival option

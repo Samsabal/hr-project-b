@@ -12,11 +12,11 @@ namespace Festivity
 {
     class LoginPage
     {
-        public static void loginPage()
+        public static void login_page()
         {
-            userLogin();
+            user_login();
         }
-        public static void userLogin()
+        public static void user_login()
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
