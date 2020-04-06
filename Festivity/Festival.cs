@@ -1,37 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Festivity
 {
-
-    // Temporary Festival class for testing purposes
     class Festival
     {
+        [JsonProperty("Id")]
+        public int Id { get; set; }
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+        [JsonProperty("Location")]
+        public string Location { get; set; }
+        [JsonProperty("Date")]
+        public string Date { get; set; }
+        [JsonProperty("Time")]
+        public string Time { get; set; }
+    }
 
-        // Fields for variables
-
-        private string name;
-        public string description;
-        public Date date;
-        public int minimumAge;
-        public Address festivalLocation;
-        public string ticketInfo;
-        public int festivalID;
-
-        public string Name { get => name; set => name = value; }
-
-
-        // Constructor for Festival class
-        public Festival(string name, string description, Date date, int minimumAge, Address festivalLocation, string ticketInfo, int festivalID)
-        {
-            this.name = name;
-            this.description = description;
-            this.date = date;
-            this.minimumAge = minimumAge;
-            this.festivalLocation = festivalLocation;
-            this.ticketInfo = ticketInfo;
-            this.festivalID = festivalID;
-        }
+    class JSONFestivalList
+    {
+        [JsonProperty("Festivals")]
+        public List<Festival> Festivals { get; set; }
     }
 }

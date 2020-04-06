@@ -1,0 +1,20 @@
+{
+  "Festivals": [
+    {
+      "Id": 1,
+      "Name": "Lage Landen",
+      "Location": "Rotterdam",
+      "Date": "21 Juni 2020",
+      "Time": "21:00"
+    },
+    {
+      "Id": 2,
+      "Name": "Lage Landen",
+      "Location": "Rotterdam",
+      "Date": "22 Juni 2020",
+      "Time": "21:30"
+    }
+
+  ]
+
+}
