@@ -16,12 +16,12 @@ namespace Festivity
 
         // Constructor of Address class
 
-        public Address(string country, string city, string zipCode, string street, string streetNumber)
+        public Address(string country, string city, string zipCode, string streetName, string streetNumber)
         {
             this.country = country;
             this.city = city;
             this.zipCode = zipCode;
-            this.streetName = street;
+            this.streetName = streetName;
             this.streetNumber = streetNumber;
         }
 

@@ -28,7 +28,7 @@ namespace Festivity
             return result;
         }
 
-        public Boolean isEqual(Date other)
+        public bool is_equal(Date other)
         {
             if (this.day == other.day && this.month == other.month && this.year == other.year)
             {
