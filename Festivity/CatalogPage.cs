@@ -20,8 +20,8 @@ namespace Festivity
             Festival test3 = new Festival("Into the woods", "Op twee na leukste techno feest van Rotteram", new Date(2, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1236GK", "Utrechtsesingel", "25"), "normaal/vip", 3);
             Festival test4 = new Festival("ADE", "Op drie na leukste techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 4);
             Festival test5 = new Festival("Atomic", "Minst leuke techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 5);
-            testArray = new Festival[]{ test1, test2, test3, test4, test5 };
-            
+            testArray = new Festival[] { test1, test2, test3, test4, test5 };
+
             Option = 0;
 
             // Makes sure the console keeps refreshing, allowing input
@@ -116,4 +116,3 @@ namespace Festivity
         }
     }
 }
-    

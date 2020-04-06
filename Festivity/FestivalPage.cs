@@ -1,35 +1,92 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Threading;
 
 namespace Festivity
 {
     class FestivalPage
     {
-        static void Main(string[] args)
+        public static void festival_page()
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
-            void festival()
+            int Option = 0;
+            string[] ConsoleOptions = new string[] { "Order Ticket", "Back" };
+
+            while (true)
             {
+                Console.Clear();
                 foreach (var festival in Festivals.Festivals)
                 {
-                    string _ = " ";
-                    string Lijn = "-----------------------------------";
-                    string DikkeLijn = "===================================";
-                    Console.WriteLine(DikkeLijn);
-                    Console.WriteLine(festival.Name, _, festival.Id);
-                    Console.WriteLine(festival.Address, _, festival.Location);
-                    Console.WriteLine(festival.Date, _, festival.Time);
-                    Console.WriteLine(Lijn);
-                    Console.WriteLine(festival.Description);
-                    Console.WriteLine(DikkeLijn);
+                    string lijn = "----------------------------------------------------------------------";
+                    string dikkeLijn = "======================================================================";
+                    string festivalName = festival.name + " #" + festival.id;
+                    string festivalAddress = festival.address + ", " + festival.location;
+                    string festivalDate = festival.date + ", " + festival.time;
+                    Console.WriteLine(dikkeLijn);
+                    Console.WriteLine(festivalName);
+                    Console.WriteLine(festivalAddress);
+                    Console.WriteLine(festivalDate);
+                    Console.WriteLine(lijn);
+                    Console.WriteLine(festival.description);
+                    Console.WriteLine(dikkeLijn);
+                }
 
+                
+                for (int i = 0; i < ConsoleOptions.Length; i++)
+                {
+                    if (Option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
+                    if (Option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+
+                var KeyPressed = Console.ReadKey();
+                // When DownArrow key is pressed go down.
+                if (KeyPressed.Key == ConsoleKey.DownArrow)
+                {
+                    if (Option != ConsoleOptions.Length - 1)
+                    {
+                        Option++;
+                    }
+                }
+                // When UpArrow key is pressed go up.
+                else if (KeyPressed.Key == ConsoleKey.UpArrow)
+                {
+                    if (Option != 0)
+                    {
+                        Option--;
+                    }
+                }
+
+                // When Enter key is pressed execute selected option.
+                if (KeyPressed.Key == ConsoleKey.Enter)
+                {
+                    switch (Option)
+                    {
+                        case 0: // Register option
+                            Console.Clear();
+                            //Ticket order
+                            Thread.Sleep(10000);
+                            break;
+                        case 1: // Login option
+                            Console.Clear();
+                            Program.Main(new string[] { });
+                            Thread.Sleep(10000);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
-
     }
-
 }

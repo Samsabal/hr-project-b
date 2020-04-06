@@ -5,20 +5,20 @@ namespace Festivity
 {
     class Festival
     {
-        [JsonProperty("Id")]
-        public int Id { get; set; }
-        [JsonProperty("Name")]
-        public string Name { get; set; }
-        [JsonProperty("Location")]
-        public string Location { get; set; }
-        [JsonProperty("Address")]
-        public string Address { get; set; }
-        [JsonProperty("Date")]
-        public string Date { get; set; }
-        [JsonProperty("Time")]
-        public string Time { get; set; }
-        [JsonProperty("Description")]
-        public string Description { get; set; }
+        [JsonProperty("id")]
+        public int id { get; set; }
+        [JsonProperty("name")]
+        public string name { get; set; }
+        [JsonProperty("location")]
+        public string location { get; set; }
+        [JsonProperty("address")]
+        public string address { get; set; }
+        [JsonProperty("date")]
+        public string date { get; set; }
+        [JsonProperty("time")]
+        public string time { get; set; }
+        [JsonProperty("description")]
+        public string description { get; set; }
     }
 
     class JSONFestivalList
