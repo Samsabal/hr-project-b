@@ -1,30 +1,32 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
 using System.IO;
 
 namespace Festivity
 {
     class FestivalPage
     {
-        string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-        JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+        //static void Main(string[] args)
+        //{
+        //    string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+        //    JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
-        void festival()
-        {
-            foreach (var festival in Festivals.Festivals)
-            {
-                string _ = " ";
-                string Lijn = "-----------------------------------";
-                string DikkeLijn = "===================================";
-                Console.WriteLine(DikkeLijn);
-                Console.WriteLine(festival.Name, _, festival.Id);
-                Console.WriteLine(festival.Address, _, festival.Location);
-                Console.WriteLine(festival.Date, _, festival.Time);
-                Console.WriteLine(Lijn);
-                Console.WriteLine(festival.Description);
-                Console.WriteLine(DikkeLijn);
-            }
-        }
+        //    void festival()
+        //    {
+        //        foreach (var festival in Festivals.Festivals)
+        //        {
+        //            Console.WriteLine(festival.Id);
+
+        //        }
+        //    }
+        //}
+
     }
 
 }
