@@ -4,15 +4,19 @@
       "Id": 1,
       "Name": "Lage Landen",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
-      "Time": "21:00"
+      "Address": "Gekkevogelstraat 23",
+      "Date": "21 Juni 2020 ",
+      "Time": "21:00",
+      "Description": "Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. "
     },
     {
       "Id": 2,
       "Name": "Lage Landen",
       "Location": "Rotterdam",
+      "Address": "Gekkevogelstraat 23",
       "Date": "22 Juni 2020",
-      "Time": "21:30"
+      "Time": "21:30",
+      "Description": "Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. Dit is een festival. "
     }
 
   ]
