@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 
+
 namespace Festivity
 {
     class Program
     {
-
-        static void Main(string[] args)
+    
+        public static void Main(string[] args)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
+            Console.SetWindowSize(150, 35);
             void homepage()
             {
                 int option = 0;
-                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Exit" };
-
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit" };
                 while (true)
                 {
                     Console.Clear();
@@ -75,9 +76,15 @@ namespace Festivity
                                 break;
                             case 2: // Festival option
                                 Console.Clear();
+                                CatalogPage.catalog_main();
                                 Thread.Sleep(10000);
                                 break;
-                            case 3: // Exit option
+                            case 3: // Festival register
+                                Console.Clear();
+                                FestivalRegister.festival_register();
+                                Thread.Sleep(10000);
+                                break;
+                            case 4: // Exit option
                                 Environment.Exit(0);
                                 break;
                             default:
@@ -87,8 +94,9 @@ namespace Festivity
                 }
             }
 
-            homepage();
 
+            homepage();
+         
         }
     }
 }
