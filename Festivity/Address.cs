@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Festivity
 {
@@ -8,14 +6,19 @@ namespace Festivity
     // Address class for location functionality
     class Address
     {
-        private string country;
-        private string city;
-        private string zipCode;
-        private string streetName;
-        private string streetNumber;
+        [JsonProperty("country")]
+        public string country { get; set; }
+        [JsonProperty("city")]
+        public string city { get; set; }
+        [JsonProperty("zipCode")]
+        public string zipCode { get; set; }
+        [JsonProperty("streetName")]
+        public string streetName { get; set; }
+        [JsonProperty("streetNumber")]
+        public string streetNumber { get; set; }
+
 
         // Constructor of Address class
-
         public Address(string country, string city, string zipCode, string streetName, string streetNumber)
         {
             this.country = country;
@@ -23,27 +26,6 @@ namespace Festivity
             this.zipCode = zipCode;
             this.streetName = streetName;
             this.streetNumber = streetNumber;
-        }
-
-        public string Country { get => country; set => country = value; }
-        public string City { get => city; set => city = value; }
-        public string ZipCode { get => zipCode; set => zipCode = value; }
-        public string StreetName { get => streetName; set => streetName = value; }
-        public string StreetNumber { get => streetNumber; set => streetNumber = value; }
-
-        // Checks if two addresses are the same
-
-        public bool is_equal(Address other)
-        {
-            if (this.country == other.country && this.city == other.city && this.zipCode == other.zipCode
-                && this.streetName == other.streetName && this.streetNumber == other.streetNumber)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         // Converts the address object into a readable string
