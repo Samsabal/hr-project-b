@@ -23,7 +23,7 @@ namespace Festivity
             void homepage()
             {
                 int option = 0;
-                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Exit" };
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit" };
                 while (true)
                 {
                     Console.Clear();
