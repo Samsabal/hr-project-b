@@ -1,24 +1,62 @@
 {
   "users": [
     {
-      "Id": 1,
-      "Username": "God",
-      "Password": "Creator"
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "Creator",
+      "accountType": 0,
+      "accountID": 0
     },
     {
-      "Id": 3,
-      "Username": "Test1",
-      "Password": "Test1"
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "Test1",
+      "accountType": 0,
+      "accountID": 0
     },
     {
-      "Id": 4,
-      "Username": "Test2",
-      "Password": "Test2"
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "Test2",
+      "accountType": 0,
+      "accountID": 0
     },
     {
-      "Id": 5,
-      "Username": "sadpo;l",
-      "Password": "das"
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "das",
+      "accountType": 0,
+      "accountID": 0
+    },
+    {
+      "firstName": "Enny",
+      "lastName": "Adeoye",
+      "email": "test",
+      "password": "Iwmcghr",
+      "accountType": 1,
+      "accountID": 1
+    },
+    {
+      "companyAddress": {
+        "country": "Germany",
+        "city": "Frankfurt",
+        "streetName": "Sieg Heil",
+        "streetNumber": "69",
+        "zipCode": "4463BJ"
+      },
+      "contactPerson": "Jippijajeee",
+      "phoneNumber": "0913821082973",
+      "companyName": "Tesla",
+      "firstName": "San",
+      "lastName": "Dan",
+      "email": "test",
+      "password": "Pamela123",
+      "accountType": 1,
+      "accountID": 2
     }
   ]
 }
