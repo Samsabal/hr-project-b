@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Festivity
 {
+
+
     public class CatalogPage
     {
+        static int CurrentPage;
         static int Option;
-        static Festival[] testArray;
 
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
@@ -22,6 +24,36 @@ namespace Festivity
             Festival test5 = new Festival("Atomic", "Minst leuke techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 5);
             testArray = new Festival[] { test1, test2, test3, test4, test5 };
 
+            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+
+            CurrentPage = 0;
+
+            // Counts the amount of festivals in the JSON database
+            int arraySize = 0;
+            foreach (var festival in Festivals.Festivals)
+            {
+                arraySize++;
+            }
+
+            // Makes an array with extra space to ensure there's always 5 festivals on screen
+            int extraSpace = 5 - (arraySize % 5);
+            Festival[] festivalArray = new Festival[arraySize + extraSpace + 1];
+
+            // Adds the JSON festivals to an array for easier counting manipulation
+            int festivalNumber = 0;
+            foreach (var festival in Festivals.Festivals)
+            {
+                festivalArray[festivalNumber] = new Festival(festival.Id, festival.Name, festival.Description, festival.Location, festival.Date, festival.Time);
+                festivalNumber++;
+            }
+
+            // Adds placeholder festivals to ensure the application can always display 5 options at a time
+            for (int i = 0; i <= extraSpace; i++)
+            {
+                festivalArray[festivalNumber] = new Festival(-1, null, null, null, null, null);
+                festivalNumber++;
+            }
             Option = 0;
 
             // Makes sure the console keeps refreshing, allowing input
@@ -29,31 +61,32 @@ namespace Festivity
             while (true)
             {
                 Console.Clear();
-                show_festivals();
-                catalog_navigate();
+                show_festivals(festivalArray);
+                catalog_navigate(festivalArray, arraySize);
             }
         }
 
         // Function that shows the currently selected festivals in the console
-        public static void show_festivals()
+        private static void show_festivals(Festival[] festivalArray)
         {
-            for (int i = 0; i < testArray.Length; i++)
-            {
+                for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
+                {
+                    Console.WriteLine("------------------------------------------------------------");
+                    Console.WriteLine(festivalArray[i].Name);
+                    Console.WriteLine(festivalArray[i].Description);
+                    Console.WriteLine(festivalArray[i].Date);
+                    Console.WriteLine(festivalArray[i].Location);
+                }
                 Console.WriteLine("------------------------------------------------------------");
-                Console.WriteLine("Festival name: " + testArray[i].Name);
-                Console.WriteLine("Description: " + testArray[i].description);
-                Console.WriteLine("Date: " + testArray[i].date.to_string());
-                Console.WriteLine("Location: " + testArray[i].festivalLocation.City);
-            }
-            Console.WriteLine("------------------------------------------------------------");
         }
 
         // Function handling the navigation and selection of options in the catalog page
-        public static void catalog_navigate()
+        private static void catalog_navigate(Festival[] festivalArray, int arraySize)
         {
-            string[] ConsoleOptions = new string[]{"Select festival " + testArray[0].Name, "Select festival " +
-                testArray[1].Name, "Select festival " + testArray[2].Name, "Select festival " + testArray[3].Name,
-                "Select festival " + testArray[4].Name, "Next page", "Previous page", "Exit" };
+            // String containing the selectable options in the console
+            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].Name, "Select festival " + festivalArray[CurrentPage*5+1].Name, 
+                "Select festival " + festivalArray[CurrentPage*5+2].Name, "Select festival " + festivalArray[CurrentPage*5+3].Name,
+                "Select festival " + festivalArray[CurrentPage*5+4].Name, "Next page", "Previous page", "Exit" };
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
@@ -87,27 +120,48 @@ namespace Festivity
                 }
             }
 
+            // When the escape key is pressed go back to the main menu.
             else if (KeyPressed.Key == ConsoleKey.Escape)
             {
                 Program.Main(new string[] { });
             }
 
-            // Placeholder for option selection switch statement
+
+
+            // Switch statement used for redirecting the user to the right option that was chosen.
             if (KeyPressed.Key == ConsoleKey.Enter)
             {
                 switch (Option)
                 {
-                    case 0: // Register option
+                    case 0: // Placeholder redirection festival 1
                         Thread.Sleep(10000);
                         break;
-                    case 1: // Login option
+                    case 1: // Placeholder redirection festival 2
                         Thread.Sleep(10000);
                         break;
-                    case 2: // Festival option
+                    case 2: // Placeholder redirection festival 3
                         Thread.Sleep(10000);
                         break;
-                    case 3: // Exit option
+                    case 3: // Placeholder redirection festival 4
                         Environment.Exit(0);
+                        break;
+                    case 4: // Placeholder redirection festival 5
+                        Environment.Exit(0);
+                        break;
+                    case 5: // Redirection to next catalog page
+                        if (CurrentPage * 5 + 5 < arraySize)
+                        {
+                            CurrentPage++;
+                        }
+                        break;
+                    case 6: // Redirection to previous catalog page
+                        if (CurrentPage > 0)
+                        {
+                            CurrentPage--;
+                        }
+                        break;
+                    case 7: // Exit option
+                        Program.Main(new string[] { });
                         break;
                     default:
                         break;

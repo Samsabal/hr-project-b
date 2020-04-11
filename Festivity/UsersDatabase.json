@@ -1,24 +1,151 @@
 {
   "users": [
     {
-      "Id": 1,
-      "Username": "God",
-      "Password": "Creator"
+      "userAddress": {
+        "country": null,
+        "city": null,
+        "streetName": null,
+        "streetNumber": null,
+        "zipCode": null
+      },
+      "accountType": 0,
+      "accountID": 0,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "Creator",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": null
     },
     {
-      "Id": 3,
-      "Username": "Test1",
-      "Password": "Test1"
+      "userAddress": {
+        "country": null,
+        "city": null,
+        "streetName": null,
+        "streetNumber": null,
+        "zipCode": null
+      },
+      "accountType": 0,
+      "accountID": 0,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "Test1",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": null
     },
     {
-      "Id": 4,
-      "Username": "Test2",
-      "Password": "Test2"
+      "userAddress": {
+        "country": null,
+        "city": null,
+        "streetName": null,
+        "streetNumber": null,
+        "zipCode": null
+      },
+      "accountType": 0,
+      "accountID": 0,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "Test2",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": null
     },
     {
-      "Id": 5,
-      "Username": "sadpo;l",
-      "Password": "das"
+      "userAddress": {
+        "country": null,
+        "city": null,
+        "streetName": null,
+        "streetNumber": null,
+        "zipCode": null
+      },
+      "accountType": 0,
+      "accountID": 0,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": "das",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": null
+    },
+    {
+      "userAddress": {
+        "country": null,
+        "city": null,
+        "streetName": null,
+        "streetNumber": null,
+        "zipCode": null
+      },
+      "accountType": 1,
+      "accountID": 1,
+      "firstName": "Enny",
+      "lastName": "Adeoye",
+      "email": "test",
+      "password": "Iwmcghr",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": null
+    },
+    {
+      "userAddress": {
+        "country": null,
+        "city": null,
+        "streetName": null,
+        "streetNumber": null,
+        "zipCode": null
+      },
+      "accountType": 1,
+      "accountID": 2,
+      "firstName": "San",
+      "lastName": "Dan",
+      "email": "test",
+      "password": "Pamela123",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": "Tesla",
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": "0913821082973"
+    },
+    {
+      "userAddress": {
+        "country": "gsf",
+        "city": "sdfg",
+        "streetName": "dfg",
+        "streetNumber": "dfgs",
+        "zipCode": "sdfg"
+      },
+      "accountType": 0,
+      "accountID": 3,
+      "firstName": "gfd",
+      "lastName": "gf",
+      "email": "dg",
+      "password": "df",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": null,
+      "newsLetter": false,
+      "phoneNumber": null
     }
   ]
 }

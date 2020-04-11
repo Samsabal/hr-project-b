@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Festivity
 {
     class Date
     {
-        private int day;
-        private int month;
-        private int year;
+        [JsonProperty("day")]
+        public int day { get; set; }
+        [JsonProperty("month")]
+        public int month { get; set; }
+        [JsonProperty("year")]
+        public int year { get;  set; }
 
-        public int Day { get => day; set => day = value; }
-        public int Month { get => month; set => month = value; }
-        public int Year { get => year; set => year = value; }
 
         public Date(int day, int month, int year)
         {
@@ -26,15 +24,6 @@ namespace Festivity
         {
             string result = day + "/" + month + "/" + year;
             return result;
-        }
-
-        public bool is_equal(Date other)
-        {
-            if (this.day == other.day && this.month == other.month && this.year == other.year)
-            {
-                return true;
-            }
-            else return false;
         }
     }
 }

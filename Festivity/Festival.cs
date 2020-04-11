@@ -19,6 +19,17 @@ namespace Festivity
         public string time { get; set; }
         [JsonProperty("description")]
         public string description { get; set; }
+
+        public Festival(int Id, string Name, string Description, string Location, string Date, string Time)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Description = Description;
+            this.Location = Location;
+            this.Date = Date;
+            this.Time = Time;
+        }
+
     }
 
     class JSONFestivalList
