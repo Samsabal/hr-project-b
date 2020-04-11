@@ -17,6 +17,7 @@ namespace Festivity
 
             while (true)
             {
+                //Displays the text in the console.
                 Console.Clear();
                 foreach (var festival in Festivals.Festivals)
                 {
@@ -34,7 +35,7 @@ namespace Festivity
                     Console.WriteLine(dikkeLijn);
                 }
 
-                
+                //Makes the keys light up when you select them.
                 for (int i = 0; i < ConsoleOptions.Length; i++)
                 {
                     if (Option == i)
@@ -72,12 +73,12 @@ namespace Festivity
                 {
                     switch (Option)
                     {
-                        case 0: // Register option
+                        case 0: // Ticket order option
                             Console.Clear();
                             //Ticket order
                             Thread.Sleep(10000);
                             break;
-                        case 1: // Login option
+                        case 1: // Back option
                             Console.Clear();
                             Program.Main(new string[] { });
                             Thread.Sleep(10000);
