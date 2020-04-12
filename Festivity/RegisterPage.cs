@@ -22,16 +22,20 @@ namespace Festivity
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
-            Console.WriteLine("\nEnter firstName: ");
+            Console.WriteLine("Enter firstName: ");
             var firstName = Console.ReadLine();
-            Console.WriteLine("\nEnter lastName: ");
+            Console.Clear();
+            Console.WriteLine("Enter lastName: ");
             var userName = Console.ReadLine();
-            Console.WriteLine("\nEnter email: ");
+            Console.Clear();
+            Console.WriteLine("Enter email: ");
             var email = user_email_input(); // email loop functie
-            Console.WriteLine("\nEnter password: ");
+            Console.Clear();
+            Console.WriteLine("Enter password: ");
             var password = Console.ReadLine();
-
+            Console.Clear();
             var accountType = user_account_type_input(); //user account type functie
+            Console.Clear();
 
             string contactPerson = null;
             string companyPhoneNumber = null;
@@ -43,33 +47,45 @@ namespace Festivity
 
             if (accountType == 1) // Organisator
             {
-                Console.WriteLine("\nEnter contactPerson: ");
+                Console.WriteLine("Enter contactPerson: ");
                 contactPerson = Console.ReadLine();
-                Console.WriteLine("\nEnter phoneNumber: ");
+                Console.Clear();
+                Console.WriteLine("Enter phoneNumber: ");
                 companyPhoneNumber = Console.ReadLine();
-                Console.WriteLine("\nEnter companyName: ");
+                Console.Clear();
+                Console.WriteLine("Enter companyName: ");
                 companyName = Console.ReadLine();
+                Console.Clear();
             }
 
-            if (accountType == 2)
+            if (accountType == 2) // Visitor
             {
-                Console.WriteLine("\nEnter birthDate: ");
+                Console.WriteLine("Enter birthDate: ");
                 birthDate = Console.ReadLine();
+                Console.Clear();
                 newsLetter = user_news_letter_input();
-                Console.WriteLine("\nEnter phoneNumber: ");
+                Console.WriteLine("Enter phoneNumber: ");
                 visitorPhoneNumber = Console.ReadLine();
+                Console.Clear();
             }
 
-            Console.WriteLine("\nEnter country: ");
+            Console.WriteLine("Enter country: ");
             var country = Console.ReadLine();
-            Console.WriteLine("\nEnter city: ");
+            Console.Clear();
+            Console.WriteLine("Enter city: ");
             var city = Console.ReadLine();
-            Console.WriteLine("\nEnter streetName: ");
+            Console.Clear();
+            Console.WriteLine("Enter streetName: ");
             var streetName = Console.ReadLine();
-            Console.WriteLine("\nEnter streetNumber: ");
+            Console.Clear();
+            Console.WriteLine("Enter streetNumber: ");
             var streetNumber = Console.ReadLine();
-            Console.WriteLine("\nEnter zipCode: ");
+            Console.Clear();
+            Console.WriteLine("Enter zipCode: ");
             var zipCode = Console.ReadLine();
+            Console.Clear();
+
+            user_terms_input();
 
             int accountID = user_account_id(users);
 
@@ -111,10 +127,10 @@ namespace Festivity
             int user_account_type_input()
             {
                 int userOutput = 0;
-                Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                Console.WriteLine("Are you an Organisator or Visitor? ");
                 Console.WriteLine();
                 Console.WriteLine("Type 1 for Organisator");
-                Console.WriteLine("Type 2 for Visitor");
+                Console.WriteLine("Type 2 for Visitor\n");
                 string userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
@@ -131,6 +147,23 @@ namespace Festivity
                 };
 
                 return userOutput;
+            }
+
+            void user_terms_input()
+            {
+                Console.WriteLine("Do you accept the terms of use and conditions?");
+                Console.WriteLine();
+                Console.WriteLine("Type 1 for Yes");
+                Console.WriteLine("Type 2 for No");
+                string userInput = Console.ReadLine();
+                if (userInput == "2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Sorry, you cannot create an account");
+                    Thread.Sleep(5000);
+                    Program.Main(new string[] { });
+                    user_account_type_input();
+                };
             }
 
             int user_account_id(JSONUserList users)
