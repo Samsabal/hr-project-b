@@ -22,8 +22,6 @@ namespace Festivity
         [JsonProperty("password")]
         public string password { get; set; }
 
-        public UserAddress userAddress = new UserAddress();
-
         [JsonProperty("companyContactperson")]
         public string contactPerson { get; set; }
 
@@ -41,6 +39,8 @@ namespace Festivity
 
         [JsonProperty("phoneNumber")]
         public string phoneNumber { get; set; }
+
+        public UserAddress userAddress = new UserAddress();
     }
 
         class UserAddress // base class (parent)
