@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Festivity
 {
@@ -28,13 +30,12 @@ namespace Festivity
             Console.WriteLine("Enter lastName: \n");
             var userName = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Enter email: \n");
-            var email = user_email_input(); // email loop functie
+            var email = user_email_input(); 
             Console.Clear();
             Console.WriteLine("Enter password: \n");
             var password = Console.ReadLine();
             Console.Clear();
-            var accountType = user_account_type_input(); //user account type functie
+            var accountType = user_account_type_input(); 
             Console.Clear();
 
             string contactPerson = null;
@@ -127,8 +128,20 @@ namespace Festivity
 
             string user_email_input()
             {
-                return Console.ReadLine();
-            } // Tijdelijke email input functie
+                Console.WriteLine("Enter email: \n");
+                string userInput = Console.ReadLine();
+                if (is_valid_email(userInput))
+                {
+                    Console.WriteLine("\nEmail correct");
+                    Thread.Sleep(2000);
+                    return userInput;
+                } else {
+                    Console.Clear();
+                    Console.WriteLine("Email invalid. Please try again");
+                    user_email_input();
+                }
+                return "'user_email_input' return Error";
+            } 
 
             int user_account_type_input()
             {
@@ -230,6 +243,51 @@ namespace Festivity
                 };
 
                 return userOutput;
+            }
+
+            bool is_valid_email(string email) // This method does not perform authentication to validate the email address. It determines whether its format is valid for an email address.
+            {
+                if (string.IsNullOrWhiteSpace(email))
+                    return false;
+
+                try
+                {
+                    // Normalize the domain
+                    email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                          RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                    // Examines the domain part of the email and normalizes it.
+                    string DomainMapper(Match match)
+                    {
+                        // Use IdnMapping class to convert Unicode domain names.
+                        var idn = new IdnMapping();
+
+                        // Pull out and process domain name (throws ArgumentException on invalid)
+                        var domainName = idn.GetAscii(match.Groups[2].Value);
+
+                        return match.Groups[1].Value + domainName;
+                    }
+                }
+                catch (RegexMatchTimeoutException e)
+                {
+                    return false;
+                }
+                catch (ArgumentException e)
+                {
+                    return false;
+                }
+
+                try
+                {
+                    return Regex.IsMatch(email,
+                        @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                        @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                        RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+                }
+                catch (RegexMatchTimeoutException)
+                {
+                    return false;
+                }
             }
         }
     }
