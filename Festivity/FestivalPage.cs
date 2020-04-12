@@ -21,16 +21,16 @@ namespace Festivity
                 Console.Clear();
                 foreach (var festival in Festivals.Festivals)
                 {
-                    string lijn = "----------------------------------------------------------------------";
-                    string dikkeLijn = "======================================================================";
+                    string line = "----------------------------------------------------------------------";
+                    string thickline = "======================================================================";
                     string festivalName = festival.name + " #" + festival.id;
                     string festivalAddress = festival.address + ", " + festival.location;
                     string festivalDate = festival.date + ", " + festival.time;
-                    Console.WriteLine(dikkeLijn);
+                    Console.WriteLine(thickLine);
                     Console.WriteLine(festivalName);
                     Console.WriteLine(festivalAddress);
                     Console.WriteLine(festivalDate);
-                    Console.WriteLine(lijn);
+                    Console.WriteLine(line);
                     Console.WriteLine(festival.description);
                     Console.WriteLine(dikkeLijn);
                 }
