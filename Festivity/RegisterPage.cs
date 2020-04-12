@@ -158,12 +158,28 @@ namespace Festivity
 
             void user_terms_input()
             {
-                Console.WriteLine("Do you accept the terms of use and conditions?");
-                Console.WriteLine();
-                Console.WriteLine("Type 1 for Yes");
-                Console.WriteLine("Type 2 for No\n");
-                string userInput = Console.ReadLine();
+                string userInput = null;
+                if (accountType == 1) //Print the organizational conditions here.
+                {
+                    Console.WriteLine("Do you accept the terms of use and conditions? Company Boy");
+                    Console.WriteLine();
+                    Console.WriteLine("Type 1 for Yes");
+                    Console.WriteLine("Type 2 for No\n");
+                    userInput = Console.ReadLine();
+                    Console.Clear();
+                }
+
+                if (accountType == 2) //Print the user conditions here.
+                {
+                    Console.WriteLine("Do you accept the terms of use and conditions? Visitor Boy");
+                    Console.WriteLine();
+                    Console.WriteLine("Type 1 for Yes");
+                    Console.WriteLine("Type 2 for No\n");
+                    userInput = Console.ReadLine();
+                    Console.Clear();
+                }
                 Console.Clear();
+
                 if (userInput == "2")
                 {
                     Console.Clear();
