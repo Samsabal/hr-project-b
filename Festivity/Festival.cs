@@ -22,12 +22,12 @@ namespace Festivity
 
         public Festival(int Id, string Name, string Description, string Location, string Date, string Time)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Description = Description;
-            this.Location = Location;
-            this.Date = Date;
-            this.Time = Time;
+            this.id = Id;
+            this.name = Name;
+            this.description = Description;
+            this.location = Location;
+            this.date = Date;
+            this.time = Time;
         }
 
     }

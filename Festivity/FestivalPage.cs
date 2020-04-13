@@ -26,13 +26,13 @@ namespace Festivity
                     string festivalName = festival.name + " #" + festival.id;
                     string festivalAddress = festival.address + ", " + festival.location;
                     string festivalDate = festival.date + ", " + festival.time;
-                    Console.WriteLine(thickLine);
+                    Console.WriteLine(thickline);
                     Console.WriteLine(festivalName);
                     Console.WriteLine(festivalAddress);
                     Console.WriteLine(festivalDate);
                     Console.WriteLine(line);
                     Console.WriteLine(festival.description);
-                    Console.WriteLine(dikkeLijn);
+                    Console.WriteLine(thickline);
                 }
 
                 //Makes the keys light up when you select them.

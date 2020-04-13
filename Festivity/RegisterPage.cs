@@ -14,7 +14,9 @@ namespace Festivity
     {
         public static void register_page()
         {
-            register_user();
+            //register_user();
+            string[] consoleOptions = new string[] { "Register", "Login", "TestMenu1", "TestMenu2", "Omegalul" };
+            Menu.menu(consoleOptions);
         }
 
         public static void register_user()
