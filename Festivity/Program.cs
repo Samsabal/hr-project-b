@@ -8,33 +8,34 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 
+
 namespace Festivity
 {
     class Program
     {
-
-        static void Main(string[] args)
+    
+        public static void Main(string[] args)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
+            Console.SetWindowSize(150, 35);
             void homepage()
             {
-                int Option = 0;
-                string[] ConsoleOptions = new string[] { "Register", "Login", "Festivals", "Exit" };
-
+                int option = 0;
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit" };
                 while (true)
                 {
                     Console.Clear();
-                    for (int i = 0; i < ConsoleOptions.Length; i++)
+                    for (int i = 0; i < consoleOptions.Length; i++)
                     {
-                        if (Option == i)
+                        if (option == i)
                         {
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.BackgroundColor = ConsoleColor.White;
                         }
-                        Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                        if (Option == i)
+                        Console.WriteLine("{0}.{1}", i, consoleOptions[i]);
+                        if (option == i)
                         {
                             Console.ResetColor();
                         }
@@ -44,40 +45,46 @@ namespace Festivity
                     // When DownArrow key is pressed go down.
                     if (KeyPressed.Key == ConsoleKey.DownArrow)
                     {
-                        if (Option != ConsoleOptions.Length - 1)
+                        if (option != consoleOptions.Length - 1)
                         {
-                            Option++;
+                            option++;
                         }
                     }
                     // When UpArrow key is pressed go up.
                     else if (KeyPressed.Key == ConsoleKey.UpArrow)
                     {
-                        if (Option != 0)
+                        if (option != 0)
                         {
-                            Option--;
+                            option--;
                         }
                     }
 
                     // When Enter key is pressed execute selected option.
                     if (KeyPressed.Key == ConsoleKey.Enter)
                     {
-                        switch (Option)
+                        switch (option)
                         {
                             case 0: // Register option
                                 Console.Clear();
-                                register();
+                                RegisterPage.register_page();
                                 Thread.Sleep(10000);
                                 break;
                             case 1: // Login option
                                 Console.Clear();
-                                login();
+                                LoginPage.login_page();
                                 Thread.Sleep(10000);
                                 break;
                             case 2: // Festival option
                                 Console.Clear();
+                                CatalogPage.catalog_main();
                                 Thread.Sleep(10000);
                                 break;
-                            case 3: // Exit option
+                            case 3: // Festival register
+                                Console.Clear();
+                                FestivalRegister.festival_register();
+                                Thread.Sleep(10000);
+                                break;
+                            case 4: // Exit option
                                 Environment.Exit(0);
                                 break;
                             default:
@@ -87,72 +94,9 @@ namespace Festivity
                 }
             }
 
-            void register()
-            {
-                int userID;
-                if (users.users.Count == 0)
-                {
-                    userID = 1;
-                }
-                else
-                {
-                    int item = users.users[users.users.Count - 1].Id;
-                    userID = item + 1;
-                };
 
-                Console.WriteLine("\nEnter Username: ");
-                var userName = Console.ReadLine();
-                Console.WriteLine("\nEnter Password: ");
-                var userPassword = Console.ReadLine();
-
-                User user = new User
-                {
-                    Id = userID,
-                    Username = userName,
-                    Password = userPassword,
-                };
-
-                users.users.Add(user);
-
-                string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-
-                File.WriteAllText(PATH_USER, json);
-            }
-
-            void login()
-            {
-                int currentUser;
-                bool exists = false;
-
-                Console.WriteLine("\nEnter Username: ");
-                var userName = Console.ReadLine();
-                Console.WriteLine("\nEnter Password: ");
-                var userPassword = Console.ReadLine();
-
-                foreach (var user in users.users)
-                {
-                    if (user.Username == userName)
-                    {
-                        if (user.Password == userPassword)
-                        {
-                            exists = true;
-                            currentUser = user.Id;
-                            Console.WriteLine("You are logged in!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong password!");
-                        }
-                    }
-                }
-                if (!exists)
-                {
-                    Console.WriteLine("\nAccount exists: " + exists + "!");
-                }
-
-            }
             homepage();
-
+         
         }
     }
 }
