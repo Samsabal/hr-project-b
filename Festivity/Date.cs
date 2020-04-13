@@ -9,7 +9,7 @@ namespace Festivity
         [JsonProperty("month")]
         public int month { get; set; }
         [JsonProperty("year")]
-        public int year { get;  set; }
+        public int year { get; set; }
 
 
         public Date(int day, int month, int year)
@@ -19,7 +19,7 @@ namespace Festivity
             this.year = year;
         }
 
-        
+
         public string to_string()
         {
             if (day == -1 || month == -1 || year == -1)

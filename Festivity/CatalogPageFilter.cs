@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Festivity
+﻿namespace Festivity
 {
     class CatalogPageFilter
     {
+        // Receives a Festival array and sorts it in alphabetical order by name
         public static Festival[] sort_name(Festival[] festivalArray, int arraySize)
         {
             for (int j = arraySize - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].Name.CompareTo(festivalArray[i+1].Name) > 0)
+                    if (festivalArray[i].Name.CompareTo(festivalArray[i + 1].Name) > 0)
                     {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
@@ -23,7 +20,7 @@ namespace Festivity
             return festivalArray;
         }
 
-
+        // Receives a Festival array and sorts it in ascending order by date
         public static Festival[] sort_date(Festival[] festivalArray, int arraySize)
         {
             for (int j = arraySize - 1; j > 0; j--)
