@@ -21,11 +21,7 @@ namespace Festivity
             CurrentPage = 0;
 
             // Counts the amount of festivals in the JSON database
-            int arraySize = 0;
-            foreach (var festival in Festivals.Festivals)
-            {
-                arraySize++;
-            }
+            int arraySize = Festivals.Festivals.Count;
 
             // Makes an array with extra space to ensure there's always 5 festivals on screen
             int extraSpace = 5 - (arraySize % 5);
