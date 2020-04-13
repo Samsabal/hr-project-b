@@ -5,7 +5,11 @@
       "Name": "Lage Landen",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
+      "Date": {
+        "Day": "29",
+        "Month": "3",
+        "Year": "2018"
+      },
       "Time": "21:00"
     },
     {
@@ -13,7 +17,11 @@
       "Name": "Hoge Landen",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
+      "Date": {
+        "Day": "23",
+        "Month": "4",
+        "Year": "2020"
+      },
       "Time": "21:00"
     } ,   
     {
@@ -21,7 +29,11 @@
       "Name": "Soenda",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
+      "Date": {
+        "Day": "22",
+        "Month": "19",
+        "Year": "2023"
+      },
       "Time": "21:00"
     },
     {
@@ -29,7 +41,11 @@
       "Name": "Rotterdamse Rave",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
+      "Date": {
+        "Day": "25",
+        "Month": "3",
+        "Year": "2030"
+      },
       "Time": "21:00"
     },
     {
@@ -37,7 +53,11 @@
       "Name": "Rec",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
+      "Date": {
+        "Day": "29",
+        "Month": "3",
+        "Year": "1997"
+      },
       "Time": "21:00"
     },
     {
@@ -45,7 +65,11 @@
       "Name": "Dat ene gekke feestje bij Annabel",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
-      "Date": "21 Juni 2020",
+      "Date": {
+        "Day": "29",
+        "Month": "5",
+        "Year": "2020"
+      },
       "Time": "21:00"
     }
   ]

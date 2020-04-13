@@ -22,6 +22,10 @@ namespace Festivity
         
         public string to_string()
         {
+            if (day == -1 || month == -1 || year == -1)
+            {
+                return "";
+            }
             string result = day + "/" + month + "/" + year;
             return result;
         }
