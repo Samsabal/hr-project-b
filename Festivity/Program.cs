@@ -22,8 +22,8 @@ namespace Festivity
             Console.SetWindowSize(150, 35);
             void homepage()
             {
-                int Option = 0;
-                string[] ConsoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" };
+                int option = 0;
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" };
 
                 while (true)
                 {
