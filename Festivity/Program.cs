@@ -77,7 +77,7 @@ namespace Festivity
                                 break;
                             case 2: // Festival option
                                 Console.Clear();
-                                //CatalogPage.catalog_main();
+                                CatalogPage.catalog_main();
                                 Thread.Sleep(10000);
                                 break;
                             case 3: // Festival register
