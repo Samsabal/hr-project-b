@@ -12,9 +12,13 @@ namespace Festivity
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
+            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
+            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+
             int Option = 0;
             string[] ConsoleOptions = new string[] { "Order Ticket", "Back" };
 
+            if users.birthDate < festival.AgeLimit
             while (true)
             {
                 //Displays the text in the console.
@@ -22,7 +26,7 @@ namespace Festivity
                 foreach (var festival in Festivals.Festivals)
                 {
                     string line = "----------------------------------------------------------------------";
-                    string thickline = "======================================================================";
+                    string thickLine = "======================================================================";
                     string festivalName = festival.name + " #" + festival.id;
                     string festivalAddress = festival.address + ", " + festival.location;
                     string festivalDate = festival.date + ", " + festival.time;
@@ -32,7 +36,7 @@ namespace Festivity
                     Console.WriteLine(festivalDate);
                     Console.WriteLine(line);
                     Console.WriteLine(festival.description);
-                    Console.WriteLine(dikkeLijn);
+                    Console.WriteLine(thickLine);
                 }
 
                 //Makes the keys light up when you select them.

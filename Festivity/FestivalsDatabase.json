@@ -6,7 +6,8 @@
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
       "Date": "21 Juni 2020",
-      "Time": "21:00"
+      "Time": "21:00",
+      "AgeLimit":  18
     },
     {
       "Id": 2,
@@ -14,15 +15,17 @@
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
       "Date": "21 Juni 2020",
-      "Time": "21:00"
-    } ,   
+      "Time": "21:00",
+      "AgeLimit": 18
+    } ,
     {
       "Id": 3,
       "Name": "Soenda",
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
       "Date": "21 Juni 2020",
-      "Time": "21:00"
+      "Time": "21:00",
+      "AgeLimit": 18
     },
     {
       "Id": 4,
@@ -30,7 +33,8 @@
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
       "Date": "21 Juni 2020",
-      "Time": "21:00"
+      "Time": "21:00",
+      "AgeLimit": 18
     },
     {
       "Id": 5,
@@ -38,7 +42,8 @@
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
       "Date": "21 Juni 2020",
-      "Time": "21:00"
+      "Time": "21:00",
+      "AgeLimit": 18
     },
     {
       "Id": 6,
@@ -46,7 +51,8 @@
       "Description": "Leuk festivalletje hoor",
       "Location": "Rotterdam",
       "Date": "21 Juni 2020",
-      "Time": "21:00"
+      "Time": "21:00",
+      "AgeLimit": 18
     }
   ]
 
