@@ -15,15 +15,6 @@ namespace Festivity
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
         {
-            // Placeholder festivals till JSON festival file is working
-
-            Festival test1 = new Festival("Rotterdamse Rave", "Leukste techno feest van Rotterdam", new Date(31, 03, 2020), 18, new Address("Nederland", "Rotterdam", "1234GK", "Utrechtsesingel", "25"), "normaal/vip", 1);
-            Festival test2 = new Festival("Soenda", "Op een na leukste techno feest van Rotterdam", new Date(1, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1235GK", "Utrechtselaan", "26"), "normaal/vip", 2);
-            Festival test3 = new Festival("Into the woods", "Op twee na leukste techno feest van Rotteram", new Date(2, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1236GK", "Utrechtsesingel", "25"), "normaal/vip", 3);
-            Festival test4 = new Festival("ADE", "Op drie na leukste techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 4);
-            Festival test5 = new Festival("Atomic", "Minst leuke techno feest van Rotterdam", new Date(3, 04, 2020), 18, new Address("Nederland", "Rotterdam", "1237GK", "Utrechtselaan", "26"), "normaal/vip", 5);
-            testArray = new Festival[] { test1, test2, test3, test4, test5 };
-
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
