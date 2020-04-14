@@ -23,27 +23,38 @@ namespace Festivity
             currentCatalogNavigation = "main";
             CurrentPage = 0;
 
-            // Counts the amount of festivals in the JSON database
-            int arraySize = Festivals.Festivals.Count;
-
             // Makes an array with extra space to ensure there's always 5 festivals on screen
+            int arraySize = Festivals.Festivals.Count;
             int extraSpace = 5 - (arraySize % 5);
-            festivalArray = new Festival[arraySize + extraSpace + 1];
 
-            // Adds the JSON festivals to an array for easier counting manipulation
-            int festivalNumber = 0;
-            foreach (var festival in Festivals.Festivals)
+            Festival emptyFestival = new Festival
             {
-                festivalArray[festivalNumber] = new Festival(festival.Id, festival.Name, festival.Description, festival.Location, festival.Date, festival.Time);
-                festivalNumber++;
-            }
+                Id = -1,
+                Name = "",
+                Location = new Address{
+                    country = "",
+                    city = "",
+                    zipCode = "",
+                    streetName = "",
+                    streetNumber = ""
+                },
+                Date = new Date {
+                    day = -1,
+                    month = -1,
+                    year = -1
+                },
+                Time = "",
+                Description = ""
+            };
 
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)
             {
-                festivalArray[festivalNumber] = new Festival(-1, null, null, null, new Date(-1, -1, -1), null);
-                festivalNumber++;
+                Festivals.Festivals.Add(emptyFestival);
             }
+
+            festivalArray = Festivals.Festivals.ToArray();
+
             Option = 0;
 
             festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
@@ -76,7 +87,7 @@ namespace Festivity
                 Console.WriteLine(festivalArray[i].Name);
                 Console.WriteLine(festivalArray[i].Description);
                 Console.WriteLine(festivalArray[i].Date.to_string());
-                Console.WriteLine(festivalArray[i].Location);
+                Console.WriteLine(festivalArray[i].Location.city);
             }
             Console.WriteLine("------------------------------------------------------------");
         }

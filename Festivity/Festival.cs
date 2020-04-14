@@ -10,9 +10,7 @@ namespace Festivity
         [JsonProperty("Name")]
         public string Name { get; set; }
         [JsonProperty("Location")]
-        public string Location { get; set; }
-        [JsonProperty("Address")]
-        public string Address { get; set; }
+        public Address Location { get; set; }
         [JsonProperty("Date")]
         public Date Date { get; set; }
         [JsonProperty("Time")]
@@ -20,16 +18,6 @@ namespace Festivity
         [JsonProperty("Description")]
         public string Description { get; set; }
 
-
-        public Festival(int Id, string Name, string Description, string Location, Date Date, string Time)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Description = Description;
-            this.Location = Location;
-            this.Date = Date;
-            this.Time = Time;
-        }
     }
 
     class JSONFestivalList
