@@ -18,77 +18,89 @@ namespace Festivity
             int Option = 0;
             string[] ConsoleOptions = new string[] { "Order Ticket", "Back" };
 
-            if users.birthDate < festival.AgeLimit
-            while (true)
+            if (false) //Needs to contain an age check
             {
-                //Displays the text in the console.
-                Console.Clear();
-                foreach (var festival in Festivals.Festivals)
+                string tooYoung = "Sorry but you are too young to enter this festival.";
+                Console.WriteLine(tooYoung);
+            }
+            else
+            {
+                while (true)
                 {
-                    string line = "----------------------------------------------------------------------";
-                    string thickLine = "======================================================================";
-                    string festivalName = festival.name + " #" + festival.id;
-                    string festivalAddress = festival.address + ", " + festival.location;
-                    string festivalDate = festival.date + ", " + festival.time;
-                    Console.WriteLine(thickLine);
-                    Console.WriteLine(festivalName);
-                    Console.WriteLine(festivalAddress);
-                    Console.WriteLine(festivalDate);
-                    Console.WriteLine(line);
-                    Console.WriteLine(festival.description);
-                    Console.WriteLine(thickLine);
-                }
+                    //Displays the text in the console.
+                    Console.Clear();
+                    foreach (var user in users.users)
+                    {
+                        foreach (var festival in Festivals.Festivals)
+                        {
+                            string line = "----------------------------------------------------------------------";
+                            string thickLine = "======================================================================";
+                            string festivalName = festival.name + " #" + festival.id;
+                            string festivalAddress = festival.address + ", " + festival.location;
+                            string festivalDate = festival.date + ", " + festival.time;
+                            string organiserInfo = user.companyName;
+                            Console.WriteLine(thickLine);
+                            Console.WriteLine(festivalName);
+                            Console.WriteLine(festivalAddress);
+                            Console.WriteLine(festivalDate);
+                            Console.WriteLine(line);
+                            Console.WriteLine(organiserInfo);
+                            Console.WriteLine(festival.description);
+                            Console.WriteLine(thickLine);
+                            
+                        }
+                    }
+                    //Makes the keys light up when you select them.
+                    for (int i = 0; i < ConsoleOptions.Length; i++)
+                    {
+                        if (Option == i)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.BackgroundColor = ConsoleColor.White;
+                        }
+                        Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
+                        if (Option == i)
+                        {
+                            Console.ResetColor();
+                        }
+                    }
 
-                //Makes the keys light up when you select them.
-                for (int i = 0; i < ConsoleOptions.Length; i++)
-                {
-                    if (Option == i)
+                    var KeyPressed = Console.ReadKey();
+                    // When DownArrow key is pressed go down.
+                    if (KeyPressed.Key == ConsoleKey.DownArrow)
                     {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
+                        if (Option != ConsoleOptions.Length - 1)
+                        {
+                            Option++;
+                        }
                     }
-                    Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                    if (Option == i)
+                    // When UpArrow key is pressed go up.
+                    else if (KeyPressed.Key == ConsoleKey.UpArrow)
                     {
-                        Console.ResetColor();
+                        if (Option != 0)
+                        {
+                            Option--;
+                        }
                     }
-                }
 
-                var KeyPressed = Console.ReadKey();
-                // When DownArrow key is pressed go down.
-                if (KeyPressed.Key == ConsoleKey.DownArrow)
-                {
-                    if (Option != ConsoleOptions.Length - 1)
+                    // When Enter key is pressed execute selected option.
+                    if (KeyPressed.Key == ConsoleKey.Enter)
                     {
-                        Option++;
-                    }
-                }
-                // When UpArrow key is pressed go up.
-                else if (KeyPressed.Key == ConsoleKey.UpArrow)
-                {
-                    if (Option != 0)
-                    {
-                        Option--;
-                    }
-                }
-
-                // When Enter key is pressed execute selected option.
-                if (KeyPressed.Key == ConsoleKey.Enter)
-                {
-                    switch (Option)
-                    {
-                        case 0: // Ticket order option
-                            Console.Clear();
-                            //Ticket order
-                            Thread.Sleep(10000);
-                            break;
-                        case 1: // Back option
-                            Console.Clear();
-                            Program.Main(new string[] { });
-                            Thread.Sleep(10000);
-                            break;
-                        default:
-                            break;
+                        switch (Option)
+                        {
+                            case 0: // Ticket order option
+                                Console.Clear();
+                                //Ticket order
+                                Thread.Sleep(10000);
+                                break;
+                            case 1: // Back option
+                                Console.Clear();
+                                Program.Main(new string[] { });
+                                Thread.Sleep(10000);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }

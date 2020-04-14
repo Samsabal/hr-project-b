@@ -35,14 +35,14 @@ namespace Festivity
             int festivalNumber = 0;
             foreach (var festival in Festivals.Festivals)
             {
-                festivalArray[festivalNumber] = new Festival(festival.Id, festival.Name, festival.Description, festival.Location, festival.Date, festival.Time);
+                festivalArray[festivalNumber] = new Festival(festival.Id, festival.Name, festival.Description, festival.Location, festival.Date, festival.Time, festival.AgeLimit);
                 festivalNumber++;
             }
 
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)
             {
-                festivalArray[festivalNumber] = new Festival(-1, null, null, null, null, null);
+                festivalArray[festivalNumber] = new Festival(-1, null, null, null, null, null, null);
                 festivalNumber++;
             }
             Option = 0;

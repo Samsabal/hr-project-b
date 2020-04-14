@@ -19,15 +19,18 @@ namespace Festivity
         public string time { get; set; }
         [JsonProperty("description")]
         public string description { get; set; }
+        [JsonProperty("ageLimit")]
+        public string ageLimit { get; set; }
 
-        public Festival(int Id, string Name, string Description, string Location, string Date, string Time)
+        public Festival(int Id, string Name, string Description, string Location, string Date, string Time, string AgeLimit)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Description = Description;
-            this.Location = Location;
-            this.Date = Date;
-            this.Time = Time;
+            this.id = Id;
+            this.name = Name;
+            this.description = Description;
+            this.location = Location;
+            this.date = Date;
+            this.time = Time;
+            this.ageLimit = AgeLimit;
         }
 
     }
