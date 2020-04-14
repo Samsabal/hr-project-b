@@ -46,6 +46,8 @@ namespace Festivity
             }
             Option = 0;
 
+            festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
+
             // Makes sure the console keeps refreshing, allowing input
 
             while (true)
