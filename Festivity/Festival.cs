@@ -22,7 +22,7 @@ namespace Festivity
         [JsonProperty("ageLimit")]
         public string ageLimit { get; set; }
 
-        public Festival(int Id, string Name, string Description, string Location, string Date, string Time, string AgeLimit)
+        public Festival(int Id, string Name, string Description, string Location, Date Date, string Time, string AgeLimit)
         {
             this.id = Id;
             this.name = Name;
@@ -32,7 +32,6 @@ namespace Festivity
             this.time = Time;
             this.ageLimit = AgeLimit;
         }
-
     }
 
     class JSONFestivalList
