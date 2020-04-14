@@ -1,59 +1,32 @@
 {
-  "Festivals": [
+  "festivals": [
     {
-      "id": 1,
-      "name": "Lage Landen",
-      "description": "Leuk festivalletje hoor",
-      "location": "Rotterdam",
-      "date": "21 Juni 2020",
-      "time": "21:00",
-      "ageLimit":  18
+      "festivalId": 1,
+      "festivalName": "test1",
+      "festivalDate": "01:01:2021",
+      "festivalStartingTime": "21:00",
+      "festivalEndTime": "02:00",
+      "festivalLocationCountry": "Netherlands",
+      "festivalLocationCity": "Rotterdam",
+      "festivalLocationStreet": "Coolsingel",
+      "festivalLocationHouseNumber": "20",
+      "festivalDescription": "testdescription",
+      "festivalAgeRestriction": "14",
+      "festivalGenre": "test"
     },
     {
-      "id": 2,
-      "name": "hoge landen",
-      "description": "leuk festivalletje hoor",
-      "location": "rotterdam",
-      "date": "21 juni 2020",
-      "time": "21:00",
-      "ageLimit": 18
-    } ,
-    {
-      "id": 3,
-      "name": "soenda",
-      "description": "leuk festivalletje hoor",
-      "location": "rotterdam",
-      "date": "21 juni 2020",
-      "time": "21:00",
-      "ageLimit": 18
-    },
-    {
-      "id": 4,
-      "name": "rotterdamse rave",
-      "description": "leuk festivalletje hoor",
-      "location": "rotterdam",
-      "date": "21 juni 2020",
-      "time": "21:00",
-      "ageLimit": 18
-    },
-    {
-      "id": 5,
-      "name": "rec",
-      "description": "leuk festivalletje hoor",
-      "location": "rotterdam",
-      "date": "21 juni 2020",
-      "time": "21:00",
-      "ageLimit": 18
-    },
-    {
-      "id": 6,
-      "name": "dat ene gekke feestje bij annabel",
-      "description": "leuk festivalletje hoor",
-      "location": "rotterdam",
-      "date": "21 juni 2020",
-      "time": "21:00",
-      "ageLimit": 18
+      "festivalId": 2,
+      "festivalName": "test 2",
+      "festivalDate": "01:01:2021",
+      "festivalStartingTime": "21:00",
+      "festivalEndTime": "02:00",
+      "festivalLocationCountry": "Netherlands",
+      "festivalLocationCity": "Rotterdam",
+      "festivalLocationStreet": "Iependaal",
+      "festivalLocationHouseNumber": "62",
+      "festivalDescription": "testdescription",
+      "festivalAgeRestriction": "18",
+      "festivalGenre": "test"
     }
   ]
-
 }
