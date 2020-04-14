@@ -29,27 +29,34 @@ namespace Festivity
                 {
                     //Displays the text in the console.
                     Console.Clear();
-                    foreach (var user in users.users)
-                    {
+
                         foreach (var festival in Festivals.Festivals)
                         {
-                            string line = "----------------------------------------------------------------------";
+                            string line = "--------w--------------------------------------------------------------";
                             string thickLine = "======================================================================";
-                            string festivalName = festival.name + " #" + festival.id;
-                            string festivalAddress = festival.address + ", " + festival.location;
-                            string festivalDate = festival.date + ", " + festival.time;
-                            string organiserInfo = user.companyName;
+                            string festivalName = "#" + festival.festivalId + " " + festival.festivalName;
+                            string festivalAddress = festival.festivalLocationStreet + " " + festival.festivalLocationHouseNumber;
+                            string festivalLocation = festival.festivalLocationCity + ", " + festival.festivalLocationCountry;
+                            string festivalDate = festival.festivalDate;
+                            string festivalTime = "Begint om " + festival.festivalStartingTime + " en eindigt om " + festival.festivalEndTime + ".";
+                            string festivalDescription = festival.festivalDescription;
+                            string festivalAgeLimit = "Je moet minimaal " + festival.festivalAgeRestriction + " jaar oud zijn om binnen te komen.";
+                            string organiserInfo = "Bier Bende";
                             Console.WriteLine(thickLine);
                             Console.WriteLine(festivalName);
+                            Console.WriteLine(festivalLocation);
                             Console.WriteLine(festivalAddress);
+                            Console.WriteLine(line);
                             Console.WriteLine(festivalDate);
+                            Console.WriteLine(festivalTime);
+                            Console.WriteLine(festivalAgeLimit);
                             Console.WriteLine(line);
                             Console.WriteLine(organiserInfo);
-                            Console.WriteLine(festival.description);
+                            Console.WriteLine(festivalDescription);
                             Console.WriteLine(thickLine);
                             
                         }
-                    }
+
                     //Makes the keys light up when you select them.
                     for (int i = 0; i < ConsoleOptions.Length; i++)
                     {

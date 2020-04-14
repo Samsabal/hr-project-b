@@ -5,32 +5,46 @@ namespace Festivity
 {
     class Festival
     {
-        [JsonProperty("id")]
-        public int id { get; set; }
-        [JsonProperty("name")]
-        public string name { get; set; }
-        [JsonProperty("location")]
-        public string location { get; set; }
-        [JsonProperty("address")]
-        public string address { get; set; }
-        [JsonProperty("date")]
-        public string date { get; set; }
-        [JsonProperty("time")]
-        public string time { get; set; }
-        [JsonProperty("description")]
-        public string description { get; set; }
-        [JsonProperty("ageLimit")]
-        public string ageLimit { get; set; }
+        [JsonProperty("festivalId")]
+        public int festivalId { get; set; }
+        [JsonProperty("festivalName")]
+        public string festivalName { get; set; }
+        [JsonProperty("festivalDate")]
+        public string festivalDate { get; set; }
+        [JsonProperty("festivalStartingTime")]
+        public string festivalStartingTime { get; set; }
+        [JsonProperty("festivalEndTime")]
+        public string festivalEndTime { get; set; }
+        [JsonProperty("festivalLocationCountry")]
+        public string festivalLocationCountry { get; set; }
+        [JsonProperty("festivalLocationCity")]
+        public string festivalLocationCity { get; set; }
+        [JsonProperty("festivalLocationStreet")]
+        public string festivalLocationStreet { get; set; }
+        [JsonProperty("festivalLocationHouseNumber")]
+        public string festivalLocationHouseNumber { get; set; }
+        [JsonProperty("festivalDescription")]
+        public string festivalDescription { get; set; }
+        [JsonProperty("festivalAgeRestriction")]
+        public string festivalAgeRestriction { get; set; }
+        [JsonProperty("festivalGenre")]
+        public string festivalGenre { get; set; }
+        
 
-        public Festival(int Id, string Name, string Description, string Location, Date Date, string Time, string AgeLimit)
+        public Festival(int Id, string Name, string Date, string StartTime, string EndTime, string Country, string City, string Street, string HouseNumber, string Description, string AgeLimit, string Genre)
         {
-            this.id = Id;
-            this.name = Name;
-            this.description = Description;
-            this.location = Location;
-            this.date = Date;
-            this.time = Time;
-            this.ageLimit = AgeLimit;
+            this.festivalId = Id;
+            this.festivalName = Name;
+            this.festivalDate = Date;
+            this.festivalStartingTime = StartTime;
+            this.festivalEndTime = EndTime;
+            this.festivalLocationCountry = Country;
+            this.festivalLocationCity = City;
+            this.festivalLocationStreet = Street;
+            this.festivalLocationHouseNumber = HouseNumber;
+            this.festivalDescription = Description;
+            this.festivalAgeRestriction = AgeLimit;
+            this.festivalGenre = Genre;
         }
     }
 
