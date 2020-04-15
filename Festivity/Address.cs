@@ -17,17 +17,6 @@ namespace Festivity
         [JsonProperty("streetNumber")]
         public string streetNumber { get; set; }
 
-
-        // Constructor of Address class
-        public Address(string country, string city, string zipCode, string streetName, string streetNumber)
-        {
-            this.country = country;
-            this.city = city;
-            this.zipCode = zipCode;
-            this.streetName = streetName;
-            this.streetNumber = streetNumber;
-        }
-
         // Converts the address object into a readable string
         public string to_string()
         {
