@@ -8,8 +8,8 @@ namespace Festivity
 
     public class CatalogPage
     {
-        static int CurrentPage;
-        static int Option;
+        static int currentPage;
+        static int option;
         static Festival[] festivalArray;
         static string currentCatalogNavigation;
 
@@ -20,7 +20,7 @@ namespace Festivity
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
             currentCatalogNavigation = "main";
-            CurrentPage = 0;
+            currentPage = 0;
 
             // Makes an array with extra space to ensure there's always 5 festivals on screen
             int arraySize = Festivals.festivals.Count;
@@ -58,7 +58,7 @@ namespace Festivity
 
             festivalArray = Festivals.festivals.ToArray();
 
-            Option = 0;
+            option = 0;
 
             festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
 
@@ -84,7 +84,7 @@ namespace Festivity
         // Function that shows the currently selected festivals in the console
         private static void show_festivals(Festival[] festivalArray)
         {
-            for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
+            for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
             {
 
                 Console.WriteLine("------------------------------------------------------------");
@@ -100,20 +100,20 @@ namespace Festivity
         private static void catalog_navigate(Festival[] festivalArray, int arraySize)
         {
             // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].festivalName, "Select festival " + festivalArray[CurrentPage*5+1].festivalName,
-                "Select festival " + festivalArray[CurrentPage*5+2].festivalName, "Select festival " + festivalArray[CurrentPage*5+3].festivalName,
-                "Select festival " + festivalArray[CurrentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
+            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[currentPage*5].festivalName, "Select festival " + festivalArray[currentPage*5+1].festivalName,
+                "Select festival " + festivalArray[currentPage*5+2].festivalName, "Select festival " + festivalArray[currentPage*5+3].festivalName,
+                "Select festival " + festivalArray[currentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
 
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
-                if (Option == i)
+                if (option == i)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
                 Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (Option == i)
+                if (option == i)
                 {
                     Console.ResetColor();
                 }
@@ -123,17 +123,17 @@ namespace Festivity
             // When DownArrow key is pressed go down.
             if (KeyPressed.Key == ConsoleKey.DownArrow)
             {
-                if (Option != ConsoleOptions.Length - 1)
+                if (option != ConsoleOptions.Length - 1)
                 {
-                    Option++;
+                    option++;
                 }
             }
             // When UpArrow key is pressed go up.
             else if (KeyPressed.Key == ConsoleKey.UpArrow)
             {
-                if (Option != 0)
+                if (option != 0)
                 {
-                    Option--;
+                    option--;
                 }
             }
 
@@ -148,7 +148,7 @@ namespace Festivity
             // Switch statement used for redirecting the user to the right option that was chosen.
             if (KeyPressed.Key == ConsoleKey.Enter)
             {
-                switch (Option)
+                switch (option)
                 {
                     case 0: // Placeholder redirection festival 1
                         Thread.Sleep(10000);
@@ -166,15 +166,15 @@ namespace Festivity
                         Environment.Exit(0);
                         break;
                     case 5: // Redirection to next catalog page
-                        if (CurrentPage * 5 + 5 < arraySize)
+                        if (currentPage * 5 + 5 < arraySize)
                         {
-                            CurrentPage++;
+                            currentPage++;
                         }
                         break;
                     case 6: // Redirection to previous catalog page
-                        if (CurrentPage > 0)
+                        if (currentPage > 0)
                         {
-                            CurrentPage--;
+                            currentPage--;
                         }
                         break;
                     case 7: // Redirection to filter functions
@@ -198,13 +198,13 @@ namespace Festivity
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
-                if (Option == i)
+                if (option == i)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
                 Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (Option == i)
+                if (option == i)
                 {
                     Console.ResetColor();
                 }
@@ -214,17 +214,17 @@ namespace Festivity
             // When DownArrow key is pressed go down.
             if (KeyPressed.Key == ConsoleKey.DownArrow)
             {
-                if (Option != ConsoleOptions.Length - 1)
+                if (option != ConsoleOptions.Length - 1)
                 {
-                    Option++;
+                    option++;
                 }
             }
             // When UpArrow key is pressed go up.
             else if (KeyPressed.Key == ConsoleKey.UpArrow)
             {
-                if (Option != 0)
+                if (option != 0)
                 {
-                    Option--;
+                    option--;
                 }
             }
 
@@ -239,17 +239,17 @@ namespace Festivity
             // Switch statement used for redirecting the user to the right option that was chosen.
             if (KeyPressed.Key == ConsoleKey.Enter)
             {
-                switch (Option)
+                switch (option)
                 {
                     case 0: // sorts the catalog by name and returns to main navigation
                         festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
                         currentCatalogNavigation = "main";
-                        CurrentPage = 0;
+                        currentPage = 0;
                         break;
                     case 1: // sorts the catalog by date and returns to main navigation
                         festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
                         currentCatalogNavigation = "main";
-                        CurrentPage = 0;
+                        currentPage = 0;
                         break;
                     case 2: // Placeholder
                         Thread.Sleep(10000);
