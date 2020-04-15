@@ -90,7 +90,7 @@ namespace Festivity
                                 break;
                             case 5:
                                 Console.Clear();
-                                FestivalPage.festival_page();
+                                FestivalPage.festival_page(2);
                                 Thread.Sleep(100000);
                                 break;
                             default:
