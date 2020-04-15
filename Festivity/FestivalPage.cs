@@ -13,16 +13,13 @@ namespace Festivity
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
-
             if (false) //Needs to contain an age check
             {
                 Console.WriteLine("Sorry but you are too young to enter this festival.");
             }
             else
             {
-                foreach (var festival in Festivals.Festivals)
+                foreach (var festival in Festivals.festivals)
                 {
                     if (festival.festivalId == festivalId)
                     {
@@ -30,10 +27,10 @@ namespace Festivity
                         string thickLine = "======================================================================";
                         Console.WriteLine(thickLine);
                         Console.WriteLine("#" + festival.festivalId + " " + festival.festivalName);
-                        Console.WriteLine(festival.festivalLocationCity + ", " + festival.festivalLocationCountry);
-                        Console.WriteLine(festival.festivalLocationStreet + " " + festival.festivalLocationHouseNumber);
+                        Console.WriteLine(festival.festivalLocation.city + ", " + festival.festivalLocation.country);
+                        Console.WriteLine(festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber);
                         Console.WriteLine(line);
-                        Console.WriteLine(festival.festivalDate);
+                        Console.WriteLine(festival.festivalDate.to_string());
                         Console.WriteLine("Begint om " + festival.festivalStartingTime + " en eindigt om " + festival.festivalEndTime + ".");
                         Console.WriteLine("Je moet minimaal " + festival.festivalAgeRestriction + " jaar oud zijn om binnen te komen.");
                         Console.WriteLine(line);

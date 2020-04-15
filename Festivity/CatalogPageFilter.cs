@@ -9,7 +9,7 @@
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].Name.CompareTo(festivalArray[i + 1].Name) > 0)
+                    if (festivalArray[i].festivalName.CompareTo(festivalArray[i + 1].festivalName) > 0)
                     {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
@@ -27,23 +27,8 @@
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].Date.year > festivalArray[i + 1].Date.year)
-                    {
-                        Festival temp = festivalArray[i];
-                        festivalArray[i] = festivalArray[i + 1];
-                        festivalArray[i + 1] = temp;
-                    }
-                    else if (festivalArray[i].Date.year == festivalArray[i + 1].Date.year &&
-                        festivalArray[i].Date.month > festivalArray[i + 1].Date.month)
-                    {
-                        Festival temp = festivalArray[i];
-                        festivalArray[i] = festivalArray[i + 1];
-                        festivalArray[i + 1] = temp;
-                    }
-                    else if (festivalArray[i].Date.year == festivalArray[i + 1].Date.year &&
-                        festivalArray[i].Date.month == festivalArray[i + 1].Date.month &&
-                        festivalArray[i].Date.day > festivalArray[i + 1].Date.day)
-                    {
+                    if (festivalArray[i].festivalDate.to_identifier() > festivalArray[i + 1].festivalDate.to_identifier())
+                    { 
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
@@ -60,7 +45,7 @@
 
             for (int i = 0; i < arraySize; i++)
             {
-                if (festivalArray[i].Name.ToLower().Contains(searchText.ToLower()))
+                if (festivalArray[i].festivalName.ToLower().Contains(searchText.ToLower()))
                 {
                     tempArray[count] = festivalArray[i];
                     count++;
@@ -76,21 +61,27 @@
 
             Festival emptyFestival = new Festival
             {
-                Id = -1,
-                Name = null,
-                Location = {
-                    country = null,
-                    city = null,
-                    zipCode = null,
-                    streetName = null,
-                    streetNumber = null
-                },
-                Date = {
+                festivalId = -1,
+                festivalName = "",
+                festivalDate = new Date
+                {
                     day = -1,
                     month = -1,
-                    year = -1,
+                    year = -1
                 },
-                Description = null,
+                festivalStartingTime = "",
+                festivalEndTime = "",
+                festivalLocation = new Address
+                {
+                    country = "",
+                    city = "",
+                    zipCode = "",
+                    streetName = "",
+                    streetNumber = ""
+                },
+                festivalDescription = "",
+                festivalAgeRestriction = 18,
+                festivalGenre = "",
             };
 
             for (int i = count; i < resultArray.Length; i++)
