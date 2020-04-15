@@ -28,23 +28,9 @@ namespace Festivity
 
             Festival emptyFestival = new Festival
             {
-                Id = -1,
-                Name = "",
-                Location = new Address{
-                    country = "",
-                    city = "",
-                    zipCode = "",
-                    streetName = "",
-                    streetNumber = ""
-                },
-                Date = new Date {
-                    day = -1,
-                    month = -1,
-                    year = -1
-                },
-                Time = "",
-                Description = ""
-            };
+                festivalArray[festivalNumber] = new Festival(festival.id, festival.name, festival.description, festival.location, festival.date, festival.time);
+                festivalNumber++;
+            }
 
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)

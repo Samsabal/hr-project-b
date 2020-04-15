@@ -22,6 +22,6 @@ namespace Festivity
         {
             string result = streetName + " " + streetNumber + ", " + zipCode + " " + city + ", " + country;
             return result;
-        }
+        } 
     }
 }
