@@ -8,40 +8,40 @@ namespace Festivity
     class FestivalRegisterClass
     {
         [JsonProperty("festivalId")]
-        public int FestivalId { get; set; }
+        public int festivalId { get; set; }
 
         [JsonProperty("festivalName")]
-        public string FestivalName { get; set; }
+        public string festivalName { get; set; }
 
         [JsonProperty("festivalDate")]
-        public string FestivalDate { get; set; }
+        public string festivalDate { get; set; }
 
         [JsonProperty("festivalStartingTime")]
-        public string FestivalStartingTime { get; set; }
+        public string festivalStartingTime { get; set; }
 
         [JsonProperty("festivalEndTime")]
-        public string FestivalEndTime { get; set; }
+        public string festivalEndTime { get; set; }
 
         [JsonProperty("festivalLocationCountry")]
-        public string FestivalLocationCountry { get; set; }
+        public string festivalLocationCountry { get; set; }
 
         [JsonProperty("festivalLocationCity")]
-        public string FestivalLocationCity { get; set; }
+        public string festivalLocationCity { get; set; }
 
         [JsonProperty("festivalLocationStreet")]
-        public string FestivalLocationStreet { get; set; }
+        public string festivalLocationStreet { get; set; }
 
         [JsonProperty("festivalLocationHouseNumber")]
-        public string FestivalLocationHouseNumber { get; set; }
+        public string festivalLocationHouseNumber { get; set; }
 
         [JsonProperty("festivalDescription")]
-        public string FestivalDescription { get; set; }
+        public string festivalDescription { get; set; }
 
         [JsonProperty("festivalAgeRestriction")]
-        public string FestivalAgeRestriction { get; set; }
+        public string festivalAgeRestriction { get; set; }
 
         [JsonProperty("festivalGenre")]
-        public string FestivalGenre { get; set; }
+        public string festivalGenre { get; set; }
 
     }
 
