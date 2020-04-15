@@ -35,9 +35,9 @@ namespace Festivity
                             string line = "--------w--------------------------------------------------------------";
                             string thickLine = "======================================================================";
                             string festivalName = "#" + festival.festivalId + " " + festival.festivalName;
-                            string festivalAddress = festival.festivalLocationStreet + " " + festival.festivalLocationHouseNumber;
-                            string festivalLocation = festival.festivalLocationCity + ", " + festival.festivalLocationCountry;
-                            string festivalDate = festival.festivalDate;
+                            string festivalAddress = festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber;
+                            string festivalLocation = festival.festivalLocation.city + ", " + festival.festivalLocation.country;
+                            string festivalDate = festival.festivalDate.to_string();
                             string festivalTime = "Begint om " + festival.festivalStartingTime + " en eindigt om " + festival.festivalEndTime + ".";
                             string festivalDescription = festival.festivalDescription;
                             string festivalAgeLimit = "Je moet minimaal " + festival.festivalAgeRestriction + " jaar oud zijn om binnen te komen.";

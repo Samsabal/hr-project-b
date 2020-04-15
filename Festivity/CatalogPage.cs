@@ -28,22 +28,25 @@ namespace Festivity
 
             Festival emptyFestival = new Festival
             {
-                Id = -1,
-                Name = "",
-                Location = new Address{
+                festivalId = -1,
+                festivalName = "",
+                festivalDate = new Date {
+                    day = -1,
+                    month = -1,
+                    year = -1
+                },
+                festivalStartingTime = "",
+                festivalEndTime = "",
+                festivalLocation = new Address {
                     country = "",
                     city = "",
                     zipCode = "",
                     streetName = "",
                     streetNumber = ""
                 },
-                Date = new Date {
-                    day = -1,
-                    month = -1,
-                    year = -1
-                },
-                Time = "",
-                Description = ""
+                festivalDescription = "",
+                festivalAgeRestriction = 18,
+                festivalGenre = "",
             };
 
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
@@ -83,10 +86,10 @@ namespace Festivity
             for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
             {
                 Console.WriteLine("------------------------------------------------------------");
-                Console.WriteLine(festivalArray[i].Name);
-                Console.WriteLine(festivalArray[i].Description);
-                Console.WriteLine(festivalArray[i].Date.to_string());
-                Console.WriteLine(festivalArray[i].Location.city);
+                Console.WriteLine(festivalArray[i].festivalName);
+                Console.WriteLine(festivalArray[i].festivalDescription);
+                Console.WriteLine(festivalArray[i].festivalDate.to_string());
+                Console.WriteLine(festivalArray[i].festivalLocation.city);
             }
             Console.WriteLine("------------------------------------------------------------");
         }
@@ -95,9 +98,9 @@ namespace Festivity
         private static void catalog_navigate(Festival[] festivalArray, int arraySize)
         {
             // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].Name, "Select festival " + festivalArray[CurrentPage*5+1].Name,
-                "Select festival " + festivalArray[CurrentPage*5+2].Name, "Select festival " + festivalArray[CurrentPage*5+3].Name,
-                "Select festival " + festivalArray[CurrentPage*5+4].Name, "Next page", "Previous page", "Filter festivals", "Exit" };
+            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].festivalName, "Select festival " + festivalArray[CurrentPage*5+1].festivalName,
+                "Select festival " + festivalArray[CurrentPage*5+2].festivalName, "Select festival " + festivalArray[CurrentPage*5+3].festivalName,
+                "Select festival " + festivalArray[CurrentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
