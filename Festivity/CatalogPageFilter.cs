@@ -52,5 +52,53 @@
             }
             return festivalArray;
         }
+
+        public static Festival[] filter_name(Festival[] festivalArray, int arraySize, string searchText)
+        {
+            Festival[] tempArray = new Festival[arraySize];
+            int count = 0;
+
+            for (int i = 0; i < arraySize; i++)
+            {
+                if (festivalArray[i].Name.ToLower().Contains(searchText.ToLower()))
+                {
+                    tempArray[count] = festivalArray[i];
+                    count++;
+                }
+            }
+            int extraSpace = 5 - (count % 5);
+            Festival[] resultArray = new Festival[count + extraSpace + 1];
+
+            for (int i = 0; i < count; i++)
+            {
+                resultArray[i] = tempArray[i];
+            }
+
+            Festival emptyFestival = new Festival
+            {
+                Id = -1,
+                Name = null,
+                Location = {
+                    country = null,
+                    city = null,
+                    zipCode = null,
+                    streetName = null,
+                    streetNumber = null
+                },
+                Date = {
+                    day = -1,
+                    month = -1,
+                    year = -1,
+                },
+                Description = null,
+            };
+
+            for (int i = count; i < resultArray.Length; i++)
+            {
+                resultArray[i] = emptyFestival;
+            }
+
+            return resultArray;
+        }
     }
 }

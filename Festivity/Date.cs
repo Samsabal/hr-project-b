@@ -11,15 +11,6 @@ namespace Festivity
         [JsonProperty("year")]
         public int year { get; set; }
 
-
-        public Date(int day, int month, int year)
-        {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        }
-
-
         public string to_string()
         {
             if (day == -1 || month == -1 || year == -1)
