@@ -17,12 +17,20 @@ namespace Festivity
         public static void register_page()
         {
             register_user();
+            Program.Main(new string[] { });
         }
 
         public static void register_user()
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+
+            string contactPerson = null;
+            string companyPhoneNumber = null;
+            string companyName = null;
+            string birthDate = null;
+            bool newsLetter = false;
+            string visitorPhoneNumber = null;
 
             Console.WriteLine("Enter firstName: \n");
             var firstName = Console.ReadLine();
@@ -37,14 +45,6 @@ namespace Festivity
             Console.Clear();
             var accountType = user_account_type_input(); 
             Console.Clear();
-
-            string contactPerson = null;
-            string companyPhoneNumber = null;
-            string companyName = null;
-
-            string birthDate = null;
-            bool newsLetter = false;
-            string visitorPhoneNumber = null;
 
             if (accountType == 1) // Organisator
             {
@@ -86,11 +86,8 @@ namespace Festivity
             Console.WriteLine("Enter zipCode: \n");
             var zipCode = Console.ReadLine();
             Console.Clear();
-
-            user_terms_input();
-
+            user_terms_input(); // User terms and conditions agreement
             int accountID = user_account_id(users);
-
 
             User user = new User
             {
@@ -114,17 +111,41 @@ namespace Festivity
                 newsLetter = newsLetter,
                 phoneNumber = visitorPhoneNumber
             };
-
+            
             Console.WriteLine("Your account has been created");
             Thread.Sleep(5000);
+            write_user_to_database();
 
-            users.users.Add(user);
+            void write_user_to_database()
+            {
+                User user = new User //Creates a new user object
+                {
+                    accountType = accountType,
+                    accountID = accountID,
+                    firstName = firstName,
+                    lastName = userName,
+                    email = email,
+                    password = password,
+                    contactPerson = contactPerson,
+                    companyPhoneNumber = companyPhoneNumber,
+                    companyName = companyName,
+                    userAddress = {
+                    country = country,
+                    city = city,
+                    zipCode = zipCode,
+                    streetName = streetName,
+                    streetNumber = streetNumber
+                },
+                    birthDate = birthDate,
+                    newsLetter = newsLetter,
+                    phoneNumber = visitorPhoneNumber
+                };
 
-            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-
-            File.WriteAllText(PATH_USER, json);
-
-            Program.Main(new string[] { });
+                users.users.Add(user);  
+                string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+                File.WriteAllText(PATH_USER, json);
+                // This block of code adds the user object to the json database.\ 
+            }
 
             string user_email_input()
             {
