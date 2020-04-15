@@ -27,27 +27,33 @@
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].festivalDate.year > festivalArray[i + 1].festivalDate.year)
-                    {
+                    if (festivalArray[i].festivalDate.to_identifier() > festivalArray[i + 1].festivalDate.to_identifier())
+                    { 
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }
-                    else if (festivalArray[i].festivalDate.year == festivalArray[i + 1].festivalDate.year &&
-                        festivalArray[i].festivalDate.month > festivalArray[i + 1].festivalDate.month)
-                    {
-                        Festival temp = festivalArray[i];
-                        festivalArray[i] = festivalArray[i + 1];
-                        festivalArray[i + 1] = temp;
-                    }
-                    else if (festivalArray[i].festivalDate.year == festivalArray[i + 1].festivalDate.year &&
-                        festivalArray[i].festivalDate.month == festivalArray[i + 1].festivalDate.month &&
-                        festivalArray[i].festivalDate.day > festivalArray[i + 1].festivalDate.day)
-                    {
-                        Festival temp = festivalArray[i];
-                        festivalArray[i] = festivalArray[i + 1];
-                        festivalArray[i + 1] = temp;
-                    }
+                    //if (festivalArray[i].festivalDate.year > festivalArray[i + 1].festivalDate.year)
+                    //{
+                    //    Festival temp = festivalArray[i];
+                    //    festivalArray[i] = festivalArray[i + 1];
+                    //    festivalArray[i + 1] = temp;
+                    //}
+                    //else if (festivalArray[i].festivalDate.year == festivalArray[i + 1].festivalDate.year &&
+                    //    festivalArray[i].festivalDate.month > festivalArray[i + 1].festivalDate.month)
+                    //{
+                    //    Festival temp = festivalArray[i];
+                    //    festivalArray[i] = festivalArray[i + 1];
+                    //    festivalArray[i + 1] = temp;
+                    //}
+                    //else if (festivalArray[i].festivalDate.year == festivalArray[i + 1].festivalDate.year &&
+                    //    festivalArray[i].festivalDate.month == festivalArray[i + 1].festivalDate.month &&
+                    //    festivalArray[i].festivalDate.day > festivalArray[i + 1].festivalDate.day)
+                    //{
+                    //    Festival temp = festivalArray[i];
+                    //    festivalArray[i] = festivalArray[i + 1];
+                    //    festivalArray[i + 1] = temp;
+                    //}
                 }
             }
             return festivalArray;

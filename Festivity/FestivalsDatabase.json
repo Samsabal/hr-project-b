@@ -20,6 +20,48 @@
       "festivalLocationCity": "Dikke huisfissa",
       "festivalAgeRestriction": 19,
       "festivalGenre": "techno"
-    }
+    },
+    {
+      "festivalId": 2,
+      "festivalName": "test1",
+      "festivalDate": {
+        "day": 30,
+        "month": 6,
+        "year": 2040
+      },
+      "festivalStartingTime": "23:00",
+      "festivalEndTime": "23:01",
+      "festivalLocationCountry": {
+        "country": "NL",
+        "city": "Rotterdam",
+        "zipCode": "3067GK",
+        "streetName": "dikkefissalaan",
+        "streetNumber": "599"
+      },
+      "festivalLocationCity": "test123456789",
+      "festivalAgeRestriction": 40,
+      "festivalGenre": "techYes B)"
+    },
+    {
+      "festivalId": 1,
+      "festivalName": "Test3",
+      "festivalDate": {
+        "day": 19,
+        "month": 3,
+        "year": 1920
+      },
+      "festivalStartingTime": "12:00",
+      "festivalEndTime": "15:00",
+      "festivalLocationCountry": {
+        "country": "nederland",
+        "city": "rotterdam",
+        "zipCode": "3066GK",
+        "streetName": "lena blok woutsstraat",
+        "streetNumber": "25"
+      },
+      "festivalLocationCity": "Dikke huisfissa",
+      "festivalAgeRestriction": 19,
+      "festivalGenre": "techno"
+    },
   ]
 }
