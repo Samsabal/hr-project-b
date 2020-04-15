@@ -9,6 +9,8 @@ namespace Festivity
     {
         public static void menu(string[] consoleOptions)
         {
+            /// 1. Add your option as string in consoleOptions argument.
+            /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
             int option = 0;
 
             while (true)
