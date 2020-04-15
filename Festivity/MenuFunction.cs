@@ -78,7 +78,7 @@ namespace Festivity
                             break;
                         case "Festival Page":
                             Console.Clear();
-                            FestivalPage.festival_page();
+                            FestivalPage.festival_page(1);
                             Thread.Sleep(5000);
                             break;
                         default:
