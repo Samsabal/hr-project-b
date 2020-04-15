@@ -36,13 +36,13 @@ namespace Festivity
             int ticketId(JSONTicketList tickets)
             {
                 int ticketId;
-                if (tickets.Tickets.Count == 0)
+                if (tickets.tickets.Count == 0)
                 {
                     ticketId = 1;
                 }
                 else
                 {
-                    int item = tickets.Tickets[^1].ticketId;
+                    int item = tickets.tickets[^1].ticketId;
                     ticketId = item + 1;
                 };
 
@@ -148,7 +148,7 @@ namespace Festivity
                 };
 
                 // Adds a new ticket to the database
-                tickets.Tickets.Add(ticket);
+                tickets.tickets.Add(ticket);
 
                 string jsonticket = JsonConvert.SerializeObject(tickets, Formatting.Indented);
 

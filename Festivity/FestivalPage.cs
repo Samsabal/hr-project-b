@@ -22,7 +22,7 @@ namespace Festivity
                 foreach (var festival in Festivals.Festivals)
                 {
                     string line = "----------------------------------------------------------------------";
-                    string thickline = "======================================================================";
+                    string thickLine = "======================================================================";
                     string festivalName = festival.name + " #" + festival.id;
                     string festivalAddress = festival.address + ", " + festival.location;
                     string festivalDate = festival.date + ", " + festival.time;
@@ -32,7 +32,7 @@ namespace Festivity
                     Console.WriteLine(festivalDate);
                     Console.WriteLine(line);
                     Console.WriteLine(festival.description);
-                    Console.WriteLine(dikkeLijn);
+                    Console.WriteLine(thickLine);
                 }
 
                 //Makes the keys light up when you select them.

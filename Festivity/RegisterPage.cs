@@ -88,29 +88,6 @@ namespace Festivity
             Console.Clear();
             user_terms_input(); // User terms and conditions agreement
             int accountID = user_account_id(users);
-
-            User user = new User
-            {
-                accountType = accountType,
-                accountID = accountID,
-                firstName = firstName,
-                lastName = userName,
-                email = email,
-                password = password,
-                contactPerson = contactPerson,
-                companyPhoneNumber = companyPhoneNumber,
-                companyName = companyName,
-                userAddress = {
-                    country = country,
-                    city = city,
-                    zipCode = zipCode,
-                    streetName = streetName,
-                    streetNumber = streetNumber
-                },
-                birthDate = birthDate,
-                newsLetter = newsLetter,
-                phoneNumber = visitorPhoneNumber
-            };
             
             Console.WriteLine("Your account has been created");
             Thread.Sleep(5000);
@@ -130,12 +107,12 @@ namespace Festivity
                     companyPhoneNumber = companyPhoneNumber,
                     companyName = companyName,
                     userAddress = {
-                    country = country,
-                    city = city,
-                    zipCode = zipCode,
-                    streetName = streetName,
-                    streetNumber = streetNumber
-                },
+                        country = country,
+                        city = city,
+                        zipCode = zipCode,
+                        streetName = streetName,
+                        streetNumber = streetNumber
+                        },
                     birthDate = birthDate,
                     newsLetter = newsLetter,
                     phoneNumber = visitorPhoneNumber

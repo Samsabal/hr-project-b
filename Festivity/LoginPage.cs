@@ -21,6 +21,8 @@ namespace Festivity
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
+            bool accountExists = false;
+
             Console.WriteLine("Email: ");
             var userEmail = Console.ReadLine();
             Console.Clear();
@@ -34,6 +36,7 @@ namespace Festivity
                 {
                     if (user.password == userPassword)
                     {
+                        accountExists = true;
                         int currentUser = user.accountID;
                         Console.WriteLine("You are logged in!");
                         break;
@@ -43,12 +46,11 @@ namespace Festivity
                         Console.WriteLine("Wrong password!");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("\nAccount exists does not exist!");
-                }
             }
-
+            if (!accountExists)
+            {
+                Console.WriteLine("Account exists does not exist!");
+            }
         }
     }
 }
