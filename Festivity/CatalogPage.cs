@@ -49,6 +49,7 @@ namespace Festivity
                 festivalGenre = "",
             };
 
+
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)
             {
@@ -85,6 +86,7 @@ namespace Festivity
         {
             for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
             {
+
                 Console.WriteLine("------------------------------------------------------------");
                 Console.WriteLine(festivalArray[i].festivalName);
                 Console.WriteLine(festivalArray[i].festivalDescription);
@@ -101,6 +103,7 @@ namespace Festivity
             string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].festivalName, "Select festival " + festivalArray[CurrentPage*5+1].festivalName,
                 "Select festival " + festivalArray[CurrentPage*5+2].festivalName, "Select festival " + festivalArray[CurrentPage*5+3].festivalName,
                 "Select festival " + festivalArray[CurrentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
+
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
