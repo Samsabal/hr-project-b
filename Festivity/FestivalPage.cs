@@ -30,7 +30,7 @@ namespace Festivity
                     //Displays the text in the console.
                     Console.Clear();
 
-                        foreach (var festival in Festivals.Festivals)
+                        foreach (var festival in Festivals.festivals)
                         {
                             string line = "--------w--------------------------------------------------------------";
                             string thickLine = "======================================================================";

@@ -23,7 +23,7 @@ namespace Festivity
             CurrentPage = 0;
 
             // Makes an array with extra space to ensure there's always 5 festivals on screen
-            int arraySize = Festivals.Festivals.Count;
+            int arraySize = Festivals.festivals.Count;
             int extraSpace = 5 - (arraySize % 5);
 
             Festival emptyFestival = new Festival
@@ -52,10 +52,10 @@ namespace Festivity
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)
             {
-                Festivals.Festivals.Add(emptyFestival);
+                Festivals.festivals.Add(emptyFestival);
             }
 
-            festivalArray = Festivals.Festivals.ToArray();
+            festivalArray = Festivals.festivals.ToArray();
 
             Option = 0;
 

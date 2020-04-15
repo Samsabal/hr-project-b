@@ -27,7 +27,7 @@ namespace Festivity
 
     class JSONFestivalList
     {
-        [JsonProperty("Festivals")]
-        public List<Festival> Festivals { get; set; }
+        [JsonProperty("festivals")]
+        public List<Festival> festivals { get; set; }
     }
 }
