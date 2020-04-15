@@ -9,11 +9,13 @@ namespace Festivity
     {
         public static void festival_register()
         {
+            // This is used to write and retrieve data to the correct database
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalRegisterList festivals = JsonConvert.DeserializeObject<JSONFestivalRegisterList>(File.ReadAllText(PATH_FESTIVAL));
             string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
             JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
 
+            // This is a function to retrieve the latest registered festivalid and create the next festivalid
             int festivalId(JSONFestivalRegisterList festivals)
             {
                 int festivalId;
@@ -23,12 +25,14 @@ namespace Festivity
                 }
                 else
                 {
-                    int item = festivals.festivals[festivals.festivals.Count - 1].FestivalId;
+                    int item = festivals.festivals[^1].FestivalId;
                     festivalId = item + 1;
                 };
 
                 return festivalId;
             }
+
+            // This is a function to retrieve the latest registered ticketid and create the next ticketid
             int ticketId(JSONTicketList tickets)
             {
                 int ticketId;
@@ -38,7 +42,7 @@ namespace Festivity
                 }
                 else
                 {
-                    int item = tickets.Tickets[tickets.Tickets.Count - 1].TicketId;
+                    int item = tickets.Tickets[^1].TicketId;
                     ticketId = item + 1;
                 };
 
@@ -87,6 +91,8 @@ namespace Festivity
             Console.WriteLine("Fill in the amount of various tickets as anumber: ");
             int festivalAmountVariousTickets = Int32.Parse(Console.ReadLine());
 
+            // A format for creating a new festival
+
             FestivalRegisterClass festival = new FestivalRegisterClass
             {
                 FestivalId = festivalID,
@@ -102,15 +108,21 @@ namespace Festivity
                 FestivalGenre = festivalGenre,
                 FestivalAgeRestriction = festivalAgeRestriction
             };
+
+            // Adds a new festival to the database
             festivals.festivals.Add(festival);
 
             string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
 
             File.WriteAllText(PATH_FESTIVAL, jsonfestival);
 
+            // this a for loop to loop the amount of times the organiser filled in for various amounts of tickets
             for (int i = 0; i < festivalAmountVariousTickets; i++)
             {
+                // This variable connected to the ticketid function is placed inside the loop to give every ticket a new ticketid
                 int ticketID = ticketId(tickets);
+
+
                 Console.WriteLine("Fill in the ticket name of ticket ", (i + 1),
                 ": ");
                 string festivalTicketName = Console.ReadLine();
@@ -124,6 +136,7 @@ namespace Festivity
                 Console.WriteLine("Fill in the maximum available amount of this type ticket");
                 int festivalMaxTickets = Int32.Parse(Console.ReadLine());
                 
+                // This is a format to create the new ticket
                 Ticket ticket = new Ticket
                 {
                     FestivalId = festivalID,
@@ -134,6 +147,7 @@ namespace Festivity
                     MaxTickets = festivalMaxTickets
                 };
 
+                // Adds a new ticket to the database
                 tickets.Tickets.Add(ticket);
 
                 string jsonticket = JsonConvert.SerializeObject(tickets, Formatting.Indented);

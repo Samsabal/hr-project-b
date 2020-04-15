@@ -27,6 +27,34 @@
       "festivalDescription": "testdescription",
       "festivalAgeRestriction": "18",
       "festivalGenre": "test"
+    },
+    {
+      "festivalId": 3,
+      "festivalName": "test3",
+      "festivalDate": "01:01:2021",
+      "festivalStartingTime": "22:00",
+      "festivalEndTime": "02:00",
+      "festivalLocationCountry": "Netherlands",
+      "festivalLocationCity": "Rotterdam",
+      "festivalLocationStreet": "Wijnhaven",
+      "festivalLocationHouseNumber": "107",
+      "festivalDescription": "testdesc",
+      "festivalAgeRestriction": "17",
+      "festivalGenre": "school"
+    },
+    {
+      "festivalId": 4,
+      "festivalName": "test4",
+      "festivalDate": "01:01:2021",
+      "festivalStartingTime": "21:00",
+      "festivalEndTime": "02:00",
+      "festivalLocationCountry": "Netherlands",
+      "festivalLocationCity": "Rotterdam",
+      "festivalLocationStreet": "Iependaal",
+      "festivalLocationHouseNumber": "62",
+      "festivalDescription": "testdescription for new operator",
+      "festivalAgeRestriction": "14",
+      "festivalGenre": "test"
     }
   ]
 }
