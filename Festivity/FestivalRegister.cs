@@ -95,18 +95,18 @@ namespace Festivity
 
             FestivalRegisterClass festival = new FestivalRegisterClass
             {
-                FestivalId = festivalID,
-                FestivalName = festivalName,
-                FestivalDescription = festivalDescription,
-                FestivalLocationCountry = festivalLocationCountry,
-                FestivalLocationCity = festivalLocationCity,
-                FestivalLocationStreet = festivalLocationStreet,
-                FestivalLocationHouseNumber = festivalLocationHouseNumber,
-                FestivalDate = festivalDate,
-                FestivalStartingTime = festivalStartingTime,
-                FestivalEndTime = festivalEndTime,
-                FestivalGenre = festivalGenre,
-                FestivalAgeRestriction = festivalAgeRestriction
+                festivalId = festivalID,
+                festivalName = festivalName,
+                festivalDescription = festivalDescription,
+                festivalLocationCountry = festivalLocationCountry,
+                festivalLocationCity = festivalLocationCity,
+                festivalLocationStreet = festivalLocationStreet,
+                festivalLocationHouseNumber = festivalLocationHouseNumber,
+                festivalDate = festivalDate,
+                festivalStartingTime = festivalStartingTime,
+                festivalEndTime = festivalEndTime,
+                festivalGenre = festivalGenre,
+                festivalAgeRestriction = festivalAgeRestriction
             };
 
             // Adds a new festival to the database
@@ -139,12 +139,12 @@ namespace Festivity
                 // This is a format to create the new ticket
                 Ticket ticket = new Ticket
                 {
-                    FestivalId = festivalID,
-                    TicketId = ticketID,
-                    TicketName = festivalTicketName,
-                    TicketDescription = festivalTicketDescription,
-                    TicketPrice = festivalTicketPrice,
-                    MaxTickets = festivalMaxTickets
+                    festivalId = festivalID,
+                    ticketId = ticketID,
+                    ticketName = festivalTicketName,
+                    ticketDescription = festivalTicketDescription,
+                    ticketPrice = festivalTicketPrice,
+                    maxTickets = festivalMaxTickets
                 };
 
                 // Adds a new ticket to the database
