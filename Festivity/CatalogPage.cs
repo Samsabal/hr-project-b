@@ -6,11 +6,12 @@ using System.IO;
 namespace Festivity
 {
 
-
     public class CatalogPage
     {
-        static int CurrentPage;
-        static int Option;
+        static int currentPage;
+        static int option;
+        static Festival[] festivalArray;
+        static string currentCatalogNavigation;
 
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
@@ -18,76 +19,101 @@ namespace Festivity
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
-            CurrentPage = 0;
-
-            // Counts the amount of festivals in the JSON database
-            int arraySize = 0;
-            foreach (var festival in Festivals.Festivals)
-            {
-                arraySize++;
-            }
+            currentCatalogNavigation = "main";
+            currentPage = 0;
 
             // Makes an array with extra space to ensure there's always 5 festivals on screen
+            int arraySize = Festivals.festivals.Count;
             int extraSpace = 5 - (arraySize % 5);
-            Festival[] festivalArray = new Festival[arraySize + extraSpace + 1];
 
-            // Adds the JSON festivals to an array for easier counting manipulation
-            int festivalNumber = 0;
-            foreach (var festival in Festivals.Festivals)
+            Festival emptyFestival = new Festival
             {
-                festivalArray[festivalNumber] = new Festival(festival.id, festival.name, festival.description, festival.location, festival.date, festival.time);
-                festivalNumber++;
-            }
+                festivalId = -1,
+                festivalName = "",
+                festivalDate = new Date {
+                    day = -1,
+                    month = -1,
+                    year = -1
+                },
+                festivalStartingTime = "",
+                festivalEndTime = "",
+                festivalLocation = new Address {
+                    country = "",
+                    city = "",
+                    zipCode = "",
+                    streetName = "",
+                    streetNumber = ""
+                },
+                festivalDescription = "",
+                festivalAgeRestriction = 18,
+                festivalGenre = "",
+            };
+
 
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)
             {
-                festivalArray[festivalNumber] = new Festival(-1, null, null, null, null, null);
-                festivalNumber++;
+                Festivals.festivals.Add(emptyFestival);
             }
-            Option = 0;
+
+            festivalArray = Festivals.festivals.ToArray();
+
+            option = 0;
+
+            festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
 
             // Makes sure the console keeps refreshing, allowing input
 
             while (true)
             {
-                Console.Clear();
-                show_festivals(festivalArray);
-                catalog_navigate(festivalArray, arraySize);
+                if (currentCatalogNavigation == "main")
+                {
+                    Console.Clear();
+                    show_festivals(festivalArray);
+                    catalog_navigate(festivalArray, arraySize);
+                }
+                else
+                {
+                    Console.Clear();
+                    show_festivals(festivalArray);
+                    catalog_filter_navigate(arraySize);
+                }
             }
         }
 
         // Function that shows the currently selected festivals in the console
         private static void show_festivals(Festival[] festivalArray)
         {
-                for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
-                {
-                    Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine(festivalArray[i].name);
-                    Console.WriteLine(festivalArray[i].description);
-                    Console.WriteLine(festivalArray[i].date);
-                    Console.WriteLine(festivalArray[i].location);
-                }
+            for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
+            {
+
                 Console.WriteLine("------------------------------------------------------------");
+                Console.WriteLine(festivalArray[i].festivalName);
+                Console.WriteLine(festivalArray[i].festivalDescription);
+                Console.WriteLine(festivalArray[i].festivalDate.to_string());
+                Console.WriteLine(festivalArray[i].festivalLocation.city);
+            }
+            Console.WriteLine("------------------------------------------------------------");
         }
 
         // Function handling the navigation and selection of options in the catalog page
         private static void catalog_navigate(Festival[] festivalArray, int arraySize)
         {
             // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].name, "Select festival " + festivalArray[CurrentPage*5+1].name, 
-                "Select festival " + festivalArray[CurrentPage*5+2].name, "Select festival " + festivalArray[CurrentPage*5+3].name,
-                "Select festival " + festivalArray[CurrentPage*5+4].name, "Next page", "Previous page", "Exit" };
+            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[currentPage*5].festivalName, "Select festival " + festivalArray[currentPage*5+1].festivalName,
+                "Select festival " + festivalArray[currentPage*5+2].festivalName, "Select festival " + festivalArray[currentPage*5+3].festivalName,
+                "Select festival " + festivalArray[currentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
+
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
-                if (Option == i)
+                if (option == i)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
                 Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (Option == i)
+                if (option == i)
                 {
                     Console.ResetColor();
                 }
@@ -97,17 +123,17 @@ namespace Festivity
             // When DownArrow key is pressed go down.
             if (KeyPressed.Key == ConsoleKey.DownArrow)
             {
-                if (Option != ConsoleOptions.Length - 1)
+                if (option != ConsoleOptions.Length - 1)
                 {
-                    Option++;
+                    option++;
                 }
             }
             // When UpArrow key is pressed go up.
             else if (KeyPressed.Key == ConsoleKey.UpArrow)
             {
-                if (Option != 0)
+                if (option != 0)
                 {
-                    Option--;
+                    option--;
                 }
             }
 
@@ -122,7 +148,7 @@ namespace Festivity
             // Switch statement used for redirecting the user to the right option that was chosen.
             if (KeyPressed.Key == ConsoleKey.Enter)
             {
-                switch (Option)
+                switch (option)
                 {
                     case 0: // Placeholder redirection festival 1
                         Thread.Sleep(10000);
@@ -140,21 +166,104 @@ namespace Festivity
                         Environment.Exit(0);
                         break;
                     case 5: // Redirection to next catalog page
-                        if (CurrentPage * 5 + 5 < arraySize)
+                        if (currentPage * 5 + 5 < arraySize)
                         {
-                            CurrentPage++;
+                            currentPage++;
                         }
                         break;
                     case 6: // Redirection to previous catalog page
-                        if (CurrentPage > 0)
+                        if (currentPage > 0)
                         {
-                            CurrentPage--;
+                            currentPage--;
                         }
                         break;
-                    case 7: // Exit option
+                    case 7: // Redirection to filter functions
+                        currentCatalogNavigation = "filter";
+                        break;
+                    case 8: // Exit option
                         Program.Main(new string[] { });
                         break;
                     default:
+                        break;
+                }
+            }
+        }
+
+        // Function handling the navigation when the user tries to filter the catalog
+        private static void catalog_filter_navigate(int arraySize)
+        {
+            // String containing the selectable options in the console
+            string[] ConsoleOptions = new string[]{"Sort by name", "Sort by date",
+                "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" };
+
+            for (int i = 0; i < ConsoleOptions.Length; i++)
+            {
+                if (option == i)
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.White;
+                }
+                Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
+                if (option == i)
+                {
+                    Console.ResetColor();
+                }
+            }
+
+            var KeyPressed = Console.ReadKey();
+            // When DownArrow key is pressed go down.
+            if (KeyPressed.Key == ConsoleKey.DownArrow)
+            {
+                if (option != ConsoleOptions.Length - 1)
+                {
+                    option++;
+                }
+            }
+            // When UpArrow key is pressed go up.
+            else if (KeyPressed.Key == ConsoleKey.UpArrow)
+            {
+                if (option != 0)
+                {
+                    option--;
+                }
+            }
+
+            // When the escape key is pressed go back to the main menu.
+            else if (KeyPressed.Key == ConsoleKey.Escape)
+            {
+                currentCatalogNavigation = "main";
+            }
+
+
+
+            // Switch statement used for redirecting the user to the right option that was chosen.
+            if (KeyPressed.Key == ConsoleKey.Enter)
+            {
+                switch (option)
+                {
+                    case 0: // sorts the catalog by name and returns to main navigation
+                        festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
+                        currentCatalogNavigation = "main";
+                        currentPage = 0;
+                        break;
+                    case 1: // sorts the catalog by date and returns to main navigation
+                        festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
+                        currentCatalogNavigation = "main";
+                        currentPage = 0;
+                        break;
+                    case 2: // Placeholder
+                        Thread.Sleep(10000);
+                        break;
+                    case 3: // Placeholder
+                        Thread.Sleep(10000);
+                        break;
+                    case 4: // Placeholder
+                        Thread.Sleep(10000);
+                        break;
+                    case 5: // Redirection
+                        break;
+                    case 6: // Redirection
+                        currentCatalogNavigation = "main";
                         break;
                 }
             }
