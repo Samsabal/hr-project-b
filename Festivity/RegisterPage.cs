@@ -106,9 +106,9 @@ namespace Festivity
                 userAddress = {
                     country = country,
                     city = city,
+                    zipCode = zipCode,
                     streetName = streetName,
-                    streetNumber = streetNumber,
-                    zipCode = zipCode 
+                    streetNumber = streetNumber
                 },
                 birthDate = birthDate,
                 newsLetter = newsLetter,
