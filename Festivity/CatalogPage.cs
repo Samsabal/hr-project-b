@@ -8,10 +8,10 @@ namespace Festivity
 
     public class CatalogPage
     {
-        static int currentPage;
+        public static int currentPage;
         static int option;
         static Festival[] festivalArray;
-        static string currentCatalogNavigation;
+        public static string currentCatalogNavigation;
 
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
@@ -195,8 +195,11 @@ namespace Festivity
         private static void catalog_filter_navigate(int arraySize)
         {
             // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Sort by name", "Sort by date",
-                "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" };
+            //string[] ConsoleOptions = new string[]{"Sort by name", "Sort by date",
+            //    "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" };
+
+            MenuFunction.menu(new string[] {"Sort by name", "Sort by date",
+                "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" });
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
