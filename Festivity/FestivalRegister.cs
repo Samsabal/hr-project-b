@@ -25,7 +25,7 @@ namespace Festivity
                 }
                 else
                 {
-                    int item = festivals.festivals[^1].FestivalId;
+                    int item = festivals.festivals[^1].festivalId;
                     festivalId = item + 1;
                 };
 
@@ -42,7 +42,7 @@ namespace Festivity
                 }
                 else
                 {
-                    int item = tickets.Tickets[^1].TicketId;
+                    int item = tickets.Tickets[^1].ticketId;
                     ticketId = item + 1;
                 };
 
