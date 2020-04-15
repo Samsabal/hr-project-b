@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 
 namespace Festivity
+{
     class MenuFunction
     {
         public static void menu(string[] consoleOptions)

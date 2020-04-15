@@ -35,7 +35,7 @@ namespace Festivity
             int festivalNumber = 0;
             foreach (var festival in Festivals.Festivals)
             {
-                festivalArray[festivalNumber] = new Festival(festival.Id, festival.Name, festival.Description, festival.Location, festival.Date, festival.Time);
+                festivalArray[festivalNumber] = new Festival(festival.id, festival.name, festival.description, festival.location, festival.date, festival.time);
                 festivalNumber++;
             }
 
@@ -63,10 +63,10 @@ namespace Festivity
                 for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
                 {
                     Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine(festivalArray[i].Name);
-                    Console.WriteLine(festivalArray[i].Description);
-                    Console.WriteLine(festivalArray[i].Date);
-                    Console.WriteLine(festivalArray[i].Location);
+                    Console.WriteLine(festivalArray[i].name);
+                    Console.WriteLine(festivalArray[i].description);
+                    Console.WriteLine(festivalArray[i].date);
+                    Console.WriteLine(festivalArray[i].location);
                 }
                 Console.WriteLine("------------------------------------------------------------");
         }
@@ -75,9 +75,9 @@ namespace Festivity
         private static void catalog_navigate(Festival[] festivalArray, int arraySize)
         {
             // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].Name, "Select festival " + festivalArray[CurrentPage*5+1].Name, 
-                "Select festival " + festivalArray[CurrentPage*5+2].Name, "Select festival " + festivalArray[CurrentPage*5+3].Name,
-                "Select festival " + festivalArray[CurrentPage*5+4].Name, "Next page", "Previous page", "Exit" };
+            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[CurrentPage*5].name, "Select festival " + festivalArray[CurrentPage*5+1].name, 
+                "Select festival " + festivalArray[CurrentPage*5+2].name, "Select festival " + festivalArray[CurrentPage*5+3].name,
+                "Select festival " + festivalArray[CurrentPage*5+4].name, "Next page", "Previous page", "Exit" };
 
             for (int i = 0; i < ConsoleOptions.Length; i++)
             {
