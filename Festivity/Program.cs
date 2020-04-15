@@ -18,7 +18,8 @@ namespace Festivity
             void homepage()
             {
                 int option = 0;
-                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit" };
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" };
+
                 while (true)
                 {
                     Console.Clear();
@@ -82,13 +83,17 @@ namespace Festivity
                             case 4: // Exit option
                                 Environment.Exit(0);
                                 break;
+                            case 5:
+                                Console.Clear();
+                                FestivalPage.festival_page();
+                                Thread.Sleep(100000);
+                                break;
                             default:
                                 break;
                         }
                     }
                 }
             }
-
 
             homepage();
 

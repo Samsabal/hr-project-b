@@ -6,7 +6,6 @@ using System.IO;
 namespace Festivity
 {
 
-
     public class CatalogPage
     {
         static int CurrentPage;

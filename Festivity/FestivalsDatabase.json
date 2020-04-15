@@ -1,5 +1,5 @@
 {
-  "Festivals": [
+  "festivals": [
     {
       "Id": 1,
       "Name": "Lage Landen",
@@ -109,5 +109,4 @@
       "Time": "21:00"
     }
   ]
-
 }
