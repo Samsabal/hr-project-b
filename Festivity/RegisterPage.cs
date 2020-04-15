@@ -32,15 +32,15 @@ namespace Festivity
             bool newsLetter = false;
             string visitorPhoneNumber = null;
 
-            Console.WriteLine("Enter firstName: \n");
+            Console.WriteLine("First name: \n");
             var firstName = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Enter lastName: \n");
+            Console.WriteLine("Last name: \n");
             var userName = Console.ReadLine();
             Console.Clear();
             var email = user_email_input(); 
             Console.Clear();
-            Console.WriteLine("Enter password: \n");
+            Console.WriteLine("Password: \n");
             var password = Console.ReadLine();
             Console.Clear();
             var accountType = user_account_type_input(); 
@@ -48,42 +48,42 @@ namespace Festivity
 
             if (accountType == 1) // Organisator
             {
-                Console.WriteLine("Enter contactPerson: \n");
+                Console.WriteLine("Company contactperson: \n");
                 contactPerson = Console.ReadLine();
                 Console.Clear();
-                Console.WriteLine("Enter phoneNumber: \n");
+                Console.WriteLine("Company phone number: \n");
                 companyPhoneNumber = Console.ReadLine();
                 Console.Clear();
-                Console.WriteLine("Enter companyName: \n");
+                Console.WriteLine("Company name: \n");
                 companyName = Console.ReadLine();
                 Console.Clear();
             }
 
             if (accountType == 2) // Visitor
             {
-                Console.WriteLine("Enter birthDate: \n");
+                Console.WriteLine("Date of Birth: \n");
                 birthDate = Console.ReadLine();
                 Console.Clear();
                 newsLetter = user_news_letter_input();
                 Console.Clear();
-                Console.WriteLine("Enter phoneNumber: \n");
+                Console.WriteLine("Phone number: \n");
                 visitorPhoneNumber = Console.ReadLine();
                 Console.Clear();
             }
 
-            Console.WriteLine("Enter country: \n");
+            Console.WriteLine("Country: \n");
             var country = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Enter city: \n");
+            Console.WriteLine("City: \n");
             var city = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Enter streetName: \n");
+            Console.WriteLine("Streetname: \n");
             var streetName = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Enter streetNumber: \n");
+            Console.WriteLine("Streetnumber: \n");
             var streetNumber = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Enter zipCode: \n");
+            Console.WriteLine("ZipCode: \n");
             var zipCode = Console.ReadLine();
             Console.Clear();
             user_terms_input(); // User terms and conditions agreement
@@ -149,12 +149,10 @@ namespace Festivity
 
             string user_email_input()
             {
-                Console.WriteLine("Enter email: \n");
+                Console.WriteLine("Email: \n");
                 string userInput = Console.ReadLine();
                 if (is_valid_email(userInput))
                 {
-                    Console.WriteLine("\nEmail correct");
-                    Thread.Sleep(2000);
                     return userInput;
                 } else {
                     Console.Clear();
