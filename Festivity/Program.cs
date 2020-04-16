@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 
@@ -13,7 +8,7 @@ namespace Festivity
 {
     class Program
     {
-    
+
         public static void Main(string[] args)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
@@ -23,7 +18,8 @@ namespace Festivity
             void homepage()
             {
                 int option = 0;
-                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit" };
+                string[] consoleOptions = new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" };
+
                 while (true)
                 {
                     Console.Clear();
@@ -87,6 +83,11 @@ namespace Festivity
                             case 4: // Exit option
                                 Environment.Exit(0);
                                 break;
+                            case 5:
+                                Console.Clear();
+                                FestivalPage.festival_page(2);
+                                Thread.Sleep(5000);
+                                break;
                             default:
                                 break;
                         }
@@ -94,9 +95,8 @@ namespace Festivity
                 }
             }
 
-
             homepage();
-         
+
         }
     }
 }

@@ -5,37 +5,29 @@ namespace Festivity
 {
     class Festival
     {
-        [JsonProperty("Id")]
-        public int Id { get; set; }
-        [JsonProperty("Name")]
-        public string Name { get; set; }
-        [JsonProperty("Location")]
-        public string Location { get; set; }
-        [JsonProperty("Address")]
-        public string Address { get; set; }
-        [JsonProperty("Date")]
-        public string Date { get; set; }
-        [JsonProperty("Time")]
-        public string Time { get; set; }
-        [JsonProperty("Description")]
-        public string Description { get; set; }
-
-
-        public Festival(int Id, string Name, string Description, string Location, string Date, string Time)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Description = Description;
-            this.Location = Location;
-            this.Date = Date;
-            this.Time = Time;
-        }
-
+        [JsonProperty("festivalId")]
+        public int festivalId { get; set; }
+        [JsonProperty("festivalName")]
+        public string festivalName { get; set; }
+        [JsonProperty("festivalDate")]
+        public Date festivalDate { get; set; }
+        [JsonProperty("festivalStartingTime")]
+        public string festivalStartingTime { get; set; }
+        [JsonProperty("festivalEndTime")]
+        public string festivalEndTime { get; set; }
+        [JsonProperty("festivalLocationCountry")]
+        public Address festivalLocation { get; set; }
+        [JsonProperty("festivalLocationCity")]
+        public string festivalDescription { get; set; }
+        [JsonProperty("festivalAgeRestriction")]
+        public int festivalAgeRestriction { get; set; }
+        [JsonProperty("festivalGenre")]
+        public string festivalGenre { get; set; }
     }
 
     class JSONFestivalList
     {
-        [JsonProperty("Festivals")]
-        public List<Festival> Festivals { get; set; }
+        [JsonProperty("festivals")]
+        public List<Festival> festivals { get; set; }
     }
 }
