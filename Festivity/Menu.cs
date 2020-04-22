@@ -11,8 +11,8 @@ namespace Festivity
         {
             int option = 0;
 
-            while (true)
-            {
+            //while (true)
+            
                 Console.Clear();
                 for (int i = 0; i < consoleOptions.Length; i++)
                 {
@@ -52,12 +52,12 @@ namespace Festivity
                     switch (consoleOptions[option])
                     {
                         case "Register":
-                            Console.Clear();
+                            //Console.Clear();
                             RegisterPage.register_page();
                             Thread.Sleep(5000);
                             break;
                         case "Login":
-                            Console.Clear();
+                            //Console.Clear();
                             LoginPage.login_page();
                             Thread.Sleep(5000);
                             break;
@@ -79,14 +79,16 @@ namespace Festivity
                             FestivalPage.festival_page();
                             Thread.Sleep(5000);
                             break;
-                        case "TestMenu1":
-                            Console.Clear();
-                            CatalogPage.catalog_main();
+                        case "RegisterOrganisator":
+                            //Console.Clear();
+                            //Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                            RegisterPage.userAccountType = 1;
                             Thread.Sleep(5000);
                             break;
-                        case "TestMenu2":
-                            Console.Clear();
-                            CatalogPage.catalog_main();
+                        case "RegisterVisitor":
+                            //Console.Clear();
+                            //Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                            RegisterPage.userAccountType = 2;
                             Thread.Sleep(5000);
                             break;
                         case "TestMenu3":
@@ -108,41 +110,7 @@ namespace Festivity
                             break;
                     }
                 }
-            }
-
-            void test_function(string input)
-            {
-                switch (input)
-                {
-                    case "Register":
-                        RegisterPage.register_page();
-                        break;
-                }
-                if (input == "Register")
-                {
-                    RegisterPage.register_page();
-                }
-                if (input == "Login")
-                {
-                    LoginPage.login_page();
-                }
-                if (input == "Festivals")
-                {
-                    CatalogPage.catalog_main();
-                }
-                if (input == "Register festival")
-                {
-                    FestivalRegister.festival_register();
-                }
-                if (input == "Exit")
-                {
-                    Environment.Exit(0);
-                }
-                if (input == "Festival Page")
-                {
-                    FestivalPage.festival_page();
-                }
-            }
+           
         }
 
     }

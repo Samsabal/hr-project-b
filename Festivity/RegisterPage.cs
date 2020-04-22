@@ -12,17 +12,25 @@ namespace Festivity
 {
     public class RegisterPage
     {
+        public static int userAccountType;
+
         public static void register_page()
         {
-            //register_user();
-            string[] consoleOptions = new string[] { "Register", "Login", "TestMenu1", "TestMenu2", "Omegalul" };
-            Menu.menu(consoleOptions);
+            register_user();
         }
 
         public static void register_user()
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+
+            string contactPerson = null;
+            string companyPhoneNumber = null;
+            string companyName = null;
+
+            string birthDate = null;
+            bool newsLetter = false;
+            string visitorPhoneNumber = null;
 
             Console.WriteLine("\nEnter firstName: ");
             var firstName = Console.ReadLine();
@@ -33,17 +41,16 @@ namespace Festivity
             Console.WriteLine("\nEnter password: ");
             var password = Console.ReadLine();
 
-            var accountType = user_account_type_input(); //user account type functie
 
-            string contactPerson = null;
-            string companyPhoneNumber = null;
-            string companyName = null;
+            while (true)
+            {
+                Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                Menu.menu(new string[] { "RegisterOrganisator", "RegisterVisitor" });
+            }
 
-            string birthDate = null;
-            bool newsLetter = false;
-            string visitorPhoneNumber = null;
 
-            if (accountType == 1) // Organisator
+
+            if (userAccountType == 1) // Organisator
             {
                 Console.WriteLine("\nEnter contactPerson: ");
                 contactPerson = Console.ReadLine();
@@ -53,7 +60,7 @@ namespace Festivity
                 companyName = Console.ReadLine();
             }
 
-            if (accountType == 2)
+            if (userAccountType == 2) // Visitor
             {
                 Console.WriteLine("\nEnter birthDate: ");
                 birthDate = Console.ReadLine();
@@ -78,7 +85,7 @@ namespace Festivity
 
             User user = new User
             {
-                accountType = accountType,
+                accountType = userAccountType,
                 accountID = accountID,
                 firstName = firstName,
                 lastName = userName,
@@ -110,29 +117,10 @@ namespace Festivity
                 return Console.ReadLine();
             } // Tijdelijke email input functie
 
-            int user_account_type_input()
+            void user_account_type_input()
             {
-                int userOutput = 0;
                 Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                Console.WriteLine();
-                Console.WriteLine("Type 1 for Organisator");
-                Console.WriteLine("Type 2 for Visitor");
-                string userInput = Console.ReadLine();
-                if (userInput == "1")
-                {
-                    userOutput = 1;
-                }
-                else if (userInput == "2")
-                {
-                    userOutput = 2;
-                }
-                else
-                {
-                    Console.WriteLine("Please try again");
-                    user_account_type_input();
-                };
-
-                return userOutput;
+                string[] consoleOptions = new string[] { "RegisterOrganisator", "RegisterVisitor"};
             }
 
             int user_account_id(JSONUserList users)
