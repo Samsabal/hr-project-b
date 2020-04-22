@@ -15,7 +15,6 @@ namespace Festivity
 
             while (true)
             {
-                Console.Clear();
                 for (int i = 0; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
@@ -23,7 +22,7 @@ namespace Festivity
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
                     }
-                    Console.WriteLine("{0}.{1}", i, consoleOptions[i]);
+                    Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
                     {
                         Console.ResetColor();
@@ -93,6 +92,19 @@ namespace Festivity
                             break;
                         case "Return":
                             CatalogPage.currentCatalogNavigation = "main";
+                            CatalogPage.catalog_main();
+                            break;
+                        case "Next page":
+                            if (CatalogPage.currentPage * 5 + 5 < CatalogPage.arraySize)
+                            {
+                                CatalogPage.currentPage++;
+                            }
+                            break;
+                        case "Previous page":
+                            if (CatalogPage.currentPage > 0)
+                            {
+                                CatalogPage.currentPage--;
+                            }
                             break;
                         default:
                             break;

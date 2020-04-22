@@ -12,8 +12,6 @@ namespace Festivity
             int option = 0;
 
             //while (true)
-            
-                Console.Clear();
                 for (int i = 0; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
