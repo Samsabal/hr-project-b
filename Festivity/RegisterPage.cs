@@ -9,7 +9,7 @@ namespace Festivity
 {
     public class RegisterPage
     {
-        public static int userAccountType;
+        public static int userAccountType = 0;
 
         public static void register_page()
         {
@@ -30,12 +30,6 @@ namespace Festivity
             bool newsLetter = false;
             string visitorPhoneNumber = null;
 
-            while (true)
-            {
-                Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                Menu.menu(new string[] { "RegisterOrganisator", "RegisterVisitor" });
-            }
-
             Console.WriteLine("First name: \n");
             var firstName = Console.ReadLine();
             Console.Clear();
@@ -47,6 +41,12 @@ namespace Festivity
             Console.WriteLine("Password: \n");
             var password = Console.ReadLine();
             Console.Clear();
+
+            while (userAccountType == 0)
+            {
+                Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                Menu.menu(new string[] { "RegisterOrganisator", "RegisterVisitor" });
+            }
 
             if (userAccountType == 1) // Organisator
             {

@@ -94,6 +94,18 @@ namespace Festivity
                         case "Return":
                             CatalogPage.currentCatalogNavigation = "main";
                             break;
+                        case "RegisterOrganisator":
+                            //Console.Clear();
+                            //Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                            RegisterPage.userAccountType = 1;
+                            Thread.Sleep(5000);
+                            break;
+                        case "RegisterVisitor":
+                            //Console.Clear();
+                            //Console.WriteLine("\nAre you an Organisator or Visitor? ");
+                            RegisterPage.userAccountType = 2;
+                            Thread.Sleep(5000);
+                            break;
                         default:
                             break;
                     }
