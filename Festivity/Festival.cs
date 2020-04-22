@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Festivity
 {
-    class Festival
+    public class Festival
     {
         [JsonProperty("festivalId")]
         public int festivalId { get; set; }
