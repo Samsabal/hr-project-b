@@ -13,12 +13,53 @@ namespace Festivity
         static Festival[] festivalArray;
         static string currentCatalogNavigation;
 
+
+        //public static Festival[] add_padding(Festival[] festivalArray)
+        //{
+        //    int arraySize = Festivals.festivals.Count;
+        //    int extraSpace = 5 - (arraySize % 5);
+
+        //    Festival emptyFestival = new Festival
+        //    {
+        //        festivalId = -1,
+        //        festivalName = "",
+        //        festivalDate = new Date
+        //        {
+        //            day = -1,
+        //            month = -1,
+        //            year = -1
+        //        },
+        //        festivalStartingTime = "",
+        //        festivalEndTime = "",
+        //        festivalLocation = new Address
+        //        {
+        //            country = "",
+        //            city = "",
+        //            zipCode = "",
+        //            streetName = "",
+        //            streetNumber = ""
+        //        },
+        //        festivalDescription = "",
+        //        festivalAgeRestriction = 18,
+        //        festivalGenre = "",
+        //    };
+
+
+        //    // Adds placeholder festivals to ensure the application can always display 5 options at a time
+        //    for (int i = 0; i <= extraSpace; i++)
+        //    {
+        //        Festivals.festivals.Add(emptyFestival);
+        //    }
+
+        //    return
+        //}
+
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-
+            option = 0;
             currentCatalogNavigation = "main";
             currentPage = 0;
 
@@ -30,14 +71,16 @@ namespace Festivity
             {
                 festivalId = -1,
                 festivalName = "",
-                festivalDate = new Date {
+                festivalDate = new Date
+                {
                     day = -1,
                     month = -1,
                     year = -1
                 },
                 festivalStartingTime = "",
                 festivalEndTime = "",
-                festivalLocation = new Address {
+                festivalLocation = new Address
+                {
                     country = "",
                     city = "",
                     zipCode = "",
@@ -57,8 +100,6 @@ namespace Festivity
             }
 
             festivalArray = Festivals.festivals.ToArray();
-
-            option = 0;
 
             festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
 
@@ -252,7 +293,7 @@ namespace Festivity
                         currentPage = 0;
                         break;
                     case 2: // Placeholder
-                        Thread.Sleep(10000);
+                        festivalArray = CatalogPageFilter.filter_name(festivalArray, arraySize, Console.ReadLine());
                         break;
                     case 3: // Placeholder
                         Thread.Sleep(10000);
@@ -261,6 +302,10 @@ namespace Festivity
                         Thread.Sleep(10000);
                         break;
                     case 5: // Redirection
+                        string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+                        JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+                        festivalArray = Festivals.festivals.ToArray();
+                        currentCatalogNavigation = "main";
                         break;
                     case 6: // Redirection
                         currentCatalogNavigation = "main";
