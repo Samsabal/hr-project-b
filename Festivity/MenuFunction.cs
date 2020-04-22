@@ -7,15 +7,15 @@ namespace Festivity
 {
     class MenuFunction
     {
+
+        public static int option;
+
         public static void menu(string[] consoleOptions)
         {
             /// 1. Add your option as string in consoleOptions argument.
             /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
-            int option = 0;
-
-            while (true)
-            {
-                Console.Clear();
+           
+                
                 for (int i = 0; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
@@ -23,7 +23,7 @@ namespace Festivity
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
                     }
-                    Console.WriteLine("{0}.{1}", i, consoleOptions[i]);
+                    Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
                     {
                         Console.ResetColor();
@@ -75,6 +75,7 @@ namespace Festivity
                             break;
                         case "Exit": // Exit option
                             Environment.Exit(0);
+                            Console.Clear();
                             break;
                         case "Festival Page":
                             Console.Clear();
@@ -94,23 +95,34 @@ namespace Festivity
                         case "Return":
                             CatalogPage.currentCatalogNavigation = "main";
                             break;
-                        case "RegisterOrganisator":
+                        case "I am an Organisator":
                             //Console.Clear();
                             //Console.WriteLine("\nAre you an Organisator or Visitor? ");
                             RegisterPage.userAccountType = 1;
-                            Thread.Sleep(5000);
                             break;
-                        case "RegisterVisitor":
+                        case "I am a Visitor":
                             //Console.Clear();
                             //Console.WriteLine("\nAre you an Organisator or Visitor? ");
                             RegisterPage.userAccountType = 2;
-                            Thread.Sleep(5000);
                             break;
-                        default:
+                        case "Yes, I want to recieve a newsletters":
+                            RegisterPage.newsLetter = 1;
+                            break;
+                        case "No, I don't want to recieve a newsletters":
+                            RegisterPage.newsLetter = 2;
+                            break;
+                        case "Yes, I accept the terms and conditions":
+                            RegisterPage.userTerms = 1;
+                            break;
+                        case "Exit to Main Menu":
+                            Program.Main(new string[] { });
+                            break;
+                    default:
                             break;
                     }
                 }
-            }
+                Console.Clear();
+
         }
     }
 }
