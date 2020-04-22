@@ -10,8 +10,9 @@ namespace Festivity
     {
         public static int currentPage;
         static int option;
-        static Festival[] festivalArray;
+        public static Festival[] festivalArray;
         public static string currentCatalogNavigation;
+        public static int arraySize;
 
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
@@ -78,7 +79,10 @@ namespace Festivity
                 {
                     Console.Clear();
                     show_festivals(festivalArray);
-                    catalog_filter_navigate(arraySize);
+                    MenuFunction.menu(new string[] {"Sort by name", "Sort by date", "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Return" });
+                    
+                    
+                    //catalog_filter_navigate(arraySize);
                 }
             }
         }
@@ -192,86 +196,86 @@ namespace Festivity
         }
 
         // Function handling the navigation when the user tries to filter the catalog
-        private static void catalog_filter_navigate(int arraySize)
-        {
-            // String containing the selectable options in the console
-            //string[] ConsoleOptions = new string[]{"Sort by name", "Sort by date",
-            //    "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" };
+        //private static void catalog_filter_navigate(int arraySize)
+        //{
+        //    // String containing the selectable options in the console
+        //    //string[] ConsoleOptions = new string[]{"Sort by name", "Sort by date",
+        //    //    "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" };
 
-            MenuFunction.menu(new string[] {"Sort by name", "Sort by date",
-                "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" });
+        //    MenuFunction.menu(new string[] {"Sort by name", "Sort by date",
+        //        "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" });
 
-            for (int i = 0; i < ConsoleOptions.Length; i++)
-            {
-                if (option == i)
-                {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (option == i)
-                {
-                    Console.ResetColor();
-                }
-            }
+        //    for (int i = 0; i < ConsoleOptions.Length; i++)
+        //    {
+        //        if (option == i)
+        //        {
+        //            Console.ForegroundColor = ConsoleColor.Black;
+        //            Console.BackgroundColor = ConsoleColor.White;
+        //        }
+        //        Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
+        //        if (option == i)
+        //        {
+        //            Console.ResetColor();
+        //        }
+        //    }
 
-            var KeyPressed = Console.ReadKey();
-            // When DownArrow key is pressed go down.
-            if (KeyPressed.Key == ConsoleKey.DownArrow)
-            {
-                if (option != ConsoleOptions.Length - 1)
-                {
-                    option++;
-                }
-            }
-            // When UpArrow key is pressed go up.
-            else if (KeyPressed.Key == ConsoleKey.UpArrow)
-            {
-                if (option != 0)
-                {
-                    option--;
-                }
-            }
+        //    var KeyPressed = Console.ReadKey();
+        //    // When DownArrow key is pressed go down.
+        //    if (KeyPressed.Key == ConsoleKey.DownArrow)
+        //    {
+        //        if (option != ConsoleOptions.Length - 1)
+        //        {
+        //            option++;
+        //        }
+        //    }
+        //    // When UpArrow key is pressed go up.
+        //    else if (KeyPressed.Key == ConsoleKey.UpArrow)
+        //    {
+        //        if (option != 0)
+        //        {
+        //            option--;
+        //        }
+        //    }
 
-            // When the escape key is pressed go back to the main menu.
-            else if (KeyPressed.Key == ConsoleKey.Escape)
-            {
-                currentCatalogNavigation = "main";
-            }
+        //    // When the escape key is pressed go back to the main menu.
+        //    else if (KeyPressed.Key == ConsoleKey.Escape)
+        //    {
+        //        currentCatalogNavigation = "main";
+        //    }
 
 
 
-            // Switch statement used for redirecting the user to the right option that was chosen.
-            if (KeyPressed.Key == ConsoleKey.Enter)
-            {
-                switch (option)
-                {
-                    case 0: // sorts the catalog by name and returns to main navigation
-                        festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
-                        currentCatalogNavigation = "main";
-                        currentPage = 0;
-                        break;
-                    case 1: // sorts the catalog by date and returns to main navigation
-                        festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
-                        currentCatalogNavigation = "main";
-                        currentPage = 0;
-                        break;
-                    case 2: // Placeholder
-                        Thread.Sleep(10000);
-                        break;
-                    case 3: // Placeholder
-                        Thread.Sleep(10000);
-                        break;
-                    case 4: // Placeholder
-                        Thread.Sleep(10000);
-                        break;
-                    case 5: // Redirection
-                        break;
-                    case 6: // Redirection
-                        currentCatalogNavigation = "main";
-                        break;
-                }
-            }
-        }
+        //    // Switch statement used for redirecting the user to the right option that was chosen.
+        //    if (KeyPressed.Key == ConsoleKey.Enter)
+        //    {
+        //        switch (option)
+        //        {
+        //            case 0: // sorts the catalog by name and returns to main navigation
+        //                festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
+        //                currentCatalogNavigation = "main";
+        //                currentPage = 0;
+        //                break;
+        //            case 1: // sorts the catalog by date and returns to main navigation
+        //                festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
+        //                currentCatalogNavigation = "main";
+        //                currentPage = 0;
+        //                break;
+        //            case 2: // Placeholder
+        //                Thread.Sleep(10000);
+        //                break;
+        //            case 3: // Placeholder
+        //                Thread.Sleep(10000);
+        //                break;
+        //            case 4: // Placeholder
+        //                Thread.Sleep(10000);
+        //                break;
+        //            case 5: // Redirection
+        //                break;
+        //            case 6: // Redirection
+        //                currentCatalogNavigation = "main";
+        //                break;
+        //        }
+        //    }
+        //}
     }
 }
