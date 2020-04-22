@@ -18,7 +18,7 @@ namespace Festivity
 
             foreach (var user in users.users)
             {
-                foreach (var festival in Festivals.Festivals)
+                foreach (var festival in Festivals.festivals)
                 {
                     if (festival.festivalId == festivalId)
                     {

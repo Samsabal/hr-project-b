@@ -11,12 +11,12 @@ namespace Festivity
         {
             // This is used to write and retrieve data to the correct database
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalRegisterList festivals = JsonConvert.DeserializeObject<JSONFestivalRegisterList>(File.ReadAllText(PATH_FESTIVAL));
+            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
             string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
             JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
 
             // This is a function to retrieve the latest registered festivalid and create the next festivalid
-            int festivalId(JSONFestivalRegisterList festivals)
+            int festivalId(JSONFestivalList festivals)
             {
                 int festivalId;
                 if (festivals.festivals.Count == 0)
@@ -58,7 +58,14 @@ namespace Festivity
             string festivalName = Console.ReadLine();
 
             Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
-            string festivalDate = Console.ReadLine();
+            Console.WriteLine("Fill in the day: ");
+            int festivalDateDay = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Fill in the month: ");
+            int festivalDateMonth = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Fill in the year: ");
+            int festivalDateYear = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Fill in starting time(hh:mm): ");
             string festivalStartingTime = Console.ReadLine();
@@ -73,6 +80,9 @@ namespace Festivity
             Console.WriteLine("Fill in the city: ");
             string festivalLocationCity = Console.ReadLine();
 
+            Console.WriteLine("Fill in the zipcode");
+            string festivalLocationZipCode = Console.ReadLine();
+
             Console.WriteLine("Fill in the street: ");
             string festivalLocationStreet = Console.ReadLine();
 
@@ -83,26 +93,35 @@ namespace Festivity
             string festivalDescription = Console.ReadLine();
 
             Console.WriteLine("Fill in the age restriction as a number");
-            string festivalAgeRestriction = Console.ReadLine();
+            int festivalAgeRestriction = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Fill in the genre of the festival: ");
             string festivalGenre = Console.ReadLine();
 
             Console.WriteLine("Fill in the amount of various tickets as anumber: ");
-            int festivalAmountVariousTickets = Int32.Parse(Console.ReadLine());
+            int festivalAmountVariousTickets = int.Parse(Console.ReadLine());
 
             // A format for creating a new festival
 
-            FestivalRegisterClass festival = new FestivalRegisterClass
+            Festival festival = new Festival
             {
                 festivalId = festivalID,
                 festivalName = festivalName,
                 festivalDescription = festivalDescription,
-                festivalLocationCountry = festivalLocationCountry,
-                festivalLocationCity = festivalLocationCity,
-                festivalLocationStreet = festivalLocationStreet,
-                festivalLocationHouseNumber = festivalLocationHouseNumber,
-                festivalDate = festivalDate,
+                festivalLocation = new Address
+                {
+                    country = festivalLocationCountry,
+                    city = festivalLocationCity,
+                    zipCode = festivalLocationZipCode,
+                    streetName = festivalLocationStreet,
+                    streetNumber = festivalLocationHouseNumber
+                },
+                festivalDate = new Date
+                {
+                    day = festivalDateDay,
+                    month = festivalDateMonth,
+                    year = festivalDateYear
+                },
                 festivalStartingTime = festivalStartingTime,
                 festivalEndTime = festivalEndTime,
                 festivalGenre = festivalGenre,
