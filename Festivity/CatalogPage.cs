@@ -185,6 +185,7 @@ namespace Festivity
                         currentCatalogNavigation = "filter";
                         break;
                     case 8: // Exit option
+                        Console.Clear();
                         Program.Main(new string[] { });
                         break;
                     default:

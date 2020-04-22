@@ -9,8 +9,11 @@ namespace Festivity
     {
         public static void Main(string[] args)
         {
-            Console.SetWindowSize(150, 35);
-            MenuFunction.menu(new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" });
+            while (true)
+            {
+                Console.SetWindowSize(150, 35);
+                MenuFunction.menu(new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" });
+            }
         }
     }
 }
