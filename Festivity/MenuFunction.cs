@@ -82,14 +82,17 @@ namespace Festivity
                             Thread.Sleep(5000);
                             break;
                         case "Sort by name":
-                            CatalogPage.festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
+                            CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray, CatalogPage.arraySize);
                             CatalogPage.currentCatalogNavigation = "main";
                             CatalogPage.currentPage = 0;
                             break;
                         case "Sort by date":
-                            festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
-                            currentCatalogNavigation = "main";
-                            currentPage = 0;
+                            CatalogPage.festivalArray = CatalogPageFilter.sort_date(CatalogPage.festivalArray, CatalogPage.arraySize);
+                            CatalogPage.currentCatalogNavigation = "main";
+                            CatalogPage.currentPage = 0;
+                            break;
+                        case "Return":
+                            CatalogPage.currentCatalogNavigation = "main";
                             break;
                         default:
                             break;

@@ -2,7 +2,7 @@
 
 namespace Festivity
 {
-    class Date
+    public class Date
     {
         [JsonProperty("day")]
         public int day { get; set; }
