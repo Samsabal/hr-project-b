@@ -5,14 +5,16 @@ using System.Threading;
 
 namespace Festivity
 {
-    class Menu
+    class MenuFunction
     {
         public static void menu(string[] consoleOptions)
         {
+            /// 1. Add your option as string in consoleOptions argument.
+            /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
             int option = 0;
 
-            //while (true)
-            
+            while (true)
+            {
                 Console.Clear();
                 for (int i = 0; i < consoleOptions.Length; i++)
                 {
@@ -51,22 +53,22 @@ namespace Festivity
                 {
                     switch (consoleOptions[option])
                     {
-                        case "Register":
-                            //Console.Clear();
+                        case "Register": // Register option
+                            Console.Clear();
                             RegisterPage.register_page();
-                            Thread.Sleep(5000);
+                            Thread.Sleep(10000);
                             break;
-                        case "Login":
-                            //Console.Clear();
+                        case "Login": // Login option
+                            Console.Clear();
                             LoginPage.login_page();
-                            Thread.Sleep(5000);
+                            Thread.Sleep(10000);
                             break;
-                        case "Festivals": 
+                        case "Festivals": // Festival option
                             Console.Clear();
                             CatalogPage.catalog_main();
                             Thread.Sleep(5000);
                             break;
-                        case "Register festival": // Festival register
+                        case "Register Festival": // Festival register
                             Console.Clear();
                             FestivalRegister.festival_register();
                             Thread.Sleep(5000);
@@ -79,40 +81,21 @@ namespace Festivity
                             FestivalPage.festival_page(1);
                             Thread.Sleep(5000);
                             break;
-                        case "RegisterOrganisator":
-                            //Console.Clear();
-                            //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                            RegisterPage.userAccountType = 1;
-                            Thread.Sleep(5000);
+                        case "Sort by name":
+                            CatalogPage.festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
+                            CatalogPage.currentCatalogNavigation = "main";
+                            CatalogPage.currentPage = 0;
                             break;
-                        case "RegisterVisitor":
-                            //Console.Clear();
-                            //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                            RegisterPage.userAccountType = 2;
-                            Thread.Sleep(5000);
-                            break;
-                        case "TestMenu3":
-                            Console.Clear();
-                            CatalogPage.catalog_main();
-                            Thread.Sleep(5000);
-                            break;
-                        case "TestMenu4":
-                            Console.Clear();
-                            CatalogPage.catalog_main();
-                            Thread.Sleep(5000);
-                            break;
-                        case "Omegalul":
-                            Console.Clear();
-                            CatalogPage.catalog_main();
-                            Thread.Sleep(5000);
+                        case "Sort by date":
+                            festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
+                            currentCatalogNavigation = "main";
+                            currentPage = 0;
                             break;
                         default:
                             break;
                     }
                 }
-           
+            }
         }
-
     }
 }
-

@@ -9,20 +9,21 @@ namespace Festivity
         [JsonProperty("month")]
         public int month { get; set; }
         [JsonProperty("year")]
-        public int year { get;  set; }
+        public int year { get; set; }
 
-
-        public Date(int day, int month, int year)
+        public int to_identifier()
         {
-            this.day = day;
-            this.month = month;
-            this.year = year;
+            string result = year.ToString() + month.ToString() + day.ToString();
+            return int.Parse(result);
         }
 
-        
         public string to_string()
         {
-            string result = day + "/" + month + "/" + year;
+            if (day == -1 || month == -1 || year == -1)
+            {
+                return "";
+            }
+            string result = day.ToString("D2") + "/" + month.ToString("D2") + "/" + year.ToString("D4");
             return result;
         }
     }
