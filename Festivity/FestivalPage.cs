@@ -16,34 +16,36 @@ namespace Festivity
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
-            if (false) //Needs to contain an age check
-            {
-                Console.WriteLine("Sorry but you are too young to enter this festival.");
-            }
-            else
+            foreach (var user in users.users)
             {
                 foreach (var festival in Festivals.Festivals)
                 {
                     if (festival.festivalId == festivalId)
                     {
-                        string line = "----------------------------------------------------------------------";
-                        string thickLine = "======================================================================";
-                        Console.WriteLine(thickLine);
-                        Console.WriteLine("#" + festival.festivalId + " " + festival.festivalName);
-                        Console.WriteLine(festival.festivalLocationCity + ", " + festival.festivalLocationCountry);
-                        Console.WriteLine(festival.festivalLocationStreet + " " + festival.festivalLocationHouseNumber);
-                        Console.WriteLine(line);
-                        Console.WriteLine(festival.festivalDate);
-                        Console.WriteLine("Begint om " + festival.festivalStartingTime + " en eindigt om " + festival.festivalEndTime + ".");
-                        Console.WriteLine("Je moet minimaal " + festival.festivalAgeRestriction + " jaar oud zijn om binnen te komen.");
-                        Console.WriteLine(line);
-                        Console.WriteLine("Bier Bende");//Moet uit userdatabase worden gehaald
-                        Console.WriteLine(festival.festivalDescription);
-                        Console.WriteLine(thickLine);
+                        if (false) //Needs to contain an age check -> (users.birthDate - festival.festivalDate < 18)
+                        {
+                            Console.WriteLine("Sorry but you are too young to enter this festival.");
+                        }
+                        else
+                        {
+                            string line = "----------------------------------------------------------------------";
+                            string thickLine = "======================================================================";
+                            Console.WriteLine(thickLine);
+                            Console.WriteLine("#" + festival.festivalId + " " + festival.festivalName);
+                            Console.WriteLine(festival.festivalLocationCity + ", " + festival.festivalLocationCountry);
+                            Console.WriteLine(festival.festivalLocationStreet + " " + festival.festivalLocationHouseNumber);
+                            Console.WriteLine(line);
+                            Console.WriteLine(festival.festivalDate);
+                            Console.WriteLine("Begint om " + festival.festivalStartingTime + " en eindigt om " + festival.festivalEndTime + ".");
+                            Console.WriteLine("Je moet minimaal " + festival.festivalAgeRestriction + " jaar oud zijn om binnen te komen.");
+                            Console.WriteLine(line);
+                            Console.WriteLine("Bier Bende");//Moet uit userdatabase worden gehaald
+                            Console.WriteLine(festival.festivalDescription);
+                            Console.WriteLine(thickLine);
+                        }
                     }
                 }
-
             }
-        }
+        }        
     }
 }

@@ -32,12 +32,12 @@ namespace Festivity
             Console.WriteLine("Last name: \n");
             var userName = Console.ReadLine();
             Console.Clear();
-            var email = user_email_input(); 
+            var email = user_email_input();
             Console.Clear();
             Console.WriteLine("Password: \n");
             var password = Console.ReadLine();
             Console.Clear();
-            var accountType = user_account_type_input(); 
+            var accountType = user_account_type_input();
             Console.Clear();
 
             if (accountType == 1) // Organisator
@@ -82,7 +82,7 @@ namespace Festivity
             Console.Clear();
             user_terms_input(); // User terms and conditions agreement
             int accountID = user_account_id(users);
-            
+
             Console.WriteLine("Your account has been created");
             Thread.Sleep(5000);
             write_user_to_database();
@@ -112,7 +112,7 @@ namespace Festivity
                     phoneNumber = visitorPhoneNumber
                 };
 
-                users.users.Add(user);  
+                users.users.Add(user);
                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
                 File.WriteAllText(PATH_USER, json);
                 // This block of code adds the user object to the json database.\ 
@@ -125,13 +125,15 @@ namespace Festivity
                 if (is_valid_email(userInput))
                 {
                     return userInput;
-                } else {
+                }
+                else
+                {
                     Console.Clear();
                     Console.WriteLine("Email invalid. Please try again");
                     user_email_input();
                 }
                 return "'user_email_input' return Error";
-            } 
+            }
 
             int user_account_type_input()
             {
