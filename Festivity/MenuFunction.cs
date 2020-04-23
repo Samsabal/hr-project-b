@@ -126,7 +126,16 @@ namespace Festivity
                         RegisterPage.userTerms = 1;
                         break;
                     case "Exit to Main Menu":
+                        Console.Clear();
                         Program.Main(new string[] { });
+                        break;
+                    case "Back to Catalog":
+                        Console.Clear();
+                        Program.Main(new string[] { });//Needs to be changed to return to festivalcatalogue
+                        break;
+                    case "Order Ticket":
+                        Console.Clear();
+                        //Order ticket page
                         break;
                     default:
                         break;

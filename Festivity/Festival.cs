@@ -15,9 +15,9 @@ namespace Festivity
         public string festivalStartingTime { get; set; }
         [JsonProperty("festivalEndTime")]
         public string festivalEndTime { get; set; }
-        [JsonProperty("festivalLocationCountry")]
+        [JsonProperty("festivalLocation")]
         public Address festivalLocation { get; set; }
-        [JsonProperty("festivalLocationCity")]
+        [JsonProperty("festivalDescription")]
         public string festivalDescription { get; set; }
         [JsonProperty("festivalAgeRestriction")]
         public int festivalAgeRestriction { get; set; }

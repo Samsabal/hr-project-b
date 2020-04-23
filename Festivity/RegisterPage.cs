@@ -135,7 +135,7 @@ namespace Festivity
             void user_newsletter_input()
             {
                 MenuFunction.option = 0;
-                while (newsLetter == 0) 
+                while (newsLetter == 0)
                 {
                     Console.WriteLine("Do you want to recieve a newsletter? \n");
                     MenuFunction.menu(new string[] { "Yes, I want to recieve a newsletters", "No, I don't want to recieve a newsletters" });

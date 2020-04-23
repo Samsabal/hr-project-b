@@ -28,20 +28,29 @@ namespace Festivity
                         }
                         else
                         {
-                            string line = "----------------------------------------------------------------------";
-                            string thickLine = "======================================================================";
-                            Console.WriteLine(thickLine);
-                            Console.WriteLine("#" + festival.festivalId + " " + festival.festivalName);
-                            Console.WriteLine(festival.festivalLocationCity + ", " + festival.festivalLocationCountry);
-                            Console.WriteLine(festival.festivalLocationStreet + " " + festival.festivalLocationHouseNumber);
-                            Console.WriteLine(line);
-                            Console.WriteLine(festival.festivalDate);
-                            Console.WriteLine("Begint om " + festival.festivalStartingTime + " en eindigt om " + festival.festivalEndTime + ".");
-                            Console.WriteLine("Je moet minimaal " + festival.festivalAgeRestriction + " jaar oud zijn om binnen te komen.");
-                            Console.WriteLine(line);
-                            Console.WriteLine("Bier Bende");//Moet uit userdatabase worden gehaald
-                            Console.WriteLine(festival.festivalDescription);
-                            Console.WriteLine(thickLine);
+                            MenuFunction.option = 0;
+                            while (true)
+                            {
+                                string line = "----------------------------------------------------------------------";
+                                string thickLine = "======================================================================";
+                                Console.WriteLine(thickLine);
+                                Console.WriteLine("#" + festival.festivalId + " " + festival.festivalName);
+                                Console.WriteLine(thickLine);
+                                Console.WriteLine(festival.festivalLocation.city + ", " + festival.festivalLocation.country);
+                                Console.WriteLine(festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber + ", " + festival.festivalLocation.zipCode);
+                                Console.WriteLine(line);
+                                Console.WriteLine(festival.festivalDate.day + "/" + festival.festivalDate.month + "/" + festival.festivalDate.year);
+                                Console.WriteLine("Starts at " + festival.festivalStartingTime + " and ends on " + festival.festivalEndTime + ".");
+                                Console.WriteLine("You need to be at least " + festival.festivalAgeRestriction + " years old in order to enter.");
+                                Console.WriteLine(line);
+                                Console.WriteLine("Bier Bende"); //Needs to be retrieved from the userDatabase.
+                                Console.WriteLine(festival.festivalDescription);
+                                Console.WriteLine(thickLine);
+                                Console.WriteLine("Ticket Info:");
+                                Console.WriteLine("Hier komt de ticket info/table."); //Ticket info needs to be retrieved here.
+                                Console.WriteLine(thickLine);
+                                MenuFunction.menu(new string[] { "Order Ticket", "Back to Catalog", "Exit to Main Menu" });
+                            }
                         }
                     }
                 }

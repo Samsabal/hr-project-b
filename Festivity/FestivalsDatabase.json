@@ -2,7 +2,7 @@
   "festivals": [
     {
       "festivalId": 1,
-      "festivalName": "Robin",
+      "festivalName": "Robin's verjaardagfeestje",
       "festivalDate": {
         "day": 29,
         "month": 3,
@@ -10,16 +10,16 @@
       },
       "festivalStartingTime": "12:00",
       "festivalEndTime": "15:00",
-      "festivalLocationCountry": {
-        "country": "nederland",
-        "city": "rotterdam",
+      "festivalLocation": {
+        "country": "Nederland",
+        "city": "Rotterdam",
         "zipCode": "3066GK",
-        "streetName": "lena blok woutsstraat",
+        "streetName": "Lena blok woutsstraat",
         "streetNumber": "25"
       },
-      "festivalLocationCity": "Dikke huisfissa",
+      "festivalDescription": "Dikke Huisfissa je weet zelf a niffo. De enige echte fissa van de streets met bekende rappers zoals Dief, Lil Steen en Big Boi.",
       "festivalAgeRestriction": 19,
-      "festivalGenre": "techno"
+      "festivalGenre": "Techno"
     }
   ]
 }
