@@ -5,7 +5,6 @@ using System.IO;
 
 namespace Festivity
 {
-
     public class CatalogPage
     {
         public static int currentPage;
@@ -135,7 +134,6 @@ namespace Festivity
         {
             for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
             {
-
                 Console.WriteLine("------------------------------------------------------------");
                 Console.WriteLine(festivalArray[i].festivalName);
                 Console.WriteLine(festivalArray[i].festivalDescription);

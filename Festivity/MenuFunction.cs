@@ -101,7 +101,7 @@ namespace Festivity
                         CatalogPage.catalog_main();
                         Thread.Sleep(5000);
                         break;
-                    case "Register Festival": // Festival register
+                    case "Register festival": // Festival register
                         Console.Clear();
                         FestivalRegister.festival_register();
                         Thread.Sleep(5000);
