@@ -1,112 +1,25 @@
 {
   "festivals": [
     {
-      "Id": 1,
-      "Name": "Lage Landen",
-      "Description": "Leuk festivalletje hoor",
-      "Location": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
+      "festivalId": 1,
+      "festivalName": "Robin",
+      "festivalDate": {
+        "day": 29,
+        "month": 3,
+        "year": 1997
+      },
+      "festivalStartingTime": "12:00",
+      "festivalEndTime": "15:00",
+      "festivalLocationCountry": {
+        "country": "nederland",
+        "city": "rotterdam",
         "zipCode": "3066GK",
-        "streetName": "Lena Blok-woutsstraat",
+        "streetName": "lena blok woutsstraat",
         "streetNumber": "25"
       },
-      "Date": {
-        "Day": "29",
-        "Month": "3",
-        "Year": "2018"
-      },
-      "Time": "21:00"
-    },
-    {
-      "Id": 2,
-      "Name": "Hoge Landen",
-      "Description": "Leuk festivalletje hoor",
-      "Location": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
-        "zipCode": "3066GK",
-        "streetName": "Lena Blok-woutsstraat",
-        "streetNumber": "25"
-      },
-      "Date": {
-        "Day": "23",
-        "Month": "4",
-        "Year": "2020"
-      },
-      "Time": "21:00"
-    } ,   
-    {
-      "Id": 3,
-      "Name": "Soenda",
-      "Description": "Leuk festivalletje hoor",
-      "Location": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
-        "zipCode": "3066GK",
-        "streetName": "Lena Blok-woutsstraat",
-        "streetNumber": "25"
-      },
-      "Date": {
-        "Day": "22",
-        "Month": "19",
-        "Year": "2023"
-      },
-      "Time": "21:00"
-    },
-    {
-      "Id": 4,
-      "Name": "Rotterdamse Rave",
-      "Description": "Leuk festivalletje hoor",
-      "Location": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
-        "zipCode": "3066GK",
-        "streetName": "Lena Blok-woutsstraat",
-        "streetNumber": "25"
-      },
-      "Date": {
-        "Day": "25",
-        "Month": "3",
-        "Year": "2030"
-      },
-      "Time": "21:00"
-    },
-    {
-      "Id": 5,
-      "Name": "Rec",
-      "Description": "Leuk festivalletje hoor",
-      "Location": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
-        "zipCode": "3066GK",
-        "streetName": "Lena Blok-woutsstraat",
-        "streetNumber": "25"
-      },
-      "Date": {
-        "Day": "29",
-        "Month": "3",
-        "Year": "1997"
-      },
-      "Time": "21:00"
-    },
-    {
-      "Id": 6,
-      "Name": "Dat ene gekke feestje bij Annabel",
-      "Description": "Leuk festivalletje hoor",
-      "Location": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
-        "zipCode": "3066GK",
-        "streetName": "Lena Blok-woutsstraat",
-        "streetNumber": "25"
-      },
-      "Date": {
-        "Day": "29",
-        "Month": "5",
-        "Year": "2020"
-      },
-      "Time": "21:00"
+      "festivalLocationCity": "Dikke huisfissa",
+      "festivalAgeRestriction": 19,
+      "festivalGenre": "techno"
     }
   ]
 }
