@@ -65,14 +65,16 @@ namespace Festivity
             festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
 
             // Makes sure the console keeps refreshing, allowing input
-
             while (true)
             {
                 if (currentCatalogNavigation == "main")
                 {
                     Console.Clear();
                     show_festivals(festivalArray);
-                    catalog_navigate(festivalArray, arraySize);
+                    MenuFunction.menu(new string[]{"festival1", "festival2", "festival3", "festival4", "festival5",
+                        "Next page", "Previous page", "Filter festivals", "Exit" },
+                        new Festival[]{festivalArray[currentPage * 5 + 0], festivalArray[currentPage * 5 + 1],
+                            festivalArray[currentPage * 5 + 2], festivalArray[currentPage * 5 + 3], festivalArray[currentPage * 5 + 4]});
                 }
                 else
                 {
