@@ -161,37 +161,50 @@ namespace Festivity
                         RegisterPage.userTerms = 1;
                         break;
                     case "Exit to Main Menu":
+                        Console.Clear();
                         Program.Main(new string[] { });
                         break;
                     case "festival1":
                         if (festivals[0].festivalId != -1)
                         {
+                            CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[0].festivalId);
                         }
                         break;
                     case "festival2":
                         if (festivals[1].festivalId != -1)
                         {
+                            CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[1].festivalId);
                         }
                         break;
                     case "festival3":
                         if (festivals[2].festivalId != -1)
                         {
+                            CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[2].festivalId);
                         }
                         break;
                     case "festival4":
                         if (festivals[3].festivalId != -1)
                         {
+                            CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[3].festivalId);
                         }
                         break;
                     case "festival5":
                         if (festivals[4].festivalId != -1)
                         {
+                            CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[4].festivalId);
                         }
+                        break;
+                    case "Filter festivals":
+                        option = 0;
+                        CatalogPage.currentCatalogNavigation = "filter";
+                        break;
+                    case "Return to catalog":
+                        CatalogPage.currentCatalogNavigation = "main";
                         break;
                     default:
                         break;
