@@ -167,6 +167,7 @@ namespace Festivity
                     case "festival1":
                         if (festivals[0].festivalId != -1)
                         {
+                            Console.Clear();
                             CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[0].festivalId);
                         }
@@ -174,6 +175,7 @@ namespace Festivity
                     case "festival2":
                         if (festivals[1].festivalId != -1)
                         {
+                            Console.Clear();
                             CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[1].festivalId);
                         }
@@ -181,6 +183,7 @@ namespace Festivity
                     case "festival3":
                         if (festivals[2].festivalId != -1)
                         {
+                            Console.Clear();
                             CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[2].festivalId);
                         }
@@ -188,6 +191,7 @@ namespace Festivity
                     case "festival4":
                         if (festivals[3].festivalId != -1)
                         {
+                            Console.Clear();
                             CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[3].festivalId);
                         }
@@ -195,6 +199,7 @@ namespace Festivity
                     case "festival5":
                         if (festivals[4].festivalId != -1)
                         {
+                            Console.Clear();
                             CatalogPage.activeScreen = false;
                             FestivalPage.festival_page(festivals[4].festivalId);
                         }
