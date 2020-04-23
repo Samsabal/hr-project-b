@@ -8,10 +8,12 @@ namespace Festivity
 
     public class CatalogPage
     {
-        static int currentPage;
+        public static int currentPage;
         static int option;
-        static Festival[] festivalArray;
-        static string currentCatalogNavigation;
+        public static Festival[] festivalArray;
+        public static string currentCatalogNavigation;
+        public static int arraySize;
+        public static bool activeScreen;
 
 
         //public static Festival[] add_padding(Festival[] festivalArray)
@@ -59,7 +61,8 @@ namespace Festivity
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-            option = 0;
+
+            activeScreen = true;
             currentCatalogNavigation = "main";
             currentPage = 0;
 
@@ -92,7 +95,6 @@ namespace Festivity
                 festivalGenre = "",
             };
 
-
             // Adds placeholder festivals to ensure the application can always display 5 options at a time
             for (int i = 0; i <= extraSpace; i++)
             {
@@ -101,23 +103,29 @@ namespace Festivity
 
             festivalArray = Festivals.festivals.ToArray();
 
+            MenuFunction.option = 0;
+
             festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
 
             // Makes sure the console keeps refreshing, allowing input
-
-            while (true)
+            while (activeScreen == true)
             {
                 if (currentCatalogNavigation == "main")
                 {
                     Console.Clear();
                     show_festivals(festivalArray);
-                    catalog_navigate(festivalArray, arraySize);
+                    MenuFunction.menu(new string[]{"festival1", "festival2", "festival3", "festival4", "festival5",
+                        "Next page", "Previous page", "Filter festivals", "Exit to Main Menu" },
+                        new Festival[]{festivalArray[currentPage * 5 + 0], festivalArray[currentPage * 5 + 1],
+                            festivalArray[currentPage * 5 + 2], festivalArray[currentPage * 5 + 3], festivalArray[currentPage * 5 + 4]});
                 }
                 else
                 {
                     Console.Clear();
                     show_festivals(festivalArray);
-                    catalog_filter_navigate(arraySize);
+                    MenuFunction.menu(new string[] { "Sort by name", 
+                        "Sort by date", "Filter by genre", "Filter by price", 
+                        "Filter by availability", "Filter by location", "Return to catalog" });
                 }
             }
         }
@@ -135,183 +143,6 @@ namespace Festivity
                 Console.WriteLine(festivalArray[i].festivalLocation.city);
             }
             Console.WriteLine("------------------------------------------------------------");
-        }
-
-        // Function handling the navigation and selection of options in the catalog page
-        private static void catalog_navigate(Festival[] festivalArray, int arraySize)
-        {
-            // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[currentPage*5].festivalName, "Select festival " + festivalArray[currentPage*5+1].festivalName,
-                "Select festival " + festivalArray[currentPage*5+2].festivalName, "Select festival " + festivalArray[currentPage*5+3].festivalName,
-                "Select festival " + festivalArray[currentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
-
-
-            for (int i = 0; i < ConsoleOptions.Length; i++)
-            {
-                if (option == i)
-                {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (option == i)
-                {
-                    Console.ResetColor();
-                }
-            }
-
-            var KeyPressed = Console.ReadKey();
-            // When DownArrow key is pressed go down.
-            if (KeyPressed.Key == ConsoleKey.DownArrow)
-            {
-                if (option != ConsoleOptions.Length - 1)
-                {
-                    option++;
-                }
-            }
-            // When UpArrow key is pressed go up.
-            else if (KeyPressed.Key == ConsoleKey.UpArrow)
-            {
-                if (option != 0)
-                {
-                    option--;
-                }
-            }
-
-            // When the escape key is pressed go back to the main menu.
-            else if (KeyPressed.Key == ConsoleKey.Escape)
-            {
-                Program.Main(new string[] { });
-            }
-
-
-
-            // Switch statement used for redirecting the user to the right option that was chosen.
-            if (KeyPressed.Key == ConsoleKey.Enter)
-            {
-                switch (option)
-                {
-                    case 0: // Placeholder redirection festival 1
-                        Thread.Sleep(10000);
-                        break;
-                    case 1: // Placeholder redirection festival 2
-                        Thread.Sleep(10000);
-                        break;
-                    case 2: // Placeholder redirection festival 3
-                        Thread.Sleep(10000);
-                        break;
-                    case 3: // Placeholder redirection festival 4
-                        Environment.Exit(0);
-                        break;
-                    case 4: // Placeholder redirection festival 5
-                        Environment.Exit(0);
-                        break;
-                    case 5: // Redirection to next catalog page
-                        if (currentPage * 5 + 5 < arraySize)
-                        {
-                            currentPage++;
-                        }
-                        break;
-                    case 6: // Redirection to previous catalog page
-                        if (currentPage > 0)
-                        {
-                            currentPage--;
-                        }
-                        break;
-                    case 7: // Redirection to filter functions
-                        currentCatalogNavigation = "filter";
-                        break;
-                    case 8: // Exit option
-                        Program.Main(new string[] { });
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        // Function handling the navigation when the user tries to filter the catalog
-        private static void catalog_filter_navigate(int arraySize)
-        {
-            // String containing the selectable options in the console
-            string[] ConsoleOptions = new string[]{"Sort by name", "Sort by date",
-                "Filter by genre", "Filter by price", "Filter by availability", "Filter by location", "Exit" };
-
-            for (int i = 0; i < ConsoleOptions.Length; i++)
-            {
-                if (option == i)
-                {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (option == i)
-                {
-                    Console.ResetColor();
-                }
-            }
-
-            var KeyPressed = Console.ReadKey();
-            // When DownArrow key is pressed go down.
-            if (KeyPressed.Key == ConsoleKey.DownArrow)
-            {
-                if (option != ConsoleOptions.Length - 1)
-                {
-                    option++;
-                }
-            }
-            // When UpArrow key is pressed go up.
-            else if (KeyPressed.Key == ConsoleKey.UpArrow)
-            {
-                if (option != 0)
-                {
-                    option--;
-                }
-            }
-
-            // When the escape key is pressed go back to the main menu.
-            else if (KeyPressed.Key == ConsoleKey.Escape)
-            {
-                currentCatalogNavigation = "main";
-            }
-
-
-
-            // Switch statement used for redirecting the user to the right option that was chosen.
-            if (KeyPressed.Key == ConsoleKey.Enter)
-            {
-                switch (option)
-                {
-                    case 0: // sorts the catalog by name and returns to main navigation
-                        festivalArray = CatalogPageFilter.sort_name(festivalArray, arraySize);
-                        currentCatalogNavigation = "main";
-                        currentPage = 0;
-                        break;
-                    case 1: // sorts the catalog by date and returns to main navigation
-                        festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
-                        currentCatalogNavigation = "main";
-                        currentPage = 0;
-                        break;
-                    case 2: // Placeholder
-                        festivalArray = CatalogPageFilter.filter_name(festivalArray, arraySize, Console.ReadLine());
-                        break;
-                    case 3: // Placeholder
-                        Thread.Sleep(10000);
-                        break;
-                    case 4: // Placeholder
-                        Thread.Sleep(10000);
-                        break;
-                    case 5: // Redirection
-                        string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-                        JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-                        festivalArray = Festivals.festivals.ToArray();
-                        currentCatalogNavigation = "main";
-                        break;
-                    case 6: // Redirection
-                        currentCatalogNavigation = "main";
-                        break;
-                }
-            }
         }
     }
 }
