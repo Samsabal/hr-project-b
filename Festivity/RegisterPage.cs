@@ -12,8 +12,8 @@ namespace Festivity
         public static int userAccountType = 0;
         public static int newsLetter = 0;
         public static int userTerms = 0;
-        public static string userPassword = null;
-        public static string firstName = null;
+        private static string userPassword = null;
+        private static string firstName = null;
 
         public static void register_page()
         {
