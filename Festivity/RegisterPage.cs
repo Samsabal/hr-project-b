@@ -12,27 +12,48 @@ namespace Festivity
         public static int userAccountType = 0;
         public static int newsLetter = 0;
         public static int userTerms = 0;
+        private static string userPassword = null;
+        private static string firstName = null;
 
         public static void register_page()
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+
             string contactPerson = null;
             string companyPhoneNumber = null;
             string companyName = null;
             string birthDate = null;
             string visitorPhoneNumber = null;
 
-            Console.WriteLine("First name: \n");
-            var firstName = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("First name: \n");
+                var firstName = Console.ReadLine();
+                Console.Clear();
+                if (is_valid_name(firstName))
+                {
+                    break;
+                }
+            } while (true);
+
             Console.Clear();
             Console.WriteLine("Last name: \n");
             var userName = Console.ReadLine();
             Console.Clear();
             var email = user_email_input(); 
             Console.Clear();
-            Console.WriteLine("Password: \n");
-            var password = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("Password: \n");
+                var userPassword = Console.ReadLine();
+                Console.Clear();
+                if (is_valid_password(userPassword))
+                {
+                    break;
+                }
+            } while (true);
+
             Console.Clear();
             user_account_type_input();
 
@@ -93,7 +114,7 @@ namespace Festivity
                     firstName = firstName,
                     lastName = userName,
                     email = email,
-                    password = password,
+                    password = userPassword,
                     contactPerson = contactPerson,
                     companyPhoneNumber = companyPhoneNumber,
                     companyName = companyName,
@@ -232,6 +253,88 @@ namespace Festivity
                 catch (RegexMatchTimeoutException)
                 {
                     return false;
+                }
+            }
+
+            bool is_valid_password(string password)
+            /// string must be between 8 and 15 characters long. 
+            /// string must contain at least one number. 
+            /// string must contain at least one uppercase letter. 
+            /// string must contain at least one lowercase letter.
+            /// String must contain at least one symbol.
+            {
+                var input = password;
+                
+                if(string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Password should not be empty, please try again.\n");
+                }
+
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var hasMiniMaxChars = new Regex(@".{8,15}");
+                var hasLowerChar = new Regex(@"[a-z]+");
+                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+                if (!hasLowerChar.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one lower case letter.\n");
+                    return false;
+                }
+                else if (!hasUpperChar.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one upper case letter.\n");
+                    return false;
+                }
+                else if (!hasMiniMaxChars.IsMatch(input))
+                {
+                    Console.WriteLine("Password should not be lesser than 8 or greater than 15 characters.\n");
+                    return false;
+                }
+                else if (!hasNumber.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one numeric value.\n");
+                    return false;
+                }
+
+                else if (!hasSymbols.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one special case character.\n");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            bool is_valid_name(string firstName)
+            /// string must contain only characters. 
+            /// string must be between 2 and 33 characters long. 
+            {
+                var input = firstName;
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Name should not be empty, please try again.\n");
+                }
+
+                var hasOnlyCharacter = new Regex(@"\b[A-Za-z]+\b");
+                var hasMiniMaxChars = new Regex(@".{2,33}");
+
+                if (!hasOnlyCharacter.IsMatch(input)) //Regex means only characters between 2-33 in lenght.
+                {
+                    Console.WriteLine("Name should contain only alphabethic characters.\n");
+                    return false;
+                }
+                else if (!hasMiniMaxChars.IsMatch(input))
+                {
+                    Console.WriteLine("Name should not be lesser than 2 or greater than 33 characters .\n");
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
         }
