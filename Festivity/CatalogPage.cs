@@ -13,47 +13,6 @@ namespace Festivity
         public static int arraySize;
         public static bool activeScreen;
 
-
-        //public static Festival[] add_padding(Festival[] festivalArray)
-        //{
-        //    int arraySize = Festivals.festivals.Count;
-        //    int extraSpace = 5 - (arraySize % 5);
-
-        //    Festival emptyFestival = new Festival
-        //    {
-        //        festivalId = -1,
-        //        festivalName = "",
-        //        festivalDate = new Date
-        //        {
-        //            day = -1,
-        //            month = -1,
-        //            year = -1
-        //        },
-        //        festivalStartingTime = "",
-        //        festivalEndTime = "",
-        //        festivalLocation = new Address
-        //        {
-        //            country = "",
-        //            city = "",
-        //            zipCode = "",
-        //            streetName = "",
-        //            streetNumber = ""
-        //        },
-        //        festivalDescription = "",
-        //        festivalAgeRestriction = 18,
-        //        festivalGenre = "",
-        //    };
-
-
-        //    // Adds placeholder festivals to ensure the application can always display 5 options at a time
-        //    for (int i = 0; i <= extraSpace; i++)
-        //    {
-        //        Festivals.festivals.Add(emptyFestival);
-        //    }
-
-        //    return
-        //}
-
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
         {
