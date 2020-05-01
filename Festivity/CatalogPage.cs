@@ -8,7 +8,6 @@ namespace Festivity
     public class CatalogPage
     {
         public static int currentPage;
-        static int option;
         public static Festival[] festivalArray;
         public static string currentCatalogNavigation;
         public static int arraySize;
