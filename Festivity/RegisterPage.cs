@@ -9,13 +9,13 @@ namespace Festivity
 {
     public class RegisterPage
     {
-        public static void register_page()
-        {
-            register_user();
-            Program.Main(new string[] { });
-        }
+        public static int userAccountType = 0;
+        public static int newsLetter = 0;
+        public static int userTerms = 0;
+        private static string userPassword = null;
+        private static string firstName = null;
 
-        public static void register_user()
+        public static void register_page()
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
@@ -24,24 +24,40 @@ namespace Festivity
             string companyPhoneNumber = null;
             string companyName = null;
             string birthDate = null;
-            bool newsLetter = false;
             string visitorPhoneNumber = null;
 
-            Console.WriteLine("First name: \n");
-            var firstName = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("First name: \n");
+                var firstName = Console.ReadLine();
+                Console.Clear();
+                if (is_valid_name(firstName))
+                {
+                    break;
+                }
+            } while (true);
+
             Console.Clear();
             Console.WriteLine("Last name: \n");
             var userName = Console.ReadLine();
             Console.Clear();
             var email = user_email_input(); 
             Console.Clear();
-            Console.WriteLine("Password: \n");
-            var password = Console.ReadLine();
-            Console.Clear();
-            var accountType = user_account_type_input(); 
-            Console.Clear();
+            do
+            {
+                Console.WriteLine("Password: \n");
+                var userPassword = Console.ReadLine();
+                Console.Clear();
+                if (is_valid_password(userPassword))
+                {
+                    break;
+                }
+            } while (true);
 
-            if (accountType == 1) // Organisator
+            Console.Clear();
+            user_account_type_input();
+
+            if (userAccountType == 1) // Organisator
             {
                 Console.WriteLine("Company contactperson: \n");
                 contactPerson = Console.ReadLine();
@@ -54,12 +70,12 @@ namespace Festivity
                 Console.Clear();
             }
 
-            if (accountType == 2) // Visitor
+            if (userAccountType == 2) // Visitor
             {
                 Console.WriteLine("Date of Birth: \n");
                 birthDate = Console.ReadLine();
                 Console.Clear();
-                newsLetter = user_news_letter_input();
+                user_newsletter_input();
                 Console.Clear();
                 Console.WriteLine("Phone number: \n");
                 visitorPhoneNumber = Console.ReadLine();
@@ -83,21 +99,22 @@ namespace Festivity
             Console.Clear();
             user_terms_input(); // User terms and conditions agreement
             int accountID = user_account_id(users);
-            
             Console.WriteLine("Your account has been created");
             Thread.Sleep(5000);
+            Console.Clear();
+
             write_user_to_database();
 
             void write_user_to_database()
             {
                 User user = new User //Creates a new user object
                 {
-                    accountType = accountType,
+                    accountType = userAccountType,
                     accountID = accountID,
                     firstName = firstName,
                     lastName = userName,
                     email = email,
-                    password = password,
+                    password = userPassword,
                     contactPerson = contactPerson,
                     companyPhoneNumber = companyPhoneNumber,
                     companyName = companyName,
@@ -132,66 +149,50 @@ namespace Festivity
                     user_email_input();
                 }
                 return "'user_email_input' return Error";
-            } 
+            }
 
-            int user_account_type_input()
+            void user_newsletter_input()
             {
-                int userOutput = 0;
-                Console.WriteLine("Are you an Organisator or Visitor? ");
-                Console.WriteLine();
-                Console.WriteLine("Type 1 for Organisator");
-                Console.WriteLine("Type 2 for Visitor\n");
-                string userInput = Console.ReadLine();
-                Console.Clear();
-                if (userInput == "1")
+                MenuFunction.option = 0;
+                while (newsLetter == 0) 
                 {
-                    userOutput = 1;
+                    Console.WriteLine("Do you want to recieve a newsletter? \n");
+                    MenuFunction.menu(new string[] { "Yes, I want to recieve a newsletters", "No, I don't want to recieve a newsletters" });
                 }
-                else if (userInput == "2")
-                {
-                    userOutput = 2;
-                }
-                else
-                {
-                    Console.WriteLine("Please try again");
-                    user_account_type_input();
-                };
-
-                return userOutput;
             }
 
             void user_terms_input()
             {
-                string userInput = null;
-                if (accountType == 1) //Print the organizational conditions here.
+                if (userAccountType == 1) //Print the organizational conditions here.
                 {
-                    Console.WriteLine("Do you accept the terms of use and conditions? Company Boy");
-                    Console.WriteLine();
-                    Console.WriteLine("Type 1 for Yes");
-                    Console.WriteLine("Type 2 for No\n");
-                    userInput = Console.ReadLine();
-                    Console.Clear();
+                    while (userTerms == 0)
+                    {
+                        Console.WriteLine("Do you accept the terms of use and conditions?\n");
+                        Console.WriteLine("'Print Terms of Conditions Organisator here'\n");
+                        MenuFunction.menu(new string[] { "Yes, I accept the terms and conditions", "Exit to Main Menu" });
+                    };
                 }
 
-                if (accountType == 2) //Print the user conditions here.
+                if (userAccountType == 2) //Print the user conditions here.
                 {
-                    Console.WriteLine("Do you accept the terms of use and conditions? Visitor Boy");
-                    Console.WriteLine();
-                    Console.WriteLine("Type 1 for Yes");
-                    Console.WriteLine("Type 2 for No\n");
-                    userInput = Console.ReadLine();
-                    Console.Clear();
+                    while (userTerms == 0)
+                    {
+                        Console.WriteLine("Do you accept the terms of use and conditions?\n");
+                        Console.WriteLine("'Print Terms of Conditions Visitor here'\n");
+                        MenuFunction.menu(new string[] { "Yes, I accept the terms and conditions", "Exit to Main Menu" });
+                    };
                 }
                 Console.Clear();
+            }
 
-                if (userInput == "2")
+            void user_account_type_input()
+            {
+                MenuFunction.option = 0;
+                while (userAccountType == 0)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Sorry, you cannot create an account");
-                    Thread.Sleep(5000);
-                    Program.Main(new string[] { });
-                    user_account_type_input();
-                };
+                    Console.WriteLine("Are you an Organisator or Visitor? \n");
+                    MenuFunction.menu(new string[] { "I am an Organisator", "I am a Visitor" });
+                }
             }
 
             int user_account_id(JSONUserList users)
@@ -208,32 +209,6 @@ namespace Festivity
                 };
 
                 return accountID;
-            }
-
-            bool user_news_letter_input()
-            {
-                bool userOutput = true;
-                Console.WriteLine("Do you want to recieve newsletters?");
-                Console.WriteLine();
-                Console.WriteLine("Type 1 for Yes");
-                Console.WriteLine("Type 2 for No\n");
-                string userInput = Console.ReadLine();
-                if (userInput == "1")
-                {
-                    userOutput = true;
-                }
-                else if (userInput == "2")
-                {
-                    userOutput = false;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please try again");
-                    user_account_type_input();
-                };
-
-                return userOutput;
             }
 
             bool is_valid_email(string email) // This method does not perform authentication to validate the email address. It determines whether its format is valid for an email address.
@@ -278,6 +253,88 @@ namespace Festivity
                 catch (RegexMatchTimeoutException)
                 {
                     return false;
+                }
+            }
+
+            bool is_valid_password(string password)
+            /// string must be between 8 and 15 characters long. 
+            /// string must contain at least one number. 
+            /// string must contain at least one uppercase letter. 
+            /// string must contain at least one lowercase letter.
+            /// String must contain at least one symbol.
+            {
+                var input = password;
+                
+                if(string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Password should not be empty, please try again.\n");
+                }
+
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var hasMiniMaxChars = new Regex(@".{8,15}");
+                var hasLowerChar = new Regex(@"[a-z]+");
+                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+                if (!hasLowerChar.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one lower case letter.\n");
+                    return false;
+                }
+                else if (!hasUpperChar.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one upper case letter.\n");
+                    return false;
+                }
+                else if (!hasMiniMaxChars.IsMatch(input))
+                {
+                    Console.WriteLine("Password should not be lesser than 8 or greater than 15 characters.\n");
+                    return false;
+                }
+                else if (!hasNumber.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one numeric value.\n");
+                    return false;
+                }
+
+                else if (!hasSymbols.IsMatch(input))
+                {
+                    Console.WriteLine("Password should contain at least one special case character.\n");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            bool is_valid_name(string firstName)
+            /// string must contain only characters. 
+            /// string must be between 2 and 33 characters long. 
+            {
+                var input = firstName;
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Name should not be empty, please try again.\n");
+                }
+
+                var hasOnlyCharacter = new Regex(@"\b[A-Za-z]+\b");
+                var hasMiniMaxChars = new Regex(@".{2,33}");
+
+                if (!hasOnlyCharacter.IsMatch(input)) //Regex means only characters between 2-33 in lenght.
+                {
+                    Console.WriteLine("Name should contain only alphabethic characters.\n");
+                    return false;
+                }
+                else if (!hasMiniMaxChars.IsMatch(input))
+                {
+                    Console.WriteLine("Name should not be lesser than 2 or greater than 33 characters .\n");
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
         }

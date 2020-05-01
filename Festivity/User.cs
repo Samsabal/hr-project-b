@@ -35,7 +35,7 @@ namespace Festivity
         public string birthDate { get; set; }
 
         [JsonProperty("newsLetter")]
-        public bool newsLetter { get; set; }
+        public int newsLetter { get; set; }
 
         [JsonProperty("phoneNumber")]
         public string phoneNumber { get; set; }

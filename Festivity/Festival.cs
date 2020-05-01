@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Festivity
 {
-    class Festival
+    public class Festival
     {
         [JsonProperty("festivalId")]
         public int festivalId { get; set; }
@@ -15,9 +15,9 @@ namespace Festivity
         public string festivalStartingTime { get; set; }
         [JsonProperty("festivalEndTime")]
         public string festivalEndTime { get; set; }
-        [JsonProperty("festivalLocationCountry")]
+        [JsonProperty("festivalLocation")]
         public Address festivalLocation { get; set; }
-        [JsonProperty("festivalLocationCity")]
+        [JsonProperty("festivalDecription")]
         public string festivalDescription { get; set; }
         [JsonProperty("festivalAgeRestriction")]
         public int festivalAgeRestriction { get; set; }
