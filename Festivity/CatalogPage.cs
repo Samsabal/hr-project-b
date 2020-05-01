@@ -5,11 +5,9 @@ using System.IO;
 
 namespace Festivity
 {
-
     public class CatalogPage
     {
         public static int currentPage;
-        static int option;
         public static Festival[] festivalArray;
         public static string currentCatalogNavigation;
         public static int arraySize;
@@ -94,7 +92,6 @@ namespace Festivity
         {
             for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
             {
-
                 Console.WriteLine("------------------------------------------------------------");
                 Console.WriteLine(festivalArray[i].festivalName);
                 Console.WriteLine(festivalArray[i].festivalDescription);
@@ -102,100 +99,6 @@ namespace Festivity
                 Console.WriteLine(festivalArray[i].festivalLocation.city);
             }
             Console.WriteLine("------------------------------------------------------------");
-        }
-
-        // Function handling the navigation and selection of options in the catalog page
-        private static void catalog_navigate(Festival[] festivalArray, int arraySize)
-        {
-            // String containing the selectable options in the console
-
-            string[] ConsoleOptions = new string[]{"Select festival "+ festivalArray[currentPage*5].festivalName, "Select festival " + festivalArray[currentPage*5+1].festivalName,
-                "Select festival " + festivalArray[currentPage*5+2].festivalName, "Select festival " + festivalArray[currentPage*5+3].festivalName,
-                "Select festival " + festivalArray[currentPage*5+4].festivalName, "Next page", "Previous page", "Filter festivals", "Exit" };
-
-            for (int i = 0; i < ConsoleOptions.Length; i++)
-            {
-                if (option == i)
-                {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                Console.WriteLine("{0}.{1}", i, ConsoleOptions[i]);
-                if (option == i)
-                {
-                    Console.ResetColor();
-                }
-            }
-
-            var KeyPressed = Console.ReadKey();
-            // When DownArrow key is pressed go down.
-            if (KeyPressed.Key == ConsoleKey.DownArrow)
-            {
-                if (option != ConsoleOptions.Length - 1)
-                {
-                    option++;
-                }
-            }
-            // When UpArrow key is pressed go up.
-            else if (KeyPressed.Key == ConsoleKey.UpArrow)
-            {
-                if (option != 0)
-                {
-                    option--;
-                }
-            }
-
-            // When the escape key is pressed go back to the main menu.
-            else if (KeyPressed.Key == ConsoleKey.Escape)
-            {
-                Program.Main(new string[] { });
-            }
-
-
-
-            // Switch statement used for redirecting the user to the right option that was chosen.
-            if (KeyPressed.Key == ConsoleKey.Enter)
-            {
-                switch (option)
-                {
-                    case 0: // Placeholder redirection festival 1
-                        Thread.Sleep(10000);
-                        break;
-                    case 1: // Placeholder redirection festival 2
-                        Thread.Sleep(10000);
-                        break;
-                    case 2: // Placeholder redirection festival 3
-                        Thread.Sleep(10000);
-                        break;
-                    case 3: // Placeholder redirection festival 4
-                        Environment.Exit(0);
-                        break;
-                    case 4: // Placeholder redirection festival 5
-                        Environment.Exit(0);
-                        break;
-                    case 5: // Redirection to next catalog page
-                        if (currentPage * 5 + 5 < arraySize)
-                        {
-                            currentPage++;
-                        }
-                        break;
-                    case 6: // Redirection to previous catalog page
-                        if (currentPage > 0)
-                        {
-                            currentPage--;
-                        }
-                        break;
-                    case 7: // Redirection to filter functions
-                        currentCatalogNavigation = "filter";
-                        break;
-                    case 8: // Exit option
-                        Console.Clear();
-                        Program.Main(new string[] { });
-                        break;
-                    default:
-                        break;
-                }
-            }
         }
     }
 }
