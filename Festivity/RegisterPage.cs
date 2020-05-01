@@ -264,7 +264,6 @@ namespace Festivity
             /// String must contain at least one symbol.
             {
                 var input = password;
-                string ErrorMessage;
                 
                 if(string.IsNullOrWhiteSpace(input))
                 {
