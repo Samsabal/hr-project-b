@@ -141,7 +141,6 @@ namespace Festivity
                 // This variable connected to the ticketid function is placed inside the loop to give every ticket a new ticketid
                 int ticketID = ticketId(tickets);
 
-
                 Console.WriteLine("Fill in the ticket name of ticket ", (i + 1),
                 ": ");
                 string festivalTicketName = Console.ReadLine();
