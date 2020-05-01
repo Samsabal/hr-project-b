@@ -4,7 +4,7 @@ namespace Festivity
 {
 
     // Address class for location functionality
-    class Address
+    public class Address
     {
         [JsonProperty("country")]
         public string country { get; set; }
