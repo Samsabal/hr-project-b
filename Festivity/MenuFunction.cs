@@ -10,23 +10,58 @@ namespace Festivity
 
         public static int option;
 
-        public static void menu(string[] consoleOptions)
+        public static void menu(string[] consoleOptions, Festival[] festivals = null)
         {
             /// 1. Add your option as string in consoleOptions argument.
             /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
-            for (int i = 0; i < consoleOptions.Length; i++)
+            if (festivals == null)
             {
-                if (option == i)
+                for (int i = 0; i < consoleOptions.Length; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                Console.WriteLine("{0}", consoleOptions[i]);
-                if (option == i)
-                {
-                    Console.ResetColor();
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
                 }
             }
+
+            else
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("Select festival: {0}", festivals[i].festivalName);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+                
+                for (int i = 5; i < consoleOptions.Length; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+            }
+
 
             var KeyPressed = Console.ReadKey();
             // When DownArrow key is pressed go down.
@@ -126,7 +161,50 @@ namespace Festivity
                         RegisterPage.userTerms = 1;
                         break;
                     case "Exit to Main Menu":
+                        Console.Clear();
                         Program.Main(new string[] { });
+                        break;
+                    case "festival1":
+                        if (festivals[0].festivalId != -1)
+                        {
+                            CatalogPage.activeScreen = false;
+                            FestivalPage.festival_page(festivals[0].festivalId);
+                        }
+                        break;
+                    case "festival2":
+                        if (festivals[1].festivalId != -1)
+                        {
+                            CatalogPage.activeScreen = false;
+                            FestivalPage.festival_page(festivals[1].festivalId);
+                        }
+                        break;
+                    case "festival3":
+                        if (festivals[2].festivalId != -1)
+                        {
+                            CatalogPage.activeScreen = false;
+                            FestivalPage.festival_page(festivals[2].festivalId);
+                        }
+                        break;
+                    case "festival4":
+                        if (festivals[3].festivalId != -1)
+                        {
+                            CatalogPage.activeScreen = false;
+                            FestivalPage.festival_page(festivals[3].festivalId);
+                        }
+                        break;
+                    case "festival5":
+                        if (festivals[4].festivalId != -1)
+                        {
+                            CatalogPage.activeScreen = false;
+                            FestivalPage.festival_page(festivals[4].festivalId);
+                        }
+                        break;
+                    case "Filter festivals":
+                        option = 0;
+                        CatalogPage.currentCatalogNavigation = "filter";
+                        break;
+                    case "Return to catalog":
+                        CatalogPage.currentCatalogNavigation = "main";
                         break;
                     default:
                         break;

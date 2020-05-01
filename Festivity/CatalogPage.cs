@@ -13,6 +13,7 @@ namespace Festivity
         public static Festival[] festivalArray;
         public static string currentCatalogNavigation;
         public static int arraySize;
+        public static bool activeScreen;
 
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
@@ -20,6 +21,7 @@ namespace Festivity
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
+            activeScreen = true;
             currentCatalogNavigation = "main";
             currentPage = 0;
 
@@ -60,19 +62,21 @@ namespace Festivity
 
             festivalArray = Festivals.festivals.ToArray();
 
-            option = 0;
+            MenuFunction.option = 0;
 
             festivalArray = CatalogPageFilter.sort_date(festivalArray, arraySize);
 
             // Makes sure the console keeps refreshing, allowing input
-
-            while (true)
+            while (activeScreen == true)
             {
                 if (currentCatalogNavigation == "main")
                 {
                     Console.Clear();
                     show_festivals(festivalArray);
-                    catalog_navigate(festivalArray, arraySize);
+                    MenuFunction.menu(new string[]{"festival1", "festival2", "festival3", "festival4", "festival5",
+                        "Next page", "Previous page", "Filter festivals", "Exit to Main Menu" },
+                        new Festival[]{festivalArray[currentPage * 5 + 0], festivalArray[currentPage * 5 + 1],
+                            festivalArray[currentPage * 5 + 2], festivalArray[currentPage * 5 + 3], festivalArray[currentPage * 5 + 4]});
                 }
                 else
                 {
@@ -80,7 +84,7 @@ namespace Festivity
                     show_festivals(festivalArray);
                     MenuFunction.menu(new string[] { "Sort by name", 
                         "Sort by date", "Filter by genre", "Filter by price", 
-                        "Filter by availability", "Filter by location", "Return" });
+                        "Filter by availability", "Filter by location", "Return to catalog" });
                 }
             }
         }
