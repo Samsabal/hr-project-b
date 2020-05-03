@@ -73,7 +73,7 @@ namespace Festivity
                     show_festivals(festivalArray);
                     MenuFunction.menu(new string[]{"festival1", "festival2", "festival3", "festival4", "festival5",
                         "Next page", "Previous page", "Filter festivals", "Exit to Main Menu" },
-                        new Festival[]{festivalArray[currentPage * 5 + 0], festivalArray[currentPage * 5 + 1],
+                        new object[]{festivalArray[currentPage * 5 + 0], festivalArray[currentPage * 5 + 1],
                             festivalArray[currentPage * 5 + 2], festivalArray[currentPage * 5 + 3], festivalArray[currentPage * 5 + 4]});
                 }
                 else

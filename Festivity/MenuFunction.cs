@@ -10,11 +10,12 @@ namespace Festivity
 
         public static int option;
 
-        public static void menu(string[] consoleOptions, Festival[] festivals = null)
+        public static void menu(string[] consoleOptions, object[] objects = null)
         {
             /// 1. Add your option as string in consoleOptions argument.
             /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
-            if (festivals == null)
+
+            if (objects == null)
             {
                 for (int i = 0; i < consoleOptions.Length; i++)
                 {
@@ -31,7 +32,7 @@ namespace Festivity
                 }
             }
 
-            else
+            else if (objects[0].GetType() == typeof(Festivity.Festival))
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -40,7 +41,8 @@ namespace Festivity
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
                     }
-                    Console.WriteLine("Select festival: {0}", festivals[i].festivalName);
+                    Festival festival = (Festival)objects[i];
+                    Console.WriteLine("Select festival: {0}", festival.festivalName);
                     if (option == i)
                     {
                         Console.ResetColor();
@@ -165,43 +167,48 @@ namespace Festivity
                         Program.Main(new string[] { });
                         break;
                     case "festival1":
-                        if (festivals[0].festivalId != -1)
+                        Festival festival1 = (Festival)objects[0];
+                        if (festival1.festivalId != -1)
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
-                            FestivalPage.festival_page(festivals[0].festivalId);
+                            FestivalPage.festival_page(festival1.festivalId);
                         }
                         break;
                     case "festival2":
-                        if (festivals[1].festivalId != -1)
+                        Festival festival2 = (Festival)objects[1];
+                        if (festival2.festivalId != -1)
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
-                            FestivalPage.festival_page(festivals[1].festivalId);
+                            FestivalPage.festival_page(festival2.festivalId);
                         }
                         break;
                     case "festival3":
-                        if (festivals[2].festivalId != -1)
+                        Festival festival3 = (Festival)objects[2];
+                        if (festival3.festivalId != -1)
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
-                            FestivalPage.festival_page(festivals[2].festivalId);
+                            FestivalPage.festival_page(festival3.festivalId);
                         }
                         break;
                     case "festival4":
-                        if (festivals[3].festivalId != -1)
+                        Festival festival4 = (Festival)objects[3];
+                        if (festival4.festivalId != -1)
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
-                            FestivalPage.festival_page(festivals[3].festivalId);
+                            FestivalPage.festival_page(festival4.festivalId);
                         }
                         break;
                     case "festival5":
-                        if (festivals[4].festivalId != -1)
+                        Festival festival5 = (Festival)objects[4];
+                        if (festival5.festivalId != -1)
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
-                            FestivalPage.festival_page(festivals[4].festivalId);
+                            FestivalPage.festival_page(festival5.festivalId);
                         }
                         break;
                     case "Filter festivals":
