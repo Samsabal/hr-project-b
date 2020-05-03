@@ -169,6 +169,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 1;
                             FestivalPage.festival_page(festivals[0].festivalId);
                         }
                         break;
@@ -177,6 +178,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 2;
                             FestivalPage.festival_page(festivals[1].festivalId);
                         }
                         break;
@@ -185,6 +187,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 3;
                             FestivalPage.festival_page(festivals[2].festivalId);
                         }
                         break;
@@ -193,6 +196,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 4;
                             FestivalPage.festival_page(festivals[3].festivalId);
                         }
                         break;
@@ -201,6 +205,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 5;
                             FestivalPage.festival_page(festivals[4].festivalId);
                         }
                         break;
@@ -212,6 +217,15 @@ namespace Festivity
                         Console.Clear();
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.catalog_main();
+                        break;
+                    case "Order Tickets":
+                        Console.Clear();
+                        CatalogPage.activeScreen = false;
+                        TicketBuy.ticket_buy(CatalogPage.selectedFestival);
+                        break;
+                    case "Return to Festival Page":
+                        Console.Clear();
+                        FestivalPage.festival_page(CatalogPage.selectedFestival);
                         break;
                     default:
                         break;
