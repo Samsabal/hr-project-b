@@ -49,7 +49,7 @@ namespace Festivity
                                 Console.WriteLine("Ticket Info:");
                                 Console.WriteLine("Hier komt de ticket info/table."); //Ticket info needs to be retrieved here.
                                 Console.WriteLine(thickLine);
-                                MenuFunction.menu(new string[] { "Order Ticket", "Back to Catalog", "Exit to Main Menu" });
+                                MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });
                             }
                         }
                     }

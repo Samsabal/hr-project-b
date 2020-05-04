@@ -208,8 +208,10 @@ namespace Festivity
                         option = 0;
                         CatalogPage.currentCatalogNavigation = "filter";
                         break;
-                    case "Return to catalog":
+                    case "Return to Catalog":
+                        Console.Clear();
                         CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.catalog_main();
                         break;
                     default:
                         break;
