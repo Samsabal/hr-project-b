@@ -1,20 +1,44 @@
-ï»¿{
-	"tickets": [
-		{
-			"festivalId": 1,
-			"ticketId": 1,
-			"ticketName": "Normal Ticket",
-			"ticketDescription": "This is a normal ticket.",
-			"ticketPrice": "35",
-			"maxTickets": 5000
-		},
-		{
-			"festivalId": 1,
-			"ticketId": 2,
-			"ticketName": "VIP Ticket",
-			"ticketDescription": "This is a VIP ticket.",
-			"ticketPrice": "75",
-			"maxTickets": 500
-		}
-	]
+{
+  "tickets": [
+    {
+      "festivalId": 1,
+      "ticketId": 1,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "De normale tickets bevatten geen toiletrechten en je mag alleen in de achterste 2 rijen komen.",
+      "ticketPrice": "35",
+      "maxTickets": 5000
+    },
+    {
+      "festivalId": 2,
+      "ticketId": 2,
+      "ticketName": "Normaal Ticket",
+      "ticketDescription": "Je bent fucking broke lmao.",
+      "ticketPrice": "55",
+      "maxTickets": 99
+    },
+    {
+      "festivalId": 1,
+      "ticketId": 3,
+      "ticketName": "VIP Ticket",
+      "ticketDescription": "De VIP tickets verzogen toiletten van de buren en onbeperkte cocaïne.",
+      "ticketPrice": "75",
+      "maxTickets": 500
+    },
+    {
+      "festivalId": 2,
+      "ticketId": 4,
+      "ticketName": "Ultra Special Ticket",
+      "ticketDescription": "Je krijgt niks extra maar we waarderen je geld.",
+      "ticketPrice": "1000000000",
+      "maxTickets": 1
+    },
+    {
+      "festivalId": 2,
+      "ticketId": 5,
+      "ticketName": "Uber Amazing Ticket",
+      "ticketDescription": "Je wordt letterlijk de nieuwe jezus.",
+      "ticketPrice": "1",
+      "maxTickets": 1
+    }
+  ]
 }

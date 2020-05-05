@@ -9,17 +9,38 @@
         "year": 1997
       },
       "festivalStartingTime": "23:00",
-      "festivalEndTime": "23:01",
+      "festivalEndTime": "4:00",
       "festivalLocation": {
         "country": "Nederland",
-        "city": "rotje",
+        "city": "Rotterdam",
         "zipCode": "3066GK",
-        "streetName": "123adresstraat",
+        "streetName": "Vleugelstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor. Er zijn 37 biertentjes en entertainment van de legende zelf Zombie Micheal Jackson!",
       "festivalAgeRestriction": 23,
-      "festivalGenre": "Drum & Bass"
+      "festivalGenre": "Emo"
+    },
+    {
+      "festivalId": 2,
+      "festivalName": "Joop's Bunkerbende",
+      "festivalDate": {
+        "day": 12,
+        "month": 11,
+        "year": 2001
+      },
+      "festivalStartingTime": "08:10",
+      "festivalEndTime": "10:59",
+      "festivalLocation": {
+        "country": "Nederland",
+        "city": "Schiedam",
+        "zipCode": "3333BO",
+        "streetName": "Boerland",
+        "streetNumber": "55"
+      },
+      "festivalDescription": "Joop vier zijn 49ste verjaardag in zijn prive bunker en ziet dat als een goede manier om mensen te scammmen. Muziek moet zelf verzorgd worden en het toilet is een emmer.",
+      "festivalAgeRestriction": 66,
+      "festivalGenre": "Hardcore"
     }
   ]
 }
