@@ -6,6 +6,8 @@ namespace Festivity
 {
     class LoginPage
     {
+        public static int currentUserId;
+
         public static void login_page()
         {
             user_login();
@@ -31,7 +33,7 @@ namespace Festivity
                     if (user.password == userPassword)
                     {
                         accountExists = true;
-                        int currentUser = user.accountID;
+                        currentUserId = user.accountID;
                         Console.WriteLine("You are logged in!");
                         break;
                     }

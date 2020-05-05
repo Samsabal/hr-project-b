@@ -8,18 +8,18 @@
         "month": 3,
         "year": 1997
       },
-      "festivalStartingTime": "12:00",
-      "festivalEndTime": "15:00",
+      "festivalStartingTime": "23:00",
+      "festivalEndTime": "23:01",
       "festivalLocation": {
         "country": "Nederland",
-        "city": "Rotterdam",
+        "city": "rotje",
         "zipCode": "3066GK",
-        "streetName": "Lena blok woutsstraat",
+        "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDescription": "Dikke Huisfissa je weet zelf a niffo. De enige echte fissa van de streets met bekende rappers zoals Dief, Lil Steen en Big Boi.",
-      "festivalAgeRestriction": 19,
-      "festivalGenre": "Techno"
+      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalAgeRestriction": 23,
+      "festivalGenre": "Drum & Bass"
     }
   ]
 }
