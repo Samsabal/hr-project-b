@@ -31,9 +31,15 @@ namespace Festivity
             {
                 foreach (var festival in Festivals.festivals)
                 {
-                        if (festival.festivalId == festivalId)
+                    if (festival.festivalId == festivalId)
+                    {
+                        if (user.accountID == LoginPage.currentUserId)
                         {
-                            if (false) //Needs to contain an age check -> (users.birthDate - festival.festivalDate < 18)
+                            DateTime currentDate = DateTime.Now;
+                            DateTime userBirthDate = Convert.ToDateTime(user.birthDate);
+                            int userAge = currentDate.Year - userBirthDate.Year;
+
+                            if (userAge < festival.festivalAgeRestriction)
                             {
                                 Console.WriteLine("Sorry but you are too young to enter this festival.");
                             }
@@ -47,7 +53,7 @@ namespace Festivity
 
                                     Console.WriteLine(thickLine);
                                     Console.WriteLine(festival.festivalName);
-                                    Console.WriteLine("Organised by: " + "(Komt festival organisator)"); 
+                                    Console.WriteLine("Organised by: " + "(Komt festival organisator)");
                                     Console.WriteLine(line);
                                     Console.WriteLine("You need to be at least " + festival.festivalAgeRestriction + " years old in order to enter.");
                                     Console.WriteLine(festival.festivalDescription);
@@ -68,16 +74,15 @@ namespace Festivity
                                             Console.WriteLine(ticket.ticketDescription);
                                             Console.WriteLine();
                                         }
-
                                     }
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     ClearCurrentConsoleLine();
                                     Console.WriteLine(thickLine);
                                     MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });
-
                                 }
                             }
                         }
+                    }
                     
                 }
             }

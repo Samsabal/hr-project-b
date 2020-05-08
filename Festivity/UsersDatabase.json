@@ -20,6 +20,27 @@
       "birthDate": "asd",
       "newsLetter": 1,
       "phoneNumber": "1234123"
+    },
+    {
+      "userAddress": {
+        "country": "Netherlands",
+        "city": "Schiedam",
+        "zipCode": "3114VL",
+        "streetName": "Heenvlietsestraat",
+        "streetNumber": "39"
+      },
+      "accountType": 2,
+      "accountID": 2,
+      "firstName": "Kelvin",
+      "lastName": "van Schaijk",
+      "email": "joemama@hotmail.com",
+      "password": "Niffo123!,
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": "12/11/2004",
+      "newsLetter": 2,
+      "phoneNumber": "0638204181"
     }
   ]
 }
