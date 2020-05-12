@@ -89,7 +89,6 @@ namespace Festivity
                     case "Register": // Register option
                         Console.Clear();
                         RegisterPage.register_page();
-                        Thread.Sleep(10000);
                         break;
                     case "Login": // Login option
                         Console.Clear();
