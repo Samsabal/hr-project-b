@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Threading;
-using System.IO;
+﻿using System;
 
 namespace Festivity
 {
@@ -12,7 +9,7 @@ namespace Festivity
             while (true)
             {
                 Console.SetWindowSize(150, 35);
-                MenuFunction.menu(new string[] { "Register", "Login", "Festivals", "Register festival", "Exit", "Festival Page" });
+                MenuFunction.menu(new string[] { "Register", "Login", "Festival catalog", "Register festival", "Exit", "Festival Page" });
             }
         }
     }

@@ -20,6 +20,48 @@
       "birthDate": "asd",
       "newsLetter": 1,
       "phoneNumber": "1234123"
+    },
+    {
+      "userAddress": {
+        "country": "Nederland",
+        "city": "Rotterdam",
+        "zipCode": "3066GK",
+        "streetName": "Lena Blokwoutsstraat 25",
+        "streetNumber": "25"
+      },
+      "accountType": 2,
+      "accountID": 2,
+      "firstName": null,
+      "lastName": "Fredriks",
+      "email": "rfredriks@hotmail.com",
+      "password": null,
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": "29/03/1997",
+      "newsLetter": 1,
+      "phoneNumber": "06-20373709"
+    },
+    {
+      "userAddress": {
+        "country": "sdaf",
+        "city": "sd",
+        "zipCode": "asdf",
+        "streetName": "afasdf",
+        "streetNumber": "asdf"
+      },
+      "accountType": 1,
+      "accountID": 3,
+      "firstName": null,
+      "lastName": "sadf",
+      "email": "rasdf@hotmail.com",
+      "password": null,
+      "companyContactperson": "sdaf",
+      "companyPhoneNumber": "asdf",
+      "companyName": "asdf",
+      "birthDate": null,
+      "newsLetter": 0,
+      "phoneNumber": null
     }
   ]
 }
