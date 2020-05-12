@@ -12,8 +12,6 @@ namespace Festivity
         public static int userAccountType = 0;
         public static int newsLetter = 0;
         public static int userTerms = 0;
-        private static string userPassword = null;
-        private static string firstName = null;
 
         public static void register_page()
         {
@@ -25,11 +23,13 @@ namespace Festivity
             string companyName = null;
             string birthDate = null;
             string visitorPhoneNumber = null;
+            string userPassword = null;
+            string firstName = null;
 
             do
             {
                 Console.WriteLine("First name: \n");
-                var firstName = Console.ReadLine();
+                firstName = Console.ReadLine();
                 Console.Clear();
                 if (is_valid_name(firstName))
                 {
@@ -39,14 +39,14 @@ namespace Festivity
 
             Console.Clear();
             Console.WriteLine("Last name: \n");
-            var userName = Console.ReadLine();
+            string lastName = Console.ReadLine();
             Console.Clear();
             var email = user_email_input(); 
             Console.Clear();
             do
             {
                 Console.WriteLine("Password: \n");
-                var userPassword = Console.ReadLine();
+                userPassword = Console.ReadLine();
                 Console.Clear();
                 if (is_valid_password(userPassword))
                 {
@@ -112,7 +112,7 @@ namespace Festivity
                     accountType = userAccountType,
                     accountID = accountID,
                     firstName = firstName,
-                    lastName = userName,
+                    lastName = lastName,
                     email = email,
                     password = userPassword,
                     contactPerson = contactPerson,
