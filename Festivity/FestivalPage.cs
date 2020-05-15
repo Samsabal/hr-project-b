@@ -33,57 +33,49 @@ namespace Festivity
                 {
                     if (festival.festivalId == festivalId)
                     {
-                        if (user.accountID == LoginPage.currentUserId)
+                        if (false)
                         {
-                            DateTime currentDate = DateTime.Now;
-                            DateTime userBirthDate = Convert.ToDateTime(user.birthDate);
-                            int userAge = currentDate.Year - userBirthDate.Year;
-
-                            if (userAge < festival.festivalAgeRestriction)
-                            {
-                                Console.WriteLine("Sorry but you are too young to enter this festival.");
-                            }
-                            else
-                            {
-                                MenuFunction.option = 0;
-                                while (true) //Displays all the info in the console.
-                                {
-                                    string line = "----------------------------------------------------------------------";
-                                    string thickLine = "======================================================================";
-
-                                    Console.WriteLine(thickLine);
-                                    Console.WriteLine(festival.festivalName);
-                                    Console.WriteLine("Organised by: " + "(Komt festival organisator)");
-                                    Console.WriteLine(line);
-                                    Console.WriteLine("You need to be at least " + festival.festivalAgeRestriction + " years old in order to enter.");
-                                    Console.WriteLine(festival.festivalDescription);
-                                    Console.WriteLine(line);
-                                    Console.WriteLine("Starts at " + festival.festivalStartingTime + " and ends on " + festival.festivalEndTime + ".");
-                                    Console.WriteLine("Takes place on: " + festival.festivalDate.day + "-" + festival.festivalDate.month + "-" + festival.festivalDate.year);
-                                    Console.WriteLine();
-                                    Console.WriteLine(festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber + ", " + festival.festivalLocation.zipCode);
-                                    Console.WriteLine(festival.festivalLocation.city + ", " + festival.festivalLocation.country);
-                                    Console.WriteLine(thickLine);
-                                    foreach (var ticket in Tickets.tickets)
-                                    {
-                                        if (ticket.festivalId == festival.festivalId)
-                                        {
-                                            Console.WriteLine(ticket.ticketName);
-                                            Console.WriteLine("De prijs van dit ticket is " + ticket.ticketPrice + " euro.");
-                                            Console.WriteLine("Er zijn in totaal " + ticket.maxTickets + " tickets waarvan er nog " + "(Will include remaining tickets)" + " over zijn");
-                                            Console.WriteLine(ticket.ticketDescription);
-                                            Console.WriteLine();
-                                        }
-                                    }
-                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
-                                    ClearCurrentConsoleLine();
-                                    Console.WriteLine(thickLine);
-                                    MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });
-                                }
-                            }
+                            Console.WriteLine("Sorry but you are too young to enter this festival.");
                         }
+                        else
+                        {
+                            MenuFunction.option = 0;
+                            while (true) //Displays all the info in the console.
+                            {
+                                string line = "----------------------------------------------------------------------";
+                                string thickLine = "======================================================================";
+
+                                Console.WriteLine(thickLine);
+                                Console.WriteLine(festival.festivalName);
+                                Console.WriteLine("Organised by: " + "(Komt festival organisator)");
+                                Console.WriteLine(line);
+                                Console.WriteLine("You need to be at least " + festival.festivalAgeRestriction + " years old in order to enter.");
+                                Console.WriteLine(festival.festivalDescription);
+                                Console.WriteLine(line);
+                                Console.WriteLine("Starts at " + festival.festivalStartingTime + " and ends on " + festival.festivalEndTime + ".");
+                                Console.WriteLine("Takes place on: " + festival.festivalDate.day + "-" + festival.festivalDate.month + "-" + festival.festivalDate.year);
+                                Console.WriteLine();
+                                Console.WriteLine(festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber + ", " + festival.festivalLocation.zipCode);
+                                Console.WriteLine(festival.festivalLocation.city + ", " + festival.festivalLocation.country);
+                                Console.WriteLine(thickLine);
+                                foreach (var ticket in Tickets.tickets)
+                                {
+                                    if (ticket.festivalId == festival.festivalId)
+                                    {
+                                        Console.WriteLine(ticket.ticketName);
+                                        Console.WriteLine("De prijs van dit ticket is " + ticket.ticketPrice + " euro.");
+                                        Console.WriteLine("Er zijn in totaal " + ticket.maxTickets + " tickets waarvan er nog " + "(Will include remaining tickets)" + " over zijn");
+                                        Console.WriteLine(ticket.ticketDescription);
+                                        Console.WriteLine();
+                                    }
+                                }
+                                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                ClearCurrentConsoleLine();
+                                Console.WriteLine(thickLine);
+                                MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });
+                            }
+                        } 
                     }
-                    
                 }
             }
         }        
