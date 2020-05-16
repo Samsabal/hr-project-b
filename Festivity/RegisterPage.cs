@@ -276,30 +276,14 @@ namespace Festivity
                 var hasLowerChar = new Regex(@"[a-z]+");
                 var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
-                if (!hasLowerChar.IsMatch(input))
+                if ((!hasLowerChar.IsMatch(input)) || (!hasUpperChar.IsMatch(input)) || (!hasMiniMaxChars.IsMatch(input)) || (!hasSymbols.IsMatch(input)))
                 {
-                    Console.WriteLine("Password should contain at least one lower case letter.\n");
-                    return false;
-                }
-                else if (!hasUpperChar.IsMatch(input))
-                {
-                    Console.WriteLine("Password should contain at least one upper case letter.\n");
-                    return false;
-                }
-                else if (!hasMiniMaxChars.IsMatch(input))
-                {
-                    Console.WriteLine("Password should not be lesser than 8 or greater than 15 characters.\n");
-                    return false;
-                }
-                else if (!hasNumber.IsMatch(input))
-                {
-                    Console.WriteLine("Password should contain at least one numeric value.\n");
-                    return false;
-                }
-
-                else if (!hasSymbols.IsMatch(input))
-                {
-                    Console.WriteLine("Password should contain at least one special case character.\n");
+                    Console.WriteLine("Password should contain the following rules: ");
+                    Console.WriteLine(" - Must be between 8 and 15 characters long. ");
+                    Console.WriteLine(" - Must contain at least one number. . ");
+                    Console.WriteLine(" - Must contain at least one uppercase letter. ");
+                    Console.WriteLine(" - Must contain at least one lowercase letter. ");
+                    Console.WriteLine(" - Must contain at least one symbol. ");
                     return false;
                 }
                 else
