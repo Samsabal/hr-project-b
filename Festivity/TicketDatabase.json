@@ -20,7 +20,7 @@
       "festivalId": 1,
       "ticketId": 3,
       "ticketName": "VIP Ticket",
-      "ticketDescription": "De VIP tickets verzogen toiletten van de buren en onbeperkte cocaïne.",
+      "ticketDescription": "De VIP tickets verzogen toiletten van de buren en onbeperkte cocaï¿½ne.",
       "ticketPrice": "75",
       "maxTickets": 500
     },
@@ -39,6 +39,22 @@
       "ticketDescription": "Je wordt letterlijk de nieuwe jezus.",
       "ticketPrice": "1",
       "maxTickets": 1
+    },
+    {
+      "festivalId": 3,
+      "ticketId": 6,
+      "ticketName": "Pleb",
+      "ticketDescription": "Only for plebians",
+      "ticketPrice": "5",
+      "maxTickets": 100
+    },
+    {
+      "festivalId": 3,
+      "ticketId": 7,
+      "ticketName": "Chads",
+      "ticketDescription": "Only for chadiarans",
+      "ticketPrice": "100",
+      "maxTickets": 4
     }
   ]
 }

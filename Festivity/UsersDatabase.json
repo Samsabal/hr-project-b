@@ -20,6 +20,27 @@
       "birthDate": "asd",
       "newsLetter": 1,
       "phoneNumber": "1234123"
+    },
+    {
+      "userAddress": {
+        "country": "Nederland",
+        "city": "Schiedam",
+        "zipCode": "3114vl",
+        "streetName": "Heenvlietsestraat",
+        "streetNumber": "39"
+      },
+      "accountType": 1,
+      "accountID": 2,
+      "firstName": "Kelvin",
+      "lastName": "van Schaijk",
+      "email": "kvschaijk12@hotmail.com",
+      "password": "Niffo123!",
+      "companyContactperson": "Kelvin van Schaijk",
+      "companyPhoneNumber": "0638204181",
+      "companyName": "Kelvin's Feestjes",
+      "birthDate": null,
+      "newsLetter": 0,
+      "phoneNumber": null
     }
   ]
 }

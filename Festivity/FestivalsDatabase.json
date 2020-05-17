@@ -19,7 +19,8 @@
       },
       "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor. Er zijn 37 biertentjes en entertainment van de legende zelf Zombie Micheal Jackson!",
       "festivalAgeRestriction": 23,
-      "festivalGenre": "Emo"
+      "festivalGenre": "Emo",
+      "festivalOrganisorId": 2
     },
     {
       "festivalId": 2,
@@ -40,7 +41,30 @@
       },
       "festivalDescription": "Joop vier zijn 49ste verjaardag in zijn prive bunker en ziet dat als een goede manier om mensen te scammmen. Muziek moet zelf verzorgd worden en het toilet is een emmer.",
       "festivalAgeRestriction": 66,
-      "festivalGenre": "Hardcore"
+      "festivalGenre": "Hardcore",
+      "festivalOrganisorId": 2
+    },
+    {
+      "festivalId": 3,
+      "festivalName": "Gang gang",
+      "festivalDate": {
+        "day": 12,
+        "month": 11,
+        "year": 2021
+      },
+      "festivalStartingTime": "19:00",
+      "festivalEndTime": "04:00",
+      "festivalLocation": {
+        "country": "Netherlands",
+        "city": "Schiedam",
+        "zipCode": "3114VL",
+        "streetName": "Heenvlietsestraat",
+        "streetNumber": "39"
+      },
+      "festivalDescription": "Bruh ",
+      "festivalAgeRestriction": 18,
+      "festivalGenre": "Gang",
+      "festivalOrganisorId": 2
     }
   ]
 }

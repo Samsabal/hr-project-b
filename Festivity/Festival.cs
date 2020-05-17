@@ -23,6 +23,8 @@ namespace Festivity
         public int festivalAgeRestriction { get; set; }
         [JsonProperty("festivalGenre")]
         public string festivalGenre { get; set; }
+        [JsonProperty("festivalOrganisorId")]
+        public int festivalOrganiserId { get; set; }
     }
 
     class JSONFestivalList
