@@ -12,12 +12,6 @@ namespace Festivity
         [JsonProperty("year")]
         public int year { get; set; }
 
-        class JSONDateList
-        {
-            [JsonProperty("dates")]
-            public List<Date> dates { get; set; }
-        }
-
         public static bool check_validity(Date date)
         {
             int[] months31days = new int[] { 1, 3, 5, 7, 8, 10, 12 };
