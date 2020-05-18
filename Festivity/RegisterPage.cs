@@ -21,6 +21,7 @@ namespace Festivity
             string contactPerson = null;
             string companyPhoneNumber = null;
             string companyName = null;
+            string companyIBAN = null;
             int userDateDay = 0;
             int userDateMonth = 0;
             int userDateYear = 0;
@@ -70,6 +71,17 @@ namespace Festivity
                 Console.WriteLine("Company name: \n");
                 companyName = Console.ReadLine();
                 Console.Clear();
+
+                do
+                {
+                    Console.WriteLine("Company IBAN (Example: 'NL99BANK0123456789'): \n");
+                    companyIBAN = Console.ReadLine();
+                    Console.Clear();
+                    if (is_valid_IBAN(companyIBAN))
+                    {
+                        break;
+                    }
+                } while (true);
             }
 
             if (userAccountType == 2) // Visitor
@@ -127,6 +139,7 @@ namespace Festivity
                     contactPerson = contactPerson,
                     companyPhoneNumber = companyPhoneNumber,
                     companyName = companyName,
+                    companyIBAN = companyIBAN,
                     userAddress = {
                         country = country,
                         city = city,
@@ -298,6 +311,32 @@ namespace Festivity
                     Console.WriteLine(" - Must contain at least one uppercase letter. ");
                     Console.WriteLine(" - Must contain at least one lowercase letter. ");
                     Console.WriteLine(" - Must contain at least one symbol. \n");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            bool is_valid_IBAN(string companyIBAN)
+            /// First two characters must be 'NL'
+            /// 3rd and 4th characters must be 2 numbers
+            /// 5th to 8th characters must be 4 letters
+            /// 9th to 18th characters must be 10 numbers
+            {
+                string input = companyIBAN;
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("IBAN should not be empty, please try again.\n");
+                }
+
+                var isIBAN = new Regex(@"NL[0-9]{2}[A-Z]{4}[0-9]{10}");
+
+                if (!isIBAN.IsMatch(input))
+                {
+                    Console.WriteLine("Incorrect IBAN");
                     return false;
                 }
                 else

@@ -31,6 +31,9 @@ namespace Festivity
         [JsonProperty("companyName")]
         public string companyName { get; set; }
 
+        [JsonProperty("companyIBAN")]
+        public string companyIBAN { get; set; }
+
         public Date birthDate = new Date();
 
         [JsonProperty("newsLetter")]
