@@ -10,28 +10,11 @@ namespace Festivity
 
         public static int option;
 
-        public static void menu(string[] consoleOptions, Festival[] festivals = null)
+        public static void menu(string[] consoleOptions, Festival[] festivals = null, Ticket[] tickets = null)
         {
             /// 1. Add your option as string in consoleOptions argument.
             /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
-            if (festivals == null)
-            {
-                for (int i = 0; i < consoleOptions.Length; i++)
-                {
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
-                    }
-                    Console.WriteLine("{0}", consoleOptions[i]);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
-                }
-            }
-
-            else
+            if (festivals != null)
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -46,8 +29,57 @@ namespace Festivity
                         Console.ResetColor();
                     }
                 }
-                
+
                 for (int i = 5; i < consoleOptions.Length; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+            }
+
+            else if (tickets != null)
+            {
+                for (int i = 0; i < TicketBuy.ticketListLength; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("Order ticket: {0}", tickets[i].ticketName);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+
+                for (int i = TicketBuy.ticketListLength; i < consoleOptions.Length; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+            }
+
+
+            else
+            {
+                for (int i = 0; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
                     {
@@ -226,6 +258,9 @@ namespace Festivity
                     case "Return to Festival Page":
                         Console.Clear();
                         FestivalPage.festival_page(CatalogPage.selectedFestival);
+                        break;
+                    case "Order Ticket 1":
+                        Console.Clear(); // TODO: Buy a specific ticket
                         break;
                     default:
                         break;
