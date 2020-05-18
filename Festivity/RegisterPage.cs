@@ -21,7 +21,9 @@ namespace Festivity
             string contactPerson = null;
             string companyPhoneNumber = null;
             string companyName = null;
-            string birthDate = null;
+            int userDateDay = 0;
+            int userDateMonth = 0;
+            int userDateYear = 0;
             string visitorPhoneNumber = null;
             string userPassword = null;
             string firstName = null;
@@ -72,8 +74,15 @@ namespace Festivity
 
             if (userAccountType == 2) // Visitor
             {
-                Console.WriteLine("Date of Birth: \n");
-                birthDate = Console.ReadLine();
+                Console.WriteLine("Fill in your Date of Birth \n");
+                Console.WriteLine("Day (DD): ");
+                userDateDay = int.Parse(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("Month (MM): ");
+                userDateMonth = int.Parse(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("Year (YYYY): ");
+                userDateYear = int.Parse(Console.ReadLine());
                 Console.Clear();
                 user_newsletter_input();
                 Console.Clear();
@@ -125,7 +134,11 @@ namespace Festivity
                         streetName = streetName,
                         streetNumber = streetNumber
                         },
-                    birthDate = birthDate,
+                    birthDate = {
+                        day = userDateDay,
+                        month = userDateMonth,
+                        year = userDateYear
+                    },
                     newsLetter = newsLetter,
                     phoneNumber = visitorPhoneNumber
                 };
@@ -276,30 +289,14 @@ namespace Festivity
                 var hasLowerChar = new Regex(@"[a-z]+");
                 var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
-                if (!hasLowerChar.IsMatch(input))
+                if ((!hasLowerChar.IsMatch(input)) || (!hasUpperChar.IsMatch(input)) || (!hasMiniMaxChars.IsMatch(input)) || (!hasSymbols.IsMatch(input)))
                 {
-                    Console.WriteLine("Password should contain at least one lower case letter.\n");
-                    return false;
-                }
-                else if (!hasUpperChar.IsMatch(input))
-                {
-                    Console.WriteLine("Password should contain at least one upper case letter.\n");
-                    return false;
-                }
-                else if (!hasMiniMaxChars.IsMatch(input))
-                {
-                    Console.WriteLine("Password should not be lesser than 8 or greater than 15 characters.\n");
-                    return false;
-                }
-                else if (!hasNumber.IsMatch(input))
-                {
-                    Console.WriteLine("Password should contain at least one numeric value.\n");
-                    return false;
-                }
-
-                else if (!hasSymbols.IsMatch(input))
-                {
-                    Console.WriteLine("Password should contain at least one special case character.\n");
+                    Console.WriteLine("Password should contain the following rules: ");
+                    Console.WriteLine(" - Must be between 8 and 15 characters long. ");
+                    Console.WriteLine(" - Must contain at least one number. . ");
+                    Console.WriteLine(" - Must contain at least one uppercase letter. ");
+                    Console.WriteLine(" - Must contain at least one lowercase letter. ");
+                    Console.WriteLine(" - Must contain at least one symbol. \n");
                     return false;
                 }
                 else
