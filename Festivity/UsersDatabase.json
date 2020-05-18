@@ -1,25 +1,54 @@
 {
   "users": [
     {
+      "birthDate": {
+        "day": 13,
+        "month": 2,
+        "year": 1999
+      },
       "userAddress": {
-        "country": "fffff",
-        "city": "a",
-        "zipCode": "d",
-        "streetName": "b",
-        "streetNumber": "c"
+        "country": "Netherlands",
+        "city": "Goes",
+        "zipCode": "43455BK",
+        "streetName": "Paul van Zeelandlaan",
+        "streetNumber": "34"
       },
       "accountType": 2,
       "accountID": 1,
-      "firstName": "adasd",
-      "lastName": "asdad",
-      "email": "asd@gmail.com",
-      "password": "asd",
+      "firstName": null,
+      "lastName": "Adeoye",
+      "email": "thah@gmail.com",
+      "password": null,
       "companyContactperson": null,
       "companyPhoneNumber": null,
       "companyName": null,
-      "birthDate": "asd",
       "newsLetter": 1,
-      "phoneNumber": "1234123"
+      "phoneNumber": "0623984234"
+    },
+    {
+      "birthDate": {
+        "day": 12,
+        "month": 2,
+        "year": 1999
+      },
+      "userAddress": {
+        "country": "Netherlands",
+        "city": "Goes",
+        "zipCode": "5544BJ",
+        "streetName": "Paul van Zeelandlaan",
+        "streetNumber": "34"
+      },
+      "accountType": 2,
+      "accountID": 2,
+      "firstName": "Enny",
+      "lastName": "Adeoye",
+      "email": "theennyk@gmail.com",
+      "password": "Iwmcghr2ABC!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "newsLetter": 1,
+      "phoneNumber": "0443243"
     }
   ]
 }

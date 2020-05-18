@@ -23,13 +23,15 @@ namespace Festivity
             string contactPerson = null;
             string companyPhoneNumber = null;
             string companyName = null;
-            string birthDate = null;
+            int userDateDay = 0;
+            int userDateMonth = 0;
+            int userDateYear = 0;
             string visitorPhoneNumber = null;
 
             do
             {
                 Console.WriteLine("First name: \n");
-                var firstName = Console.ReadLine();
+                firstName = Console.ReadLine();
                 Console.Clear();
                 if (is_valid_name(firstName))
                 {
@@ -46,7 +48,7 @@ namespace Festivity
             do
             {
                 Console.WriteLine("Password: \n");
-                var userPassword = Console.ReadLine();
+                userPassword = Console.ReadLine();
                 Console.Clear();
                 if (is_valid_password(userPassword))
                 {
@@ -72,8 +74,15 @@ namespace Festivity
 
             if (userAccountType == 2) // Visitor
             {
-                Console.WriteLine("Date of Birth: \n");
-                birthDate = Console.ReadLine();
+                Console.WriteLine("Fill in your Date of Birth \n");
+                Console.WriteLine("Day (DD): ");
+                userDateDay = int.Parse(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("Month (MM): ");
+                userDateMonth = int.Parse(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("Year (YYYY): ");
+                userDateYear = int.Parse(Console.ReadLine());
                 Console.Clear();
                 user_newsletter_input();
                 Console.Clear();
@@ -125,7 +134,11 @@ namespace Festivity
                         streetName = streetName,
                         streetNumber = streetNumber
                         },
-                    birthDate = birthDate,
+                    birthDate = {
+                        day = userDateDay,
+                        month = userDateMonth,
+                        year = userDateYear
+                    },
                     newsLetter = newsLetter,
                     phoneNumber = visitorPhoneNumber
                 };
@@ -283,7 +296,7 @@ namespace Festivity
                     Console.WriteLine(" - Must contain at least one number. . ");
                     Console.WriteLine(" - Must contain at least one uppercase letter. ");
                     Console.WriteLine(" - Must contain at least one lowercase letter. ");
-                    Console.WriteLine(" - Must contain at least one symbol. ");
+                    Console.WriteLine(" - Must contain at least one symbol. \n");
                     return false;
                 }
                 else
