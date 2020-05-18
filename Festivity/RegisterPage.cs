@@ -47,7 +47,7 @@ namespace Festivity
             Console.Clear();
             do
             {
-                Console.WriteLine("Password: \n");
+                Console.Write("Password: \n");
                 userPassword = Console.ReadLine();
                 Console.Clear();
                 if (is_valid_password(userPassword))
@@ -108,7 +108,7 @@ namespace Festivity
             Console.Clear();
             user_terms_input(); // User terms and conditions agreement
             int accountID = user_account_id(users);
-            Console.WriteLine("Your account has been created");
+            Console.WriteLine("Your account has been created, and you will be automatically logged in.");
             Thread.Sleep(5000);
             Console.Clear();
 
@@ -144,9 +144,10 @@ namespace Festivity
                 };
 
                 users.users.Add(user);
+                LoginPage.automaticLogin(user);
                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
                 File.WriteAllText(PATH_USER, json);
-                // This block of code adds the user object to the json database.\ 
+                // This block of code adds the user object to the json database.
             }
 
             string user_email_input()

@@ -9,41 +9,41 @@
       "userAddress": {
         "country": "Netherlands",
         "city": "Goes",
-        "zipCode": "43455BK",
+        "zipCode": "4456BJ",
         "streetName": "Paul van Zeelandlaan",
         "streetNumber": "34"
       },
       "accountType": 2,
       "accountID": 1,
-      "firstName": null,
-      "lastName": "Adeoye",
-      "email": "thah@gmail.com",
-      "password": null,
+      "firstName": "enny",
+      "lastName": "adeoye",
+      "email": "asd@gmail.com",
+      "password": "Iwmcghr2ABC!",
       "companyContactperson": null,
       "companyPhoneNumber": null,
       "companyName": null,
       "newsLetter": 1,
-      "phoneNumber": "0623984234"
+      "phoneNumber": "91283129831"
     },
     {
       "birthDate": {
         "day": 12,
-        "month": 2,
+        "month": -2,
         "year": 1999
       },
       "userAddress": {
         "country": "Netherlands",
         "city": "Goes",
-        "zipCode": "5544BJ",
+        "zipCode": "1234123",
         "streetName": "Paul van Zeelandlaan",
         "streetNumber": "34"
       },
       "accountType": 2,
       "accountID": 2,
-      "firstName": "Enny",
-      "lastName": "Adeoye",
-      "email": "theennyk@gmail.com",
-      "password": "Iwmcghr2ABC!",
+      "firstName": "asdaisdasd",
+      "lastName": "JohnSmith",
+      "email": "john@gmail.com",
+      "password": "john1ABC!",
       "companyContactperson": null,
       "companyPhoneNumber": null,
       "companyName": null,
