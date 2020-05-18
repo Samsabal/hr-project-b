@@ -212,7 +212,7 @@ namespace Festivity
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.catalog_main();
                         break;
-                    case "Order Ticket":
+                    //case "Order Ticket":
                         Console.Clear();
                         //Order ticket page
                     case "Login to your Account":
