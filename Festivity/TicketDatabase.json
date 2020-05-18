@@ -1,0 +1,20 @@
+﻿{
+	"tickets": [
+		{
+			"festivalId": 1,
+			"ticketId": 1,
+			"ticketName": "Normal Ticket",
+			"ticketDescription": "This is a normal ticket.",
+			"ticketPrice": "35",
+			"maxTickets": 5000
+		},
+		{
+			"festivalId": 1,
+			"ticketId": 2,
+			"ticketName": "VIP Ticket",
+			"ticketDescription": "This is a VIP ticket.",
+			"ticketPrice": "75",
+			"maxTickets": 500
+		}
+	]
+}

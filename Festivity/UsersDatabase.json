@@ -1,24 +1,25 @@
 {
   "users": [
     {
-      "Id": 1,
-      "Username": "God",
-      "Password": "Creator"
-    },
-    {
-      "Id": 3,
-      "Username": "Test1",
-      "Password": "Test1"
-    },
-    {
-      "Id": 4,
-      "Username": "Test2",
-      "Password": "Test2"
-    },
-    {
-      "Id": 5,
-      "Username": "sadpo;l",
-      "Password": "das"
+      "userAddress": {
+        "country": "fffff",
+        "city": "a",
+        "zipCode": "d",
+        "streetName": "b",
+        "streetNumber": "c"
+      },
+      "accountType": 2,
+      "accountID": 1,
+      "firstName": "adasd",
+      "lastName": "asdad",
+      "email": "asd@gmail.com",
+      "password": "asd",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "birthDate": "asd",
+      "newsLetter": 1,
+      "phoneNumber": "1234123"
     }
   ]
 }
