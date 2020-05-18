@@ -6,7 +6,7 @@
       "festivalDate": {
         "day": 29,
         "month": 3,
-        "year": 1997
+        "year": 2020
       },
       "festivalStartingTime": "23:00",
       "festivalEndTime": "4:00",
@@ -28,7 +28,7 @@
       "festivalDate": {
         "day": 12,
         "month": 11,
-        "year": 2001
+        "year": 2021
       },
       "festivalStartingTime": "08:10",
       "festivalEndTime": "10:59",
@@ -62,8 +62,30 @@
         "streetNumber": "39"
       },
       "festivalDescription": "Bruh ",
-      "festivalAgeRestriction": 18,
+      "festivalAgeRestriction": 17,
       "festivalGenre": "Gang",
+      "festivalOrganisorId": 4
+    },
+    {
+      "festivalId": 4,
+      "festivalName": "Club",
+      "festivalDate": {
+        "day": 7,
+        "month": 9,
+        "year": 2020
+      },
+      "festivalStartingTime": "12:00",
+      "festivalEndTime": "15:00",
+      "festivalLocation": {
+        "country": "Netherlands",
+        "city": "Schiedam",
+        "zipCode": "3114VL",
+        "streetName": "Banjostraat",
+        "streetNumber": "44"
+      },
+      "festivalDescription": "Club pengiun begravenis. RIP",
+      "festivalAgeRestriction": 60,
+      "festivalGenre": "Emo",
       "festivalOrganisorId": 4
     }
   ]

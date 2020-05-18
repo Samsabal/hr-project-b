@@ -55,6 +55,14 @@
       "ticketDescription": "Only for chadiarans",
       "ticketPrice": "100",
       "maxTickets": 4
+    },
+    {
+      "festivalId": 4,
+      "ticketId": 8,
+      "ticketName": "rip",
+      "ticketDescription": "rip",
+      "ticketPrice": "5",
+      "maxTickets": 3
     }
   ]
 }
