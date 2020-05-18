@@ -212,9 +212,19 @@ namespace Festivity
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.catalog_main();
                         break;
-                    //case "Order Ticket":
+                    case "Order Ticket":
                         Console.Clear();
                         //Order ticket page
+                    case "Login to your Account":
+                        Console.Clear();
+                        LoginPage.userLoginChoice = 1;
+                        LoginPage.user_login();
+                        break;
+                    case "Forgot password":
+                        Console.Clear();
+                        LoginPage.userLoginChoice = 2;
+                        LoginPage.forgot_password();
+                        break;
                     default:
                         break;
                 }
