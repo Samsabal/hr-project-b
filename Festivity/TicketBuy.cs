@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Festivity
 {
@@ -94,6 +95,9 @@ namespace Festivity
             ConsoleKey response = Console.ReadKey(true).Key;
             if (response == ConsoleKey.Y)
             {
+                Console.WriteLine();
+                Console.WriteLine("Succesfully bought a Ticket!");
+                Thread.Sleep(2000);
                 write_to_database();
             }
 
