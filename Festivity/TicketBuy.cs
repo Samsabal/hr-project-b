@@ -13,6 +13,7 @@ namespace Festivity
         public static int ticketListLength;
         public static int selectedTicket;
         public static Ticket[] ticketArray;
+        static int ticketAmount;
 
         static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
         static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
@@ -92,14 +93,17 @@ namespace Festivity
 
         public static void ticket_buy_selected(int ticket)
         {
+            Console.Clear();
             Console.WriteLine("Would you like to buy this ticket? [y/n]");
             ConsoleKey response = Console.ReadKey(true).Key;
             if (response == ConsoleKey.Y)
             {
-                Console.WriteLine();
-                Console.WriteLine("Succesfully bought a Ticket!");
+                Console.WriteLine("How many tickets would you like to buy?");
+                ticketAmount = ticket_amount();
+                Console.WriteLine("Ordered Succesfully!");
                 Thread.Sleep(2000);
                 write_to_database();
+
             }
 
             Console.Clear();
@@ -114,7 +118,7 @@ namespace Festivity
                     festivalID = (int)CatalogPage.selectedFestival,
                     ticketID = ticket,
                     buyerID = (int)UserLoginPage.currentUserId,
-                    ticketAmount = 1,
+                    ticketAmount = ticketAmount,
                     orderDate = timeStamp
                 };
 
@@ -137,6 +141,28 @@ namespace Festivity
                 };
 
                 return transactionID;
+            }
+
+            int ticket_amount()
+            {
+                int userInput;
+                while (!int.TryParse(Console.ReadLine(), out userInput))
+                {
+                    Console.Clear();
+                    Console.WriteLine("You entered an invalid number");
+                    Console.WriteLine("Enter the number and press <Enter>: ");
+                }
+                if (userInput > 0 && userInput <= 10)
+                {
+                    return userInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("You entered an invalid number");
+                    Console.WriteLine("Enter the number and press <Enter>: ");
+                    return ticket_amount();
+                }
             }
         }
     }
