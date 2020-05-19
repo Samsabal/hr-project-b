@@ -104,6 +104,8 @@ namespace Festivity
                         break;
                     case "Register festival": // Festival register
                         Console.Clear();
+                        FestivalRegister.activeScreen = true;
+                        FestivalRegister.currentRegisterSelection = "Main";
                         FestivalRegister.festival_register();
                         Thread.Sleep(1000);
                         break;
@@ -214,6 +216,47 @@ namespace Festivity
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.catalog_main();
                         break;
+                    case "Festival Name":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Name";
+                        break;
+                    case "Festival Date":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Date";
+                        break;
+                    case "Starting Time":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Starting Time";
+                        break;
+                    case "End Time":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "End Time";
+                        break;
+                    case "Festival Adress":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Adress";
+                        break;
+                    case "Festival Description":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Description";
+                        break;
+                    case "Age restriction":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Age Restriction";
+                        break;
+                    case "Festival Genre":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Genre";
+                        break;
+                    case "Tickets":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Tickets";
+                        break;
+                    case "Save Festival":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Save Festival";
+                        break;
+                    default:
                     case "Login to your Account":
                         Console.Clear();
                         UserLoginPage.userLoginChoice = 1;
