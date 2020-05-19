@@ -89,6 +89,7 @@ namespace Festivity
                     Console.Clear();
                     Console.WriteLine("Fill in the name of the festival: ");
                     festivalName = Console.ReadLine();
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Date")
                 {
