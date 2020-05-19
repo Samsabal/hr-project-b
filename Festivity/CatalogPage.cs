@@ -11,6 +11,7 @@ namespace Festivity
         public static string currentCatalogNavigation;
         public static int arraySize;
         public static bool activeScreen;
+        public static int selectedFestival;
 
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()

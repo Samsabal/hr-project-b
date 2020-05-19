@@ -15,6 +15,8 @@ namespace Festivity
         public int ticketNumber { get; set; }
         [JsonProperty("orderNumber")]
         public int orderNumber { get; set; }
+        [JsonProperty("orderDate")]
+        public string orderDate { get; set; }
     }
 
     class JSONTransactionList
