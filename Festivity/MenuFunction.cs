@@ -248,6 +248,10 @@ namespace Festivity
                         Console.Clear();
                         UserAccountPage.change_password();
                         break;
+                    case "My Festivals":
+                        Console.Clear();
+                        TicketTable.ticket_table_page();
+                        break;
                    default:
                         break;
                 }
