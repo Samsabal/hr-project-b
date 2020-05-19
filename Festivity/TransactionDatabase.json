@@ -7,6 +7,13 @@
       "ticketNumber": 1,
       "orderNumber": 1,
       "orderDate": "19-05-2020 11:17:19 AM"
-    }
+    },
+    /// orderNumber > transactionID (ID van de transactie) 
+    /// "festivalID"
+    /// ticketID
+    /// buyerID
+    /// tickerNumber > ticketAmount (Hoeveel tickets in deze transactie)
+    /// orderDate
+
   ]
 }
