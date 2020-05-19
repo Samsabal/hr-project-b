@@ -1,15 +1,19 @@
-﻿namespace Festivity
+﻿using Newtonsoft.Json;
+using System.IO;
+
+namespace Festivity
 {
     class CatalogPageFilter
     {
         // Receives a Festival array and sorts it in alphabetical order by name
-        public static Festival[] sort_name(Festival[] festivalArray, int arraySize)
+        public static Festival[] sort_name(Festival[] festivalArray)
         {
-            for (int j = arraySize - 1; j > 0; j--)
+            festivalArray = Festival.festival_remove_padding(festivalArray);
+            for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].festivalName.CompareTo(festivalArray[i + 1].festivalName) > 0)
+                    if (festivalArray[i].festivalName.CompareTo(festivalArray[i + 1].festivalName) > 0 && festivalArray[i].festivalId != -1)
                     {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
@@ -17,13 +21,14 @@
                     }
                 }
             }
-            return festivalArray;
+            return CatalogPage.add_or_remove_padding(festivalArray);
         }
 
         // Receives a Festival array and sorts it in ascending order by date
         public static Festival[] sort_date(Festival[] festivalArray)
         {
-            for (int j = arraySize - 1; j > 0; j--)
+            festivalArray = Festival.festival_remove_padding(festivalArray);
+            for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
@@ -35,61 +40,76 @@
                     }
                 }
             }
-            return festivalArray;
+            return CatalogPage.add_or_remove_padding(festivalArray);
         }
 
-        public static Festival[] filter_name(Festival[] festivalArray, int arraySize, string searchText)
+        public static Festival[] filter_name(Festival[] festivalArray, string searchText)
         {
-            Festival[] tempArray = new Festival[arraySize];
+            Festival[] resultArray = new Festival[festivalArray.Length];
             int count = 0;
 
-            for (int i = 0; i < arraySize; i++)
+            for (int i = 0; i < festivalArray.Length; i++)
             {
                 if (festivalArray[i].festivalName.ToLower().Contains(searchText.ToLower()))
                 {
-                    tempArray[count] = festivalArray[i];
+                    resultArray[count] = festivalArray[i];
                     count++;
                 }
             }
-            int extraSpace = 5 - (count % 5);
-            Festival[] resultArray = new Festival[count + extraSpace + 1];
-
-            for (int i = 0; i < count; i++)
-            {
-                resultArray[i] = tempArray[i];
-            }
-
-            Festival emptyFestival = new Festival
-            {
-                festivalId = -1,
-                festivalName = "",
-                festivalDate = new Date
-                {
-                    day = -1,
-                    month = -1,
-                    year = -1
-                },
-                festivalStartingTime = "",
-                festivalEndTime = "",
-                festivalLocation = new Address
-                {
-                    country = "",
-                    city = "",
-                    zipCode = "",
-                    streetName = "",
-                    streetNumber = ""
-                },
-                festivalDescription = "",
-                festivalAgeRestriction = 18,
-                festivalGenre = "",
-            };
-
-            for (int i = count; i < resultArray.Length; i++)
-            {
-                resultArray[i] = emptyFestival;
-            }
-
+            resultArray = CatalogPage.add_or_remove_padding(resultArray);
             return resultArray;
+        }
+
+        public static Festival[] filter_location(Festival[] festivalArray, string searchText)
+        {
+            Festival[] resultArray = new Festival[festivalArray.Length];
+            int count = 0;
+
+            for (int i = 0; i < festivalArray.Length; i++)
+            {
+                if (festivalArray[i].festivalLocation.city.ToLower().Contains(searchText.ToLower())
+                    || festivalArray[i].festivalLocation.streetName.ToLower().Contains(searchText.ToLower()))
+                {
+                    resultArray[count] = festivalArray[i];
+                    count++;
+                }
+            }
+            resultArray = CatalogPage.add_or_remove_padding(resultArray);
+            return resultArray;
+        }
+
+        /**        public static Festival[] sort_by_availability(Festival[] festivalArray)
+                {
+                    Festival[] resultArray = new Festival[festivalArray.Length];
+                    int count = 0;
+
+                    for (int i = 0; i < festivalArray.Length; i++)
+                    {
+                        if ()
+                    }
+                }**/
+        public static Festival[] filter_genre(Festival[] festivalArray, string searchText)
+        {
+            Festival[] resultArray = new Festival[festivalArray.Length];
+            int count = 0;
+
+            for (int i = 0; i < festivalArray.Length; i++)
+            {
+                if (festivalArray[i].festivalGenre.ToLower().Contains(searchText.ToLower()))
+                {
+                    resultArray[count] = festivalArray[i];
+                    count++;
+                }
+            }
+            resultArray = CatalogPage.add_or_remove_padding(resultArray);
+            return resultArray;
+        }
+
+        public static void clear_filters()
+        {
+            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+            CatalogPage.festivalArray = CatalogPage.add_or_remove_padding(Festivals.festivals.ToArray());
         }
     }
 }

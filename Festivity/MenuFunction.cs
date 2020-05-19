@@ -154,12 +154,12 @@ namespace Festivity
                         Thread.Sleep(1000);
                         break;
                     case "Sort by name": // "Sort by name" option on catalog page filter/sort screen
-                        CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray, CatalogPage.arraySize);
+                        CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         break;
                     case "Sort by date": // "Sort by date" option on catalog page filter/sort screen
-                        CatalogPage.festivalArray = CatalogPageFilter.sort_date(CatalogPage.festivalArray, CatalogPage.arraySize);
+                        CatalogPage.festivalArray = CatalogPageFilter.sort_date(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         break;

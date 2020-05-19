@@ -82,7 +82,7 @@ namespace Festivity
                         }
                     }
                 }
-                MenuFunction.menu(menuOptions, null, ticketArray);
+                MenuFunction.menu(menuOptions, ticketArray);
             }
         }
 
