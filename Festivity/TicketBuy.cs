@@ -82,7 +82,6 @@ namespace Festivity
                     }
                 }
                 MenuFunction.menu(menuOptions, null, ticketArray);
-                Console.Clear();
             }
         }
 
@@ -98,6 +97,7 @@ namespace Festivity
                 write_to_database();
             }
 
+            Console.Clear();
             void write_to_database()
             {
                 string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
@@ -109,7 +109,7 @@ namespace Festivity
                 {
                     festivalID = (int)CatalogPage.selectedFestival,
                     ticketID = ticket,
-                    buyerID = (int)LoginPage.currentUserId,
+                    buyerID = (int)UserLoginPage.currentUserId,
                     ticketNumber = 1,
                     orderNumber = order_number(transactions),
                     orderDate = timeStamp
