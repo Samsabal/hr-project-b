@@ -303,7 +303,7 @@ namespace Festivity
                         TicketTable.ticket_table_page();
                         break;
                    default:
-                        if (consoleOptions[option].StartsWith("Order Ticket"))
+                        if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
                             
                             Match ticketId = Regex.Match(consoleOptions[option], @"(?<=:)[^\]]+");

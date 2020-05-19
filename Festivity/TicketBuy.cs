@@ -59,7 +59,7 @@ namespace Festivity
                     if (ticket.ticketId == ticketId)
                     {
                         ticketArrayList.Add(ticket);
-                        menuOptionsList.Add("Order Ticket:" + ticketId );
+                        menuOptionsList.Add("Buy Ticket:" + ticketId );
                     }
                 }
 
