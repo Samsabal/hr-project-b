@@ -16,7 +16,7 @@ namespace Festivity
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static bool age_check(int festivalId)
+        public static bool age_check(int festivalId)//Checks if the user is old enough to use the program
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
@@ -50,7 +50,7 @@ namespace Festivity
             return false;
         }
 
-        public static void festival_page(int festivalId)
+        public static void festival_page(int festivalId)//Displays the festival page
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
@@ -66,11 +66,12 @@ namespace Festivity
                 if (festival.festivalId == festivalId)
                 {
                     MenuFunction.option = 0;
-                    while (true) //Displays all the info in the console.
+                    while (true) 
                     {
                         if (age_check(festivalId))
                         {
                             Console.WriteLine("Sorry but you are too young to enter this festival.");
+                            Console.WriteLine("You need to be at least " + festival.festivalAgeRestriction + " years old in order to enter.");
                             Console.WriteLine("");
                             MenuFunction.menu(new string[] { "Return to Catalog", "Exit to Main Menu" });
                         }
@@ -98,7 +99,7 @@ namespace Festivity
                             Console.WriteLine(festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber + ", " + festival.festivalLocation.zipCode);
                             Console.WriteLine(festival.festivalLocation.city + ", " + festival.festivalLocation.country);
                             Console.WriteLine(thickLine);
-                            foreach (var ticket in Tickets.tickets)
+                            foreach (var ticket in Tickets.tickets)//Shows the tickets from the corresponding festival
                             {
                                 if (ticket.festivalId == festival.festivalId)
                                 {
@@ -112,7 +113,7 @@ namespace Festivity
                             Console.SetCursorPosition(0, Console.CursorTop - 1);
                             clear_console_line();
                             Console.WriteLine(thickLine);
-                            MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });
+                            MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });//The menu used in the festivalpage
                         }
                     }
                 } 
