@@ -62,6 +62,7 @@ namespace Festivity
 
             if (userAccountType == 1) // Organisator
             {
+                Console.Clear();
                 Console.WriteLine("Company contactperson: \n");
                 contactPerson = Console.ReadLine();
                 Console.Clear();
@@ -86,6 +87,7 @@ namespace Festivity
 
             if (userAccountType == 2) // Visitor
             {
+                Console.Clear();
                 Console.WriteLine("Fill in your Date of Birth \n");
                 Console.WriteLine("Day (DD): ");
                 userDateDay = int.Parse(Console.ReadLine());
@@ -156,6 +158,7 @@ namespace Festivity
                     phoneNumber = visitorPhoneNumber
                 };
 
+                UserLoginPage.currentUserType = user.accountType;
                 users.users.Add(user);
                 UserLoginPage.automaticLogin(user);
                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
@@ -182,8 +185,8 @@ namespace Festivity
 
             void user_newsletter_input()
             {
-                MenuFunction.option = 0;
-                while (newsLetter == 0)
+                MenuFunction.option = 0; 
+                while (newsLetter == 0) 
                 {
                     Console.WriteLine("Do you want to recieve a newsletter? \n");
                     MenuFunction.menu(new string[] { "Yes, I want to recieve a newsletters", "No, I don't want to recieve a newsletters" });
