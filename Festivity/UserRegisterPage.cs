@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Festivity
 {
-    public class RegisterPage
+    public class UserRegisterPage
     {
         public static int userAccountType = 0;
         public static int newsLetter = 0;
@@ -121,7 +121,7 @@ namespace Festivity
             user_terms_input(); // User terms and conditions agreement
             int accountID = user_account_id(users);
             Console.WriteLine("Your account has been created, and you will be automatically logged in.");
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
             Console.Clear();
 
             write_user_to_database();
@@ -157,7 +157,7 @@ namespace Festivity
                 };
 
                 users.users.Add(user);
-                LoginPage.automaticLogin(user);
+                UserLoginPage.automaticLogin(user);
                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
                 File.WriteAllText(PATH_USER, json);
                 // This block of code adds the user object to the json database.
