@@ -13,14 +13,18 @@ namespace Festivity
         public static int ticketListLength;
         public static int selectedTicket;
         public static Ticket[] ticketArray;
+
+        static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+        static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+
+        static string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
+        static JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+
+        static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+        static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+
         public static void ticket_buy(int festivalId)
         {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-
-            string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
-
             List<int> ticketList = new List<int>();
             
             // Gets all Tickets related to the current Festival
@@ -88,9 +92,6 @@ namespace Festivity
 
         public static void ticket_buy_selected(int ticket)
         {
-            string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-            JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
-
             Console.WriteLine("Would you like to buy this ticket? [y/n]");
             ConsoleKey response = Console.ReadKey(true).Key;
             if (response == ConsoleKey.Y)
@@ -104,18 +105,16 @@ namespace Festivity
             Console.Clear();
             void write_to_database()
             {
-                string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-                JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
                 DateTime now = DateTime.Now;
                 string timeStamp = "" + now;
 
                 Transaction transaction = new Transaction
                 {
+                    transactionID = transaction_id(transactions),
                     festivalID = (int)CatalogPage.selectedFestival,
                     ticketID = ticket,
                     buyerID = (int)UserLoginPage.currentUserId,
-                    ticketNumber = 1,
-                    orderNumber = order_number(transactions),
+                    ticketAmount = 1,
                     orderDate = timeStamp
                 };
 
@@ -124,20 +123,20 @@ namespace Festivity
                 File.WriteAllText(PATH_TRANSACTION, json);
             }
 
-            int order_number(JSONTransactionList transactions)
+            int transaction_id(JSONTransactionList transactions)
             {
-                int orderNumber;
+                int transactionID;
                 if (transactions.transactions.Count == 0)
                 {
-                    orderNumber = 1;
+                    transactionID = 1;
                 }
                 else
                 {
-                    int item = transactions.transactions[transactions.transactions.Count - 1].orderNumber;
-                    orderNumber = item + 1;
+                    int item = transactions.transactions[transactions.transactions.Count - 1].transactionID;
+                    transactionID = item + 1;
                 };
 
-                return orderNumber;
+                return transactionID;
             }
         }
     }
