@@ -34,10 +34,12 @@ namespace Festivity
                 }
             }
 
+
             else
             {
                 for (int i = 0; i < 5; i++)
                 {
+                    ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -49,9 +51,10 @@ namespace Festivity
                         Console.ResetColor();
                     }
                 }
-                
+
                 for (int i = 5; i < consoleOptions.Length; i++)
                 {
+                    ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -63,6 +66,7 @@ namespace Festivity
                         Console.ResetColor();
                     }
                 }
+                ClearCurrentConsoleLine();
             }
 
             var KeyPressed = Console.ReadKey();
@@ -117,12 +121,34 @@ namespace Festivity
                         Thread.Sleep(1000);
                         break;
                     case "Sort by name":
-                        CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray, CatalogPage.arraySize);
+                        CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         break;
                     case "Sort by date":
-                        CatalogPage.festivalArray = CatalogPageFilter.sort_date(CatalogPage.festivalArray, CatalogPage.arraySize);
+                        CatalogPage.festivalArray = CatalogPageFilter.sort_date(CatalogPage.festivalArray);
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        break;
+                    case "Filter by festival name":
+                        string namesearch = Console.ReadLine();
+                        CatalogPage.festivalArray = CatalogPageFilter.filter_name(CatalogPage.festivalArray, namesearch);
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        Console.Clear();
+                        break;
+                    case "Filter by genre":
+                        CatalogPage.festivalArray = CatalogPageFilter.filter_genre(CatalogPage.festivalArray, Console.ReadLine());
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        break;
+                    case "Filter by location (City/Street)":
+                        CatalogPage.festivalArray = CatalogPageFilter.filter_location(CatalogPage.festivalArray, Console.ReadLine());
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        break;
+                    case "Clear filters":
+                        CatalogPageFilter.clear_filters();
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         break;
@@ -208,6 +234,7 @@ namespace Festivity
                     case "Filter festivals":
                         option = 0;
                         CatalogPage.currentCatalogNavigation = "filter";
+                        Console.Clear();
                         break;
                     case "Return to Catalog":
                         Console.Clear();
@@ -253,6 +280,14 @@ namespace Festivity
                 }
             }
             Console.SetCursorPosition(0, 0);
+        }
+
+        public static void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
 }

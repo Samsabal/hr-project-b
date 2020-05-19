@@ -23,7 +23,29 @@ namespace Festivity
         public int festivalAgeRestriction { get; set; }
         [JsonProperty("festivalGenre")]
         public string festivalGenre { get; set; }
+
+
+        public static Festival[] festival_remove_padding(Festival[] festivals)
+        {
+            int count = 0;
+            for (int i = 0; i < festivals.Length; i++)
+            {
+                if (festivals[i].festivalId != -1)
+                {
+                    count++;
+                }
+            }
+
+            Festival[] resultArray = new Festival[count];
+            for (int i = 0; i < count; i++)
+            {
+                resultArray[i] = festivals[i];
+            }
+
+            return resultArray;
+        }
     }
+
 
     class JSONFestivalList
     {
