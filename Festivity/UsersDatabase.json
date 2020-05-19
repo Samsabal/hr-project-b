@@ -14,11 +14,11 @@
         "streetNumber": "99"
       },
       "accountType": 1,
-      "accountID": 3,
+      "accountID": 1,
       "firstName": "admin",
       "lastName": "Baby",
       "email": "admin@gmail.com",
-      "password": "Admin10!",
+      "password": "admin",
       "companyContactperson": "Justin Bieber",
       "companyPhoneNumber": "012321344",
       "companyName": "Amazon",
