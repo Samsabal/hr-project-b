@@ -6,17 +6,19 @@ using System.Threading;
 
 namespace Festivity
 {
-    class LoginPage
+    class UserLoginPage
     {
  
 
         public static int userLoginChoice;
-        public static int currentUserId;
+        public static int currentUserId = 0;
+        public static int currentUserType;
 
         public static void login_page()
         {
             userLoginChoice = 0;
-            while(true)
+            MenuFunction.option = 0;
+            while (true)
             {
                 MenuFunction.menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
             } 
@@ -37,7 +39,7 @@ namespace Festivity
                 {
                     accountExists = true;
                     Console.WriteLine("Your password = " + user.password + "\n");
-                    Console.WriteLine("Press 'Enter' to go back");
+                    Console.WriteLine("Press <Enter> to go back");
                     Console.ReadLine();
                 } 
             }
@@ -45,11 +47,11 @@ namespace Festivity
             {
                 Console.Clear();
                 Console.WriteLine("Email does not exist, please try again.");
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 forgot_password();
             }
         }
-        public static void user_login()
+        public static void user_login(int loginOption = 0)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
@@ -59,6 +61,7 @@ namespace Festivity
             Console.Write("Enter Email: ");
             var userEmail = Console.ReadLine();
             Console.Clear();
+            //Console.SetCursorPosition(0, 0);
 
             foreach (var user in users.users)
             {
@@ -72,14 +75,20 @@ namespace Festivity
                     if (user.password == userPassword)
                     {
                         currentUserId = user.accountID;
+                        currentUserType = user.accountType;
                         Console.WriteLine("You are logged in!");
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                         Console.Clear();
-                        Program.Main(new string[] { });
+                        if (loginOption == 0)
+                        {
+                            Program.Main(new string[] { });
+                        }
+                        loginOption = 0;
+
 
                     } else {
                         Console.WriteLine("Wrong password, please try again");
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                         Console.Clear();
                         user_login();
                     }
@@ -88,7 +97,7 @@ namespace Festivity
             if (!accountExists)
             {
                 Console.WriteLine("Account exists does not exist, please try again");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 Console.Clear();
                 user_login();
             }
