@@ -254,6 +254,10 @@ namespace Festivity
                     case "Order Tickets":
                         Console.Clear();
                         CatalogPage.activeScreen = false;
+                        if (UserLoginPage.currentUserId == 0)
+                        {
+                            UserLoginPage.user_login(1);
+                        }
                         TicketBuy.ticket_buy(CatalogPage.selectedFestival);
                         break;
                     case "Return to Festival Page":
