@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using BetterConsoleTables;
 
 namespace Festivity
 {
@@ -18,15 +19,14 @@ namespace Festivity
         static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
         static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
 
-        public static void ticket_table_page()
+
+        public static void create_ticket_table_list()
         {
             List<List<string>> tableList = new List<List<string>>();
-
             int index = 0;
-
             foreach (var transaction in transactions.transactions)
             {
-                if(transaction.buyerID == UserLoginPage.currentUserId)
+                if (transaction.buyerID == UserLoginPage.currentUserId)
                 {
                     List<string> tempList = new List<string>();
                     foreach (var festival in festivals.festivals)
@@ -34,42 +34,60 @@ namespace Festivity
                         if (festival.festivalId == transaction.festivalID)
                         {
                             tempList.Add(festival.festivalName);
-                            tempList.Add(Convert.ToString(festival.festivalDate.day + "/" + festival.festivalDate.month + "/" + festival.festivalDate.year ));
-                        }                    
-                    } 
+                            tempList.Add(Convert.ToString(festival.festivalDate.day + "/" + festival.festivalDate.month + "/" + festival.festivalDate.year));
+                        }
+                    }
                     foreach (var ticket in tickets.tickets)
                     {
-                        if(ticket.ticketId == transaction.ticketID)
+                        if (ticket.ticketId == transaction.ticketID)
                         {
                             tempList.Add(ticket.ticketName);
                             tempList.Add(ticket.ticketPrice);
-                        }                     
+                        }
                     }
                     tempList.Add(transaction.orderDate);
                     tempList.Add(Convert.ToString(transaction.transactionID));
                     tempList.Add(Convert.ToString(transaction.ticketAmount));
                     tableList.Add(tempList);
                     index++;
-                }               
+                }
             }
-            Console.WriteLine("------------------------------------------------ Ticket Table -----------------------------------------------------");
-            Console.WriteLine("Festival Name  |  Festival Date  | Ticket Name  |  Order date  |  Ticket Price  |  Transaction ID  |  Ticket Amount");
-            for (int i = 0; i < tableList.Count-1; i++) 
+            draw_ticket_table(tableList);
+        }
+        public static void draw_ticket_table(List<List<string>> tableList)
+        {
+            // Source: https://github.com/douglasg14b/BetterConsoleTables
+            Table ticketTable = new Table("ID", "Festival name", "Festival date", "Ticket type", "Price", 
+                                          "Bought", "Amount", "Festival Status", "Refunable");
+            for (int i = 0; i < tableList.Count - 1; i++)
             {
-                Console.WriteLine($"{tableList[i][0]}\t{tableList[i][1]}\t{tableList[i][2]}\t{tableList[i][3]}\t{tableList[i][4]}\t{tableList[i][5]}\t{tableList[i][6]}");
+                ticketTable.AddRow($"{tableList[i][5]}",$"{tableList[i][0]}",$"{tableList[i][1]}", 
+                                   $"{tableList[i][2]}",$"{tableList[i][3]}",$"{tableList[i][4]}",
+                                   $"{tableList[i][6]}", "NULL", "NULL");
             }
-            Console.ReadLine();
+            ticketTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
+           
+
+
+            Console.Write(ticketTable.ToString());
+            Console.ReadKey();
+        }
+        public static void ticket_table_menu()
+        {
+            create_ticket_table_list();
+            Console.WriteLine();
+            //while (true)
+            //{
+            //    Console.Write(ticketTable.ToString());
+            //    MenuFunction.menu(new string[] { "Refund Ticket", "Exit to Main Menu"});
+            //}
+        }
+        public static void refund_ticket()
+        {
+              
         }
     }
 }
 
-//if ()
-// festival name
-// festival date
-// ticket name
-// order date
-// ticket price
-//Console.WriteLine($"{transaction.transactionID}");
-//Console.WriteLine($"{transaction.ticketAmount}");
 
 

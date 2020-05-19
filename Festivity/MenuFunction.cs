@@ -300,7 +300,10 @@ namespace Festivity
                         break;
                     case "My Festivals":
                         Console.Clear();
-                        TicketTable.ticket_table_page();
+                        TicketTable.ticket_table_menu();
+                        break;
+                    case "Refund Ticket":
+                        TicketTable.refund_ticket();
                         break;
                    default:
                         if (consoleOptions[option].StartsWith("Order Ticket"))
