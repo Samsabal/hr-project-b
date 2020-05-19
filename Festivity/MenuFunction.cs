@@ -256,7 +256,6 @@ namespace Festivity
                         Console.Clear();
                         FestivalRegister.currentRegisterSelection = "Save Festival";
                         break;
-                    default:
                     case "Login to your Account":
                         Console.Clear();
                         UserLoginPage.userLoginChoice = 1;
