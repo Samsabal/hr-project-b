@@ -103,6 +103,7 @@ namespace Festivity
                             user.newsLetter = 0;
                             Console.WriteLine("Preference successfully changed.");
                             Thread.Sleep(1000);
+                            Console.Clear();
                         } else if (userInput.ToLower() != "n")
                         {
                             Console.Clear();

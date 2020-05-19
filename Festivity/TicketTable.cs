@@ -9,36 +9,67 @@ namespace Festivity
 {
     class TicketTable
     {
-        static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        static JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+        static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+        static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+
+        static string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
+        static JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+
+        static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+        static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
 
         public static void ticket_table_page()
         {
-            Console.WriteLine("testtetststsetsett");
-            Thread.Sleep(2000);
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Program.Main(new string[] { });
+            List<List<string>> tableList = new List<List<string>>();
 
-            foreach (var user in users.users)
+            int index = 0;
+
+            foreach (var transaction in transactions.transactions)
             {
-                
+                if(transaction.buyerID == UserLoginPage.currentUserId)
+                {
+                    List<string> tempList = new List<string>();
+                    foreach (var festival in festivals.festivals)
+                    {
+                        if (festival.festivalId == transaction.festivalID)
+                        {
+                            tempList.Add(festival.festivalName);
+                            tempList.Add(Convert.ToString(festival.festivalDate.day + "/" + festival.festivalDate.month + "/" + festival.festivalDate.year ));
+                        }                    
+                    } 
+                    foreach (var ticket in tickets.tickets)
+                    {
+                        if(ticket.ticketId == transaction.ticketID)
+                        {
+                            tempList.Add(ticket.ticketName);
+                            tempList.Add(ticket.ticketPrice);
+                        }                     
+                    }
+                    tempList.Add(transaction.orderDate);
+                    tempList.Add(Convert.ToString(transaction.transactionID));
+                    tempList.Add(Convert.ToString(transaction.ticketAmount));
+                    tableList.Add(tempList);
+                    index++;
+                }               
             }
-            MenuFunction.menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
-            //foreach (var transaction in Transaction.transactions)
-            //{
-            //    if (transaction.buyerID == UserLoginPage.currentUserId)
-            //    {
-            //        Console.WriteLine();
-            //        Console.WriteLine("Your account Information: ");
-            //        Console.WriteLine();
-            //        Console.WriteLine($"    {user.firstName} {user.lastName}");
-            //        Console.WriteLine($"    {user.userAddress.streetName} {user.userAddress.streetNumber}");
-            //        Console.WriteLine($"    {user.userAddress.zipCode} {user.userAddress.city}");
-            //        Console.WriteLine($"    {user.email}");
-            //        Console.WriteLine("");
-            //        MenuFunction.menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
-            //    }
-            //}
+            Console.WriteLine("------------------------------------------------ Ticket Table -----------------------------------------------------");
+            Console.WriteLine("Festival Name  |  Festival Date  | Ticket Name  |  Order date  |  Ticket Price  |  Transaction ID  |  Ticket Amount");
+            for (int i = 0; i < tableList.Count-1; i++) 
+            {
+                Console.WriteLine($"{tableList[i][0]}\t{tableList[i][1]}\t{tableList[i][2]}\t{tableList[i][3]}\t{tableList[i][4]}\t{tableList[i][5]}\t{tableList[i][6]}");
+            }
+            Console.ReadLine();
         }
     }
 }
+
+//if ()
+// festival name
+// festival date
+// ticket name
+// order date
+// ticket price
+//Console.WriteLine($"{transaction.transactionID}");
+//Console.WriteLine($"{transaction.ticketAmount}");
+
+
