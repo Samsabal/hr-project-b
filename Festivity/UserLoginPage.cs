@@ -51,7 +51,7 @@ namespace Festivity
                 forgot_password();
             }
         }
-        public static void user_login()
+        public static void user_login(int loginOption = 0)
         {
             string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
@@ -79,7 +79,12 @@ namespace Festivity
                         Console.WriteLine("You are logged in!");
                         Thread.Sleep(1000);
                         Console.Clear();
-                        Program.Main(new string[] { });
+                        if (loginOption == 0)
+                        {
+                            Program.Main(new string[] { });
+                        }
+                        loginOption = 0;
+
 
                     } else {
                         Console.WriteLine("Wrong password, please try again");
