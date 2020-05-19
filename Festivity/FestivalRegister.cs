@@ -101,6 +101,8 @@ namespace Festivity
             Console.WriteLine("Fill in the amount of various tickets as anumber: ");
             int festivalAmountVariousTickets = int.Parse(Console.ReadLine());
 
+            int festivalOrganiserId = LoginPage.currentUserId;
+
             // A format for creating a new festival
 
             Festival festival = new Festival
@@ -125,7 +127,8 @@ namespace Festivity
                 festivalStartingTime = festivalStartingTime,
                 festivalEndTime = festivalEndTime,
                 festivalGenre = festivalGenre,
-                festivalAgeRestriction = festivalAgeRestriction
+                festivalAgeRestriction = festivalAgeRestriction,
+                festivalOrganiserId = festivalOrganiserId
             };
 
             // Adds a new festival to the database

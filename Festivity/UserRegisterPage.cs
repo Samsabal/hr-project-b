@@ -44,7 +44,7 @@ namespace Festivity
             Console.WriteLine("Last name: \n");
             string lastName = Console.ReadLine();
             Console.Clear();
-            var email = user_email_input(); 
+            var email = user_email_input();
             Console.Clear();
             do
             {
@@ -173,7 +173,9 @@ namespace Festivity
                 if (is_valid_email(userInput))
                 {
                     return userInput;
-                } else {
+                }
+                else
+                {
                     Console.Clear();
                     Console.WriteLine("Email invalid. Please try again");
                     user_email_input();
