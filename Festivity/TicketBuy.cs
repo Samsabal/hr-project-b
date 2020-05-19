@@ -10,6 +10,7 @@ namespace Festivity
     class TicketBuy
     {
         public static int ticketListLength;
+        public static int selectedTicket;
         public static Ticket[] ticketArray;
         public static void ticket_buy(int festivalId)
         {
@@ -52,7 +53,7 @@ namespace Festivity
                     if (ticket.ticketId == ticketId)
                     {
                         ticketArrayList.Add(ticket);
-                        menuOptionsList.Add("Order Ticket " + ticketId );
+                        menuOptionsList.Add("Order Ticket:" + ticketId );
                     }
                 }
 
@@ -82,6 +83,57 @@ namespace Festivity
                 }
                 MenuFunction.menu(menuOptions, null, ticketArray);
                 Console.Clear();
+            }
+        }
+
+        public static void ticket_buy_selected(int ticket)
+        {
+            string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+            JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+
+            Console.WriteLine("Would you like to buy this ticket? [y/n]");
+            ConsoleKey response = Console.ReadKey(true).Key;
+            if (response == ConsoleKey.Y)
+            {
+                write_to_database();
+            }
+
+            void write_to_database()
+            {
+                string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+                JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+                DateTime now = DateTime.Now;
+                string timeStamp = "" + now;
+
+                Transaction transaction = new Transaction
+                {
+                    festivalID = (int)CatalogPage.selectedFestival,
+                    ticketID = ticket,
+                    buyerID = (int)LoginPage.currentUserId,
+                    ticketNumber = 1,
+                    orderNumber = order_number(transactions),
+                    orderDate = timeStamp
+                };
+
+                transactions.transactions.Add(transaction);
+                string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
+                File.WriteAllText(PATH_TRANSACTION, json);
+            }
+
+            int order_number(JSONTransactionList transactions)
+            {
+                int orderNumber;
+                if (transactions.transactions.Count == 0)
+                {
+                    orderNumber = 1;
+                }
+                else
+                {
+                    int item = transactions.transactions[transactions.transactions.Count - 1].orderNumber;
+                    orderNumber = item + 1;
+                };
+
+                return orderNumber;
             }
         }
     }

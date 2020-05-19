@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Festivity
@@ -259,10 +260,14 @@ namespace Festivity
                         Console.Clear();
                         FestivalPage.festival_page(CatalogPage.selectedFestival);
                         break;
-                    case "Order Ticket 1":
-                        Console.Clear(); // TODO: Buy a specific ticket
-                        break;
                     default:
+                        if (consoleOptions[option].StartsWith("Order Ticket"))
+                        {
+                            
+                            Match ticketId = Regex.Match(consoleOptions[option], @"(?<=:)[^\]]+");
+                            
+                            TicketBuy.ticket_buy_selected(Int32.Parse(ticketId.Value));
+                        }
                         break;
                 }
             }
