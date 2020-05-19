@@ -1,31 +1,5 @@
 {
-	"users": [
-	{
-      "birthDate": {
-        "day": 0,
-        "month": 0,
-        "year": 0
-      },
-      "userAddress": {
-        "country": "Adminland",
-        "city": "Admincity",
-        "zipCode": "1337GM",
-        "streetName": "Adminlane",
-        "streetNumber": "99"
-      },
-      "accountType": 1,
-      "accountID": 3,
-      "firstName": "admin",
-      "lastName": "Baby",
-      "email": "admin@gmail.com",
-      "password": "Admin10!",
-      "companyContactperson": "Justin Bieber",
-      "companyPhoneNumber": "012321344",
-      "companyName": "Amazon",
-      "companyIBAN": "NL99BANK0123456789",
-      "newsLetter": 0,
-      "phoneNumber": null
-    },
+  "users": [
     {
       "birthDate": {
         "day": 0,
@@ -40,17 +14,17 @@
         "streetNumber": "99"
       },
       "accountType": 1,
-      "accountID": 3,
+      "accountID": 1,
       "firstName": "admin",
       "lastName": "Baby",
       "email": "admin@gmail.com",
-      "password": "Admin10!",
+      "password": "admin",
       "companyContactperson": "Justin Bieber",
       "companyPhoneNumber": "012321344",
       "companyName": "Amazon",
       "companyIBAN": "NL99BANK0123456789",
       "newsLetter": 0,
       "phoneNumber": null
-    },
-	]
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.IO;
+using System.ComponentModel;
 
 namespace Festivity
 {
@@ -56,14 +57,24 @@ namespace Festivity
         {
             for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
             {
-                Console.WriteLine("------------------------------------------------------------");
-                Console.WriteLine(festivalArray[i].festivalName);
-                Console.WriteLine(festivalArray[i].festivalDescription);
-                Console.WriteLine(festivalArray[i].festivalDate.to_string());
-                Console.WriteLine(festivalArray[i].festivalLocation.city);
-                Console.WriteLine(festivalArray[i].check_status());
+                string description;
+                Console.WriteLine("------------------------------------------------------------------");
+                Console.WriteLine($"Name: {festivalArray[i].festivalName}");
+                if (festivalArray[i].festivalDescription.Length > 50)
+                {
+                    description = festivalArray[i].festivalDescription.Substring(0, 50) + "...";
+                }
+                else
+                {
+                    description = festivalArray[i].festivalDescription;
+                }
+                Console.WriteLine($"Description: {description}");
+                Console.Write($"City: {festivalArray[i].festivalLocation.city}");
+                Console.SetCursorPosition(50, Console.CursorTop);
+                Console.Write($"Date: {festivalArray[i].festivalDate.to_string()} \n");
+                Console.WriteLine($"Status: {festivalArray[i].check_status()}");
             }
-            Console.WriteLine("------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------");
         }
 
 

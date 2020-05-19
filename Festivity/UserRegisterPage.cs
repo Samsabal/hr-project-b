@@ -44,7 +44,7 @@ namespace Festivity
             Console.WriteLine("Last name: \n");
             string lastName = Console.ReadLine();
             Console.Clear();
-            var email = user_email_input(); 
+            var email = user_email_input();
             Console.Clear();
             do
             {
@@ -62,6 +62,7 @@ namespace Festivity
 
             if (userAccountType == 1) // Organisator
             {
+                Console.Clear();
                 Console.WriteLine("Company contactperson: \n");
                 contactPerson = Console.ReadLine();
                 Console.Clear();
@@ -86,6 +87,7 @@ namespace Festivity
 
             if (userAccountType == 2) // Visitor
             {
+                Console.Clear();
                 Console.WriteLine("Fill in your Date of Birth \n");
                 Console.WriteLine("Day (DD): ");
                 userDateDay = int.Parse(Console.ReadLine());
@@ -156,6 +158,7 @@ namespace Festivity
                     phoneNumber = visitorPhoneNumber
                 };
 
+                UserLoginPage.currentUserType = user.accountType;
                 users.users.Add(user);
                 UserLoginPage.automaticLogin(user);
                 string json = JsonConvert.SerializeObject(users, Formatting.Indented);
@@ -170,7 +173,9 @@ namespace Festivity
                 if (is_valid_email(userInput))
                 {
                     return userInput;
-                } else {
+                }
+                else
+                {
                     Console.Clear();
                     Console.WriteLine("Email invalid. Please try again");
                     user_email_input();
@@ -180,7 +185,7 @@ namespace Festivity
 
             void user_newsletter_input()
             {
-                MenuFunction.option = 0;
+                MenuFunction.option = 0; 
                 while (newsLetter == 0) 
                 {
                     Console.WriteLine("Do you want to receive a newsletter? \n");

@@ -69,16 +69,20 @@ namespace Festivity
                         Console.WriteLine("");
                     }
                     int userInput;
-                    Console.WriteLine("Enter the number and press <Enter>: ");
+                    Console.Write("Enter the number and press <Enter>: ");
                     while (!int.TryParse(Console.ReadLine(), out userInput))
                     {
                         Console.Clear();
                         Console.WriteLine("You entered an invalid number");
-                        Console.WriteLine("Enter the number and press <Enter>: ");
+                        Console.Write("Enter the number and press <Enter>: ");
                     }
-                    if (userInput <= 8)
+                    if (userInput > 0 && userInput <= 8 )
                     {
                         account_change_organisator(userInput);
+                        Console.Clear();
+                    } else
+                    {
+                        Console.Clear();
                     }
                 }
             }

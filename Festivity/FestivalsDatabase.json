@@ -17,7 +17,7 @@
         "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
       "festivalAgeRestriction": 23,
       "festivalGenre": "Drum & Bass"
     },
@@ -38,7 +38,7 @@
         "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
       "festivalAgeRestriction": 23,
       "festivalGenre": "Drum & Bass"
     },
@@ -59,7 +59,7 @@
         "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
       "festivalAgeRestriction": 23,
       "festivalGenre": "Drum & Bass"
     },
@@ -80,7 +80,7 @@
         "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
       "festivalAgeRestriction": 23,
       "festivalGenre": "Drum & Bass"
     },
@@ -101,9 +101,10 @@
         "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
+      "festivalDescription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
       "festivalAgeRestriction": 23,
-      "festivalGenre": "Drum & Bass"
+      "festivalGenre": "Drum & Bass",
+      "festivalOrganiserId": 1
     }
   ]
 }

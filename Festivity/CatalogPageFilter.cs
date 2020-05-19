@@ -78,16 +78,6 @@ namespace Festivity
             return resultArray;
         }
 
-        /**        public static Festival[] sort_by_availability(Festival[] festivalArray)
-                {
-                    Festival[] resultArray = new Festival[festivalArray.Length];
-                    int count = 0;
-
-                    for (int i = 0; i < festivalArray.Length; i++)
-                    {
-                        if ()
-                    }
-                }**/
         public static Festival[] filter_genre(Festival[] festivalArray, string searchText)
         {
             Festival[] resultArray = new Festival[festivalArray.Length];

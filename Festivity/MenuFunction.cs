@@ -38,6 +38,7 @@ namespace Festivity
 
                 for (int i = 0; i < 5; i++)
                 {
+                    ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -54,6 +55,7 @@ namespace Festivity
 
                 for (int i = 5; i < consoleOptions.Length; i++)
                 {
+                    ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -329,7 +331,11 @@ namespace Festivity
                         Console.Clear();
                         UserAccountPage.change_password();
                         break;
-                    default:
+                    case "My Festivals":
+                        Console.Clear();
+                        TicketTable.ticket_table_page();
+                        break;
+                   default:
                         if (consoleOptions[option].StartsWith("Order Ticket"))
                         {
 
