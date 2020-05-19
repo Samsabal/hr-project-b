@@ -21,14 +21,14 @@
         }
 
         // Receives a Festival array and sorts it in ascending order by date
-        public static Festival[] sort_date(Festival[] festivalArray, int arraySize)
+        public static Festival[] sort_date(Festival[] festivalArray)
         {
             for (int j = arraySize - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
                     if (festivalArray[i].festivalDate.to_identifier() > festivalArray[i + 1].festivalDate.to_identifier())
-                    { 
+                    {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
