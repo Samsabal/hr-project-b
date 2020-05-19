@@ -9,19 +9,14 @@ namespace Festivity
     {
         [JsonProperty("festivalId")]
         public int festivalId { get; set; }
-
         [JsonProperty("ticketId")]
         public int ticketId { get; set; }
-
         [JsonProperty("ticketName")]
         public string ticketName { get; set; }
-
         [JsonProperty("ticketDescription")]
         public string ticketDescription { get; set; }
-
         [JsonProperty("ticketPrice")]
         public string ticketPrice { get; set; }
-
         [JsonProperty("maxTickets")]
         public int maxTickets { get; set; }
 
