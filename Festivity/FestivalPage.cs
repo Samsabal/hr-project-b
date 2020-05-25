@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Data;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 
 namespace Festivity
@@ -50,6 +51,34 @@ namespace Festivity
             return false;
         }
 
+        public static int tickets_left(int ticketId, int maxTickets)
+        {
+            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+
+            string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
+            JSONTicketList Tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+
+            string PATH_TRANSACTIONS = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+            JSONTransactionList Transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTIONS));
+
+            foreach (var ticket in Tickets.tickets)
+            {
+                if (ticket.ticketId == ticketId)
+                {
+                    foreach (var transaction in Transactions.transactions)
+                    {
+                        if (transaction.ticketID == ticket.ticketId)
+                        {
+                            int ticketsLeft = ticket.maxTickets - transaction.ticketNumber;
+                            return ticketsLeft;
+                        }
+                    }
+                }
+            }
+            return maxTickets;
+        }
+
         public static void festival_page(int festivalId)//Displays the festival page
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
@@ -60,6 +89,9 @@ namespace Festivity
 
             string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
             JSONTicketList Tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+
+            string PATH_TRANSACTIONS = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+            JSONTransactionList Transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTIONS));
 
             foreach (var festival in Festivals.festivals)
             {
@@ -103,9 +135,11 @@ namespace Festivity
                             {
                                 if (ticket.festivalId == festival.festivalId)
                                 {
+                                    int ticketId = ticket.ticketId;
+                                    int maxTickets = ticket.maxTickets;
                                     Console.WriteLine(ticket.ticketName);
-                                    Console.WriteLine("De prijs van dit ticket is " + ticket.ticketPrice + " euro.");
-                                    Console.WriteLine("Er zijn in totaal " + ticket.maxTickets + " tickets waarvan er nog " + "(Will include remaining tickets)" + " over zijn");
+                                    Console.WriteLine("This ticket costs " + ticket.ticketPrice + " euro.");
+                                    Console.WriteLine("There are " + ticket.maxTickets + " in total of which there are " + tickets_left(ticketId, maxTickets) + " left.");
                                     Console.WriteLine(ticket.ticketDescription);
                                     Console.WriteLine();
                                 }
