@@ -17,7 +17,7 @@ namespace Festivity
                 } 
                 if (UserLoginPage.currentUserId != 0)
                 {
-                    if (UserLoginPage.currentUserType == 0)
+                    if (UserLoginPage.currentUserType == 2)
                     {
                         MenuFunction.menu(new string[] { "Festivals", "Account", "My Festivals",  "Logout", "Exit" });
                     }

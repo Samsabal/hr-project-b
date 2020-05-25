@@ -2,25 +2,47 @@
   "festivals": [
     {
       "festivalId": 1,
-      "festivalName": "Robin",
+      "festivalName": "Robin's Feestje",
       "festivalDate": {
         "day": 29,
         "month": 3,
-        "year": 1997
+        "year": 2021
       },
       "festivalStartingTime": "23:00",
       "festivalEndTime": "23:01",
       "festivalLocation": {
         "country": "Nederland",
-        "city": "rotje",
+        "city": "Rotje",
         "zipCode": "3066GK",
         "streetName": "123adresstraat",
         "streetNumber": "25"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
-      "festivalAgeRestriction": 23,
+      "festivalDescription": "Robin's 13e verjaardags feestje met kind vriendelijke clowns.",
+      "festivalAgeRestriction": 60,
       "festivalGenre": "Drum & Bass",
-      "festivalOrganiserId": 1
+      "festivalOrganisorId": 2
+    },
+    {
+      "festivalId": 2,
+      "festivalName": "Bruh Momentum",
+      "festivalDate": {
+        "day": 12,
+        "month": 4,
+        "year": 2021
+      },
+      "festivalStartingTime": "08:00",
+      "festivalEndTime": "13:00",
+      "festivalLocation": {
+        "country": "Netherlands",
+        "city": "Schijtdam",
+        "zipCode": "4343BO",
+        "streetName": "Jesstraat",
+        "streetNumber": "33"
+      },
+      "festivalDescription": "Het beste festival van heel het land. Met speciale gast artiest Joop.",
+      "festivalAgeRestriction": 20,
+      "festivalGenre": "Emo",
+      "festivalOrganisorId": 2
     }
   ]
 }
