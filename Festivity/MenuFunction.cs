@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Festivity
@@ -10,35 +11,20 @@ namespace Festivity
 
         public static int option;
 
-        public static void menu(string[] consoleOptions, Festival[] festivals = null)
+        public static void menu(string[] consoleOptions, Festival[] festivals = null, Ticket[] tickets = null)
         {
             /// 1. Add your option as string in consoleOptions argument.
             /// 2. Add your extra "option" as a new case inside the switch statement with the correct function.
-            if (festivals == null)
-            {
-                for (int i = 0; i < consoleOptions.Length; i++)
-                {
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
-                    }
-                    Console.WriteLine("{0}", consoleOptions[i]);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
-                }
-            }
-
-            else
+            Console.CursorVisible = false;
+            
+            if (festivals != null)
             {
                 for (int i = 0; i < 5; i++)
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
                     Console.WriteLine("Select festival: {0}", festivals[i].festivalName);
                     if (option == i)
@@ -46,13 +32,13 @@ namespace Festivity
                         Console.ResetColor();
                     }
                 }
-                
+
                 for (int i = 5; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
@@ -62,6 +48,54 @@ namespace Festivity
                 }
             }
 
+            else if (tickets != null)
+            {
+                for (int i = 0; i < TicketBuy.ticketListLength; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                    }
+                    Console.WriteLine("Order ticket: {0}", tickets[i].ticketName);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+
+                for (int i = TicketBuy.ticketListLength; i < consoleOptions.Length; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+            }
+
+
+            else
+            {
+                for (int i = 0; i < consoleOptions.Length; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+            }
 
             var KeyPressed = Console.ReadKey();
             // When DownArrow key is pressed go down.
@@ -84,26 +118,26 @@ namespace Festivity
             // When Enter key is pressed execute selected option.
             if (KeyPressed.Key == ConsoleKey.Enter)
             {
+                Console.CursorVisible = true;
                 switch (consoleOptions[option])
                 {
                     case "Register": // Register option
                         Console.Clear();
-                        RegisterPage.register_page();
+                        UserRegisterPage.register_page();
                         break;
                     case "Login": // Login option
                         Console.Clear();
-                        LoginPage.login_page();
-                        Thread.Sleep(10000);
+                        UserLoginPage.login_page();
                         break;
                     case "Festivals": // Festival option
                         Console.Clear();
                         CatalogPage.catalog_main();
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                         break;
                     case "Register festival": // Festival register
                         Console.Clear();
                         FestivalRegister.festival_register();
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                         break;
                     case "Exit": // Exit option
                         Environment.Exit(0);
@@ -112,7 +146,7 @@ namespace Festivity
                     case "Festival Page":
                         Console.Clear();
                         FestivalPage.festival_page(1);
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                         break;
                     case "Sort by name":
                         CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray, CatalogPage.arraySize);
@@ -143,21 +177,21 @@ namespace Festivity
                     case "I am an Organisator":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        RegisterPage.userAccountType = 1;
+                        UserRegisterPage.userAccountType = 1;
                         break;
                     case "I am a Visitor":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        RegisterPage.userAccountType = 2;
+                        UserRegisterPage.userAccountType = 2;
                         break;
                     case "Yes, I want to recieve a newsletters":
-                        RegisterPage.newsLetter = 1;
+                        UserRegisterPage.newsLetter = 1;
                         break;
                     case "No, I don't want to recieve a newsletters":
-                        RegisterPage.newsLetter = 2;
+                        UserRegisterPage.newsLetter = 2;
                         break;
                     case "Yes, I accept the terms and conditions":
-                        RegisterPage.userTerms = 1;
+                        UserRegisterPage.userTerms = 1;
                         break;
                     case "Exit to Main Menu":
                         Console.Clear();
@@ -168,6 +202,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 1;
                             FestivalPage.festival_page(festivals[0].festivalId);
                         }
                         break;
@@ -176,6 +211,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 2;
                             FestivalPage.festival_page(festivals[1].festivalId);
                         }
                         break;
@@ -184,6 +220,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 3;
                             FestivalPage.festival_page(festivals[2].festivalId);
                         }
                         break;
@@ -192,6 +229,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 4;
                             FestivalPage.festival_page(festivals[3].festivalId);
                         }
                         break;
@@ -200,6 +238,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = 5;
                             FestivalPage.festival_page(festivals[4].festivalId);
                         }
                         break;
@@ -212,12 +251,69 @@ namespace Festivity
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.catalog_main();
                         break;
-                    default:
+                    case "Order Tickets":
+                        Console.Clear();
+                        CatalogPage.activeScreen = false;
+                        if (UserLoginPage.currentUserId == 0)
+                        {
+                            UserLoginPage.user_login(1);
+                        }
+                        TicketBuy.ticket_buy(CatalogPage.selectedFestival);
+                        break;
+                    case "Return to Festival Page":
+                        Console.Clear();
+                        FestivalPage.festival_page(CatalogPage.selectedFestival);
+                        break;
+                    case "Login to your Account":
+                        Console.Clear();
+                        UserLoginPage.userLoginChoice = 1;
+                        UserLoginPage.user_login();
+                        break;
+                    case "Forgot password":
+                        Console.Clear();
+                        UserLoginPage.userLoginChoice = 2;
+                        UserLoginPage.forgot_password();
+                        break;
+                    case "Logout":
+                        Console.Clear();
+                        Console.WriteLine("Successfully logged out!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        UserLoginPage.currentUserId = 0;
+                        Program.Main(new string[] { });
+                        break;
+                    case "Account":
+                        Console.Clear();
+                        UserAccountPage.account_page();
+                        break;
+                    case "Change user information":
+                        Console.Clear();
+                        UserAccountPage.account_change_info();
+                        break;
+                    case "Preference for e-mails":
+                        Console.Clear();
+                        UserAccountPage.account_email_prefference();
+                        break;
+                    case "Change password":
+                        Console.Clear();
+                        UserAccountPage.change_password();
+                        break;
+                    case "My Festivals":
+                        Console.Clear();
+                        TicketTable.ticket_table_page();
+                        break;
+                   default:
+                        if (consoleOptions[option].StartsWith("Order Ticket"))
+                        {
+                            
+                            Match ticketId = Regex.Match(consoleOptions[option], @"(?<=:)[^\]]+");
+                            
+                            TicketBuy.ticket_buy_selected(Int32.Parse(ticketId.Value));
+                        }
                         break;
                 }
             }
-            Console.Clear();
-
+            Console.SetCursorPosition(0, 0);
         }
     }
 }
