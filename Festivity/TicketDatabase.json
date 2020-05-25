@@ -1,12 +1,28 @@
-﻿{
-	"tickets": [
-		{
-			"festivalId": 1,
-			"ticketId": 1,
-			"ticketName": "Normal Ticket",
-			"ticketDescription": "This is a normal ticket.",
-			"ticketPrice": "35",
-			"maxTickets": 5000
-		}
-	]
+{
+  "tickets": [
+    {
+      "festivalId": 1,
+      "ticketId": 1,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": "35",
+      "maxTickets": 5000
+    },
+    {
+      "festivalId": 2,
+      "ticketId": 2,
+      "ticketName": "Normal",
+      "ticketDescription": "Gewoon ticket geen extra bevoegdheden.",
+      "ticketPrice": "2",
+      "maxTickets": 6000
+    },
+    {
+      "festivalId": 2,
+      "ticketId": 3,
+      "ticketName": "Speciale Ticket",
+      "ticketDescription": "Je krijgt toegang tot Joop's kleedkamer!",
+      "ticketPrice": "100",
+      "maxTickets": 300
+    }
+  ]
 }

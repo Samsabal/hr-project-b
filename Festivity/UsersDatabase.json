@@ -25,6 +25,58 @@
       "companyIBAN": "NL99BANK0123456789",
       "newsLetter": 0,
       "phoneNumber": null
+    },
+    {
+      "birthDate": {
+        "day": 0,
+        "month": 0,
+        "year": 0
+      },
+      "userAddress": {
+        "country": "Netherlands",
+        "city": "Baard",
+        "zipCode": "3234BO",
+        "streetName": "Joopvanachtermanstraat",
+        "streetNumber": "44"
+      },
+      "accountType": 1,
+      "accountID": 2,
+      "firstName": "Organisatoor",
+      "lastName": "Festival",
+      "email": "1@gmail.com",
+      "password": "Festival123!",
+      "companyContactperson": "Je broer",
+      "companyPhoneNumber": "09290099",
+      "companyName": "Beach Boys",
+      "companyIBAN": "NL33INGB0123456789",
+      "newsLetter": 0,
+      "phoneNumber": null
+    },
+    {
+      "birthDate": {
+        "day": 12,
+        "month": 11,
+        "year": 1995
+      },
+      "userAddress": {
+        "country": "Netherlands",
+        "city": "Schiedam",
+        "zipCode": "3114VL",
+        "streetName": "Heenvlietsestraat",
+        "streetNumber": "39"
+      },
+      "accountType": 2,
+      "accountID": 3,
+      "firstName": "Kelvin",
+      "lastName": "van Schaijk",
+      "email": "kvschaijk12@hotmail.com",
+      "password": "Niffo123!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "newsLetter": 2,
+      "phoneNumber": "0638204181"
     }
   ]
 }
