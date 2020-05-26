@@ -1,8 +1,4 @@
-using Newtonsoft.Json;
 using System;
-using System.Data;
-using System.IO;
-using System.Threading;
 
 namespace Festivity
 {
@@ -27,7 +23,7 @@ namespace Festivity
                 {
                     foreach (var user in users.users)
                     {
-                        if (LoginPage.currentUserId == user.accountID)
+                        if (UserLoginPage.currentUserId == user.accountID)
                         {
                             int userAgeYear = festival.festivalDate.year - user.birthDate.year;
                             int userAgeMonth = festival.festivalDate.month - user.birthDate.month;

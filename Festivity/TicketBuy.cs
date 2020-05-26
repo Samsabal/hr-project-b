@@ -1,6 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
-using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -9,7 +7,6 @@ namespace Festivity
     class TicketBuy
     {
         public static int ticketListLength;
-        public static int selectedTicket;
         public static Ticket[] ticketArray;
         public static void ticket_buy(int festivalId)
         {
