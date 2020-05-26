@@ -10,6 +10,7 @@ namespace Festivity
             Console.Clear();
             while (true)
             {
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
                 Console.SetWindowSize(150, 36);
                 if (UserLoginPage.currentUserId == 0)
                 {

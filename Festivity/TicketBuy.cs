@@ -1,6 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
-using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -9,15 +7,11 @@ namespace Festivity
     class TicketBuy
     {
         public static int ticketListLength;
-        public static int selectedTicket;
         public static Ticket[] ticketArray;
         public static void ticket_buy(int festivalId)
         {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-
-            string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+            JSONFestivalList festivals = JSONFunctionality.get_festivals();
+            JSONTicketList tickets = JSONFunctionality.get_tickets();
 
             List<int> ticketList = new List<int>();
             
@@ -86,8 +80,7 @@ namespace Festivity
 
         public static void ticket_buy_selected(int ticket)
         {
-            string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-            JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+            JSONTransactionList transactions = JSONFunctionality.get_transactions();
 
             Console.WriteLine("Would you like to buy this ticket? [y/n]");
             ConsoleKey response = Console.ReadKey(true).Key;
@@ -102,8 +95,7 @@ namespace Festivity
             Console.Clear();
             void write_to_database()
             {
-                string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-                JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+                JSONTransactionList transactions = JSONFunctionality.get_transactions();
                 DateTime now = DateTime.Now;
                 string timeStamp = "" + now;
 
@@ -118,8 +110,7 @@ namespace Festivity
                 };
 
                 transactions.transactions.Add(transaction);
-                string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
-                File.WriteAllText(PATH_TRANSACTION, json);
+                JSONFunctionality.write_transactions(transactions);
             }
 
             int order_number(JSONTransactionList transactions)

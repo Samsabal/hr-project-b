@@ -1,7 +1,4 @@
-using Newtonsoft.Json;
 using System;
-using System.Data;
-using System.IO;
 
 namespace Festivity
 {
@@ -17,11 +14,8 @@ namespace Festivity
 
         public static bool age_check(int festivalId)//Checks if the user is old enough to use the program
         {
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
-
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+            JSONUserList users = JSONFunctionality.get_users();
+            JSONFestivalList Festivals = JSONFunctionality.get_festivals();
 
             foreach (var festival in Festivals.festivals)
             {
@@ -51,14 +45,9 @@ namespace Festivity
 
         public static void festival_page(int festivalId)//Displays the festival page
         {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
-
-            string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList Tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+            JSONFestivalList Festivals = JSONFunctionality.get_festivals();
+            JSONUserList users = JSONFunctionality.get_users();
+            JSONTicketList Tickets = JSONFunctionality.get_tickets();
 
             foreach (var festival in Festivals.festivals)
             {

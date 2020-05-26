@@ -9,10 +9,8 @@ namespace Festivity
         public static void festival_register()
         {
             // This is used to write and retrieve data to the correct database
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-            string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+            JSONFestivalList festivals = JSONFunctionality.get_festivals();
+            JSONTicketList tickets = JSONFunctionality.get_tickets();
 
             // This is a function to retrieve the latest registered festivalid and create the next festivalid
             int festivalId(JSONFestivalList festivals)
@@ -133,9 +131,7 @@ namespace Festivity
             // Adds a new festival to the database
             festivals.festivals.Add(festival);
 
-            string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
-
-            File.WriteAllText(PATH_FESTIVAL, jsonfestival);
+            JSONFunctionality.write_festivals(festivals);
 
             // this a for loop to loop the amount of times the organiser filled in for various amounts of tickets
             for (int i = 0; i < festivalAmountVariousTickets; i++)
@@ -151,7 +147,7 @@ namespace Festivity
                 string festivalTicketDescription = Console.ReadLine();
                 
                 Console.WriteLine("Fill in the price of the ticket in euros: ");
-                string festivalTicketPrice = Console.ReadLine();
+                double festivalTicketPrice = Double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Fill in the maximum available amount of this type ticket");
                 int festivalMaxTickets = Int32.Parse(Console.ReadLine());
@@ -170,9 +166,7 @@ namespace Festivity
                 // Adds a new ticket to the database
                 tickets.tickets.Add(ticket);
 
-                string jsonticket = JsonConvert.SerializeObject(tickets, Formatting.Indented);
-
-                File.WriteAllText(PATH_TICKET, jsonticket);
+                JSONFunctionality.write_tickets(tickets);
             };
         }
     }
