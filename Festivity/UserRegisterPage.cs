@@ -161,6 +161,7 @@ namespace Festivity
                 users.users.Add(user);
                 UserLoginPage.automaticLogin(user);
                 // This block of code adds the user object to the json database.
+                JSONFunctionality.write_users(users);
             }
 
             string user_email_input()

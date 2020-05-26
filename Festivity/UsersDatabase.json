@@ -25,6 +25,32 @@
       "companyIBAN": "NL99BANK0123456789",
       "newsLetter": 0,
       "phoneNumber": null
+    },
+    {
+      "birthDate": {
+        "day": 29,
+        "month": 3,
+        "year": 1997
+      },
+      "userAddress": {
+        "country": "Nederland",
+        "city": "Rotterdam",
+        "zipCode": "3066GK",
+        "streetName": "Lena Blok-woutsstraat",
+        "streetNumber": "25"
+      },
+      "accountType": 2,
+      "accountID": 2,
+      "firstName": "Robin",
+      "lastName": "Fredriks",
+      "email": "rfred@hotmail.com",
+      "password": "Hallo123!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "newsLetter": 1,
+      "phoneNumber": "0620373709"
     }
   ]
 }
