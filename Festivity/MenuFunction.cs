@@ -11,6 +11,7 @@ namespace Festivity
 
         public static void menu(string[] consoleOptions, object[] objects = null)
         {
+            Console.CursorVisible = false;
             /// 1. Add your option as string in consoleOptions argument.
             /// 2. (optional) Add a second array that contains objects to display dynamic names of options in objects argument.
             /// 3. Add your extra "option" as a new case inside the switch statement with the correct function.
@@ -38,7 +39,6 @@ namespace Festivity
 
                 for (int i = 0; i < 5; i++)
                 {
-                    ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -55,7 +55,6 @@ namespace Festivity
 
                 for (int i = 5; i < consoleOptions.Length; i++)
                 {
-                    ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -73,7 +72,7 @@ namespace Festivity
             {
                 for (int i = 0; i < TicketBuy.ticketListLength; i++)
                 {
-                    ClearCurrentConsoleLine();
+                    ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -90,7 +89,7 @@ namespace Festivity
 
                 for (int i = TicketBuy.ticketListLength; i < consoleOptions.Length; i++)
                 {
-                    ClearCurrentConsoleLine();
+                    ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -102,7 +101,7 @@ namespace Festivity
                         Console.ResetColor();
                     }
                 }
-                ClearCurrentConsoleLine();
+                ConsoleHelperFunctions.ClearCurrentConsoleLine();
             }
 
 
@@ -162,47 +161,55 @@ namespace Festivity
                         CatalogPage.festivalArray = CatalogPageFilter.sort_name(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Sort by date":
                         CatalogPage.festivalArray = CatalogPageFilter.sort_date(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Filter by festival name":
                         string namesearch = Console.ReadLine();
                         CatalogPage.festivalArray = CatalogPageFilter.filter_name(CatalogPage.festivalArray, namesearch);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
-                        Console.Clear();
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Filter by genre":
                         CatalogPage.festivalArray = CatalogPageFilter.filter_genre(CatalogPage.festivalArray, Console.ReadLine());
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Filter by location (City/Street)":
                         CatalogPage.festivalArray = CatalogPageFilter.filter_location(CatalogPage.festivalArray, Console.ReadLine());
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Clear filters":
                         CatalogPageFilter.clear_filters();
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Return to catalog": // "Return to catalog" option on catalog page filter/sort screen
                         CatalogPage.currentCatalogNavigation = "main";
+                        ConsoleHelperFunctions.ClearCurrentConsole();
                         CatalogPage.catalog_main();
                         break;
                     case "Next page": // "Next page" option on catalog page screen
-                        if (CatalogPage.currentPage * 5 + 5 < CatalogPage.arraySize)
+                        if (CatalogPage.currentPage * 5 + 5 < CatalogPage.festivalArray.Length)
                         {
+                            ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage++;
                         }
                         break;
                     case "Previous page": // "Previous page" option on catalog page screen
                         if (CatalogPage.currentPage > 0)
                         {
+                            ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage--;
                         }
                         break;
@@ -347,14 +354,6 @@ namespace Festivity
                 }
             }
             Console.SetCursorPosition(0, 0);
-        }
-
-        public static void ClearCurrentConsoleLine()
-        {
-            int currentLineCursor = Console.CursorTop;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
 }

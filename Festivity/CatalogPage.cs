@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.IO;
-using System.ComponentModel;
 
 namespace Festivity
 {
@@ -59,7 +58,7 @@ namespace Festivity
             {
                 string description;
                 Console.WriteLine("------------------------------------------------------------------");
-                Console.WriteLine($"Name: {festivalArray[i].festivalName}");
+                Console.Write($"Name: {festivalArray[i].festivalName}");
                 if (festivalArray[i].festivalDescription.Length > 50)
                 {
                     description = festivalArray[i].festivalDescription.Substring(0, 50) + "...";
@@ -68,14 +67,17 @@ namespace Festivity
                 {
                     description = festivalArray[i].festivalDescription;
                 }
+                Console.SetCursorPosition(48, Console.CursorTop);
+                Console.Write($"Genre: {festivalArray[i].festivalGenre}\n");
                 Console.WriteLine($"Description: {description}");
-                Console.Write($"City: {festivalArray[i].festivalLocation.city}");
+                Console.WriteLine($"City: {festivalArray[i].festivalLocation.city}");
+                Console.Write($"Status: {festivalArray[i].check_status()}");
                 Console.SetCursorPosition(50, Console.CursorTop);
                 Console.Write($"Date: {festivalArray[i].festivalDate.to_string()} \n");
-                Console.WriteLine($"Status: {festivalArray[i].check_status()}");
             }
             Console.WriteLine("------------------------------------------------------------------");
         }
+
 
 
         public static Festival[] add_or_remove_padding(Festival[] festivals)
