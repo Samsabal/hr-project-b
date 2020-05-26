@@ -9,8 +9,7 @@ namespace Festivity
 {
     class TicketTable
     {
-        static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        static JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+        static JSONUserList users = JSONFunctionality.get_users();
 
         public static void ticket_table_page()
         {

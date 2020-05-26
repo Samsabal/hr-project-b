@@ -15,8 +15,7 @@ namespace Festivity
 
         public static void register_page()
         {
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+            JSONUserList users = JSONFunctionality.get_users();
 
             string contactPerson = null;
             string companyPhoneNumber = null;
@@ -161,8 +160,6 @@ namespace Festivity
                 UserLoginPage.currentUserType = user.accountType;
                 users.users.Add(user);
                 UserLoginPage.automaticLogin(user);
-                string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-                File.WriteAllText(PATH_USER, json);
                 // This block of code adds the user object to the json database.
             }
 

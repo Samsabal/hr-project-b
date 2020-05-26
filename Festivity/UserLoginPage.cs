@@ -25,8 +25,7 @@ namespace Festivity
         }
         public static void forgot_password()
         {
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+            JSONUserList users = JSONFunctionality.get_users();
 
             bool accountExists = false;
             Console.WriteLine("Enter Email: ");
@@ -53,8 +52,7 @@ namespace Festivity
         }
         public static void user_login(int loginOption = 0)
         {
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+            JSONUserList users = JSONFunctionality.get_users();
 
             bool accountExists = false;
 

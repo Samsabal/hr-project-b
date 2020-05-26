@@ -1,6 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace Festivity
 {
@@ -16,8 +14,7 @@ namespace Festivity
         // Class containing everything relevant to the catalog page in the console
         public static void catalog_main()
         {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+            JSONFestivalList Festivals = JSONFunctionality.get_festivals();
 
             activeScreen = true;
             currentCatalogNavigation = "main";
