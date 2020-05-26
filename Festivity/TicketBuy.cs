@@ -10,21 +10,19 @@ namespace Festivity
 {
     class TicketBuy
     {
-        public static int ticketListLength;
-        public static int selectedTicket;
-        public static Ticket[] ticketArray;
-        static int ticketAmount;
+        private static Ticket[] ticketArray;
+        private static int ticketAmount;
 
-        static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-        static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+        private static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+        private static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
 
-        static string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-        static JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
+        private static string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
+        private static JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
 
-        static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-        static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+        private static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+        private static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
 
-        public static void ticket_buy(int festivalId)
+        public static void ticket_show(int festivalId)
         {
             List<int> ticketList = new List<int>();
             
@@ -45,7 +43,6 @@ namespace Festivity
             }
 
             int[] ticketCount = ticketList.ToArray();
-            ticketListLength = ticketCount.Length;
 
             MenuFunction.option = 0;
 
@@ -91,7 +88,7 @@ namespace Festivity
             }
         }
 
-        public static void ticket_buy_selected(int ticket)
+        public static void ticket_buy(int ticket)
         {
             Console.Clear();
             Console.WriteLine("Would you like to buy this ticket? [y/n]");
@@ -102,67 +99,65 @@ namespace Festivity
                 ticketAmount = ticket_amount();
                 Console.WriteLine("Ordered Succesfully!");
                 Thread.Sleep(2000);
-                write_to_database();
+                write_to_database(ticket);
 
             }
-
             Console.Clear();
-            void write_to_database()
+        }
+        static void write_to_database(int ticket)
+        {
+            DateTime now = DateTime.Now;
+            string timeStamp = "" + now;
+
+            Transaction transaction = new Transaction
             {
-                DateTime now = DateTime.Now;
-                string timeStamp = "" + now;
+                transactionID = transaction_id(transactions),
+                festivalID = (int)CatalogPage.selectedFestival,
+                ticketID = ticket,
+                buyerID = (int)UserLoginPage.currentUserId,
+                ticketAmount = ticketAmount,
+                orderDate = timeStamp
+            };
 
-                Transaction transaction = new Transaction
-                {
-                    transactionID = transaction_id(transactions),
-                    festivalID = (int)CatalogPage.selectedFestival,
-                    ticketID = ticket,
-                    buyerID = (int)UserLoginPage.currentUserId,
-                    ticketAmount = ticketAmount,
-                    orderDate = timeStamp
-                };
+            transactions.transactions.Add(transaction);
+            string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
+            File.WriteAllText(PATH_TRANSACTION, json);
+        }
 
-                transactions.transactions.Add(transaction);
-                string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
-                File.WriteAllText(PATH_TRANSACTION, json);
+        static int transaction_id(JSONTransactionList transactions)
+        {
+            int transactionID;
+            if (transactions.transactions.Count == 0)
+            {
+                transactionID = 1;
             }
-
-            int transaction_id(JSONTransactionList transactions)
+            else
             {
-                int transactionID;
-                if (transactions.transactions.Count == 0)
-                {
-                    transactionID = 1;
-                }
-                else
-                {
-                    int item = transactions.transactions[transactions.transactions.Count - 1].transactionID;
-                    transactionID = item + 1;
-                };
+                int item = transactions.transactions[transactions.transactions.Count - 1].transactionID;
+                transactionID = item + 1;
+            };
 
-                return transactionID;
+            return transactionID;
+        }
+        static int ticket_amount()
+        {
+            int userInput;
+            while (!int.TryParse(Console.ReadLine(), out userInput))
+            {
+                Console.Clear();
+                Console.WriteLine("You entered an invalid number");
+                Console.WriteLine("Enter the number and press <Enter>: ");
             }
-
-            int ticket_amount()
+            if (userInput > 0 && userInput <= 10)
             {
-                int userInput;
-                while (!int.TryParse(Console.ReadLine(), out userInput))
-                {
-                    Console.Clear();
-                    Console.WriteLine("You entered an invalid number");
-                    Console.WriteLine("Enter the number and press <Enter>: ");
-                }
-                if (userInput > 0 && userInput <= 10)
-                {
-                    return userInput;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("You entered an invalid number");
-                    Console.WriteLine("Enter the number and press <Enter>: ");
-                    return ticket_amount();
-                }
+                return userInput;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("You entered an invalid number");
+                Console.WriteLine("Enter the number and press <Enter>: ");
+                return ticket_amount();
             }
         }
     }

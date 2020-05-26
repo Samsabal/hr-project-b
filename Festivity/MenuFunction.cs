@@ -258,7 +258,7 @@ namespace Festivity
                         {
                             UserLoginPage.user_login(1);
                         }
-                        TicketBuy.ticket_buy(CatalogPage.selectedFestival);
+                        TicketBuy.ticket_show(CatalogPage.selectedFestival);
                         break;
                     case "Return to Festival Page":
                         Console.Clear();
@@ -305,10 +305,9 @@ namespace Festivity
                    default:
                         if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
-                            
                             Match ticketId = Regex.Match(consoleOptions[option], @"(?<=:)[^\]]+");
                             
-                            TicketBuy.ticket_buy_selected(Int32.Parse(ticketId.Value));
+                            TicketBuy.ticket_buy(Int32.Parse(ticketId.Value));
                         }
                         break;
                 }
