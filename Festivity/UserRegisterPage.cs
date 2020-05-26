@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Globalization;
 using System.Threading;
 
 namespace Festivity
@@ -31,14 +31,9 @@ namespace Festivity
 
             do
             {
-                Console.WriteLine("First name: \n");
-                firstName = Console.ReadLine();
+                Console.Write("First name: "); firstName = Console.ReadLine();
                 Console.Clear();
-                if (is_valid_name(firstName))
-                {
-                    break;
-                }
-            } while (true);
+            } while (!RegexUtils.isValidName(firstName));
 
             Console.Clear();
             Console.WriteLine("Last name: \n");
@@ -46,16 +41,12 @@ namespace Festivity
             Console.Clear();
             var email = user_email_input();
             Console.Clear();
+
             do
             {
-                Console.Write("Password: \n");
-                userPassword = Console.ReadLine();
+                Console.Write("Password: \n"); userPassword = Console.ReadLine();
                 Console.Clear();
-                if (is_valid_password(userPassword))
-                {
-                    break;
-                }
-            } while (true);
+            } while (!RegexUtils.isValidPassword(userPassword));
 
             Console.Clear();
             user_account_type_input();
@@ -78,7 +69,7 @@ namespace Festivity
                     Console.WriteLine("Company IBAN (Example: 'NL99BANK0123456789'): \n");
                     companyIBAN = Console.ReadLine();
                     Console.Clear();
-                    if (is_valid_IBAN(companyIBAN))
+                    if (RegexUtils.isValidIBAN(companyIBAN))
                     {
                         break;
                     }
@@ -170,7 +161,7 @@ namespace Festivity
             {
                 Console.WriteLine("Email: \n");
                 string userInput = Console.ReadLine();
-                if (is_valid_email(userInput))
+                if (RegexUtils.isValidEmail(userInput))
                 {
                     return userInput;
                 }
@@ -185,8 +176,8 @@ namespace Festivity
 
             void user_newsletter_input()
             {
-                MenuFunction.option = 0; 
-                while (newsLetter == 0) 
+                MenuFunction.option = 0;
+                while (newsLetter == 0)
                 {
                     Console.WriteLine("Do you want to recieve a newsletter? \n");
                     MenuFunction.menu(new string[] { "Yes, I want to recieve a newsletters", "No, I don't want to recieve a newsletters" });
@@ -241,143 +232,6 @@ namespace Festivity
                 };
 
                 return accountID;
-            }
-
-            bool is_valid_email(string email) // This method does not perform authentication to validate the email address. It determines whether its format is valid for an email address.
-            {
-                if (string.IsNullOrWhiteSpace(email))
-                    return false;
-
-                try
-                {
-                    // Normalize the domain
-                    email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                                          RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                    // Examines the domain part of the email and normalizes it.
-                    string DomainMapper(Match match)
-                    {
-                        // Use IdnMapping class to convert Unicode domain names.
-                        var idn = new IdnMapping();
-
-                        // Pull out and process domain name (throws ArgumentException on invalid)
-                        var domainName = idn.GetAscii(match.Groups[2].Value);
-
-                        return match.Groups[1].Value + domainName;
-                    }
-                }
-                catch (RegexMatchTimeoutException e)
-                {
-                    return false;
-                }
-                catch (ArgumentException e)
-                {
-                    return false;
-                }
-
-                try
-                {
-                    return Regex.IsMatch(email,
-                        @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                        @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
-                        RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-                }
-                catch (RegexMatchTimeoutException)
-                {
-                    return false;
-                }
-            }
-
-            bool is_valid_password(string password)
-            /// string must be between 8 and 15 characters long. 
-            /// string must contain at least one number. 
-            /// string must contain at least one uppercase letter. 
-            /// string must contain at least one lowercase letter.
-            /// String must contain at least one symbol.
-            {
-                var input = password;
-                
-                if(string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Password should not be empty, please try again.\n");
-                }
-
-                var hasNumber = new Regex(@"[0-9]+");
-                var hasUpperChar = new Regex(@"[A-Z]+");
-                var hasMiniMaxChars = new Regex(@".{8,15}");
-                var hasLowerChar = new Regex(@"[a-z]+");
-                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-
-                if ((!hasLowerChar.IsMatch(input)) || (!hasUpperChar.IsMatch(input)) || (!hasMiniMaxChars.IsMatch(input)) || (!hasSymbols.IsMatch(input)))
-                {
-                    Console.WriteLine("Password should contain the following rules: ");
-                    Console.WriteLine(" - Must be between 8 and 15 characters long. ");
-                    Console.WriteLine(" - Must contain at least one number. . ");
-                    Console.WriteLine(" - Must contain at least one uppercase letter. ");
-                    Console.WriteLine(" - Must contain at least one lowercase letter. ");
-                    Console.WriteLine(" - Must contain at least one symbol. \n");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            bool is_valid_IBAN(string companyIBAN)
-            /// First two characters must be 'NL'
-            /// 3rd and 4th characters must be 2 numbers
-            /// 5th to 8th characters must be 4 letters
-            /// 9th to 18th characters must be 10 numbers
-            {
-                string input = companyIBAN;
-
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("IBAN should not be empty, please try again.\n");
-                }
-
-                var isIBAN = new Regex(@"NL[0-9]{2}[A-Z]{4}[0-9]{10}");
-
-                if (!isIBAN.IsMatch(input))
-                {
-                    Console.WriteLine("Incorrect IBAN");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            bool is_valid_name(string firstName)
-            /// string must contain only characters. 
-            /// string must be between 2 and 33 characters long. 
-            {
-                var input = firstName;
-
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Name should not be empty, please try again.\n");
-                }
-
-                var hasOnlyCharacter = new Regex(@"\b[A-Za-z]+\b");
-                var hasMiniMaxChars = new Regex(@".{2,33}");
-
-                if (!hasOnlyCharacter.IsMatch(input)) //Regex means only characters between 2-33 in lenght.
-                {
-                    Console.WriteLine("Name should contain only alphabethic characters.\n");
-                    return false;
-                }
-                else if (!hasMiniMaxChars.IsMatch(input))
-                {
-                    Console.WriteLine("Name should not be lesser than 2 or greater than 33 characters .\n");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
             }
         }
     }

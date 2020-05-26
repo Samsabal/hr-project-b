@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Festivity
 {
-    class FestivalRegister
+    internal class FestivalRegister
     {
         public static void festival_register()
         {
@@ -50,8 +50,6 @@ namespace Festivity
             }
 
             int festivalID = festivalId(festivals);
-           
-
 
             Console.WriteLine("You will now start the festival registering fase");
             Console.WriteLine("Fill in the name of the festival: ");
@@ -101,7 +99,7 @@ namespace Festivity
             Console.WriteLine("Fill in the amount of various tickets as anumber: ");
             int festivalAmountVariousTickets = int.Parse(Console.ReadLine());
 
-            int festivalOrganiserId = LoginPage.currentUserId;
+            int festivalOrganiserId = UserLoginPage.currentUserId;
 
             // A format for creating a new festival
 
@@ -150,13 +148,13 @@ namespace Festivity
 
                 Console.WriteLine("Fill in ticket description");
                 string festivalTicketDescription = Console.ReadLine();
-                
+
                 Console.WriteLine("Fill in the price of the ticket in euros: ");
                 string festivalTicketPrice = Console.ReadLine();
 
                 Console.WriteLine("Fill in the maximum available amount of this type ticket");
                 int festivalMaxTickets = Int32.Parse(Console.ReadLine());
-                
+
                 // This is a format to create the new ticket
                 Ticket ticket = new Ticket
                 {

@@ -30,7 +30,7 @@ namespace Festivity
                 {
                     foreach (var user in users.users)
                     {
-                        if (LoginPage.currentUserId == user.accountID)
+                        if (UserLoginPage.currentUserId == user.accountID)
                         {
                             int userAgeYear = festival.festivalDate.year - user.birthDate.year;
                             int userAgeMonth = festival.festivalDate.month - user.birthDate.month;
@@ -66,7 +66,7 @@ namespace Festivity
                 if (festival.festivalId == festivalId)
                 {
                     MenuFunction.option = 0;
-                    while (true) 
+                    while (true)
                     {
                         if (age_check(festivalId))
                         {
@@ -116,10 +116,8 @@ namespace Festivity
                             MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });//The menu used in the festivalpage
                         }
                     }
-                } 
+                }
             }
         }
-            
-    }        
+    }
 }
-
