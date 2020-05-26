@@ -15,9 +15,9 @@ namespace Festivity
 
         public static string festivalName = null;
         public static string festivalDescription = null;
-        public static int festivalDateDay = 0;
-        public static int festivalDateMonth = 0;
-        public static int festivalDateYear = 0;
+        public static int festivalDateDay = 00;
+        public static int festivalDateMonth = 00;
+        public static int festivalDateYear = 00;
         public static string festivalStartingTime = null;
         public static string festivalEndTime = null;
         public static string festivalLocationCountry = null;
@@ -27,7 +27,9 @@ namespace Festivity
         public static string festivalLocationHouseNumber = null;
         public static string festivalGenre = null;
         public static int festivalAgeRestriction = 0;
-
+        public static string festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
+        public static string festivalAdress = "Country: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
+        public static int cancelTime = 0;
 
         public static void festival_register()
         {
@@ -82,7 +84,18 @@ namespace Festivity
                 if (currentRegisterSelection == "Main")
                 {
                     Console.Clear();
-                    MenuFunction.menu(new string[] { "Festival Name", "Festival Date", "Starting Time", "End Time", "Festival Adress", "Festival Description", "Age restriction", "Festival Genre", "Tickets", "Save festival" });
+                    Console.Write("Festival Name: " + festivalName + "\n" +
+                    "Festival Date: " + festivalDate + "\n" +
+                    "Festival Starting Time: " + festivalStartingTime + "\n" +
+                    "Festival End Time: " + festivalEndTime + "\n" +
+                    "Festival Adress: " + festivalAdress + "\n" +
+                    "Festival Description: " + festivalDescription + "\n" +
+                    "Festival Age Restriction: " + festivalAgeRestriction + "\n" +
+                    "Festival Genre: " + festivalGenre + "\n" +
+                    "Cancel Time: " + cancelTime + "\n" +
+                    "===============================================\n");
+                    MenuFunction.menu(new string[] { "Festival Name", "Festival Date", "Starting Time", "End Time", "Festival Adress", "Festival Description", "Age restriction", "Festival Genre", "Cancel Time", "Tickets", "Save Festival" });
+
                 }
                 else if (currentRegisterSelection == "Festival Name")
                 {
@@ -103,18 +116,22 @@ namespace Festivity
 
                     Console.WriteLine("Fill in the year: ");
                     festivalDateYear = int.Parse(Console.ReadLine());
+                    festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Starting Time")
                 {
                     Console.Clear();
                     Console.WriteLine("Fill in starting time(hh:mm): ");
                     festivalStartingTime = Console.ReadLine();
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "End Time")
                 {
                     Console.Clear();
                     Console.WriteLine("Fill in the expected end time(hh:mm): ");
                     festivalEndTime = Console.ReadLine();
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Adress")
                 {
@@ -134,29 +151,39 @@ namespace Festivity
 
                     Console.WriteLine("Fill in the house number: ");
                     festivalLocationHouseNumber = Console.ReadLine();
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Description")
                 {
                     Console.Clear();
                     Console.WriteLine("Fill in the festival description (press enter when finished but don't press enter for a new line): ");
                     festivalDescription = Console.ReadLine();
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Age Restriction")
                 {
                     Console.Clear();
                     Console.WriteLine("Fill in the age restriction as a number");
                     festivalAgeRestriction = int.Parse(Console.ReadLine());
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Genre")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the genre of the festival: ");
-                    festivalGenre = Console.ReadLine();
+                    Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
+                    MenuFunction.menu(new string[] { "Techno", "Drum & Bass", "Pop", "Rock", "Hip-Hop"});
+                }
+                else if (currentRegisterSelection == "Cancel Time")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Fill in the amount of days before the start of the festival a customer is allowed to cancel their order: ");
+                    cancelTime = int.Parse(Console.ReadLine());
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Tickets")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the amount of various tickets as anumber: ");
+                    Console.WriteLine("Fill in the amount of various tickets as a number: ");
                     int festivalAmountVariousTickets = int.Parse(Console.ReadLine());
 
                     // this for loop loops the amount of times the organiser filled in for various amounts of tickets
@@ -173,10 +200,13 @@ namespace Festivity
                         string festivalTicketDescription = Console.ReadLine();
 
                         Console.WriteLine("Fill in the price of the ticket in euros: ");
-                        string festivalTicketPrice = Console.ReadLine();
+                        double festivalTicketPrice = double.Parse(Console.ReadLine());
 
-                        Console.WriteLine("Fill in the maximum available amount of this type ticket");
+                        Console.WriteLine("Fill in the maximum available amount of this type ticket: ");
                         int festivalMaxTickets = Int32.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Fill in the maximum amount of tickets a single person may buy: ");
+                        int festivalMaxTicketsPerPerson = Int32.Parse(Console.ReadLine());
 
                         // This is a format to create the new ticket
                         Ticket ticket = new Ticket
@@ -186,7 +216,8 @@ namespace Festivity
                             ticketName = festivalTicketName,
                             ticketDescription = festivalTicketDescription,
                             ticketPrice = festivalTicketPrice,
-                            maxTickets = festivalMaxTickets
+                            maxTickets = festivalMaxTickets,
+                            maxTicketsPerPerson = festivalMaxTicketsPerPerson
                         };
 
                         // Adds a new ticket to the database
@@ -196,6 +227,7 @@ namespace Festivity
 
                         File.WriteAllText(PATH_TICKET, jsonticket);
                     };
+                    currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Save Festival")
                 {
@@ -224,13 +256,18 @@ namespace Festivity
                         festivalStartingTime = festivalStartingTime,
                         festivalEndTime = festivalEndTime,
                         festivalGenre = festivalGenre,
-                        festivalAgeRestriction = festivalAgeRestriction
+                        festivalAgeRestriction = festivalAgeRestriction,
+                        festivalCancelTime = cancelTime
 
                     };
                     // Adds a new festival to the database
                     festivals.festivals.Add(festival);
                     string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
                     File.WriteAllText(PATH_FESTIVAL, jsonfestival);
+
+                    activeScreen = false;
+                    currentRegisterSelection = null;
+                    MenuFunction.option = 0;
                 }
             }
         }

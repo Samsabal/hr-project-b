@@ -104,6 +104,7 @@ namespace Festivity
                         break;
                     case "Register festival": // Festival register
                         Console.Clear();
+                        option = 0;
                         FestivalRegister.activeScreen = true;
                         FestivalRegister.currentRegisterSelection = "Main";
                         FestivalRegister.festival_register();
@@ -256,6 +257,10 @@ namespace Festivity
                         Console.Clear();
                         FestivalRegister.currentRegisterSelection = "Save Festival";
                         break;
+                    case "Cancel Time":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Cancel Time";
+                        break;
                     case "Login to your Account":
                         Console.Clear();
                         UserLoginPage.userLoginChoice = 1;
@@ -289,6 +294,26 @@ namespace Festivity
                     case "Change password":
                         Console.Clear();
                         UserAccountPage.change_password();
+                        break;
+                    case "Techno":
+                        FestivalRegister.festivalGenre = "Techno";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Drum & Bass":
+                        FestivalRegister.festivalGenre = "Drum & Bass";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Pop":
+                        FestivalRegister.festivalGenre = "Pop";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Rock":
+                        FestivalRegister.festivalGenre = "Rock";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Hip-Hop":
+                        FestivalRegister.festivalGenre = "Hip-Hop";
+                        FestivalRegister.currentRegisterSelection = "Main";
                         break;
                    default:
                         break;

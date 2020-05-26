@@ -2,24 +2,47 @@
   "festivals": [
     {
       "festivalId": 1,
-      "festivalName": "Robin",
+      "festivalName": "TestName",
       "festivalDate": {
-        "day": 29,
-        "month": 3,
-        "year": 1997
+        "day": 26,
+        "month": 5,
+        "year": 2020
       },
-      "festivalStartingTime": "23:00",
-      "festivalEndTime": "23:01",
+      "festivalStartingTime": "00:00",
+      "festivalEndTime": "23:59",
       "festivalLocation": {
-        "country": "Nederland",
-        "city": "rotje",
-        "zipCode": "3066GK",
-        "streetName": "123adresstraat",
-        "streetNumber": "25"
+        "country": "Netherlands",
+        "city": "Rotterdam",
+        "zipCode": "0000AA",
+        "streetName": "Feestjeslaan",
+        "streetNumber": "62"
       },
-      "festivalDecription": "Dit feestje is echt zo bizar cool daar zijn geen woorden voor",
-      "festivalAgeRestriction": 23,
-      "festivalGenre": "Drum & Bass"
+      "festivalDecription": "Mark is JARIG!!!!!!!!!!!!!!!!!!!",
+      "festivalAgeRestriction": 18,
+      "festivalGenre": "Verjaardag",
+      "festivalCancelTime": 52
+    },
+    {
+      "festivalId": 2,
+      "festivalName": null,
+      "festivalDate": {
+        "day": 0,
+        "month": 0,
+        "year": 0
+      },
+      "festivalStartingTime": null,
+      "festivalEndTime": null,
+      "festivalLocation": {
+        "country": null,
+        "city": null,
+        "zipCode": null,
+        "streetName": null,
+        "streetNumber": null
+      },
+      "festivalDecription": null,
+      "festivalAgeRestriction": 0,
+      "festivalGenre": "Techno",
+      "festivalCancelTime": 0
     }
   ]
 }
