@@ -79,7 +79,6 @@ namespace Festivity
                 }
             }
 
-
             else
             {
                 for (int i = 0; i < consoleOptions.Length; i++)
@@ -123,7 +122,7 @@ namespace Festivity
                 {
                     case "Register": // Register option
                         Console.Clear();
-                        UserRegisterPage.register_page();
+                        UserRegisterPage.createUser();
                         break;
                     case "Login": // Login option
                         Console.Clear();
@@ -177,21 +176,21 @@ namespace Festivity
                     case "I am an Organisator":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.userAccountType = 1;
+                        UserRegisterPage.setAccountType(1);
                         break;
                     case "I am a Visitor":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.userAccountType = 2;
+                        UserRegisterPage.setAccountType(2);
                         break;
-                    case "Yes, I want to recieve a newsletters":
-                        UserRegisterPage.newsLetter = 1;
+                    case "Yes {test1}":
+                        UserRegisterPage.setNewsLetter(1);
                         break;
                     case "No, I don't want to recieve a newsletters":
-                        UserRegisterPage.newsLetter = 2;
+                        UserRegisterPage.setNewsLetter(2); 
                         break;
-                    case "Yes, I accept the terms and conditions":
-                        UserRegisterPage.userTerms = 1;
+                    case "Yes {test2}":
+                        UserRegisterPage.acceptUserTerms();
                         break;
                     case "Exit to Main Menu":
                         Console.Clear();

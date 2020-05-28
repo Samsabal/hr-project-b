@@ -5,6 +5,20 @@ namespace Festivity
 {
     public class RegexUtils
     {
+        public static bool numberCheck(string value, int min, int max)
+        {
+            if (Int32.TryParse(value, out int result))
+            {
+                if(result >= min && result <= max)
+                {
+                    return true;
+                }
+                Console.WriteLine("Invalid input, please  try again");
+                return false;
+            }
+            return false;
+        }
+
         static private bool regexCheck(string input, Regex regex)
         {
             if (!regex.IsMatch(input))
@@ -20,7 +34,7 @@ namespace Festivity
 
         public static bool isValidName(string name)
         {
-            return regexCheck(name, new Regex(@"\b[A-Za-z]{2,33}+\b"));
+            return regexCheck(name, new Regex(@"\b[A-Za-z]{2,33}\b"));
         }
 
         public static bool isValidIBAN(string IBAN)
@@ -34,67 +48,67 @@ namespace Festivity
 
         public static bool isValidUserDay(string day)
         {
-            return regexCheck(day, new Regex(@"[1-31]"));
+            return numberCheck(day, 0, 31);
         }
 
         public static bool isValidUserMonth(string month)
         {
-            return regexCheck(month, new Regex(@"[1-12]"));
+            return numberCheck(month, 0, 12);
         }
 
         public static bool isValidUserYear(string year)
         {
-            return regexCheck(year, new Regex(@$"[1900-{DateTime.Now.Year.ToString()}]"));
+            return numberCheck(year, 1900, DateTime.Now.Year);
         }
 
         public static bool isValidFestivalDay(string day)
         {
-            return regexCheck(day, new Regex(@$"[1-{DateTime.Now.Date.Day.ToString()}]"));
+            return numberCheck(day, 0, 31);
         }
 
         public static bool isValidFestivalMonth(string month)
         {
-            return regexCheck(month, new Regex(@$"[1-{DateTime.Now.Date.Month.ToString()}]"));
+            return numberCheck(month, 0, 12);
         }
 
         public static bool isValidFestivalYear(string year)
         {
-            return regexCheck(year, new Regex(@$"[{DateTime.Now.Year.ToString()}-2100]"));
+            return numberCheck(year, DateTime.Now.Year, 2050);
         }
 
         public static bool isValidAddressName(string addressName)
         {
-            return regexCheck(addressName, new Regex(@"[A-Za-z]{60}"));
+            return regexCheck(addressName, new Regex(@"^[A-Za-z]{1,60}$"));
         }
 
         public static bool isValidZipCode(string zipCode)
         {
-            return regexCheck(zipCode, new Regex(@"[0-9]{4}[A-Z]{2}"));
+            return regexCheck(zipCode, new Regex(@"^[0-9]{4}[A-Za-z]{2}$"));
         }
 
         public static bool isValidStreetNumber(string streetNumber)
         {
-            return regexCheck(streetNumber, new Regex(@"[0-9]{4}[A-Z]{2}"));
+            return regexCheck(streetNumber, new Regex(@"^[0-9]{1,4}([A-Za-z]{1,2})?$"));
         }
 
         public static bool isValidPhoneNumber(string phoneNumber)
         {
-            return regexCheck(phoneNumber, new Regex(@"06[0-9]{8}"));
+            return regexCheck(phoneNumber, new Regex(@"^06\d{8}$"));
         }
 
         public static bool isValidTimeFormat(string time)
         {
-            return regexCheck(time, new Regex(@"([0-1][0-9]|[2][0-3]):([0-5][0-9])"));
+            return regexCheck(time, new Regex(@"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"));
         }
 
         public static bool isValidDescription(string addressName)
         {
-            return regexCheck(addressName, new Regex(@"[A-Za-z]{500}"));
+            return regexCheck(addressName, new Regex(@"^[A-Za-z]{1,500}$"));
         }
 
         public static bool isValidAge(string age)
         {
-            return regexCheck(age, new Regex(@"[1-99]"));
+            return numberCheck(age, 0, 120);
         }
 
         public static bool isValidEmail(string email)
@@ -134,5 +148,6 @@ namespace Festivity
                 return true;
             }
         }
+
     }
 }
