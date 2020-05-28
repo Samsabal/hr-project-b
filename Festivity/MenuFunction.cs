@@ -50,21 +50,21 @@ namespace Festivity
 
             else if (tickets != null)
             {
-                for (int i = 0; i < TicketBuy.ticketListLength; i++)
+                for (int i = 0; i < TicketBuy.get_ticket_list_length(); i++)
                 {
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
-                    Console.WriteLine("Order ticket: {0}", tickets[i].ticketName);
+                    Console.WriteLine("Buy Ticket: {0}", tickets[i].ticketName);
                     if (option == i)
                     {
                         Console.ResetColor();
                     }
                 }
 
-                for (int i = TicketBuy.ticketListLength; i < consoleOptions.Length; i++)
+                for (int i = TicketBuy.get_ticket_list_length(); i < consoleOptions.Length; i++)
                 {
                     if (option == i)
                     {
@@ -258,7 +258,7 @@ namespace Festivity
                         {
                             UserLoginPage.user_login(1);
                         }
-                        TicketBuy.ticket_show(CatalogPage.selectedFestival);
+                        TicketBuy.ticket_show();
                         break;
                     case "Return to Festival Page":
                         Console.Clear();
@@ -302,12 +302,23 @@ namespace Festivity
                         Console.Clear();
                         TicketTable.ticket_table_page();
                         break;
-                   default:
+                    case "iDEAL":
+                        Console.Clear();
+                        break;
+                    case "Paypal":
+                        Console.Clear();
+                        break;
+                    case "Creditcard":
+                        Console.Clear();
+                        break;
+                    case "Cancel Order":
+                        Console.Clear();
+                        break;
+                    default:
                         if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
-                            Match ticketId = Regex.Match(consoleOptions[option], @"(?<=:)[^\]]+");
-                            
-                            TicketBuy.ticket_buy(Int32.Parse(ticketId.Value));
+                            Console.Clear();
+                            TicketBuy.ticket_buy(option);
                         }
                         break;
                 }

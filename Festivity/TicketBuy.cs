@@ -10,8 +10,9 @@ namespace Festivity
 {
     class TicketBuy
     {
-        private static Ticket[] ticketArray;
         private static int ticketAmount;
+        private static int currentFestivalId = CatalogPage.selectedFestival;
+        private static List<Ticket> currentTicketList = new List<Ticket>();
 
         private static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
         private static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
@@ -22,10 +23,9 @@ namespace Festivity
         private static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
         private static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
 
-        public static void ticket_show(int festivalId)
+        static void get_current_festival_tickets(int festivalId)
         {
-            List<int> ticketList = new List<int>();
-            
+            currentTicketList.Clear();
             // Gets all Tickets related to the current Festival
             foreach (var ticket in tickets.tickets)
             {
@@ -33,7 +33,7 @@ namespace Festivity
                 {
                     if (festivalId == festival.festivalId)
                     {
-                        ticketList.Add(ticket.ticketId);
+                        currentTicketList.Add(ticket);
                     }
                     else
                     {
@@ -41,70 +41,64 @@ namespace Festivity
                     }
                 }
             }
-
-            int[] ticketCount = ticketList.ToArray();
+        }
+        public static void ticket_show()
+        {
+            get_current_festival_tickets(currentFestivalId);
 
             MenuFunction.option = 0;
 
-            List<string> menuOptionsList = new List<string>();
-            List<Ticket> ticketArrayList = new List<Ticket>();
-
-            foreach (var ticketId in ticketList)
-            {
-                foreach (var ticket in tickets.tickets)
-                {
-                    if (ticket.ticketId == ticketId)
-                    {
-                        ticketArrayList.Add(ticket);
-                        menuOptionsList.Add("Buy Ticket:" + ticketId );
-                    }
-                }
-
-            }
-            menuOptionsList.Add("Return to Festival Page");
-            menuOptionsList.Add("Exit to Main Menu");
-
-            string[] menuOptions = menuOptionsList.ToArray();
-            ticketArray = ticketArrayList.ToArray();
-
             while (true)
             {
+                List<string> menuOptionsList = new List<string>();
                 string line = "----------------------------------------------------------------------";
+                
                 // Displays the Tickets for the current Festival
-                foreach (var ticketId in ticketList)
+                foreach (var ticket in currentTicketList)
                 {
-                    foreach (var ticket in tickets.tickets)
-                    {
-                        if (ticket.ticketId == ticketId)
-                        {
-                            Console.WriteLine(ticket.ticketName);
-                            Console.WriteLine("Description: " + ticket.ticketDescription);
-                            Console.WriteLine("Price: " + ticket.ticketPrice + " euros");
-                            Console.WriteLine(line);
-                        }
-                    }
+                    Console.WriteLine(ticket.ticketName);
+                    Console.WriteLine("Description: " + ticket.ticketDescription);
+                    Console.WriteLine("Price: " + ticket.ticketPrice + " euros");
+                    Console.WriteLine(line);
+                    menuOptionsList.Add("Buy Ticket:" + ticket.ticketId);
                 }
-                MenuFunction.menu(menuOptions, null, ticketArray);
+
+                menuOptionsList.Add("Return to Festival Page");
+                menuOptionsList.Add("Exit to Main Menu");
+                MenuFunction.menu(menuOptionsList.ToArray(), null, currentTicketList.ToArray());
             }
         }
 
-        public static void ticket_buy(int ticket)
+        public static void ticket_buy(int index)
         {
-            Console.Clear();
-            Console.WriteLine("Would you like to buy this ticket? [y/n]");
-            ConsoleKey response = Console.ReadKey(true).Key;
+            ConsoleKey response; 
+            do
+            {
+                Console.WriteLine("Would you like to buy this ticket? [y/n]");
+                response = Console.ReadKey(true).Key;
+            } while (response != ConsoleKey.Y && response != ConsoleKey.N);
+
             if (response == ConsoleKey.Y)
             {
                 Console.WriteLine("How many tickets would you like to buy?");
                 ticketAmount = ticket_amount();
                 Console.WriteLine("Ordered Succesfully!");
                 Thread.Sleep(2000);
-                write_to_database(ticket);
+                write_to_database(get_selected_ticket(index));
 
+            }
+            if (response == ConsoleKey.N)
+            {
+                Console.Clear();
+                ticket_show();
             }
             Console.Clear();
         }
-        static void write_to_database(int ticket)
+        static Ticket get_selected_ticket(int option)
+        {
+            return currentTicketList[option];
+        }
+        static void write_to_database(Ticket ticket)
         {
             DateTime now = DateTime.Now;
             string timeStamp = "" + now;
@@ -113,7 +107,7 @@ namespace Festivity
             {
                 transactionID = transaction_id(transactions),
                 festivalID = (int)CatalogPage.selectedFestival,
-                ticketID = ticket,
+                ticketID = ticket.ticketId,
                 buyerID = (int)UserLoginPage.currentUserId,
                 ticketAmount = ticketAmount,
                 orderDate = timeStamp
@@ -123,7 +117,6 @@ namespace Festivity
             string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
             File.WriteAllText(PATH_TRANSACTION, json);
         }
-
         static int transaction_id(JSONTransactionList transactions)
         {
             int transactionID;
@@ -159,6 +152,10 @@ namespace Festivity
                 Console.WriteLine("Enter the number and press <Enter>: ");
                 return ticket_amount();
             }
+        }
+        public static int get_ticket_list_length()
+        {
+            return currentTicketList.ToArray().Length;
         }
     }
 }
