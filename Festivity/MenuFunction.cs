@@ -304,21 +304,25 @@ namespace Festivity
                         break;
                     case "iDEAL":
                         Console.Clear();
+                        TicketBuy.ticket_buy();
                         break;
                     case "Paypal":
                         Console.Clear();
+                        TicketBuy.ticket_buy();
                         break;
                     case "Creditcard":
                         Console.Clear();
+                        TicketBuy.ticket_buy();
                         break;
                     case "Cancel Order":
                         Console.Clear();
+                        TicketBuy.ticket_show();
                         break;
                     default:
                         if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
                             Console.Clear();
-                            TicketBuy.ticket_buy(option);
+                            TicketBuy.ticket_confirmation(option);
                         }
                         break;
                 }

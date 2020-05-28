@@ -11,6 +11,7 @@ namespace Festivity
         private static int ticketAmount;
         private static int currentFestivalId = CatalogPage.selectedFestival;
         private static List<Ticket> currentTicketList = new List<Ticket>();
+        private static int indexTicket;
 
         private static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
         private static JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
@@ -68,22 +69,23 @@ namespace Festivity
             }
         }
 
-        public static void ticket_buy(int index)
+        public static void ticket_confirmation(int index)
         {
+            indexTicket = index;
+            Console.WriteLine("How many tickets would you like to buy?");
+            ticketAmount = ticket_amount();
+            transaction_overview(indexTicket, ticketAmount);
+
             ConsoleKey response;
             do
             {
-                Console.WriteLine("Would you like to buy this ticket? [y/n]");
+                Console.WriteLine("Confirm Order? [y/n]");
                 response = Console.ReadKey(true).Key;
             } while (response != ConsoleKey.Y && response != ConsoleKey.N);
 
             if (response == ConsoleKey.Y)
             {
-                Console.WriteLine("How many tickets would you like to buy?");
-                ticketAmount = ticket_amount();
-                Console.WriteLine("Ordered Succesfully!");
-                Thread.Sleep(2000);
-                write_to_database(get_selected_ticket(index));
+                payment_option();
             }
             if (response == ConsoleKey.N)
             {
@@ -91,6 +93,15 @@ namespace Festivity
                 ticket_show();
             }
             Console.Clear();
+        }
+
+        public static void ticket_buy()
+        {
+            write_to_database(get_selected_ticket(indexTicket));
+            Console.WriteLine("Ordered Succesfully!");
+            Thread.Sleep(2000);
+            Console.Clear();
+            FestivalPage.festival_page(CatalogPage.selectedFestival);
         }
 
         private static Ticket get_selected_ticket(int option)
@@ -159,6 +170,31 @@ namespace Festivity
         public static int get_ticket_list_length()
         {
             return currentTicketList.ToArray().Length;
+        }
+
+        private static void payment_option()
+        {
+            Console.Clear();
+            while (true)
+            {
+                Console.WriteLine("Choose your payment method:");
+                MenuFunction.menu(new string[] { "iDEAL", "Paypal", "Creditcard", "Cancel Order" });
+            }
+        }
+
+        public static void transaction_overview(int index, int amount)
+        {
+            Console.Clear();
+            Ticket selectedTicket = get_selected_ticket(index);
+
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("Transaction Information");
+            Console.WriteLine("----------------------------------------------------------------------");
+            Console.WriteLine(amount + " x " + selectedTicket.ticketName);
+            Console.WriteLine(selectedTicket.ticketDescription);
+            Console.WriteLine("€" + selectedTicket.ticketPrice + " / Ticket");
+            Console.WriteLine("Total: €" + (Convert.ToInt32(selectedTicket.ticketPrice) * amount));
+            Console.WriteLine("----------------------------------------------------------------------");
         }
     }
 }
