@@ -1,14 +1,12 @@
-﻿using System;
-using Newtonsoft.Json;
-using System.IO;
-using System.Text;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading;
 
 namespace Festivity
 {
-    class TicketBuy
+    internal class TicketBuy
     {
         private static int ticketAmount;
         private static int currentFestivalId = CatalogPage.selectedFestival;
@@ -23,7 +21,7 @@ namespace Festivity
         private static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
         private static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
 
-        static void get_current_festival_tickets(int festivalId)
+        private static void get_current_festival_tickets(int festivalId)
         {
             currentTicketList.Clear();
             // Gets all Tickets related to the current Festival
@@ -42,6 +40,7 @@ namespace Festivity
                 }
             }
         }
+
         public static void ticket_show()
         {
             get_current_festival_tickets(currentFestivalId);
@@ -52,7 +51,7 @@ namespace Festivity
             {
                 List<string> menuOptionsList = new List<string>();
                 string line = "----------------------------------------------------------------------";
-                
+
                 // Displays the Tickets for the current Festival
                 foreach (var ticket in currentTicketList)
                 {
@@ -71,7 +70,7 @@ namespace Festivity
 
         public static void ticket_buy(int index)
         {
-            ConsoleKey response; 
+            ConsoleKey response;
             do
             {
                 Console.WriteLine("Would you like to buy this ticket? [y/n]");
@@ -85,7 +84,6 @@ namespace Festivity
                 Console.WriteLine("Ordered Succesfully!");
                 Thread.Sleep(2000);
                 write_to_database(get_selected_ticket(index));
-
             }
             if (response == ConsoleKey.N)
             {
@@ -94,11 +92,13 @@ namespace Festivity
             }
             Console.Clear();
         }
-        static Ticket get_selected_ticket(int option)
+
+        private static Ticket get_selected_ticket(int option)
         {
             return currentTicketList[option];
         }
-        static void write_to_database(Ticket ticket)
+
+        private static void write_to_database(Ticket ticket)
         {
             DateTime now = DateTime.Now;
             string timeStamp = "" + now;
@@ -117,7 +117,8 @@ namespace Festivity
             string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
             File.WriteAllText(PATH_TRANSACTION, json);
         }
-        static int transaction_id(JSONTransactionList transactions)
+
+        private static int transaction_id(JSONTransactionList transactions)
         {
             int transactionID;
             if (transactions.transactions.Count == 0)
@@ -132,7 +133,8 @@ namespace Festivity
 
             return transactionID;
         }
-        static int ticket_amount()
+
+        private static int ticket_amount()
         {
             int userInput;
             while (!int.TryParse(Console.ReadLine(), out userInput))
@@ -153,6 +155,7 @@ namespace Festivity
                 return ticket_amount();
             }
         }
+
         public static int get_ticket_list_length()
         {
             return currentTicketList.ToArray().Length;
