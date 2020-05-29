@@ -1,382 +1,174 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Globalization;
+﻿using System;
 using System.Threading;
 
 namespace Festivity
 {
     public class UserRegisterPage
     {
-        public static int userAccountType = 0;
-        public static int newsLetter = 0;
-        public static int userTerms = 0;
+        private static int userAccountType;
+        private static int newsLetter;
+        private static bool userTerms = false;
+        private static string firstName;
+        private static string lastName;
+        private static string email;
+        private static string userPassword;
+        private static string contactPerson = null;
+        private static string companyPhoneNumber = null;
+        private static string companyName = null;
+        private static string companyIBAN = null;
+        private static string userDateDay = "0";
+        private static string userDateMonth = "0";
+        private static string userDateYear = "0";
+        private static string visitorPhoneNumber;
+        private static string country;
+        private static string city;
+        private static string streetName;
+        private static string streetNumber;
+        private static string zipCode;
 
-        public static void register_page()
+        public static void createUser()
         {
-            JSONUserList users = JSONFunctionality.get_users();
+            do { firstName = inputLoop("First name: "); }
+            while (!RegexUtils.isValidName(firstName));
 
-            string contactPerson = null;
-            string companyPhoneNumber = null;
-            string companyName = null;
-            string companyIBAN = null;
-            int userDateDay = 0;
-            int userDateMonth = 0;
-            int userDateYear = 0;
-            string visitorPhoneNumber = null;
-            string userPassword = null;
-            string firstName = null;
+            do { lastName = inputLoop("Last name: "); }
+            while (!RegexUtils.isValidName(lastName));
 
-            do
-            {
-                Console.WriteLine("First name: \n");
-                firstName = Console.ReadLine();
-                Console.Clear();
-                if (is_valid_name(firstName))
-                {
-                    break;
-                }
-            } while (true);
+            do { email = inputLoop("Email: "); }
+            while (!RegexUtils.isValidEmail(email));
 
-            Console.Clear();
-            Console.WriteLine("Last name: \n");
-            string lastName = Console.ReadLine();
-            Console.Clear();
-            var email = user_email_input();
-            Console.Clear();
-            do
-            {
-                Console.Write("Password: \n");
-                userPassword = Console.ReadLine();
-                Console.Clear();
-                if (is_valid_password(userPassword))
-                {
-                    break;
-                }
-            } while (true);
+            do { userPassword = inputLoop("Password: "); }
+            while (!RegexUtils.isValidPassword(userPassword));
 
+            userAccountTypeInput();
             Console.Clear();
-            user_account_type_input();
 
             if (userAccountType == 1) // Organisator
             {
-                Console.Clear();
-                Console.WriteLine("Company contactperson: \n");
-                contactPerson = Console.ReadLine();
-                Console.Clear();
-                Console.WriteLine("Company phone number: \n");
-                companyPhoneNumber = Console.ReadLine();
-                Console.Clear();
-                Console.WriteLine("Company name: \n");
-                companyName = Console.ReadLine();
-                Console.Clear();
+                do { contactPerson = inputLoop("Company contactperson: "); }
+                while (!RegexUtils.isValidName(contactPerson));
 
-                do
-                {
-                    Console.WriteLine("Company IBAN (Example: 'NL99BANK0123456789'): \n");
-                    companyIBAN = Console.ReadLine();
-                    Console.Clear();
-                    if (is_valid_IBAN(companyIBAN))
-                    {
-                        break;
-                    }
-                } while (true);
+                do { companyPhoneNumber = inputLoop("Company phone number: "); }
+                while (!RegexUtils.isValidPhoneNumber(companyPhoneNumber));
+
+                do { companyName = inputLoop("Company name: "); }
+                while (!RegexUtils.isValidName(companyName));
+
+                do { companyIBAN = inputLoop("Company IBAN (Example: 'NL99BANK0123456789'): "); }
+                while (!RegexUtils.isValidIBAN(companyIBAN));
             }
 
             if (userAccountType == 2) // Visitor
             {
-                Console.Clear();
-                Console.WriteLine("Fill in your Date of Birth \n");
-                Console.WriteLine("Day (DD): ");
-                userDateDay = int.Parse(Console.ReadLine());
-                Console.Clear();
-                Console.WriteLine("Month (MM): ");
-                userDateMonth = int.Parse(Console.ReadLine());
-                Console.Clear();
-                Console.WriteLine("Year (YYYY): ");
-                userDateYear = int.Parse(Console.ReadLine());
-                Console.Clear();
-                user_newsletter_input();
-                Console.Clear();
-                Console.WriteLine("Phone number: \n");
-                visitorPhoneNumber = Console.ReadLine();
+                do { userDateDay = inputLoop("Day of birth: "); }
+                while (!RegexUtils.isValidUserDay(userDateDay));
+
+                do { userDateMonth = inputLoop("Month of birth: "); }
+                while (!RegexUtils.isValidUserMonth(userDateMonth));
+
+                do { userDateYear = inputLoop("Year of birth: "); }
+                while (!RegexUtils.isValidUserYear(userDateYear));
+
+                do { visitorPhoneNumber = inputLoop("Phone number: "); }
+                while (!RegexUtils.isValidPhoneNumber(visitorPhoneNumber));
+
+                userNewsletterInput();
                 Console.Clear();
             }
+            do { country = inputLoop("Country: "); }
+            while (!RegexUtils.isValidAddressName(country));
 
-            Console.WriteLine("Country: \n");
-            var country = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("City: \n");
-            var city = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("Streetname: \n");
-            var streetName = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("Streetnumber: \n");
-            var streetNumber = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("ZipCode: \n");
-            var zipCode = Console.ReadLine();
-            Console.Clear();
-            user_terms_input(); // User terms and conditions agreement
-            int accountID = user_account_id(users);
+            do { city = inputLoop("City: "); }
+            while (!RegexUtils.isValidAddressName(city));
+
+            do { streetName = inputLoop("Streetname: "); }
+            while (!RegexUtils.isValidAddressName(streetName));
+
+            do { streetNumber = inputLoop("Streetnumber: "); }
+            while (!RegexUtils.isValidStreetNumber(streetNumber));
+
+            do { zipCode = inputLoop("ZipCode: "); }
+            while (!RegexUtils.isValidZipCode(zipCode));
+
+            int accountID = JSONData.generateUserID();
+
             Console.WriteLine("Your account has been created, and you will be automatically logged in.");
             Thread.Sleep(1000);
             Console.Clear();
 
-            write_user_to_database();
-
-            void write_user_to_database()
+            User user = new User //Creates a new user object
             {
-                User user = new User //Creates a new user object
-                {
-                    accountType = userAccountType,
-                    accountID = accountID,
-                    firstName = firstName,
-                    lastName = lastName,
-                    email = email,
-                    password = userPassword,
-                    contactPerson = contactPerson,
-                    companyPhoneNumber = companyPhoneNumber,
-                    companyName = companyName,
-                    companyIBAN = companyIBAN,
-                    userAddress = {
+                accountType = userAccountType,
+                accountID = accountID,
+                firstName = firstName,
+                lastName = lastName,
+                email = email,
+                password = userPassword,
+                contactPerson = contactPerson,
+                companyPhoneNumber = companyPhoneNumber,
+                companyName = companyName,
+                companyIBAN = companyIBAN,
+                userAddress = {
                         country = country,
                         city = city,
                         zipCode = zipCode,
                         streetName = streetName,
                         streetNumber = streetNumber
                         },
-                    birthDate = {
-                        day = userDateDay,
-                        month = userDateMonth,
-                        year = userDateYear
+                birthDate = {
+                        day = int.Parse(userDateDay),
+                        month = int.Parse(userDateMonth),
+                        year = int.Parse(userDateYear)
                     },
-                    newsLetter = newsLetter,
-                    phoneNumber = visitorPhoneNumber
-                };
+                newsLetter = newsLetter,
+                phoneNumber = visitorPhoneNumber
+            };
+            writeToJson(user);
+        }
 
-                UserLoginPage.currentUserType = user.accountType;
-                users.users.Add(user);
-                UserLoginPage.automaticLogin(user);
-                // This block of code adds the user object to the json database.
-                JSONFunctionality.write_users(users);
-            }
+        private static void writeToJson(User user)
+        {
+            JSONData.writeToUserDatabase(user);
+            UserLoginPage.currentUserType = user.accountType;
+            UserLoginPage.automaticLogin(user);
+        }
 
-            string user_email_input()
+        private static void userAccountTypeInput()
+        {
+            MenuFunction.option = 0;
+            while (userAccountType == 0)
             {
-                Console.WriteLine("Email: \n");
-                string userInput = Console.ReadLine();
-                if (is_valid_email(userInput))
-                {
-                    return userInput;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Email invalid. Please try again");
-                    user_email_input();
-                }
-                return "'user_email_input' return Error";
+                Console.WriteLine("Are you an Organisator or Visitor? \n");
+                MenuFunction.menu(new string[] { $"I am an Organisator", "I am a Visitor" });
             }
+        }
 
-            void user_newsletter_input()
+        private static void userNewsletterInput()
+        {
+            MenuFunction.option = 0;
+            while (newsLetter == 0)
             {
-                MenuFunction.option = 0; 
-                while (newsLetter == 0) 
-                {
-                    Console.WriteLine("Do you want to receive a newsletter? \n");
-                    MenuFunction.menu(new string[] { "Yes, I want to receive newsletters", "No, I don't want to receive newsletters" });
-                }
+                Console.WriteLine("Do you want to recieve a newsletter? \n");
+                MenuFunction.menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve a newsletters" });
             }
+        }
 
-            void user_terms_input()
-            {
-                if (userAccountType == 1) //Print the organizational conditions here.
-                {
-                    while (userTerms == 0)
-                    {
-                        Console.WriteLine("Do you accept the terms of use and conditions?\n");
-                        Console.WriteLine("'Print Terms of Conditions Organisator here'\n");
-                        MenuFunction.menu(new string[] { "Yes, I accept the terms and conditions", "Exit to Main Menu" });
-                    };
-                }
+        public static string inputLoop(string printString)
+        {
+            string userInput;
+            Console.Write(printString); userInput = Console.ReadLine();
+            Console.Clear();
+            return userInput;
+        }
 
-                if (userAccountType == 2) //Print the user conditions here.
-                {
-                    while (userTerms == 0)
-                    {
-                        Console.WriteLine("Do you accept the terms of use and conditions?\n");
-                        Console.WriteLine("'Print Terms of Conditions Visitor here'\n");
-                        MenuFunction.menu(new string[] { "Yes, I accept the terms and conditions", "Exit to Main Menu" });
-                    };
-                }
-                Console.Clear();
-            }
+        public static void setAccountType(int userType)
+        {
+            userAccountType = userType;
+        }
 
-            void user_account_type_input()
-            {
-                MenuFunction.option = 0;
-                while (userAccountType == 0)
-                {
-                    Console.WriteLine("Are you an Organisator or Visitor? \n");
-                    MenuFunction.menu(new string[] { "I am an Organisator", "I am a Visitor" });
-                }
-            }
-
-            int user_account_id(JSONUserList users)
-            {
-                int accountID;
-                if (users.users.Count == 0)
-                {
-                    accountID = 1;
-                }
-                else
-                {
-                    int item = users.users[users.users.Count - 1].accountID;
-                    accountID = item + 1;
-                };
-
-                return accountID;
-            }
-
-            bool is_valid_email(string email) // This method does not perform authentication to validate the email address. It determines whether its format is valid for an email address.
-            {
-                if (string.IsNullOrWhiteSpace(email))
-                    return false;
-
-                try
-                {
-                    // Normalize the domain
-                    email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                                          RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                    // Examines the domain part of the email and normalizes it.
-                    string DomainMapper(Match match)
-                    {
-                        // Use IdnMapping class to convert Unicode domain names.
-                        var idn = new IdnMapping();
-
-                        // Pull out and process domain name (throws ArgumentException on invalid)
-                        var domainName = idn.GetAscii(match.Groups[2].Value);
-
-                        return match.Groups[1].Value + domainName;
-                    }
-                }
-                catch (RegexMatchTimeoutException e)
-                {
-                    return false;
-                }
-                catch (ArgumentException e)
-                {
-                    return false;
-                }
-
-                try
-                {
-                    return Regex.IsMatch(email,
-                        @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                        @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
-                        RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-                }
-                catch (RegexMatchTimeoutException)
-                {
-                    return false;
-                }
-            }
-
-            bool is_valid_password(string password)
-            /// string must be between 8 and 15 characters long. 
-            /// string must contain at least one number. 
-            /// string must contain at least one uppercase letter. 
-            /// string must contain at least one lowercase letter.
-            /// String must contain at least one symbol.
-            {
-                var input = password;
-                
-                if(string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Password should not be empty, please try again.\n");
-                }
-
-                var hasNumber = new Regex(@"[0-9]+");
-                var hasUpperChar = new Regex(@"[A-Z]+");
-                var hasMiniMaxChars = new Regex(@".{8,15}");
-                var hasLowerChar = new Regex(@"[a-z]+");
-                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-
-                if ((!hasLowerChar.IsMatch(input)) || (!hasUpperChar.IsMatch(input)) || (!hasMiniMaxChars.IsMatch(input)) || (!hasSymbols.IsMatch(input)))
-                {
-                    Console.WriteLine("Password should contain the following rules: ");
-                    Console.WriteLine(" - Must be between 8 and 15 characters long. ");
-                    Console.WriteLine(" - Must contain at least one number. . ");
-                    Console.WriteLine(" - Must contain at least one uppercase letter. ");
-                    Console.WriteLine(" - Must contain at least one lowercase letter. ");
-                    Console.WriteLine(" - Must contain at least one symbol. \n");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            bool is_valid_IBAN(string companyIBAN)
-            /// First two characters must be 'NL'
-            /// 3rd and 4th characters must be 2 numbers
-            /// 5th to 8th characters must be 4 letters
-            /// 9th to 18th characters must be 10 numbers
-            {
-                string input = companyIBAN;
-
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("IBAN should not be empty, please try again.\n");
-                }
-
-                var isIBAN = new Regex(@"NL[0-9]{2}[A-Z]{4}[0-9]{10}");
-
-                if (!isIBAN.IsMatch(input))
-                {
-                    Console.WriteLine("Incorrect IBAN");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            bool is_valid_name(string firstName)
-            /// string must contain only characters. 
-            /// string must be between 2 and 33 characters long. 
-            {
-                var input = firstName;
-
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Name should not be empty, please try again.\n");
-                }
-
-                var hasOnlyCharacter = new Regex(@"\b[A-Za-z]+\b");
-                var hasMiniMaxChars = new Regex(@".{2,33}");
-
-                if (!hasOnlyCharacter.IsMatch(input)) //Regex means only characters between 2-33 in lenght.
-                {
-                    Console.WriteLine("Name should contain only alphabethic characters.\n");
-                    return false;
-                }
-                else if (!hasMiniMaxChars.IsMatch(input))
-                {
-                    Console.WriteLine("Name should not be lesser than 2 or greater than 33 characters .\n");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
+        public static void setNewsLetter(int userChoice)
+        {
+            newsLetter = userChoice;
         }
     }
 }
