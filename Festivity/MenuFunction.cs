@@ -239,18 +239,15 @@ namespace Festivity
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
                         UserRegisterPage.setAccountType(2);
                         break;
-                    case "Yes {test1}":
+                    case "Yes, I want to recieve newsletters":
                         UserRegisterPage.setNewsLetter(1);
                         break;
-                    case "No, I don't want to recieve a newsletters":
+                    case "No, I don't want to recieve newsletters":
                         UserRegisterPage.setNewsLetter(2); 
-                        break;
-                    case "Yes {test2}":
-                        UserRegisterPage.acceptUserTerms();
                         break;
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
                         Console.Clear();
-                        Program.Main(new string[] { });
+                        Program.Main(); //new string[] { }
                         break;
                     case "festival1": // First festival option in the catalog screen
                         Festival festival1 = (Festival)objects[0];
@@ -335,8 +332,9 @@ namespace Festivity
                         Console.WriteLine("Successfully logged out!");
                         Thread.Sleep(1000);
                         Console.Clear();
+                        option = 0;
                         UserLoginPage.currentUserId = 0;
-                        Program.Main(new string[] { });
+                        Program.Main(); //new string[] { }
                         break;
                     case "Account":
                         Console.Clear();

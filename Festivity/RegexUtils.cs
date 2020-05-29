@@ -78,7 +78,7 @@ namespace Festivity
 
         public static bool isValidAddressName(string addressName)
         {
-            return regexCheck(addressName, new Regex(@"^[A-Za-z]{1,60}$"));
+            return regexCheck(addressName, new Regex(@"^[A-Za-z ]{1,60}$"));
         }
 
         public static bool isValidZipCode(string zipCode)

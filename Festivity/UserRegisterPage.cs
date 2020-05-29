@@ -12,13 +12,13 @@ namespace Festivity
         private static string lastName;
         private static string email;
         private static string userPassword;
-        private static string contactPerson;
-        private static string companyPhoneNumber;
-        private static string companyName;
-        private static string companyIBAN;
-        private static string userDateDay;
-        private static string userDateMonth;
-        private static string userDateYear;
+        private static string contactPerson = null;
+        private static string companyPhoneNumber = null;
+        private static string companyName = null;
+        private static string companyIBAN = null;
+        private static string userDateDay = "0";
+        private static string userDateMonth = "0";
+        private static string userDateYear = "0";
         private static string visitorPhoneNumber;
         private static string country;
         private static string city;
@@ -90,8 +90,6 @@ namespace Festivity
             do { zipCode = inputLoop("ZipCode: "); }
             while (!RegexUtils.isValidZipCode(zipCode));
 
-            userTermsInput(); // User terms and conditions agreement
-
             int accountID = JSONData.generateUserID();
 
             Console.WriteLine("Your account has been created, and you will be automatically logged in.");
@@ -150,35 +148,9 @@ namespace Festivity
             MenuFunction.option = 0;
             while (newsLetter == 0)
             {
-                string test1 = "1";
                 Console.WriteLine("Do you want to recieve a newsletter? \n");
-                MenuFunction.menu(new string[] { $"Yes {test1}", "No, I don't want to recieve a newsletters" });
+                MenuFunction.menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve a newsletters" });
             }
-        }
-
-        private static void userTermsInput()
-        {
-            if (userAccountType == 1) //Print the organizational conditions here.
-            {
-                while (userTerms)
-                {
-                    string test2 = "2";
-                    Console.WriteLine("Do you accept the terms of use and conditions?\n");
-                    Console.WriteLine("'Print Terms of Conditions Organisator here'\n");
-                    MenuFunction.menu(new string[] { $"Yes {test2}", "Exit to Main Menu" });
-                };
-            }
-
-            if (userAccountType == 2) //Print the user conditions here.
-            {
-                while (true)
-                {
-                    Console.WriteLine("Do you accept the terms of use and conditions?\n");
-                    Console.WriteLine("'Print Terms of Conditions Visitor here'\n");
-                    MenuFunction.menu(new string[] { "Yes, I accept the terms and conditions", "Exit to Main Menu" });
-                };
-            }
-            Console.Clear();
         }
 
         public static string inputLoop(string printString)
@@ -197,11 +169,6 @@ namespace Festivity
         public static void setNewsLetter(int userChoice)
         {
             newsLetter = userChoice;
-        }
-        public static void acceptUserTerms()
-        {
-            userTerms = true;
-
         }
     }
 }

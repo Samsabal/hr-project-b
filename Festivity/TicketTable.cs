@@ -17,7 +17,7 @@ namespace Festivity
             Console.WriteLine("testtetststsetsett");
             Thread.Sleep(2000);
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Program.Main(new string[] { });
+            Program.Main(); //new string[] { }
 
             foreach (var user in users.users)
             {
