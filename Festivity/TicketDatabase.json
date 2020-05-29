@@ -3,10 +3,10 @@
     {
       "festivalId": 1,
       "ticketId": 1,
-      "ticketName": "Mark's verjaardags feesie!",
-      "ticketDescription": "Dit is het toegangsbewijs naar Mark zijn verjaardag",
-      "ticketPrice": 0.0,
-      "maxTickets": 100,
+      "ticketName": "Toegangs ticket",
+      "ticketDescription": "Mark zijn test ticket voor zijn test festival",
+      "ticketPrice": 10.85,
+      "maxTickets": 10,
       "maxTicketsPerPerson": 1
     }
   ]

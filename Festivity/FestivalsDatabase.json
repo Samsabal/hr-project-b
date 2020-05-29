@@ -2,47 +2,25 @@
   "festivals": [
     {
       "festivalId": 1,
-      "festivalName": "TestName",
+      "festivalName": "Mark zijn Festival",
       "festivalDate": {
         "day": 26,
         "month": 5,
         "year": 2020
       },
-      "festivalStartingTime": "00:00",
-      "festivalEndTime": "23:59",
+      "festivalStartingTime": "19:00",
+      "festivalEndTime": "23:00",
       "festivalLocation": {
         "country": "Netherlands",
         "city": "Rotterdam",
-        "zipCode": "0000AA",
-        "streetName": "Feestjeslaan",
-        "streetNumber": "62"
+        "zipCode": "3085EB",
+        "streetName": "kerstant van den bergelaan",
+        "streetNumber": "15"
       },
-      "festivalDecription": "Mark is JARIG!!!!!!!!!!!!!!!!!!!",
+      "festivalDecription": "Dit is Mark zijn test festival.",
       "festivalAgeRestriction": 18,
-      "festivalGenre": "Verjaardag",
-      "festivalCancelTime": 52
-    },
-    {
-      "festivalId": 2,
-      "festivalName": null,
-      "festivalDate": {
-        "day": 0,
-        "month": 0,
-        "year": 0
-      },
-      "festivalStartingTime": null,
-      "festivalEndTime": null,
-      "festivalLocation": {
-        "country": null,
-        "city": null,
-        "zipCode": null,
-        "streetName": null,
-        "streetNumber": null
-      },
-      "festivalDecription": null,
-      "festivalAgeRestriction": 0,
       "festivalGenre": "Techno",
-      "festivalCancelTime": 0
+      "festivalCancelTime": 1
     }
   ]
 }
