@@ -18,33 +18,9 @@
     },
     {
       "transactionID": 3,
-      "festivalID": 3,
-      "ticketID": 3,
-      "buyerID": 1,
-      "ticketAmount": 6,
-      "orderDate": "19-05-2020 2:10:50 PM"
-    },
-    {
-      "transactionID": 4,
-      "festivalID": 3,
-      "ticketID": 4,
-      "buyerID": 1,
-      "ticketAmount": 2,
-      "orderDate": "19-05-2020 11:17:19 AM"
-    },
-    {
-      "transactionID": 5,
-      "festivalID": 3,
-      "ticketID": 5,
-      "buyerID": 1,
-      "ticketAmount": 8,
-      "orderDate": "19-05-2020 2:08:44 PM"
-    },
-    {
-      "transactionID": 6,
-      "festivalID": 2,
-      "ticketID": 6,
-      "buyerID": 3,
+      "festivalID": 1,
+      "ticketID": 1,
+      "buyerID": 2,
       "ticketAmount": 1,
       "orderDate": "19-05-2020 2:10:50 PM"
     }
