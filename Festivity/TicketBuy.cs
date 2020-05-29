@@ -10,7 +10,7 @@ namespace Festivity
     {
         private static int ticketAmount;
         private static int currentFestivalId = CatalogPage.selectedFestival;
-        private static List<Ticket> currentTicketList = new List<Ticket>();
+        public static List<Ticket> currentTicketList { get; private set; }
         private static int indexTicket;
 
         private static string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
@@ -22,9 +22,9 @@ namespace Festivity
         private static string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
         private static JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
 
-        private static void get_current_festival_tickets(int festivalId)
+        private static void update_current_festival_tickets(int festivalId)
         {
-            currentTicketList.Clear();
+            currentTicketList = new List<Ticket>();
             // Gets all Tickets related to the current Festival
             foreach (var ticket in tickets.tickets)
             {
@@ -44,7 +44,7 @@ namespace Festivity
 
         public static void ticket_show()
         {
-            get_current_festival_tickets(currentFestivalId);
+            update_current_festival_tickets(currentFestivalId);
 
             MenuFunction.option = 0;
 
