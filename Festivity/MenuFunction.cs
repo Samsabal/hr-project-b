@@ -104,6 +104,22 @@ namespace Festivity
                 ConsoleHelperFunctions.ClearCurrentConsoleLine();
             }
 
+            else
+            {
+                for (int i = 0; i < consoleOptions.Length; i++)
+                {
+                    if (option == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                    }
+                    Console.WriteLine("{0}", consoleOptions[i]);
+                    if (option == i)
+                    {
+                        Console.ResetColor();
+                    }
+                }
+            }
 
             var KeyPressed = Console.ReadKey();
             // When DownArrow key is pressed go down.
@@ -131,7 +147,7 @@ namespace Festivity
                 {
                     case "Register": // "Register" option home screen
                         Console.Clear();
-                        UserRegisterPage.register_page();
+                        UserRegisterPage.createUser();
                         break;
                     case "Login": // "Login" option home screen
                         Console.Clear();
@@ -216,25 +232,22 @@ namespace Festivity
                     case "I am an Organisator":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.userAccountType = 1;
+                        UserRegisterPage.setAccountType(1);
                         break;
                     case "I am a Visitor":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.userAccountType = 2;
+                        UserRegisterPage.setAccountType(2);
                         break;
-                    case "Yes, I want to recieve a newsletters":
-                        UserRegisterPage.newsLetter = 1;
+                    case "Yes, I want to recieve newsletters":
+                        UserRegisterPage.setNewsLetter(1);
                         break;
-                    case "No, I don't want to recieve a newsletters":
-                        UserRegisterPage.newsLetter = 2;
-                        break;
-                    case "Yes, I accept the terms and conditions":
-                        UserRegisterPage.userTerms = 1;
+                    case "No, I don't want to recieve newsletters":
+                        UserRegisterPage.setNewsLetter(2); 
                         break;
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
                         Console.Clear();
-                        Program.Main(new string[] { });
+                        Program.Main(); //new string[] { }
                         break;
                     case "festival1": // First festival option in the catalog screen
                         Festival festival1 = (Festival)objects[0];
@@ -319,8 +332,9 @@ namespace Festivity
                         Console.WriteLine("Successfully logged out!");
                         Thread.Sleep(1000);
                         Console.Clear();
+                        option = 0;
                         UserLoginPage.currentUserId = 0;
-                        Program.Main(new string[] { });
+                        Program.Main(); //new string[] { }
                         break;
                     case "Account":
                         Console.Clear();
