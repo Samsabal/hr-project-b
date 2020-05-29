@@ -58,5 +58,21 @@ namespace Festivity
             string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
             File.WriteAllText(PATH_TRANSACTION, json);
         }
+
+        public static int generateUserID()
+        {
+            JSONUserList userList = get_users();
+            int accountID;
+            if (userList.users.Count == 0)
+            {
+                accountID = 1;
+            }
+            else
+            {
+                int item = userList.users[userList.users.Count - 1].accountID;
+                accountID = item + 1;
+            };
+            return accountID;
+        }
     }
 }
