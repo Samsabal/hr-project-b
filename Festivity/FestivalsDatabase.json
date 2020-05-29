@@ -1,26 +1,4 @@
 {
   "festivals": [
-    {
-      "festivalId": 1,
-      "festivalName": "Mark zijn Festival",
-      "festivalDate": {
-        "day": 26,
-        "month": 5,
-        "year": 2020
-      },
-      "festivalStartingTime": "19:00",
-      "festivalEndTime": "23:00",
-      "festivalLocation": {
-        "country": "Netherlands",
-        "city": "Rotterdam",
-        "zipCode": "3085EB",
-        "streetName": "kerstant van den bergelaan",
-        "streetNumber": "15"
-      },
-      "festivalDecription": "Dit is Mark zijn test festival.",
-      "festivalAgeRestriction": 18,
-      "festivalGenre": "Techno",
-      "festivalCancelTime": 1
-    }
   ]
 }

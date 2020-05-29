@@ -1,13 +1,4 @@
 {
   "tickets": [
-    {
-      "festivalId": 1,
-      "ticketId": 1,
-      "ticketName": "Toegangs ticket",
-      "ticketDescription": "Mark zijn test ticket voor zijn test festival",
-      "ticketPrice": 10.85,
-      "maxTickets": 10,
-      "maxTicketsPerPerson": 1
-    }
   ]
 }
