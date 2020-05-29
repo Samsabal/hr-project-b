@@ -10,7 +10,7 @@ namespace Festivity
             Console.Clear();
             while (true)
             {
-                Console.SetWindowSize(150, 35);
+                Console.SetWindowSize(150, 36);
                 if (UserLoginPage.currentUserId == 0)
                 {
                     MenuFunction.menu(new string[] { "Register", "Login", "Festivals", "Exit" });
