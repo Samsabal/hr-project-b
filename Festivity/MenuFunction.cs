@@ -426,10 +426,10 @@ namespace Festivity
                         break;
                     case "My Festivals":
                         Console.Clear();
-                        TicketTable.ticket_table_menu();
+                        TicketTableManager.Initiate();
                         break;
                     case "Refund Ticket":
-                        TicketTable.refund_ticket();
+                        TicketTableManager.RefundTicket();
                         break;
                     case "iDEAL":
                         Console.Clear();
