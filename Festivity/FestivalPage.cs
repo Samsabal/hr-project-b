@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.IO;
 
 namespace Festivity
 {
@@ -54,7 +56,7 @@ namespace Festivity
                 if (festival.festivalId == festivalId)
                 {
                     MenuFunction.option = 0;
-                    while (true) 
+                    while (true)
                     {
                         if (age_check(festivalId))
                         {
@@ -101,13 +103,11 @@ namespace Festivity
                             Console.SetCursorPosition(0, Console.CursorTop - 1);
                             clear_console_line();
                             Console.WriteLine(thickLine);
-                            MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });//The menu used in the festivalpage
+                            MenuFunction.menu(new string[] { "Order Tickets", "Return to Catalog", "Exit to Main Menu" });//The menu used in the festivalpage
                         }
                     }
-                } 
+                }
             }
         }
-            
-    }        
+    }
 }
-

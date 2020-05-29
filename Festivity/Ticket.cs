@@ -14,10 +14,13 @@ namespace Festivity
         [JsonProperty("ticketDescription")]
         public string ticketDescription { get; set; }
         [JsonProperty("ticketPrice")]
-        public string ticketPrice { get; set; }
+        public double ticketPrice { get; set; }
+
         [JsonProperty("maxTickets")]
         public int maxTickets { get; set; }
 
+        [JsonProperty("maxTicketsPerPerson")]
+        public int maxTicketsPerPerson { get; set; }
     }
 
     class JSONTicketList
