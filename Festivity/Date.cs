@@ -40,7 +40,7 @@ namespace Festivity
 
         public int to_identifier()
         {
-            string result = year.ToString() + month.ToString() + day.ToString();
+            string result = year.ToString("D4") + month.ToString("D2") + day.ToString("D2");
             return int.Parse(result);
         }
 

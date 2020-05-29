@@ -1,9 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.IO;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace Festivity
@@ -82,7 +80,7 @@ namespace Festivity
                         }
                     }
                 }
-                MenuFunction.menu(menuOptions, null, ticketArray);
+                MenuFunction.menu(menuOptions, ticketArray);
             }
         }
 
