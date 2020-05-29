@@ -33,15 +33,21 @@ namespace Festivity
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArrayWithPrices[i].Item2 > festivalArrayWithPrices[i+1].Item2)
+                    if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i+1].Item2)
                     {
-                        Festival temp = festivalArray[i];
-                        festivalArray[i] = festivalArrayWithPrices[i + 1].Item1;
-                        festivalArray[i + 1] = temp;
+                        Tuple<Festival, double> temp = festivalArrayWithPrices[i];
+                        festivalArrayWithPrices[i] = festivalArrayWithPrices[i + 1];
+                        festivalArrayWithPrices[i + 1] = temp;
                     }
                 }
             }
-            return CatalogPage.add_or_remove_padding(festivalArray);
+            Festival[] resultArray = new Festival[festivalArrayWithPrices.Length];
+            for(int i = 0; i < festivalArrayWithPrices.Length; i++)
+            {
+                resultArray[i] = festivalArrayWithPrices[i].Item1;
+            }
+
+            return CatalogPage.add_or_remove_padding(resultArray);
         }
 
         public static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
