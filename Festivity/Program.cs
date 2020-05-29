@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Threading;
-using System.IO;
 
 namespace Festivity
 {
@@ -9,7 +7,7 @@ namespace Festivity
     {
         public static void Main(string[] args)
         {
-
+            Console.Clear();
             while (true)
             {
                 Console.SetWindowSize(150, 35);
@@ -21,11 +19,11 @@ namespace Festivity
                 {
                     if (UserLoginPage.currentUserType == 0)
                     {
-                        MenuFunction.menu(new string[] { "Festivals", "Account", "Logout", "Exit" });
+                        MenuFunction.menu(new string[] { "Festivals", "Account", "My Festivals",  "Logout", "Exit" });
                     }
-                    if (UserLoginPage.currentUserType != 0)
+                    if (UserLoginPage.currentUserType == 1)
                     {
-                        MenuFunction.menu(new string[] {  "Festivals", "Register festival", "Account", "Logout", "Exit" });
+                        MenuFunction.menu(new string[] {  "Festivals", "Register festival", "Account", "My Festivals", "Logout", "Exit" });
                     }
                 }   
             }

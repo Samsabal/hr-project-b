@@ -2,18 +2,18 @@
   "users": [
     {
       "birthDate": {
-        "day": 13,
-        "month": 2,
-        "year": 1999
+        "day": 0,
+        "month": 0,
+        "year": 0
       },
       "userAddress": {
-        "country": "Netherlands",
-        "city": "Goes",
-        "zipCode": "4456BJ",
-        "streetName": "Paul van Zeelandlaan",
-        "streetNumber": "34"
+        "country": "Adminland",
+        "city": "Admincity",
+        "zipCode": "1337GM",
+        "streetName": "Adminlane",
+        "streetNumber": "99"
       },
-      "accountType": 2,
+      "accountType": 1,
       "accountID": 1,
       "firstName": "enny",
       "lastName": "adeoye",
