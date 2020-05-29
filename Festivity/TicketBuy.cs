@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ namespace Festivity
     internal class TicketBuy
     {
         private static int ticketAmount;
-        private static int currentFestivalId = CatalogPage.selectedFestival;
+        private static int currentFestivalId;
         public static List<Ticket> currentTicketList { get; private set; }
         private static int indexTicket;
 
@@ -28,22 +28,17 @@ namespace Festivity
             // Gets all Tickets related to the current Festival
             foreach (var ticket in tickets.tickets)
             {
-                foreach (var festival in festivals.festivals)
+                if (festivalId == ticket.festivalId)
                 {
-                    if (festivalId == festival.festivalId)
-                    {
-                        currentTicketList.Add(ticket);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error!");
-                    }
+                    currentTicketList.Add(ticket);
                 }
             }
         }
 
         public static void ticket_show()
         {
+            currentFestivalId = CatalogPage.selectedFestival;
+
             update_current_festival_tickets(currentFestivalId);
 
             MenuFunction.option = 0;
@@ -65,7 +60,7 @@ namespace Festivity
 
                 menuOptionsList.Add("Return to Festival Page");
                 menuOptionsList.Add("Exit to Main Menu");
-                MenuFunction.menu(menuOptionsList.ToArray(), null, currentTicketList.ToArray());
+                MenuFunction.menu(menuOptionsList.ToArray(), currentTicketList.ToArray());
             }
         }
 
