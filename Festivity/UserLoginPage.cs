@@ -81,7 +81,7 @@ namespace Festivity
                         Console.Clear();
                         if (loginOption == 0)
                         {
-                            Program.Main(new string[] { });
+                            Program.Main(); //new string[] { }
                         }
                         loginOption = 0;
 
@@ -105,6 +105,7 @@ namespace Festivity
         public static void automaticLogin(User user)
         {
             currentUserId = user.accountID;
+            Program.Main();
         }
     }
 }
