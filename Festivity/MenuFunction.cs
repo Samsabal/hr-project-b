@@ -160,6 +160,9 @@ namespace Festivity
                         break;
                     case "Register festival": // "Register festival" option home screen
                         Console.Clear();
+                        option = 0;
+                        FestivalRegister.activeScreen = true;
+                        FestivalRegister.currentRegisterSelection = "Main";
                         FestivalRegister.festival_register();
                         Thread.Sleep(1000);
                         break;
@@ -309,6 +312,50 @@ namespace Festivity
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.catalog_main();
                         break;
+                    case "Festival Name":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Name";
+                        break;
+                    case "Festival Date":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Date";
+                        break;
+                    case "Starting Time":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Starting Time";
+                        break;
+                    case "End Time":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "End Time";
+                        break;
+                    case "Festival Adress":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Adress";
+                        break;
+                    case "Festival Description":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Description";
+                        break;
+                    case "Age restriction":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Age Restriction";
+                        break;
+                    case "Festival Genre":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Festival Genre";
+                        break;
+                    case "Tickets":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Tickets";
+                        break;
+                    case "Save Festival":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Save Festival";
+                        break;
+                    case "Cancel Time":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Cancel Time";
+                        break;
                     case "Order Tickets":
                         Console.Clear();
                         CatalogPage.activeScreen = false;
@@ -356,6 +403,26 @@ namespace Festivity
                     case "Change password":
                         Console.Clear();
                         UserAccountPage.change_password();
+                        break;
+                    case "Techno":
+                        FestivalRegister.festivalGenre = "Techno";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Drum & Bass":
+                        FestivalRegister.festivalGenre = "Drum & Bass";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Pop":
+                        FestivalRegister.festivalGenre = "Pop";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Rock":
+                        FestivalRegister.festivalGenre = "Rock";
+                        FestivalRegister.currentRegisterSelection = "Main";
+                        break;
+                    case "Hip-Hop":
+                        FestivalRegister.festivalGenre = "Hip-Hop";
+                        FestivalRegister.currentRegisterSelection = "Main";
                         break;
                     case "My Festivals":
                         Console.Clear();

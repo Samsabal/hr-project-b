@@ -24,6 +24,8 @@ namespace Festivity
         public int festivalAgeRestriction { get; set; }
         [JsonProperty("festivalGenre")]
         public string festivalGenre { get; set; }
+        [JsonProperty("festivalCancelTime")]
+        public int festivalCancelTime { get; set; }
         [JsonProperty("festivalStatus")]
         public string festivalStatus { get; set; }
         [JsonProperty("festivalOrganisorId")]
