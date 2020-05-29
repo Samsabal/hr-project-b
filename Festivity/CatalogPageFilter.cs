@@ -33,10 +33,10 @@ namespace Festivity
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].festivalName.CompareTo(festivalArray[i + 1].festivalName) > 0 && festivalArray[i].festivalId != -1)
+                    if (festivalArrayWithPrices[i].Item2 > festivalArrayWithPrices[i+1].Item2)
                     {
                         Festival temp = festivalArray[i];
-                        festivalArray[i] = festivalArray[i + 1];
+                        festivalArray[i] = festivalArrayWithPrices[i + 1].Item1;
                         festivalArray[i + 1] = temp;
                     }
                 }

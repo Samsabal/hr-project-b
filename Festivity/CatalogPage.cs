@@ -43,7 +43,7 @@ namespace Festivity
                 {
                     show_festivals(festivalArray);
                     MenuFunction.menu(new string[] { "Sort by name",
-                        "Sort by date", "Filter by festival name", "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
+                        "Sort by date", "Sort by price", "Filter by festival name", "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
                 }
             }
         }
