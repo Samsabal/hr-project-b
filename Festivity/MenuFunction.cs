@@ -70,7 +70,7 @@ namespace Festivity
 
             else if (objects[0].GetType() == typeof(Festivity.Ticket))
             {
-                for (int i = 0; i < TicketBuy.ticketListLength; i++)
+                for (int i = 0; i < TicketBuy.get_ticket_list_length(); i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -80,14 +80,14 @@ namespace Festivity
                     }
                     Ticket tempticket = (Ticket)objects[i];
 
-                    Console.WriteLine("Order ticket: {0}", tempticket.ticketName);
+                    Console.WriteLine("Buy Ticket: {0}", tempticket.ticketName);
                     if (option == i)
                     {
                         Console.ResetColor();
                     }
                 }
 
-                for (int i = TicketBuy.ticketListLength; i < consoleOptions.Length; i++)
+                for (int i = TicketBuy.get_ticket_list_length(); i < consoleOptions.Length; i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -255,6 +255,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = festival1.festivalId;
                             FestivalPage.festival_page(festival1.festivalId);
                         }
                         break;
@@ -264,6 +265,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = festival2.festivalId;
                             FestivalPage.festival_page(festival2.festivalId);
                         }
                         break;
@@ -273,6 +275,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = festival3.festivalId;
                             FestivalPage.festival_page(festival3.festivalId);
                         }
                         break;
@@ -282,6 +285,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = festival4.festivalId;
                             FestivalPage.festival_page(festival4.festivalId);
                         }
                         break;
@@ -291,6 +295,7 @@ namespace Festivity
                         {
                             Console.Clear();
                             CatalogPage.activeScreen = false;
+                            CatalogPage.selectedFestival = festival5.festivalId;
                             FestivalPage.festival_page(festival5.festivalId);
                         }
                         break;
@@ -311,7 +316,7 @@ namespace Festivity
                         {
                             UserLoginPage.user_login(1);
                         }
-                        TicketBuy.ticket_buy(CatalogPage.selectedFestival);
+                        TicketBuy.ticket_show();
                         break;
                     case "Return to Festival Page":
                         Console.Clear();
@@ -356,13 +361,27 @@ namespace Festivity
                         Console.Clear();
                         TicketTable.ticket_table_page();
                         break;
-                   default:
-                        if (consoleOptions[option].StartsWith("Order Ticket"))
+                    case "iDEAL":
+                        Console.Clear();
+                        TicketBuy.ticket_buy();
+                        break;
+                    case "Paypal":
+                        Console.Clear();
+                        TicketBuy.ticket_buy();
+                        break;
+                    case "Creditcard":
+                        Console.Clear();
+                        TicketBuy.ticket_buy();
+                        break;
+                    case "Cancel Order":
+                        Console.Clear();
+                        TicketBuy.ticket_show();
+                        break;
+                    default:
+                        if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
-
-                            Match ticketId = Regex.Match(consoleOptions[option], @"(?<=:)[^\]]+");
-
-                            TicketBuy.ticket_buy_selected(Int32.Parse(ticketId.Value));
+                            Console.Clear();
+                            TicketBuy.ticket_confirmation(option);
                         }
                         break;
                 }
