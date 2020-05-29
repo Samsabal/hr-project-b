@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Festivity
 {
-    class FestivalRegister
+    internal class FestivalRegister
     {
 
         public static bool activeScreen = true;

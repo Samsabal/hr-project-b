@@ -7,10 +7,10 @@ using System.Threading;
 
 namespace Festivity
 {
-    class UserAccountPage
+    internal class UserAccountPage
     {
-        static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        static JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+        private static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
+        private static JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
         public static void account_page()
         {
@@ -34,6 +34,7 @@ namespace Festivity
                 }
             }
         }
+
         public static void account_change_info()
         {
             foreach (var user in users.users)
@@ -76,17 +77,19 @@ namespace Festivity
                         Console.WriteLine("You entered an invalid number");
                         Console.Write("Enter the number and press <Enter>: ");
                     }
-                    if (userInput > 0 && userInput <= 8 )
+                    if (userInput > 0 && userInput <= 8)
                     {
                         account_change_organisator(userInput);
                         Console.Clear();
-                    } else
+                    }
+                    else
                     {
                         Console.Clear();
                     }
                 }
             }
         }
+
         public static void account_email_prefference()
         {
             foreach (var user in users.users)
@@ -97,19 +100,21 @@ namespace Festivity
                     {
                         Console.WriteLine("Do you want to stop recieving Newsletters? [Y or N].");
                         string userInput = Console.ReadLine();
-                        if(userInput.ToLower() == "y")
+                        if (userInput.ToLower() == "y")
                         {
                             Console.Clear();
                             user.newsLetter = 0;
                             Console.WriteLine("Preference successfully changed.");
                             Thread.Sleep(1000);
-                        } else if (userInput.ToLower() != "n")
+                        }
+                        else if (userInput.ToLower() != "n")
                         {
                             Console.Clear();
                             Console.WriteLine("Invalid input, please try again.");
                             account_email_prefference();
                         }
-                    } else if (user.newsLetter == 0)
+                    }
+                    else if (user.newsLetter == 0)
                     {
                         Console.WriteLine("Do you want to recieve Newsletters? [Y or N]");
                         string userInput = Console.ReadLine();
@@ -132,6 +137,7 @@ namespace Festivity
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(PATH_USER, json);
         }
+
         public static void account_change_organisator(int userSelection)
         {
             string userInput;
@@ -150,18 +156,21 @@ namespace Festivity
                                 userInput = Console.ReadLine();
                                 user.firstName = userInput;
                                 break;
+
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Input new lastname: ");
                                 userInput = Console.ReadLine();
                                 user.lastName = userInput;
                                 break;
+
                             case 3:
                                 Console.Clear();
                                 Console.WriteLine("Input new email: ");
                                 userInput = Console.ReadLine();
                                 user.email = userInput;
                                 break;
+
                             case 4:
                                 Console.Clear();
                                 Console.WriteLine("Input new streetname: ");
@@ -172,40 +181,45 @@ namespace Festivity
                                 user.userAddress.streetName = userInput1;
                                 user.userAddress.streetNumber = userInput2;
                                 break;
+
                             case 5:
                                 Console.Clear();
                                 Console.WriteLine("Input new city: ");
                                 userInput = Console.ReadLine();
                                 user.userAddress.city = userInput;
                                 break;
+
                             case 6:
                                 Console.Clear();
                                 Console.WriteLine("Input new zipcode: ");
                                 userInput = Console.ReadLine();
                                 user.userAddress.zipCode = userInput;
                                 break;
+
                             case 7:
                                 Console.Clear();
                                 Console.WriteLine("Input new country: ");
                                 userInput = Console.ReadLine();
                                 user.userAddress.country = userInput;
                                 break;
+
                             case 8:
                                 Console.Clear();
                                 Console.WriteLine("Input new companyname: ");
                                 userInput = Console.ReadLine();
                                 user.companyName = userInput;
                                 break;
+
                             case 9:
                                 Console.Clear();
                                 Console.WriteLine("Input new companynumber: ");
                                 userInput = Console.ReadLine();
                                 user.companyPhoneNumber = userInput;
                                 break;
+
                             default:
                                 break;
                         }
-
                     }
                     if (UserLoginPage.currentUserType == 2) // Festival Goer
                     {
@@ -217,24 +231,28 @@ namespace Festivity
                                 userInput = Console.ReadLine();
                                 user.firstName = userInput;
                                 break;
+
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Input new lastname: ");
                                 userInput = Console.ReadLine();
                                 user.lastName = userInput;
                                 break;
+
                             case 3:
                                 Console.Clear();
                                 Console.WriteLine("Input new email: ");
                                 userInput = Console.ReadLine();
                                 user.email = userInput;
                                 break;
+
                             case 4:
                                 Console.Clear();
                                 Console.WriteLine("Input new phoneNumber: ");
                                 userInput = Console.ReadLine();
                                 user.phoneNumber = userInput;
                                 break;
+
                             case 5:
                                 Console.Clear();
                                 Console.WriteLine("Input new streetname: ");
@@ -244,24 +262,28 @@ namespace Festivity
                                 user.userAddress.streetName = userInput1;
                                 user.userAddress.streetNumber = userInput2;
                                 break;
+
                             case 6:
                                 Console.Clear();
                                 Console.WriteLine("Input new city: ");
                                 userInput = Console.ReadLine();
                                 user.userAddress.city = userInput;
                                 break;
+
                             case 7:
                                 Console.Clear();
                                 Console.WriteLine("Input new zipcode: ");
                                 userInput = Console.ReadLine();
                                 user.userAddress.zipCode = userInput;
                                 break;
+
                             case 8:
                                 Console.Clear();
                                 Console.WriteLine("Input new country: ");
                                 userInput = Console.ReadLine();
                                 user.userAddress.country = userInput;
                                 break;
+
                             default:
                                 break;
                         }
@@ -271,6 +293,7 @@ namespace Festivity
                 }
             }
         }
+
         public static void change_password()
         {
             string userInput;
@@ -282,7 +305,7 @@ namespace Festivity
                     Console.WriteLine("Input current password: ");
                     userInput = Console.ReadLine();
                     Console.Clear();
-                    if(userInput == user.password)
+                    if (userInput == user.password)
                     {
                         Console.WriteLine("Input new password: ");
                         string userInput1 = Console.ReadLine();
@@ -295,12 +318,14 @@ namespace Festivity
                             user.password = userInput2;
                             Console.WriteLine("Password successfully changed.");
                             Thread.Sleep(1000);
-                        } else
+                        }
+                        else
                         {
                             Console.WriteLine("Passwords do not match, please try again.");
                             change_password();
                         }
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("Invalid password, please try again.");
                         change_password();
