@@ -5,7 +5,7 @@ namespace Festivity
 {
     public class RegexUtils
     {
-        public static bool numberCheck(string value, int min, int max)
+        public static bool NumberCheck(string value, int min, int max)
         {
             if (Int32.TryParse(value, out int result))
             {
@@ -19,7 +19,7 @@ namespace Festivity
             return false;
         }
 
-        static private bool regexCheck(string input, Regex regex)
+        static private bool RegexCheck(string input, Regex regex)
         {
             if (!regex.IsMatch(input))
             {
@@ -32,9 +32,9 @@ namespace Festivity
             }
         }
 
-        public static bool isValidName(string name)
+        public static bool IsValidName(string name)
         {
-            return regexCheck(name, new Regex(@"\b[A-Za-z]{2,33}\b"));
+            return RegexCheck(name, new Regex(@"\b[A-Za-z]{2,33}\b"));
         }
 
         public static bool isValidIBAN(string IBAN)
@@ -43,84 +43,84 @@ namespace Festivity
         /// 5th to 8th characters must be 4 letters
         /// 9th to 18th characters must be 10 numbers
         {
-            return regexCheck(IBAN, new Regex(@"NL[0-9]{2}[A-Z]{4}[0-9]{10}"));
+            return RegexCheck(IBAN, new Regex(@"NL[0-9]{2}[A-Z]{4}[0-9]{10}"));
         }
 
-        public static bool isValidUserDay(string day)
+        public static bool IsValidUserDay(string day)
         {
-            return numberCheck(day, 0, 31);
+            return NumberCheck(day, 0, 31);
         }
 
-        public static bool isValidUserMonth(string month)
+        public static bool IsValidUserMonth(string month)
         {
-            return numberCheck(month, 0, 12);
+            return NumberCheck(month, 0, 12);
         }
 
-        public static bool isValidUserYear(string year)
+        public static bool IsValidUserYear(string year)
         {
-            return numberCheck(year, 1900, DateTime.Now.Year);
+            return NumberCheck(year, 1900, DateTime.Now.Year);
         }
 
-        public static bool isValidFestivalDay(string day)
+        public static bool IsValidFestivalDay(string day)
         {
-            return numberCheck(day, 0, 31);
+            return NumberCheck(day, 0, 31);
         }
 
-        public static bool isValidFestivalMonth(string month)
+        public static bool IsValidFestivalMonth(string month)
         {
-            return numberCheck(month, 0, 12);
+            return NumberCheck(month, 0, 12);
         }
 
-        public static bool isValidFestivalYear(string year)
+        public static bool IsValidFestivalYear(string year)
         {
-            return numberCheck(year, DateTime.Now.Year, 2050);
+            return NumberCheck(year, DateTime.Now.Year, 2050);
         }
 
-        public static bool isValidAddressName(string addressName)
+        public static bool IsValidAddressName(string addressName)
         {
-            return regexCheck(addressName, new Regex(@"^[A-Za-z ]{1,60}$"));
+            return RegexCheck(addressName, new Regex(@"^[A-Za-z ]{1,60}$"));
         }
 
-        public static bool isValidZipCode(string zipCode)
+        public static bool IsValidZipCode(string zipCode)
         {
-            return regexCheck(zipCode, new Regex(@"^[0-9]{4}[A-Za-z]{2}$"));
+            return RegexCheck(zipCode, new Regex(@"^[0-9]{4}[A-Za-z]{2}$"));
         }
 
-        public static bool isValidStreetNumber(string streetNumber)
+        public static bool IsValidStreetNumber(string streetNumber)
         {
-            return regexCheck(streetNumber, new Regex(@"^[0-9]{1,4}([A-Za-z]{1,2})?$"));
+            return RegexCheck(streetNumber, new Regex(@"^[0-9]{1,4}([A-Za-z]{1,2})?$"));
         }
 
-        public static bool isValidPhoneNumber(string phoneNumber)
+        public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            return regexCheck(phoneNumber, new Regex(@"^06\d{8}$"));
+            return RegexCheck(phoneNumber, new Regex(@"^06\d{8}$"));
         }
 
-        public static bool isValidTimeFormat(string time)
+        public static bool IsValidTimeFormat(string time)
         {
-            return regexCheck(time, new Regex(@"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"));
+            return RegexCheck(time, new Regex(@"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"));
         }
 
-        public static bool isValidDescription(string addressName)
+        public static bool IsValidDescription(string addressName)
         {
-            return regexCheck(addressName, new Regex(@"^[A-Za-z]{1,500}$"));
+            return RegexCheck(addressName, new Regex(@"^[A-Za-z]{1,500}$"));
         }
 
-        public static bool isValidAge(string age)
+        public static bool IsValidAge(string age)
         {
-            return numberCheck(age, 0, 120);
+            return NumberCheck(age, 0, 120);
         }
 
-        public static bool isValidEmail(string email)
+        public static bool IsValidEmail(string email)
         /// Uses Sysem class MailAddress to determine whether an email address is valid.
         {
             var isValidEmail = new Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
                                             + "@"
                                             + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
-            return regexCheck(email, isValidEmail);
+            return RegexCheck(email, isValidEmail);
         }
 
-        public static bool isValidPassword(string password)
+        public static bool IsValidPassword(string password)
         /// string must be between 8 and 15 characters long.
         /// string must contain at least one number.
         /// string must contain at least one uppercase letter.

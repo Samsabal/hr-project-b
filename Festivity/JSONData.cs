@@ -8,26 +8,26 @@ namespace Festivity
 {
     internal class JSONData
     {
-        private static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        public static JSONUserList userList = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
+        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
+        public static JSONUserList userList = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
 
-        public static void writeToUserDatabase(User user)
+        public static void WriteToUserDatabase(User user)
         {
-            userList.users.Add(user);
+            userList.Users.Add(user);
             string json = JsonConvert.SerializeObject(userList, Formatting.Indented);
-            File.WriteAllText(PATH_USER, json);
+            File.WriteAllText(PathUser, json);
         }
 
-        public static int generateUserID()
+        public static int GenerateUserID()
         {
             int accountID;
-            if (userList.users.Count == 0)
+            if (userList.Users.Count == 0)
             {
                 accountID = 1;
             }
             else
             {
-                int item = userList.users[userList.users.Count - 1].accountID;
+                int item = userList.Users[userList.Users.Count - 1].AccountID;
                 accountID = item + 1;
             };
             return accountID;

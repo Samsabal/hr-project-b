@@ -8,26 +8,24 @@ namespace Festivity
     class Ticket
     {
         [JsonProperty("festivalId")]
-        public int festivalId { get; set; }
+        public int FestivalID { get; set; }
         [JsonProperty("ticketId")]
-        public int ticketId { get; set; }
+        public int TicketID { get; set; }
         [JsonProperty("ticketName")]
-        public string ticketName { get; set; }
+        public string TicketName { get; set; }
         [JsonProperty("ticketDescription")]
-        public string ticketDescription { get; set; }
+        public string TicketDescription { get; set; }
         [JsonProperty("ticketPrice")]
-        public double ticketPrice { get; set; }
-
+        public double TicketPrice { get; set; }
         [JsonProperty("maxTickets")]
-        public int maxTickets { get; set; }
-
+        public int MaxTickets { get; set; }
         [JsonProperty("maxTicketsPerPerson")]
-        public int maxTicketsPerPerson { get; set; }
+        public int MaxTicketsPerPerson { get; set; }
     }
 
     class JSONTicketList
     {
         [JsonProperty("tickets")]
-        public List<Ticket> tickets { get; set; }
+        public List<Ticket> Tickets { get; set; }
     }
 }
