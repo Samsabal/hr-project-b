@@ -140,7 +140,6 @@ namespace Festivity
             MenuFunction.option = 0;
             while (userAccountType == 0)
             {
-                string test = "Hoi hahaha";
                 Console.WriteLine("Are you an Organisator or Visitor? \n");
                 MenuFunction.menu(new string[] { $"I am an Organisator", "I am a Visitor" });
             }
