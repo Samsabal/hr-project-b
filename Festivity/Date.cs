@@ -6,51 +6,51 @@ namespace Festivity
     public class Date
     {
         [JsonProperty("day")]
-        public int day { get; set; }
+        public int Day { get; set; }
         [JsonProperty("month")]
-        public int month { get; set; }
+        public int Month { get; set; }
         [JsonProperty("year")]
-        public int year { get; set; }
+        public int Year { get; set; }
 
-        public static bool check_validity(Date date)
+        public static bool CheckValidity(Date date)
         {
-            int[] months31days = new int[] { 1, 3, 5, 7, 8, 10, 12 };
-            int[] months30days = new int[] { 4, 6, 9, 11};
-            for(int i = 0; i < months31days.Length; i++)
+            int[] months31Days = new int[] { 1, 3, 5, 7, 8, 10, 12 };
+            int[] months30Days = new int[] { 4, 6, 9, 11};
+            for(int i = 0; i < months31Days.Length; i++)
             {
-                if(date.month == months31days[i])
+                if(date.Month == months31Days[i])
                 {
-                    return 0 < date.day && date.day <= 31;
+                    return 0 < date.Day && date.Day <= 31;
                 }
             }
-            for(int i = 0; i<months30days.Length; i++)
+            for(int i = 0; i<months30Days.Length; i++)
             {
-                if (date.month == months30days[i])
+                if (date.Month == months30Days[i])
                 {
-                    return 0 < date.day && date.day <= 30;
+                    return 0 < date.Day && date.Day <= 30;
                 }
             }
-            if(date.month == 2)
+            if(date.Month == 2)
             {
-                return 0 < date.day && date.day <= 29;
+                return 0 < date.Day && date.Day <= 29;
             }
             return false;
         } 
 
 
-        public int to_identifier()
+        public int ToIdentifier()
         {
-            string result = year.ToString("D4") + month.ToString("D2") + day.ToString("D2");
+            string result = Year.ToString("D4") + Month.ToString("D2") + Day.ToString("D2");
             return int.Parse(result);
         }
 
-        public string to_string()
+        public override string ToString()
         {
-            if (day == -1 || month == -1 || year == -1)
+            if (Day == -1 || Month == -1 || Year == -1)
             {
                 return "";
             }
-            string result = day.ToString("D2") + "/" + month.ToString("D2") + "/" + year.ToString("D4");
+            string result = Day.ToString("D2") + "/" + Month.ToString("D2") + "/" + Year.ToString("D4");
             return result;
         }
     }
