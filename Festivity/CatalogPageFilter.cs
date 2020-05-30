@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Festivity
 {
-    class CatalogPageFilter
+    internal class CatalogPageFilter
     {
         // Receives a Festival array and sorts it in alphabetical order by name
         public static Festival[] SortName(Festival[] festivalArray)

@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Festivity
 {
-    class User // base class (parent)
+    internal class User // base class (parent)
     {
         [JsonProperty("accountType")]
         public int AccountType { get; set; }
 
         [JsonProperty("accountID")]
         public int AccountID { get; set; }
+
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
 
@@ -45,7 +46,7 @@ namespace Festivity
         public Address userAddress = new Address();
     }
 
-    class JSONUserList
+    internal class JSONUserList
     {
         [JsonProperty("users")]
         public List<User> Users { get; set; } // Change this to change back to userOrganisator/Visitor

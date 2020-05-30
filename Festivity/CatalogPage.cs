@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace Festivity
@@ -77,8 +77,6 @@ namespace Festivity
             }
             Console.WriteLine("------------------------------------------------------------------");
         }
-
-
 
         public static Festival[] AddOrRemovePadding(Festival[] festivals)
         {

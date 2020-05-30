@@ -2,7 +2,7 @@
 
 namespace Festivity
 {
-    class ConsoleHelperFunctions
+    internal class ConsoleHelperFunctions
     {
         public static void ClearCurrentConsoleLine()
         {
