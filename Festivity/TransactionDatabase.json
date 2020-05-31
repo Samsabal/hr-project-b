@@ -4,7 +4,7 @@
       "festivalID": 2,
       "ticketID": 2,
       "buyerID": 3,
-      "ticketNumber": 5,
+      "ticketNumber": 6,
       "orderNumber": 1,
       "orderDate": "19-05-2020 11:17:19 AM"
     },
@@ -12,7 +12,7 @@
       "festivalID": 2,
       "ticketID": 3,
       "buyerID": 3,
-      "ticketNumber": 300,
+      "ticketNumber": 1,
       "orderNumber": 2,
       "orderDate": "19-05-2020 12:18:29 AM"
     }

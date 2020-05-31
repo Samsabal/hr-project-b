@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -9,6 +10,8 @@ namespace Festivity
 {
     class UserAccountPage
     {
+        public static int totalProfit = 0;
+
         static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
         static JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
 
@@ -46,6 +49,8 @@ namespace Festivity
                     Console.WriteLine($"1.  Firstname:              {user.firstName}");
                     Console.WriteLine($"2.  Lastname:               {user.lastName}");
                     Console.WriteLine($"3.  Email:                  {user.email}");
+                    Console.WriteLine("4.  Total amount earned: " + AmountEarned() + " euros.");
+
 
                     if (UserLoginPage.currentUserType == 1) // Organisator
                     {
@@ -76,7 +81,7 @@ namespace Festivity
                         Console.WriteLine("You entered an invalid number");
                         Console.Write("Enter the number and press <Enter>: ");
                     }
-                    if (userInput > 0 && userInput <= 8 )
+                    if (userInput > 0 && userInput <= 8)
                     {
                         account_change_organisator(userInput);
                         Console.Clear();
@@ -97,7 +102,7 @@ namespace Festivity
                     {
                         Console.WriteLine("Do you want to stop recieving Newsletters? [Y or N].");
                         string userInput = Console.ReadLine();
-                        if(userInput.ToLower() == "y")
+                        if (userInput.ToLower() == "y")
                         {
                             Console.Clear();
                             user.newsLetter = 0;
@@ -282,7 +287,7 @@ namespace Festivity
                     Console.WriteLine("Input current password: ");
                     userInput = Console.ReadLine();
                     Console.Clear();
-                    if(userInput == user.password)
+                    if (userInput == user.password)
                     {
                         Console.WriteLine("Input new password: ");
                         string userInput1 = Console.ReadLine();
@@ -309,6 +314,12 @@ namespace Festivity
             }
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(PATH_USER, json);
+        }
+
+        public static int AmountEarned()
+        {
+
+
         }
     }
 }

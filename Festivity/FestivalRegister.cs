@@ -152,7 +152,7 @@ namespace Festivity
                 string festivalTicketDescription = Console.ReadLine();
                 
                 Console.WriteLine("Fill in the price of the ticket in euros: ");
-                string festivalTicketPrice = Console.ReadLine();
+                int festivalTicketPrice = Int32.Parse(Console.ReadLine());
 
                 Console.WriteLine("Fill in the maximum available amount of this type ticket");
                 int festivalMaxTickets = Int32.Parse(Console.ReadLine());
