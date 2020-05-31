@@ -7,44 +7,39 @@ namespace Festivity
 {
     internal static class TicketTableListBuilder
     {
-        private static readonly string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-        private static readonly JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-
-        private static readonly string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-        private static readonly JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
-
-        private static readonly string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-        private static readonly JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
         public static void Build()
         {
             List<List<string>> ticketList = new List<List<string>>();
             int index = 0;
-            foreach (var transaction in transactions.transactions)
+            foreach (var transaction in transactions.Transactions)
             {
-                if (transaction.buyerID == UserLoginPage.currentUserId)
+                if (transaction.BuyerID == UserLoginPage.currentUserID)
                 {
                     List<string> tempList = new List<string>();
-                    foreach (var festival in festivals.festivals)
+                    foreach (var festival in festivals.Festivals)
                     {
-                        if (festival.festivalId == transaction.festivalID)
+                        if (festival.FestivalID == transaction.FestivalID)
                         {
-                            tempList.Add(festival.festivalName);
-                            tempList.Add(Convert.ToString(festival.festivalDate.day + "/" + festival.festivalDate.month + "/" + festival.festivalDate.year));
-                            tempList.Add(festival.check_status());
+                            tempList.Add(festival.FestivalName);
+                            tempList.Add(Convert.ToString(festival.FestivalDate.Day + "/" + festival.FestivalDate.Month + "/" + festival.FestivalDate.Year));
+                            tempList.Add(festival.CheckStatus());
                         }
                     }
-                    foreach (var ticket in tickets.tickets)
+                    foreach (var ticket in tickets.Tickets)
                     {
-                        if (ticket.ticketId == transaction.ticketID)
+                        if (ticket.TicketID == transaction.TicketID)
                         {
-                            tempList.Add(ticket.ticketName);
-                            tempList.Add(ticket.ticketPrice.ToString());
+                            tempList.Add(ticket.TicketName);
+                            tempList.Add(ticket.TicketPrice.ToString());
                         }
                     }
-                    tempList.Add(transaction.orderDate);
-                    tempList.Add(Convert.ToString(transaction.transactionID));
-                    tempList.Add(Convert.ToString(transaction.ticketAmount));
+                    tempList.Add(transaction.OrderDate);
+                    tempList.Add(Convert.ToString(transaction.TransactionID));
+                    tempList.Add(Convert.ToString(transaction.TicketAmount));
                     ticketList.Add(tempList);
                     index++;
                 }

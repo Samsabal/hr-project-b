@@ -57,6 +57,8 @@ namespace Festivity
                         Console.WriteLine($"8.  Company name:           {user.CompanyName}");
                         Console.WriteLine($"9.  Company phonenumber:    {user.CompanyPhoneNumber}\n");
                         Console.WriteLine("");
+                        Console.WriteLine("Transaction information");
+                        Console.WriteLine("You have made {ticketMoney} from tickets.");
                     }
                     if (UserLoginPage.currentUserType == 2) // Festival goer
                     {
