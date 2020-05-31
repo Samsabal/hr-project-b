@@ -16,7 +16,7 @@ namespace Festivity
         // Class containing everything relevant to the catalog page in the console
         public static void CatalogMain()
         {
-            JSONFestivalList Festivals = JSONFunctionality.get_festivals();
+            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
 
             activeScreen = true;
             currentCatalogNavigation = "main";

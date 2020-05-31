@@ -90,7 +90,7 @@ namespace Festivity
             do { zipCode = InputLoop("ZipCode: "); }
             while (!RegexUtils.IsValidZipCode(zipCode));
 
-            int accountID = JSONFunctionality.generateUserID();
+            int accountID = JSONFunctionality.GenerateUserID();
 
             Console.WriteLine("Your account has been created, and you will be automatically logged in.");
             Thread.Sleep(1000);
@@ -128,11 +128,11 @@ namespace Festivity
 
         private static void WriteToJson(User user)
         {
-            JSONUserList users = JSONFunctionality.get_users();
-            users.users.Add(user);
-            JSONFunctionality.write_users(users);
-            UserLoginPage.currentUserType = user.accountType;
-            UserLoginPage.automaticLogin(user);
+            JSONUserList users = JSONFunctionality.GetUsers();
+            users.Users.Add(user);
+            JSONFunctionality.WriteUsers(users);
+            UserLoginPage.currentUserType = user.AccountType;
+            UserLoginPage.AutomaticLogin(user);
         }
 
         private static void UserAccountTypeInput()

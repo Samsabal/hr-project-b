@@ -11,6 +11,8 @@ namespace Festivity
         public static int currentUserID = 0;
         public static int currentUserType;
 
+        private static readonly JSONUserList users = JSONFunctionality.GetUsers();
+
         public static void LoginPage()
         {
             userLoginChoice = 0;
@@ -23,8 +25,6 @@ namespace Festivity
 
         public static void ForgotPassword()
         {
-            JSONUserList users = JSONFunctionality.get_users();
-
             bool accountExists = false;
             Console.WriteLine("Enter Email: ");
             string userEmail = Console.ReadLine();
@@ -51,8 +51,6 @@ namespace Festivity
 
         public static void UserLogin(int loginOption = 0)
         {
-            JSONUserList users = JSONFunctionality.get_users();
-
             bool accountExists = false;
 
             Console.Write("Enter Email: ");

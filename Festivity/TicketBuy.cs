@@ -11,8 +11,8 @@ namespace Festivity
         public static List<Ticket> CurrentTicketList { get; private set; }
         private static int indexTicket;
 
-        private static JSONTicketList tickets = JSONFunctionality.get_tickets();
-        private static JSONTransactionList transactions =JSONFunctionality.get_transactions();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions =JSONFunctionality.GetTransactions();
 
         private static void UpdateCurrentFestivalTickets(int festivalId)
         {
@@ -110,8 +110,8 @@ namespace Festivity
                 OrderDate = timeStamp
             };
 
-            transactions.transactions.Add(transaction);
-            JSONFunctionality.write_transactions(transactions);
+            transactions.Transactions.Add(transaction);
+            JSONFunctionality.WriteTransactions(transactions);
         }
 
         private static int TransactionID(JSONTransactionList transactions)

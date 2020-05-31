@@ -27,12 +27,11 @@ namespace Festivity
         public static string festivalAdress = "Country: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
         public static int cancelTime = 0;
 
+        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+
         public static void ShowFestivalRegister()
         {
-            // This is used to write and retrieve data to the correct database
-            JSONFestivalList festivals = JSONFunctionality.get_festivals();
-            JSONTicketList tickets = JSONFunctionality.get_tickets();
-
             // This is a function to retrieve the latest registered festivalid and create the next festivalid
             int FestivalID(JSONFestivalList festivals)
             {
@@ -214,7 +213,7 @@ namespace Festivity
                         // Adds a new ticket to the database
                         tickets.Tickets.Add(ticket);
 
-                        JSONFunctionality.write_tickets(tickets);
+                        JSONFunctionality.WriteTickets(tickets);
                     };
                     currentRegisterSelection = "Main";
                 }
@@ -249,8 +248,8 @@ namespace Festivity
                         FestivalCancelTime = cancelTime
                     };
                     // Adds a new festival to the database
-                    festivals.festivals.Add(festival);
-                    JSONFunctionality.write_festivals(festivals);
+                    festivals.Festivals.Add(festival);
+                    JSONFunctionality.WriteFestivals(festivals);
 
                     activeScreen = false;
                     currentRegisterSelection = null;
