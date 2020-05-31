@@ -7,7 +7,6 @@ namespace Festivity
     {
         private static int userAccountType;
         private static int newsLetter;
-        private static bool userTerms = false;
         private static string firstName;
         private static string lastName;
         private static string email;
