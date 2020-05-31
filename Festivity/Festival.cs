@@ -7,42 +7,42 @@ namespace Festivity
     public class Festival
     {
         [JsonProperty("festivalId")]
-        public int festivalId { get; set; }
+        public int FestivalID { get; set; }
         [JsonProperty("festivalName")]
-        public string festivalName { get; set; }
+        public string FestivalName { get; set; }
         [JsonProperty("festivalDate")]
-        public Date festivalDate { get; set; }
+        public Date FestivalDate { get; set; }
         [JsonProperty("festivalStartingTime")]
-        public string festivalStartingTime { get; set; }
+        public string FestivalStartingTime { get; set; }
         [JsonProperty("festivalEndTime")]
-        public string festivalEndTime { get; set; }
+        public string FestivalEndTime { get; set; }
         [JsonProperty("festivalLocation")]
-        public Address festivalLocation { get; set; }
+        public Address FestivalLocation { get; set; }
         [JsonProperty("festivalDescription")]
-        public string festivalDescription { get; set; }
+        public string FestivalDescription { get; set; }
         [JsonProperty("festivalAgeRestriction")]
-        public int festivalAgeRestriction { get; set; }
+        public int FestivalAgeRestriction { get; set; }
         [JsonProperty("festivalGenre")]
-        public string festivalGenre { get; set; }
+        public string FestivalGenre { get; set; }
         [JsonProperty("festivalCancelTime")]
-        public int festivalCancelTime { get; set; }
+        public int FestivalCancelTime { get; set; }
         [JsonProperty("festivalStatus")]
-        public string festivalStatus { get; set; }
+        public string FestivalStatus { get; set; }
         [JsonProperty("festivalOrganisorId")]
-        public int festivalOrganiserId { get; set; }
+        public int FestivalOrganiserID { get; set; }
 
 
-        public string check_status()
+        public string CheckStatus()
         {
-            if (this == null || this.festivalId == -1)
+            if (this == null || this.FestivalID == -1)
             {
                 return "";
             }
-            else if (this.festivalStatus == "Festival aborted")
+            else if (this.FestivalStatus == "Festival aborted")
             {
                 return "Festival aborted";
             }
-            else if (this.festivalStatus == "Festival changed")
+            else if (this.FestivalStatus == "Festival changed")
             {
                 return "Festival changed";
             }
@@ -50,17 +50,17 @@ namespace Festivity
             {
                 int currentDate = int.Parse(DateTime.UtcNow.Year.ToString() + DateTime.UtcNow.Month.ToString() + DateTime.UtcNow.Day.ToString());
                 int currentTime = int.Parse(DateTime.UtcNow.Hour.ToString() + DateTime.UtcNow.Minute.ToString());
-                if (this.festivalDate.to_identifier() < currentDate)
+                if (this.FestivalDate.ToIdentifier() < currentDate)
                 {
                     return "This festival has ended";
                 }
-                else if (this.festivalDate.to_identifier() == currentDate)
+                else if (this.FestivalDate.ToIdentifier() == currentDate)
                 {
-                    if (int.Parse(this.festivalEndTime) < currentTime)
+                    if (int.Parse(this.FestivalEndTime) < currentTime)
                     {
                         return "This festival has ended";
                     }
-                    else if (currentTime < int.Parse(this.festivalStartingTime))
+                    else if (currentTime < int.Parse(this.FestivalStartingTime))
                     {
                         return "Tickets available";
                     }
@@ -76,12 +76,12 @@ namespace Festivity
             }
         }
 
-        public static Festival[] festival_remove_padding(Festival[] festivals)
+        public static Festival[] FestivalRemovePadding(Festival[] festivals)
         {
             int count = 0;
             for (int i = 0; i < festivals.Length; i++)
             {
-                if (festivals[i].festivalId != -1)
+                if (festivals[i].FestivalID != -1)
                 {
                     count++;
                 }
@@ -101,6 +101,6 @@ namespace Festivity
     class JSONFestivalList
     {
         [JsonProperty("festivals")]
-        public List<Festival> festivals { get; set; }
+        public List<Festival> Festivals { get; set; }
     }
 }

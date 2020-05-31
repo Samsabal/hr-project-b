@@ -12,19 +12,19 @@ namespace Festivity
             while (true)
             {
                 Console.SetWindowSize(150, 36);
-                if (UserLoginPage.currentUserId == 0)
+                if (UserLoginPage.currentUserID == 0)
                 {
-                    MenuFunction.menu(new string[] { "Register", "Login", "Festivals", "Exit" });
+                    MenuFunction.Menu(new string[] { "Register", "Login", "Festivals", "Exit" });
                 } 
-                if (UserLoginPage.currentUserId != 0)
+                if (UserLoginPage.currentUserID != 0)
                 {
                     if (UserLoginPage.currentUserType == 2)
                     {
-                        MenuFunction.menu(new string[] { "Festivals", "Account", "My Festivals",  "Logout", "Exit" });
+                        MenuFunction.Menu(new string[] { "Festivals", "Account", "My Festivals",  "Logout", "Exit" });
                     }
                     if (UserLoginPage.currentUserType == 1)
                     {
-                        MenuFunction.menu(new string[] {  "Festivals", "Register festival", "Account", "My Festivals", "Logout", "Exit" });
+                        MenuFunction.Menu(new string[] {  "Festivals", "Register festival", "Account", "My Festivals", "Logout", "Exit" });
                     }
                 }   
             }

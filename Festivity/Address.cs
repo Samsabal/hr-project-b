@@ -7,20 +7,20 @@ namespace Festivity
     public class Address
     {
         [JsonProperty("country")]
-        public string country { get; set; }
+        public string Country { get; set; }
         [JsonProperty("city")]
-        public string city { get; set; }
+        public string City { get; set; }
         [JsonProperty("zipCode")]
-        public string zipCode { get; set; }
+        public string ZipCode { get; set; }
         [JsonProperty("streetName")]
-        public string streetName { get; set; }
+        public string StreetName { get; set; }
         [JsonProperty("streetNumber")]
-        public string streetNumber { get; set; }
+        public string StreetNumber { get; set; }
 
         // Converts the address object into a readable string
-        public string to_string()
+        public override string ToString()
         {
-            string result = streetName + " " + streetNumber + ", " + zipCode + " " + city + ", " + country;
+            string result = StreetName + " " + StreetNumber + ", " + ZipCode + " " + City + ", " + Country;
             return result;
         } 
     }

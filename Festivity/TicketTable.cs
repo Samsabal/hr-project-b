@@ -11,18 +11,18 @@ namespace Festivity
     {
         static JSONUserList users = JSONFunctionality.get_users();
 
-        public static void ticket_table_page()
+        public static void TicketTablePage()
         {
             Console.WriteLine("testtetststsetsett");
             Thread.Sleep(2000);
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             Program.Main(); //new string[] { }
 
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
                 
             }
-            MenuFunction.menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
+            MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
             //foreach (var transaction in Transaction.transactions)
             //{
             //    if (transaction.buyerID == UserLoginPage.currentUserId)
