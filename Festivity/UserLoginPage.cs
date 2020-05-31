@@ -1,15 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class UserLoginPage
+    internal class UserLoginPage
     {
- 
-
         public static int userLoginChoice;
         public static int currentUserID = 0;
         public static int currentUserType;
@@ -21,8 +18,9 @@ namespace Festivity
             while (true)
             {
                 MenuFunction.Menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
-            } 
+            }
         }
+
         public static void ForgotPassword()
         {
             JSONUserList users = JSONFunctionality.get_users();
@@ -32,7 +30,7 @@ namespace Festivity
             string userEmail = Console.ReadLine();
             Console.Clear();
 
-            foreach(var user in users.Users)
+            foreach (var user in users.Users)
             {
                 if (user.Email.ToLower() == userEmail.ToLower())
                 {
@@ -40,7 +38,7 @@ namespace Festivity
                     Console.WriteLine("Your password = " + user.Password + "\n");
                     Console.WriteLine("Press <Enter> to go back");
                     Console.ReadLine();
-                } 
+                }
             }
             if (!accountExists)
             {
@@ -50,6 +48,7 @@ namespace Festivity
                 ForgotPassword();
             }
         }
+
         public static void UserLogin(int loginOption = 0)
         {
             JSONUserList users = JSONFunctionality.get_users();
@@ -82,15 +81,15 @@ namespace Festivity
                             Program.Main(); //new string[] { }
                         }
                         loginOption = 0;
-
-
-                    } else {
+                    }
+                    else
+                    {
                         Console.WriteLine("Wrong password, please try again");
                         Thread.Sleep(1000);
                         Console.Clear();
                         UserLogin();
                     }
-                } 
+                }
             }
             if (!accountExists)
             {
@@ -100,6 +99,7 @@ namespace Festivity
                 UserLogin();
             }
         }
+
         public static void AutomaticLogin(User user)
         {
             currentUserID = user.AccountID;

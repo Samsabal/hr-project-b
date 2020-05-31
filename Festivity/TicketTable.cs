@@ -1,15 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class TicketTable
+    internal class TicketTable
     {
-        static JSONUserList users = JSONFunctionality.get_users();
+        private static JSONUserList users = JSONFunctionality.get_users();
 
         public static void TicketTablePage()
         {
@@ -20,7 +18,6 @@ namespace Festivity
 
             foreach (var user in users.Users)
             {
-                
             }
             MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
             //foreach (var transaction in Transaction.transactions)
