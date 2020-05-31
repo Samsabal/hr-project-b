@@ -39,7 +39,7 @@ namespace Festivity
             JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
 
             // This is a function to retrieve the latest registered festivalid and create the next festivalid
-            int festivalId(JSONFestivalList festivals)
+            static int festivalId(JSONFestivalList festivals)
             {
                 int festivalId;
                 if (festivals.festivals.Count == 0)
@@ -169,6 +169,7 @@ namespace Festivity
                 else if (currentRegisterSelection == "Festival Genre")
                 {
                     Console.Clear();
+                    MenuFunction.option = 0;
                     Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
                     MenuFunction.menu(new string[] { "Techno", "Drum & Bass", "Pop", "Rock", "Hip-Hop"});
                 }
@@ -231,42 +232,53 @@ namespace Festivity
                 else if (currentRegisterSelection == "Save Festival")
                 {
                     Console.Clear();
+                    
+                    // Check if there are tickets register.
+                    // If not it will not save the festival.
+                    //if(tickets.tickets[^1].festivalId != festivalId(festivals))
+                    //{
+                    //    Console.WriteLine("Before you can save the festival to our database you must create a ticket!");
+                    //    currentRegisterSelection = "Main";
+                    //}
 
-                    // A format for creating a new festival
-                    Festival festival = new Festival
-                    {
-                        festivalId = festivalID,
-                        festivalName = festivalName,
-                        festivalDescription = festivalDescription,
-                        festivalLocation = new Address
+                    //else
+                    //{
+                        // A format for creating a new festival
+                        Festival festival = new Festival
                         {
-                            country = festivalLocationCountry,
-                            city = festivalLocationCity,
-                            zipCode = festivalLocationZipCode,
-                            streetName = festivalLocationStreet,
-                            streetNumber = festivalLocationHouseNumber
-                        },
-                        festivalDate = new Date
-                        {
-                            day = festivalDateDay,
-                            month = festivalDateMonth,
-                            year = festivalDateYear
-                        },
-                        festivalStartingTime = festivalStartingTime,
-                        festivalEndTime = festivalEndTime,
-                        festivalGenre = festivalGenre,
-                        festivalAgeRestriction = festivalAgeRestriction,
-                        festivalCancelTime = cancelTime
+                            festivalId = festivalID,
+                            festivalName = festivalName,
+                            festivalDescription = festivalDescription,
+                            festivalLocation = new Address
+                            {
+                                country = festivalLocationCountry,
+                                city = festivalLocationCity,
+                                zipCode = festivalLocationZipCode,
+                                streetName = festivalLocationStreet,
+                                streetNumber = festivalLocationHouseNumber
+                            },
+                            festivalDate = new Date
+                            {
+                                day = festivalDateDay,
+                                month = festivalDateMonth,
+                                year = festivalDateYear
+                            },
+                            festivalStartingTime = festivalStartingTime,
+                            festivalEndTime = festivalEndTime,
+                            festivalGenre = festivalGenre,
+                            festivalAgeRestriction = festivalAgeRestriction,
+                            festivalCancelTime = cancelTime
 
-                    };
-                    // Adds a new festival to the database
-                    festivals.festivals.Add(festival);
-                    string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
-                    File.WriteAllText(PATH_FESTIVAL, jsonfestival);
+                        };
+                        // Adds a new festival to the database
+                        festivals.festivals.Add(festival);
+                        string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
+                        File.WriteAllText(PATH_FESTIVAL, jsonfestival);
 
-                    activeScreen = false;
-                    currentRegisterSelection = null;
-                    MenuFunction.option = 0;
+                        activeScreen = false;
+                        currentRegisterSelection = null;
+                        MenuFunction.option = 0;
+                    //}
                 }
             }
         }
