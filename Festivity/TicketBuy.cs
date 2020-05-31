@@ -1,7 +1,5 @@
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 
 namespace Festivity
@@ -13,14 +11,8 @@ namespace Festivity
         public static List<Ticket> CurrentTicketList { get; private set; }
         private static int indexTicket;
 
-        private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-        private static readonly JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
-
-        private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-        private static readonly JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PathTicket));
-
-        private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-        private static readonly JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PathTransaction));
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions =JSONFunctionality.GetTransactions();
 
         private static void UpdateCurrentFestivalTickets(int festivalId)
         {
@@ -77,7 +69,6 @@ namespace Festivity
                 Console.WriteLine("Confirm Order? [y/n]");
                 response = Console.ReadKey(true).Key;
             } while (response != ConsoleKey.Y && response != ConsoleKey.N);
-
             if (response == ConsoleKey.Y)
             {
                 PaymentOption();
@@ -120,8 +111,7 @@ namespace Festivity
             };
 
             transactions.Transactions.Add(transaction);
-            string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
-            File.WriteAllText(PathTransaction, json);
+            JSONFunctionality.WriteTransactions(transactions);
         }
 
         private static int TransactionID(JSONTransactionList transactions)
