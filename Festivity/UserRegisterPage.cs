@@ -26,71 +26,71 @@ namespace Festivity
         private static string streetNumber;
         private static string zipCode;
 
-        public static void createUser()
+        public static void CreateUser()
         {
-            do { firstName = inputLoop("First name: "); }
-            while (!RegexUtils.isValidName(firstName));
+            do { firstName = InputLoop("First name: "); }
+            while (!RegexUtils.IsValidName(firstName));
 
-            do { lastName = inputLoop("Last name: "); }
-            while (!RegexUtils.isValidName(lastName));
+            do { lastName = InputLoop("Last name: "); }
+            while (!RegexUtils.IsValidName(lastName));
 
-            do { email = inputLoop("Email: "); }
-            while (!RegexUtils.isValidEmail(email));
+            do { email = InputLoop("Email: "); }
+            while (!RegexUtils.IsValidEmail(email));
 
-            do { userPassword = inputLoop("Password: "); }
-            while (!RegexUtils.isValidPassword(userPassword));
+            do { userPassword = InputLoop("Password: "); }
+            while (!RegexUtils.IsValidPassword(userPassword));
 
-            userAccountTypeInput();
+            UserAccountTypeInput();
             Console.Clear();
 
             if (userAccountType == 1) // Organisator
             {
-                do { contactPerson = inputLoop("Company contactperson: "); }
-                while (!RegexUtils.isValidName(contactPerson));
+                do { contactPerson = InputLoop("Company contactperson: "); }
+                while (!RegexUtils.IsValidName(contactPerson));
 
-                do { companyPhoneNumber = inputLoop("Company phone number: "); }
-                while (!RegexUtils.isValidPhoneNumber(companyPhoneNumber));
+                do { companyPhoneNumber = InputLoop("Company phone number: "); }
+                while (!RegexUtils.IsValidPhoneNumber(companyPhoneNumber));
 
-                do { companyName = inputLoop("Company name: "); }
-                while (!RegexUtils.isValidName(companyName));
+                do { companyName = InputLoop("Company name: "); }
+                while (!RegexUtils.IsValidName(companyName));
 
-                do { companyIBAN = inputLoop("Company IBAN (Example: 'NL99BANK0123456789'): "); }
+                do { companyIBAN = InputLoop("Company IBAN (Example: 'NL99BANK0123456789'): "); }
                 while (!RegexUtils.isValidIBAN(companyIBAN));
             }
 
             if (userAccountType == 2) // Visitor
             {
-                do { userDateDay = inputLoop("Day of birth: "); }
-                while (!RegexUtils.isValidUserDay(userDateDay));
+                do { userDateDay = InputLoop("Day of birth: "); }
+                while (!RegexUtils.IsValidUserDay(userDateDay));
 
-                do { userDateMonth = inputLoop("Month of birth: "); }
-                while (!RegexUtils.isValidUserMonth(userDateMonth));
+                do { userDateMonth = InputLoop("Month of birth: "); }
+                while (!RegexUtils.IsValidUserMonth(userDateMonth));
 
-                do { userDateYear = inputLoop("Year of birth: "); }
-                while (!RegexUtils.isValidUserYear(userDateYear));
+                do { userDateYear = InputLoop("Year of birth: "); }
+                while (!RegexUtils.IsValidUserYear(userDateYear));
 
-                do { visitorPhoneNumber = inputLoop("Phone number: "); }
-                while (!RegexUtils.isValidPhoneNumber(visitorPhoneNumber));
+                do { visitorPhoneNumber = InputLoop("Phone number: "); }
+                while (!RegexUtils.IsValidPhoneNumber(visitorPhoneNumber));
 
-                userNewsletterInput();
+                UserNewsletterInput();
                 Console.Clear();
             }
-            do { country = inputLoop("Country: "); }
-            while (!RegexUtils.isValidAddressName(country));
+            do { country = InputLoop("Country: "); }
+            while (!RegexUtils.IsValidAddressName(country));
 
-            do { city = inputLoop("City: "); }
-            while (!RegexUtils.isValidAddressName(city));
+            do { city = InputLoop("City: "); }
+            while (!RegexUtils.IsValidAddressName(city));
 
-            do { streetName = inputLoop("Streetname: "); }
-            while (!RegexUtils.isValidAddressName(streetName));
+            do { streetName = InputLoop("Streetname: "); }
+            while (!RegexUtils.IsValidAddressName(streetName));
 
-            do { streetNumber = inputLoop("Streetnumber: "); }
-            while (!RegexUtils.isValidStreetNumber(streetNumber));
+            do { streetNumber = InputLoop("Streetnumber: "); }
+            while (!RegexUtils.IsValidStreetNumber(streetNumber));
 
-            do { zipCode = inputLoop("ZipCode: "); }
-            while (!RegexUtils.isValidZipCode(zipCode));
+            do { zipCode = InputLoop("ZipCode: "); }
+            while (!RegexUtils.IsValidZipCode(zipCode));
 
-            int accountID = JSONData.generateUserID();
+            int accountID = JSONData.GenerateUserID();
 
             Console.WriteLine("Your account has been created, and you will be automatically logged in.");
             Thread.Sleep(1000);
@@ -98,62 +98,62 @@ namespace Festivity
 
             User user = new User //Creates a new user object
             {
-                accountType = userAccountType,
-                accountID = accountID,
-                firstName = firstName,
-                lastName = lastName,
-                email = email,
-                password = userPassword,
-                contactPerson = contactPerson,
-                companyPhoneNumber = companyPhoneNumber,
-                companyName = companyName,
-                companyIBAN = companyIBAN,
+                AccountType = userAccountType,
+                AccountID = accountID,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Password = userPassword,
+                ContactPerson = contactPerson,
+                CompanyPhoneNumber = companyPhoneNumber,
+                CompanyName = companyName,
+                CompanyIBAN = companyIBAN,
                 userAddress = {
-                        country = country,
-                        city = city,
-                        zipCode = zipCode,
-                        streetName = streetName,
-                        streetNumber = streetNumber
+                        Country = country,
+                        City = city,
+                        ZipCode = zipCode,
+                        StreetName = streetName,
+                        StreetNumber = streetNumber
                         },
                 birthDate = {
-                        day = int.Parse(userDateDay),
-                        month = int.Parse(userDateMonth),
-                        year = int.Parse(userDateYear)
+                        Day = int.Parse(userDateDay),
+                        Month = int.Parse(userDateMonth),
+                        Year = int.Parse(userDateYear)
                     },
-                newsLetter = newsLetter,
-                phoneNumber = visitorPhoneNumber
+                NewsLetter = newsLetter,
+                PhoneNumber = visitorPhoneNumber
             };
-            writeToJson(user);
+            WriteToJson(user);
         }
 
-        private static void writeToJson(User user)
+        private static void WriteToJson(User user)
         {
-            JSONData.writeToUserDatabase(user);
-            UserLoginPage.currentUserType = user.accountType;
-            UserLoginPage.automaticLogin(user);
+            JSONData.WriteToUserDatabase(user);
+            UserLoginPage.currentUserType = user.AccountType;
+            UserLoginPage.AutomaticLogin(user);
         }
 
-        private static void userAccountTypeInput()
+        private static void UserAccountTypeInput()
         {
             MenuFunction.option = 0;
             while (userAccountType == 0)
             {
                 Console.WriteLine("Are you an Organisator or Visitor? \n");
-                MenuFunction.menu(new string[] { $"I am an Organisator", "I am a Visitor" });
+                MenuFunction.Menu(new string[] { $"I am an Organisator", "I am a Visitor" });
             }
         }
 
-        private static void userNewsletterInput()
+        private static void UserNewsletterInput()
         {
             MenuFunction.option = 0;
             while (newsLetter == 0)
             {
                 Console.WriteLine("Do you want to recieve a newsletter? \n");
-                MenuFunction.menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve a newsletters" });
+                MenuFunction.Menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve a newsletters" });
             }
         }
 
-        public static string inputLoop(string printString)
+        public static string InputLoop(string printString)
         {
             string userInput;
             Console.Write(printString); userInput = Console.ReadLine();
@@ -161,12 +161,12 @@ namespace Festivity
             return userInput;
         }
 
-        public static void setAccountType(int userType)
+        public static void SetAccountType(int userType)
         {
             userAccountType = userType;
         }
 
-        public static void setNewsLetter(int userChoice)
+        public static void SetNewsLetter(int userChoice)
         {
             newsLetter = userChoice;
         }
