@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.IO;
+﻿using System;
 using System.Threading;
 
 namespace Festivity
 {
     internal class TicketTable
     {
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        private static readonly JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
+        private static JSONUserList users = JSONFunctionality.GetUsers();
 
         public static void TicketTablePage()
         {

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.IO;
+﻿using System;
 
 namespace Festivity
 {
@@ -29,14 +27,11 @@ namespace Festivity
         public static string festivalAdress = "Country: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
         public static int cancelTime = 0;
 
+        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+
         public static void ShowFestivalRegister()
         {
-            // This is used to write and retrieve data to the correct database
-            string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
-            string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PathTicket));
-
             // This is a function to retrieve the latest registered festivalid and create the next festivalid
             int FestivalID(JSONFestivalList festivals)
             {
@@ -135,12 +130,12 @@ namespace Festivity
                     Console.WriteLine("Fill in the country: ");
                     festivalLocationCountry = Console.ReadLine();
 
+
                     Console.WriteLine("Fill in the city: ");
                     festivalLocationCity = Console.ReadLine();
 
                     Console.WriteLine("Fill in the zipcode");
                     festivalLocationZipCode = Console.ReadLine();
-
                     Console.WriteLine("Fill in the street: ");
                     festivalLocationStreet = Console.ReadLine();
 
@@ -218,9 +213,7 @@ namespace Festivity
                         // Adds a new ticket to the database
                         tickets.Tickets.Add(ticket);
 
-                        string jsonTicket = JsonConvert.SerializeObject(tickets, Formatting.Indented);
-
-                        File.WriteAllText(PathTicket, jsonTicket);
+                        JSONFunctionality.WriteTickets(tickets);
                     };
                     currentRegisterSelection = "Main";
                 }
@@ -256,8 +249,7 @@ namespace Festivity
                     };
                     // Adds a new festival to the database
                     festivals.Festivals.Add(festival);
-                    string jsonFestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
-                    File.WriteAllText(PathFestival, jsonFestival);
+                    JSONFunctionality.WriteFestivals(festivals);
 
                     activeScreen = false;
                     currentRegisterSelection = null;

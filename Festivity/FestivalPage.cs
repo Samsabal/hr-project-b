@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System;
 using System.IO;
 
@@ -6,6 +5,10 @@ namespace Festivity
 {
     public class FestivalPage
     {
+        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+        private static readonly JSONUserList users = JSONFunctionality.GetUsers();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+
         public static void ClearConsoleLine() //Removes the last line in the ticket table for a cleaner look
         {
             int currentLineCursor = Console.CursorTop;
@@ -16,13 +19,7 @@ namespace Festivity
 
         public static bool AgeCheck(int festivalId) //Checks if the user is old enough to use the program
         {
-            string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
-
-            string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
-
-            foreach (var festival in Festivals.Festivals)
+            foreach (var festival in festivals.Festivals)
             {
                 if (festival.FestivalID == festivalId)
                 {
@@ -50,15 +47,6 @@ namespace Festivity
 
         public static void ShowFestivalPage(int festivalId) //Displays the festival page
         {
-            string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
-
-            string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
-
-            string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList Tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PathTicket));
-
             foreach (var festival in festivals.Festivals)
             {
                 if (festival.FestivalID == festivalId)
@@ -97,7 +85,7 @@ namespace Festivity
                             Console.WriteLine(festival.FestivalLocation.StreetName + " " + festival.FestivalLocation.StreetNumber + ", " + festival.FestivalLocation.ZipCode);
                             Console.WriteLine(festival.FestivalLocation.City + ", " + festival.FestivalLocation.Country);
                             Console.WriteLine(thickLine);
-                            foreach (var ticket in Tickets.Tickets)//Shows the tickets from the corresponding festival
+                            foreach (var ticket in tickets.Tickets)//Shows the tickets from the corresponding festival
                             {
                                 if (ticket.FestivalID == festival.FestivalID)
                                 {

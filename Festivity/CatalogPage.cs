@@ -16,8 +16,7 @@ namespace Festivity
         // Class containing everything relevant to the catalog page in the console
         public static void CatalogMain()
         {
-            string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
+            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
 
             activeScreen = true;
             currentCatalogNavigation = "main";
