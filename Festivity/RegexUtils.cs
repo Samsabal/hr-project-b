@@ -9,7 +9,7 @@ namespace Festivity
         {
             if (Int32.TryParse(value, out int result))
             {
-                if(result >= min && result <= max)
+                if (result >= min && result <= max)
                 {
                     return true;
                 }
@@ -148,6 +148,5 @@ namespace Festivity
                 return true;
             }
         }
-
     }
 }

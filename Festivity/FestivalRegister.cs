@@ -6,7 +6,6 @@ namespace Festivity
 {
     internal class FestivalRegister
     {
-
         public static bool activeScreen = true;
         public static string currentRegisterSelection = null;
 
@@ -74,8 +73,6 @@ namespace Festivity
 
             int festivalID = FestivalID(festivals);
 
-
-
             // Makes sure the console keeps refreshing, allowing input
 
             while (activeScreen == true)
@@ -94,7 +91,6 @@ namespace Festivity
                     "Cancel Time: " + cancelTime + "\n" +
                     "===============================================\n");
                     MenuFunction.Menu(new string[] { "Festival Name", "Festival Date", "Starting Time", "End Time", "Festival Adress", "Festival Description", "Age restriction", "Festival Genre", "Cancel Time", "Tickets", "Save Festival" });
-
                 }
                 else if (currentRegisterSelection == "Festival Name")
                 {
@@ -170,7 +166,7 @@ namespace Festivity
                 {
                     Console.Clear();
                     Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
-                    MenuFunction.Menu(new string[] { "Techno", "Drum & Bass", "Pop", "Rock", "Hip-Hop"});
+                    MenuFunction.Menu(new string[] { "Techno", "Drum & Bass", "Pop", "Rock", "Hip-Hop" });
                 }
                 else if (currentRegisterSelection == "Cancel Time")
                 {
@@ -257,7 +253,6 @@ namespace Festivity
                         FestivalGenre = festivalGenre,
                         FestivalAgeRestriction = festivalAgeRestriction,
                         FestivalCancelTime = cancelTime
-
                     };
                     // Adds a new festival to the database
                     festivals.Festivals.Add(festival);

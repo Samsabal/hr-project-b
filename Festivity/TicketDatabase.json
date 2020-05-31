@@ -1,6 +1,6 @@
 {
-  "tickets": [
-    {
+    "tickets": [
+        {
             "festivalId": 1,
             "ticketId": 1,
             "ticketName": "Normal Ticket",
@@ -64,5 +64,5 @@
             "ticketPrice": 400,
             "maxTickets": 5000
         }
-  ]
+    ]
 }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Festivity
 {
@@ -8,29 +8,39 @@ namespace Festivity
     {
         [JsonProperty("festivalId")]
         public int FestivalID { get; set; }
+
         [JsonProperty("festivalName")]
         public string FestivalName { get; set; }
+
         [JsonProperty("festivalDate")]
         public Date FestivalDate { get; set; }
+
         [JsonProperty("festivalStartingTime")]
         public string FestivalStartingTime { get; set; }
+
         [JsonProperty("festivalEndTime")]
         public string FestivalEndTime { get; set; }
+
         [JsonProperty("festivalLocation")]
         public Address FestivalLocation { get; set; }
+
         [JsonProperty("festivalDescription")]
         public string FestivalDescription { get; set; }
+
         [JsonProperty("festivalAgeRestriction")]
         public int FestivalAgeRestriction { get; set; }
+
         [JsonProperty("festivalGenre")]
         public string FestivalGenre { get; set; }
+
         [JsonProperty("festivalCancelTime")]
         public int FestivalCancelTime { get; set; }
+
         [JsonProperty("festivalStatus")]
         public string FestivalStatus { get; set; }
+
         [JsonProperty("festivalOrganisorId")]
         public int FestivalOrganiserID { get; set; }
-
 
         public string CheckStatus()
         {
@@ -97,8 +107,7 @@ namespace Festivity
         }
     }
 
-
-    class JSONFestivalList
+    internal class JSONFestivalList
     {
         [JsonProperty("festivals")]
         public List<Festival> Festivals { get; set; }
