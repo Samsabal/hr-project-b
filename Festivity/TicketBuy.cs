@@ -1,144 +1,185 @@
-﻿using System;
-using Newtonsoft.Json;
-using System.IO;
-using System.Text;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace Festivity
 {
-    class TicketBuy
+    internal class TicketBuy
     {
-        public static int ticketListLength;
-        public static int selectedTicket;
-        public static Ticket[] ticketArray;
-        public static void ticket_buy(int festivalId)
+        private static int ticketAmount;
+        private static int currentFestivalId;
+        public static List<Ticket> CurrentTicketList { get; private set; }
+        private static int indexTicket;
+
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions =JSONFunctionality.GetTransactions();
+
+        private static void UpdateCurrentFestivalTickets(int festivalId)
         {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-
-            string PATH_TICKET = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-            JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PATH_TICKET));
-
-            List<int> ticketList = new List<int>();
-            
+            CurrentTicketList = new List<Ticket>();
             // Gets all Tickets related to the current Festival
-            foreach (var ticket in tickets.tickets)
+            foreach (var ticket in tickets.Tickets)
             {
-                foreach (var festival in festivals.festivals)
+                if (festivalId == ticket.FestivalID)
                 {
-                    if (festivalId == festival.festivalId)
-                    {
-                        ticketList.Add(ticket.ticketId);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error!");
-                    }
+                    CurrentTicketList.Add(ticket);
                 }
-            }
-
-            int[] ticketCount = ticketList.ToArray();
-            ticketListLength = ticketCount.Length;
-
-            MenuFunction.option = 0;
-
-            List<string> menuOptionsList = new List<string>();
-            List<Ticket> ticketArrayList = new List<Ticket>();
-
-            foreach (var ticketId in ticketList)
-            {
-                foreach (var ticket in tickets.tickets)
-                {
-                    if (ticket.ticketId == ticketId)
-                    {
-                        ticketArrayList.Add(ticket);
-                        menuOptionsList.Add("Order Ticket:" + ticketId );
-                    }
-                }
-
-            }
-            menuOptionsList.Add("Return to Festival Page");
-            menuOptionsList.Add("Exit to Main Menu");
-
-            string[] menuOptions = menuOptionsList.ToArray();
-            ticketArray = ticketArrayList.ToArray();
-
-            while (true)
-            {
-                string line = "----------------------------------------------------------------------";
-                // Displays the Tickets for the current Festival
-                foreach (var ticketId in ticketList)
-                {
-                    foreach (var ticket in tickets.tickets)
-                    {
-                        if (ticket.ticketId == ticketId)
-                        {
-                            Console.WriteLine(ticket.ticketName);
-                            Console.WriteLine("Description: " + ticket.ticketDescription);
-                            Console.WriteLine("Price: " + ticket.ticketPrice + " euros");
-                            Console.WriteLine(line);
-                        }
-                    }
-                }
-                MenuFunction.menu(menuOptions, null, ticketArray);
             }
         }
 
-        public static void ticket_buy_selected(int ticket)
+        public static void TicketShow()
         {
-            string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-            JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
+            currentFestivalId = CatalogPage.selectedFestival;
 
-            Console.WriteLine("Would you like to buy this ticket? [y/n]");
-            ConsoleKey response = Console.ReadKey(true).Key;
+            UpdateCurrentFestivalTickets(currentFestivalId);
+
+            MenuFunction.option = 0;
+
+            while (true)
+            {
+                List<string> menuOptionsList = new List<string>();
+                string line = "----------------------------------------------------------------------";
+
+                // Displays the Tickets for the current Festival
+                foreach (var ticket in CurrentTicketList)
+                {
+                    Console.WriteLine(ticket.TicketName);
+                    Console.WriteLine("Description: " + ticket.TicketDescription);
+                    Console.WriteLine("Price: " + ticket.TicketPrice + " euros");
+                    Console.WriteLine(line);
+                    menuOptionsList.Add("Buy Ticket:" + ticket.TicketID);
+                }
+
+                menuOptionsList.Add("Return to Festival Page");
+                menuOptionsList.Add("Exit to Main Menu");
+                MenuFunction.Menu(menuOptionsList.ToArray(), CurrentTicketList.ToArray());
+            }
+        }
+
+        public static void TicketConfirmation(int index)
+        {
+            indexTicket = index;
+            Console.WriteLine("How many tickets would you like to buy?");
+            ticketAmount = TicketAmount();
+            TransactionOverview(indexTicket, ticketAmount);
+
+            ConsoleKey response;
+            do
+            {
+                Console.WriteLine("Confirm Order? [y/n]");
+                response = Console.ReadKey(true).Key;
+            } while (response != ConsoleKey.Y && response != ConsoleKey.N);
             if (response == ConsoleKey.Y)
             {
-                Console.WriteLine();
-                Console.WriteLine("Succesfully bought a Ticket!");
-                Thread.Sleep(2000);
-                write_to_database();
+                PaymentOption();
             }
-
+            if (response == ConsoleKey.N)
+            {
+                Console.Clear();
+                TicketShow();
+            }
             Console.Clear();
-            void write_to_database()
+        }
+
+        public static void ShowTicketBuy()
+        {
+            WriteToDatabase(GetSelectedTicket(indexTicket));
+            Console.WriteLine("Ordered Succesfully!");
+            Thread.Sleep(2000);
+            Console.Clear();
+            FestivalPage.ShowFestivalPage(CatalogPage.selectedFestival);
+        }
+
+        private static Ticket GetSelectedTicket(int option)
+        {
+            return CurrentTicketList[option];
+        }
+
+        private static void WriteToDatabase(Ticket ticket)
+        {
+            DateTime now = DateTime.Now;
+            string timeStamp = "" + now;
+
+            Transaction transaction = new Transaction
             {
-                string PATH_TRANSACTION = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
-                JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PATH_TRANSACTION));
-                DateTime now = DateTime.Now;
-                string timeStamp = "" + now;
+                TransactionID = TransactionID(transactions),
+                FestivalID = (int)CatalogPage.selectedFestival,
+                TicketID = ticket.TicketID,
+                BuyerID = (int)UserLoginPage.currentUserID,
+                TicketAmount = ticketAmount,
+                OrderDate = timeStamp
+            };
 
-                Transaction transaction = new Transaction
-                {
-                    festivalID = (int)CatalogPage.selectedFestival,
-                    ticketID = ticket,
-                    buyerID = (int)UserLoginPage.currentUserId,
-                    ticketNumber = 1,
-                    orderNumber = order_number(transactions),
-                    orderDate = timeStamp
-                };
+            transactions.Transactions.Add(transaction);
+            JSONFunctionality.WriteTransactions(transactions);
+        }
 
-                transactions.transactions.Add(transaction);
-                string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
-                File.WriteAllText(PATH_TRANSACTION, json);
-            }
-
-            int order_number(JSONTransactionList transactions)
+        private static int TransactionID(JSONTransactionList transactions)
+        {
+            int transactionID;
+            if (transactions.Transactions.Count == 0)
             {
-                int orderNumber;
-                if (transactions.transactions.Count == 0)
-                {
-                    orderNumber = 1;
-                }
-                else
-                {
-                    int item = transactions.transactions[transactions.transactions.Count - 1].orderNumber;
-                    orderNumber = item + 1;
-                };
-
-                return orderNumber;
+                transactionID = 1;
             }
+            else
+            {
+                int item = transactions.Transactions[transactions.Transactions.Count - 1].TransactionID;
+                transactionID = item + 1;
+            };
+
+            return transactionID;
+        }
+
+        private static int TicketAmount()
+        {
+            int userInput;
+            while (!int.TryParse(Console.ReadLine(), out userInput))
+            {
+                Console.Clear();
+                Console.WriteLine("You entered an invalid number");
+                Console.WriteLine("Enter the number and press <Enter>: ");
+            }
+            if (userInput > 0 && userInput <= 10)
+            {
+                return userInput;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("You entered an invalid number");
+                Console.WriteLine("Enter the number and press <Enter>: ");
+                return TicketAmount();
+            }
+        }
+
+        public static int GetTicketListLength()
+        {
+            return CurrentTicketList.ToArray().Length;
+        }
+
+        private static void PaymentOption()
+        {
+            Console.Clear();
+            while (true)
+            {
+                Console.WriteLine("Choose your payment method:");
+                MenuFunction.Menu(new string[] { "iDEAL", "Paypal", "Creditcard", "Cancel Order" });
+            }
+        }
+
+        public static void TransactionOverview(int index, int amount)
+        {
+            Console.Clear();
+            Ticket selectedTicket = GetSelectedTicket(index);
+
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("Transaction Information");
+            Console.WriteLine("----------------------------------------------------------------------");
+            Console.WriteLine(amount + " x " + selectedTicket.TicketName);
+            Console.WriteLine(selectedTicket.TicketDescription);
+            Console.WriteLine("€" + selectedTicket.TicketPrice + " / Ticket");
+            Console.WriteLine("Total: €" + (Convert.ToInt32(selectedTicket.TicketPrice) * amount));
+            Console.WriteLine("----------------------------------------------------------------------");
         }
     }
 }

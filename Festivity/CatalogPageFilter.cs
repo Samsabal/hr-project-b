@@ -1,15 +1,19 @@
-﻿namespace Festivity
+﻿using Newtonsoft.Json;
+using System.IO;
+
+namespace Festivity
 {
-    class CatalogPageFilter
+    internal class CatalogPageFilter
     {
         // Receives a Festival array and sorts it in alphabetical order by name
-        public static Festival[] sort_name(Festival[] festivalArray, int arraySize)
+        public static Festival[] SortName(Festival[] festivalArray)
         {
-            for (int j = arraySize - 1; j > 0; j--)
+            festivalArray = Festival.FestivalRemovePadding(festivalArray);
+            for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].festivalName.CompareTo(festivalArray[i + 1].festivalName) > 0)
+                    if (festivalArray[i].FestivalName.CompareTo(festivalArray[i + 1].FestivalName) > 0 && festivalArray[i].FestivalID != -1)
                     {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
@@ -17,79 +21,85 @@
                     }
                 }
             }
-            return festivalArray;
+            return CatalogPage.AddOrRemovePadding(festivalArray);
         }
 
         // Receives a Festival array and sorts it in ascending order by date
-        public static Festival[] sort_date(Festival[] festivalArray, int arraySize)
+        public static Festival[] SortDate(Festival[] festivalArray)
         {
-            for (int j = arraySize - 1; j > 0; j--)
+            festivalArray = Festival.FestivalRemovePadding(festivalArray);
+            for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].festivalDate.to_identifier() > festivalArray[i + 1].festivalDate.to_identifier())
-                    { 
+                    if (festivalArray[i].FestivalDate.ToIdentifier() > festivalArray[i + 1].FestivalDate.ToIdentifier())
+                    {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }
                 }
             }
-            return festivalArray;
+            return CatalogPage.AddOrRemovePadding(festivalArray);
         }
 
-        public static Festival[] filter_name(Festival[] festivalArray, int arraySize, string searchText)
+        public static Festival[] FilterName(Festival[] festivalArray, string searchText)
         {
-            Festival[] tempArray = new Festival[arraySize];
+            Festival[] resultArray = new Festival[festivalArray.Length];
             int count = 0;
 
-            for (int i = 0; i < arraySize; i++)
+            for (int i = 0; i < festivalArray.Length; i++)
             {
-                if (festivalArray[i].festivalName.ToLower().Contains(searchText.ToLower()))
+                if (festivalArray[i].FestivalName.ToLower().Contains(searchText.ToLower()))
                 {
-                    tempArray[count] = festivalArray[i];
+                    resultArray[count] = festivalArray[i];
                     count++;
                 }
             }
-            int extraSpace = 5 - (count % 5);
-            Festival[] resultArray = new Festival[count + extraSpace + 1];
-
-            for (int i = 0; i < count; i++)
-            {
-                resultArray[i] = tempArray[i];
-            }
-
-            Festival emptyFestival = new Festival
-            {
-                festivalId = -1,
-                festivalName = "",
-                festivalDate = new Date
-                {
-                    day = -1,
-                    month = -1,
-                    year = -1
-                },
-                festivalStartingTime = "",
-                festivalEndTime = "",
-                festivalLocation = new Address
-                {
-                    country = "",
-                    city = "",
-                    zipCode = "",
-                    streetName = "",
-                    streetNumber = ""
-                },
-                festivalDescription = "",
-                festivalAgeRestriction = 18,
-                festivalGenre = "",
-            };
-
-            for (int i = count; i < resultArray.Length; i++)
-            {
-                resultArray[i] = emptyFestival;
-            }
-
+            resultArray = CatalogPage.AddOrRemovePadding(resultArray);
             return resultArray;
+        }
+
+        public static Festival[] FilterLocation(Festival[] festivalArray, string searchText)
+        {
+            Festival[] resultArray = new Festival[festivalArray.Length];
+            int count = 0;
+
+            for (int i = 0; i < festivalArray.Length; i++)
+            {
+                if (festivalArray[i].FestivalLocation.City.ToLower().Contains(searchText.ToLower())
+                    || festivalArray[i].FestivalLocation.StreetName.ToLower().Contains(searchText.ToLower()))
+                {
+                    resultArray[count] = festivalArray[i];
+                    count++;
+                }
+            }
+            resultArray = CatalogPage.AddOrRemovePadding(resultArray);
+            return resultArray;
+        }
+
+        public static Festival[] FilterGenre(Festival[] festivalArray, string searchText)
+        {
+            Festival[] resultArray = new Festival[festivalArray.Length];
+            int count = 0;
+
+            for (int i = 0; i < festivalArray.Length; i++)
+            {
+                if (festivalArray[i].FestivalGenre.ToLower().Contains(searchText.ToLower()))
+                {
+                    resultArray[count] = festivalArray[i];
+                    count++;
+                }
+            }
+            resultArray = CatalogPage.AddOrRemovePadding(resultArray);
+            return resultArray;
+        }
+
+        public static void ClearFilters()
+        {
+            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
+            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+            CatalogPage.festivalArray = CatalogPage.AddOrRemovePadding(Festivals.Festivals.ToArray());
         }
     }
 }

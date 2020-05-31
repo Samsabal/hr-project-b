@@ -1,25 +1,20 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.IO;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class UserAccountPage
+    internal class UserAccountPage
     {
-        public static int totalProfit = 0;
+        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
+        private static readonly JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
 
-        static string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        static JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
-
-        public static void account_page()
+        public static void AccountPage()
         {
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (UserLoginPage.currentUserId == user.accountID)
+                if (UserLoginPage.currentUserID == user.AccountID)
                 {
                     MenuFunction.option = 0;
                     while (true)
@@ -27,21 +22,22 @@ namespace Festivity
                         Console.WriteLine();
                         Console.WriteLine("Your account Information: ");
                         Console.WriteLine();
-                        Console.WriteLine($"    {user.firstName} {user.lastName}");
-                        Console.WriteLine($"    {user.userAddress.streetName} {user.userAddress.streetNumber}");
-                        Console.WriteLine($"    {user.userAddress.zipCode} {user.userAddress.city}");
-                        Console.WriteLine($"    {user.email}");
+                        Console.WriteLine($"    {user.FirstName} {user.LastName}");
+                        Console.WriteLine($"    {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
+                        Console.WriteLine($"    {user.userAddress.ZipCode} {user.userAddress.City}");
+                        Console.WriteLine($"    {user.Email}");
                         Console.WriteLine("");
-                        MenuFunction.menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
+                        MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
                     }
                 }
             }
         }
-        public static void account_change_info()
+
+        public static void AccountChangeInfo()
         {
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (UserLoginPage.currentUserId == user.accountID)
+                if (UserLoginPage.currentUserID == user.AccountID)
                 {
                     Console.WriteLine();
                     Console.WriteLine("     Your account Information: ");
@@ -55,22 +51,22 @@ namespace Festivity
                     if (UserLoginPage.currentUserType == 1) // Organisator
                     {
                         Console.WriteLine("");
-                        Console.WriteLine($"4.  Street address:         {user.userAddress.streetName} {user.userAddress.streetNumber}");
-                        Console.WriteLine($"5.  City:                   {user.userAddress.city}");
-                        Console.WriteLine($"6.  ZipCode:                {user.userAddress.zipCode}");
-                        Console.WriteLine($"7.  Country:                {user.userAddress.country}");
+                        Console.WriteLine($"4.  Street address:         {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
+                        Console.WriteLine($"5.  City:                   {user.userAddress.City}");
+                        Console.WriteLine($"6.  ZipCode:                {user.userAddress.ZipCode}");
+                        Console.WriteLine($"7.  Country:                {user.userAddress.Country}");
                         Console.WriteLine("");
-                        Console.WriteLine($"8.  Company name:           {user.companyName}");
-                        Console.WriteLine($"9.  Company phonenumber:    {user.companyPhoneNumber}\n");
+                        Console.WriteLine($"8.  Company name:           {user.CompanyName}");
+                        Console.WriteLine($"9.  Company phonenumber:    {user.CompanyPhoneNumber}\n");
                         Console.WriteLine("");
                     }
                     if (UserLoginPage.currentUserType == 2) // Festival goer
                     {
-                        Console.WriteLine($"4.  Phonenumber:            {user.phoneNumber}");
-                        Console.WriteLine($"5.  Street address:         {user.userAddress.streetName} {user.userAddress.streetNumber}");
-                        Console.WriteLine($"6.  City:                   {user.userAddress.city}");
-                        Console.WriteLine($"7.  ZipCode:                {user.userAddress.zipCode}");
-                        Console.WriteLine($"8.  Country:                {user.userAddress.country}\n");
+                        Console.WriteLine($"4.  Phonenumber:            {user.PhoneNumber}");
+                        Console.WriteLine($"5.  Street address:         {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
+                        Console.WriteLine($"6.  City:                   {user.userAddress.City}");
+                        Console.WriteLine($"7.  ZipCode:                {user.userAddress.ZipCode}");
+                        Console.WriteLine($"8.  Country:                {user.userAddress.Country}\n");
                         Console.WriteLine("");
                     }
                     int userInput;
@@ -83,45 +79,31 @@ namespace Festivity
                     }
                     if (userInput > 0 && userInput <= 8)
                     {
-                        account_change_organisator(userInput);
+                        AccountChangeOrganisator(userInput);
                         Console.Clear();
-                    } else
+                    }
+                    else
                     {
                         Console.Clear();
                     }
                 }
             }
         }
-        public static void account_email_prefference()
+
+        public static void AccountEmailPrefference()
         {
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (UserLoginPage.currentUserId == user.accountID)
+                if (UserLoginPage.currentUserID == user.AccountID)
                 {
-                    if (user.newsLetter == 1)
+                    if (user.NewsLetter == 1)
                     {
                         Console.WriteLine("Do you want to stop recieving Newsletters? [Y or N].");
                         string userInput = Console.ReadLine();
                         if (userInput.ToLower() == "y")
                         {
                             Console.Clear();
-                            user.newsLetter = 0;
-                            Console.WriteLine("Preference successfully changed.");
-                            Thread.Sleep(1000);
-                        } else if (userInput.ToLower() != "n")
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Invalid input, please try again.");
-                            account_email_prefference();
-                        }
-                    } else if (user.newsLetter == 0)
-                    {
-                        Console.WriteLine("Do you want to recieve Newsletters? [Y or N]");
-                        string userInput = Console.ReadLine();
-                        if (userInput.ToLower() == "y")
-                        {
-                            Console.Clear();
-                            user.newsLetter = 1;
+                            user.NewsLetter = 0;
                             Console.WriteLine("Preference successfully changed.");
                             Thread.Sleep(1000);
                         }
@@ -129,21 +111,40 @@ namespace Festivity
                         {
                             Console.Clear();
                             Console.WriteLine("Invalid input, please try again.");
-                            account_email_prefference();
+                            AccountEmailPrefference();
+                        }
+                    }
+                    else if (user.NewsLetter == 0)
+                    {
+                        Console.WriteLine("Do you want to recieve Newsletters? [Y or N]");
+                        string userInput = Console.ReadLine();
+                        if (userInput.ToLower() == "y")
+                        {
+                            Console.Clear();
+                            user.NewsLetter = 1;
+                            Console.WriteLine("Preference successfully changed.");
+                            Thread.Sleep(1000);
+                        }
+                        else if (userInput.ToLower() != "n")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Invalid input, please try again.");
+                            AccountEmailPrefference();
                         }
                     }
                 }
             }
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(PATH_USER, json);
+            File.WriteAllText(PathUser, json);
         }
-        public static void account_change_organisator(int userSelection)
+
+        public static void AccountChangeOrganisator(int userSelection)
         {
             string userInput;
 
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (UserLoginPage.currentUserId == user.accountID)
+                if (UserLoginPage.currentUserID == user.AccountID)
                 {
                     if (UserLoginPage.currentUserType == 1)
                     {
@@ -153,20 +154,23 @@ namespace Festivity
                                 Console.Clear();
                                 Console.WriteLine("Input new firstname: ");
                                 userInput = Console.ReadLine();
-                                user.firstName = userInput;
+                                user.FirstName = userInput;
                                 break;
+
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Input new lastname: ");
                                 userInput = Console.ReadLine();
-                                user.lastName = userInput;
+                                user.LastName = userInput;
                                 break;
+
                             case 3:
                                 Console.Clear();
                                 Console.WriteLine("Input new email: ");
                                 userInput = Console.ReadLine();
-                                user.email = userInput;
+                                user.Email = userInput;
                                 break;
+
                             case 4:
                                 Console.Clear();
                                 Console.WriteLine("Input new streetname: ");
@@ -174,43 +178,48 @@ namespace Festivity
                                 Console.Clear();
                                 Console.WriteLine("Input new streetnumber: ");
                                 string userInput2 = Console.ReadLine();
-                                user.userAddress.streetName = userInput1;
-                                user.userAddress.streetNumber = userInput2;
+                                user.userAddress.StreetName = userInput1;
+                                user.userAddress.StreetNumber = userInput2;
                                 break;
+
                             case 5:
                                 Console.Clear();
                                 Console.WriteLine("Input new city: ");
                                 userInput = Console.ReadLine();
-                                user.userAddress.city = userInput;
+                                user.userAddress.City = userInput;
                                 break;
+
                             case 6:
                                 Console.Clear();
                                 Console.WriteLine("Input new zipcode: ");
                                 userInput = Console.ReadLine();
-                                user.userAddress.zipCode = userInput;
+                                user.userAddress.ZipCode = userInput;
                                 break;
+
                             case 7:
                                 Console.Clear();
                                 Console.WriteLine("Input new country: ");
                                 userInput = Console.ReadLine();
-                                user.userAddress.country = userInput;
+                                user.userAddress.Country = userInput;
                                 break;
+
                             case 8:
                                 Console.Clear();
                                 Console.WriteLine("Input new companyname: ");
                                 userInput = Console.ReadLine();
-                                user.companyName = userInput;
+                                user.CompanyName = userInput;
                                 break;
+
                             case 9:
                                 Console.Clear();
                                 Console.WriteLine("Input new companynumber: ");
                                 userInput = Console.ReadLine();
-                                user.companyPhoneNumber = userInput;
+                                user.CompanyPhoneNumber = userInput;
                                 break;
+
                             default:
                                 break;
                         }
-
                     }
                     if (UserLoginPage.currentUserType == 2) // Festival Goer
                     {
@@ -220,74 +229,83 @@ namespace Festivity
                                 Console.Clear();
                                 Console.WriteLine("Input new firstname: ");
                                 userInput = Console.ReadLine();
-                                user.firstName = userInput;
+                                user.FirstName = userInput;
                                 break;
+
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Input new lastname: ");
                                 userInput = Console.ReadLine();
-                                user.lastName = userInput;
+                                user.LastName = userInput;
                                 break;
+
                             case 3:
                                 Console.Clear();
                                 Console.WriteLine("Input new email: ");
                                 userInput = Console.ReadLine();
-                                user.email = userInput;
+                                user.Email = userInput;
                                 break;
+
                             case 4:
                                 Console.Clear();
                                 Console.WriteLine("Input new phoneNumber: ");
                                 userInput = Console.ReadLine();
-                                user.phoneNumber = userInput;
+                                user.PhoneNumber = userInput;
                                 break;
+
                             case 5:
                                 Console.Clear();
                                 Console.WriteLine("Input new streetname: ");
                                 string userInput1 = Console.ReadLine();
                                 Console.WriteLine("Input new streetnumber: ");
                                 string userInput2 = Console.ReadLine();
-                                user.userAddress.streetName = userInput1;
-                                user.userAddress.streetNumber = userInput2;
+                                user.userAddress.StreetName = userInput1;
+                                user.userAddress.StreetNumber = userInput2;
                                 break;
+
                             case 6:
                                 Console.Clear();
                                 Console.WriteLine("Input new city: ");
                                 userInput = Console.ReadLine();
-                                user.userAddress.city = userInput;
+                                user.userAddress.City = userInput;
                                 break;
+
                             case 7:
                                 Console.Clear();
                                 Console.WriteLine("Input new zipcode: ");
                                 userInput = Console.ReadLine();
-                                user.userAddress.zipCode = userInput;
+                                user.userAddress.ZipCode = userInput;
                                 break;
+
                             case 8:
                                 Console.Clear();
                                 Console.WriteLine("Input new country: ");
                                 userInput = Console.ReadLine();
-                                user.userAddress.country = userInput;
+                                user.userAddress.Country = userInput;
                                 break;
+
                             default:
                                 break;
                         }
                     }
                     string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-                    File.WriteAllText(PATH_USER, json);
+                    File.WriteAllText(PathUser, json);
                 }
             }
         }
-        public static void change_password()
+
+        public static void ChangePassword()
         {
             string userInput;
 
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (UserLoginPage.currentUserId == user.accountID)
+                if (UserLoginPage.currentUserID == user.AccountID)
                 {
                     Console.WriteLine("Input current password: ");
                     userInput = Console.ReadLine();
                     Console.Clear();
-                    if (userInput == user.password)
+                    if (userInput == user.Password)
                     {
                         Console.WriteLine("Input new password: ");
                         string userInput1 = Console.ReadLine();
@@ -297,23 +315,25 @@ namespace Festivity
                         Console.Clear();
                         if (userInput1 == userInput2)
                         {
-                            user.password = userInput2;
+                            user.Password = userInput2;
                             Console.WriteLine("Password successfully changed.");
                             Thread.Sleep(1000);
-                        } else
+                        }
+                        else
                         {
                             Console.WriteLine("Passwords do not match, please try again.");
-                            change_password();
+                            ChangePassword();
                         }
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("Invalid password, please try again.");
-                        change_password();
+                        ChangePassword();
                     }
                 }
             }
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(PATH_USER, json);
+            File.WriteAllText(PathUser, json);
         }
 
         public static int AmountEarned()

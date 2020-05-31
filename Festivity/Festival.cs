@@ -1,35 +1,115 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace Festivity
 {
     public class Festival
     {
         [JsonProperty("festivalId")]
-        public int festivalId { get; set; }
+        public int FestivalID { get; set; }
+
         [JsonProperty("festivalName")]
-        public string festivalName { get; set; }
+        public string FestivalName { get; set; }
+
         [JsonProperty("festivalDate")]
-        public Date festivalDate { get; set; }
+        public Date FestivalDate { get; set; }
+
         [JsonProperty("festivalStartingTime")]
-        public string festivalStartingTime { get; set; }
+        public string FestivalStartingTime { get; set; }
+
         [JsonProperty("festivalEndTime")]
-        public string festivalEndTime { get; set; }
+        public string FestivalEndTime { get; set; }
+
         [JsonProperty("festivalLocation")]
-        public Address festivalLocation { get; set; }
+        public Address FestivalLocation { get; set; }
+
         [JsonProperty("festivalDescription")]
-        public string festivalDescription { get; set; }
+        public string FestivalDescription { get; set; }
+
         [JsonProperty("festivalAgeRestriction")]
-        public int festivalAgeRestriction { get; set; }
+        public int FestivalAgeRestriction { get; set; }
+
         [JsonProperty("festivalGenre")]
-        public string festivalGenre { get; set; }
+        public string FestivalGenre { get; set; }
+
+        [JsonProperty("festivalCancelTime")]
+        public int FestivalCancelTime { get; set; }
+
+        [JsonProperty("festivalStatus")]
+        public string FestivalStatus { get; set; }
+
         [JsonProperty("festivalOrganisorId")]
-        public int festivalOrganiserId { get; set; }
+        public int FestivalOrganiserID { get; set; }
+
+        public string CheckStatus()
+        {
+            if (this == null || this.FestivalID == -1)
+            {
+                return "";
+            }
+            else if (this.FestivalStatus == "Festival aborted")
+            {
+                return "Festival aborted";
+            }
+            else if (this.FestivalStatus == "Festival changed")
+            {
+                return "Festival changed";
+            }
+            else
+            {
+                int currentDate = int.Parse(DateTime.UtcNow.Year.ToString() + DateTime.UtcNow.Month.ToString() + DateTime.UtcNow.Day.ToString());
+                int currentTime = int.Parse(DateTime.UtcNow.Hour.ToString() + DateTime.UtcNow.Minute.ToString());
+                if (this.FestivalDate.ToIdentifier() < currentDate)
+                {
+                    return "This festival has ended";
+                }
+                else if (this.FestivalDate.ToIdentifier() == currentDate)
+                {
+                    if (int.Parse(this.FestivalEndTime) < currentTime)
+                    {
+                        return "This festival has ended";
+                    }
+                    else if (currentTime < int.Parse(this.FestivalStartingTime))
+                    {
+                        return "Tickets available";
+                    }
+                    else
+                    {
+                        return "Ongoing";
+                    }
+                }
+                else
+                {
+                    return "Tickets available";
+                }
+            }
+        }
+
+        public static Festival[] FestivalRemovePadding(Festival[] festivals)
+        {
+            int count = 0;
+            for (int i = 0; i < festivals.Length; i++)
+            {
+                if (festivals[i].FestivalID != -1)
+                {
+                    count++;
+                }
+            }
+
+            Festival[] resultArray = new Festival[count];
+            for (int i = 0; i < count; i++)
+            {
+                resultArray[i] = festivals[i];
+            }
+
+            return resultArray;
+        }
     }
 
-    class JSONFestivalList
+    internal class JSONFestivalList
     {
         [JsonProperty("festivals")]
-        public List<Festival> festivals { get; set; }
+        public List<Festival> Festivals { get; set; }
     }
 }

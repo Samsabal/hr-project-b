@@ -1,48 +1,130 @@
 {
-  "festivals": [
-    {
-      "festivalId": 1,
-      "festivalName": "Robin's Feestje",
-      "festivalDate": {
-        "day": 29,
-        "month": 3,
-        "year": 2021
-      },
-      "festivalStartingTime": "23:00",
-      "festivalEndTime": "23:01",
-      "festivalLocation": {
-        "country": "Nederland",
-        "city": "Rotje",
-        "zipCode": "3066GK",
-        "streetName": "123adresstraat",
-        "streetNumber": "25"
-      },
-      "festivalDescription": "Robin's 13e verjaardags feestje met kind vriendelijke clowns.",
-      "festivalAgeRestriction": 60,
-      "festivalGenre": "Drum & Bass",
-      "festivalOrganisorId": 2
-    },
-    {
-      "festivalId": 2,
-      "festivalName": "Bruh Momentum",
-      "festivalDate": {
-        "day": 12,
-        "month": 4,
-        "year": 2021
-      },
-      "festivalStartingTime": "08:00",
-      "festivalEndTime": "13:00",
-      "festivalLocation": {
-        "country": "Netherlands",
-        "city": "Schijtdam",
-        "zipCode": "4343BO",
-        "streetName": "Jesstraat",
-        "streetNumber": "33"
-      },
-      "festivalDescription": "Het beste festival van heel het land. Met speciale gast artiest Joop.",
-      "festivalAgeRestriction": 20,
-      "festivalGenre": "Emo",
-      "festivalOrganisorId": 2
-    }
-  ]
+    "festivals": [
+        {
+            "festivalId": 1,
+            "festivalName": "Robin's Festival",
+            "festivalDate": {
+                "day": 29,
+                "month": 03,
+                "year": 2020
+            },
+            "festivalStartingTime": "1500",
+            "festivalEndTime": "1600",
+            "festivalLocation": {
+                "country": "Nederland",
+                "city": "Rotterdam",
+                "zipCode": "3066GK",
+                "streetName": "123adresstraat",
+                "streetNumber": "25"
+            },
+            "festivalDescription": "This party is hella cool for real",
+            "festivalAgeRestriction": 23,
+            "festivalGenre": "Drum & Bass"
+        },
+        {
+            "festivalId": 2,
+            "festivalName": "Mark's Festival",
+            "festivalDate": {
+                "day": 26,
+                "month": 05,
+                "year": 2020
+            },
+            "festivalStartingTime": "1700",
+            "festivalEndTime": "1800",
+            "festivalLocation": {
+                "country": "Nederland",
+                "city": "Rotterdam",
+                "zipCode": "3066GK",
+                "streetName": "123adresstraat",
+                "streetNumber": "25"
+            },
+            "festivalDescription": "Congratulations Mark",
+            "festivalAgeRestriction": 23,
+            "festivalGenre": "Drum & Bass"
+        },
+        {
+            "festivalId": 3,
+            "festivalName": "Enny's Festival",
+            "festivalDate": {
+                "day": 1,
+                "month": 1,
+                "year": 2021
+            },
+            "festivalStartingTime": "1999",
+            "festivalEndTime": "2359",
+            "festivalLocation": {
+                "country": "Nederland",
+                "city": "Rotterdam",
+                "zipCode": "3066GK",
+                "streetName": "123adresstraat",
+                "streetNumber": "25"
+            },
+            "festivalDescription": "Cool party with loads of nachos and stuff",
+            "festivalAgeRestriction": 23,
+            "festivalGenre": "Drum & Bass"
+        },
+        {
+            "festivalId": 4,
+            "festivalName": "Kelvin's Festival",
+            "festivalDate": {
+                "day": 12,
+                "month": 10,
+                "year": 2020
+            },
+            "festivalStartingTime": "1999",
+            "festivalEndTime": "2359",
+            "festivalLocation": {
+                "country": "Nederland",
+                "city": "Rotterdam",
+                "zipCode": "3066GK",
+                "streetName": "123adresstraat",
+                "streetNumber": "25"
+            },
+            "festivalDescription": "Kelvin's Festival",
+            "festivalAgeRestriction": 23,
+            "festivalGenre": "Drum & Bass"
+        },
+        {
+            "festivalId": 5,
+            "festivalName": "Samuel's Party",
+            "festivalDate": {
+                "day": 30,
+                "month": 06,
+                "year": 2020
+            },
+            "festivalStartingTime": "1999",
+            "festivalEndTime": "2359",
+            "festivalLocation": {
+                "country": "Nederland",
+                "city": "Rotterdam",
+                "zipCode": "3066GK",
+                "streetName": "123adresstraat",
+                "streetNumber": "25"
+            },
+            "festivalDescription": "Samuel's party",
+            "festivalAgeRestriction": 23,
+            "festivalGenre": "Drum & Bass"
+        },
+        {
+            "festivalId": 6,
+            "festivalName": "Page 2 testparty",
+            "festivalDate": {
+                "day": 30,
+                "month": 06,
+                "year": 2025
+            },
+            "festivalStartingTime": "1999",
+            "festivalEndTime": "2359",
+            "festivalLocation": {
+                "country": "Nederland",
+                "city": "Rotterdam",
+                "zipCode": "3066GK",
+                "streetName": "123adresstraat",
+                "streetNumber": "25"
+            },
+            "festivalDescription": "Test description",
+            "festivalAgeRestriction": 23,
+            "festivalGenre": "Drum & Bass"
+        }
+    ]
 }
