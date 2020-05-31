@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
@@ -9,6 +10,9 @@ namespace Festivity
     {
         private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
         private static readonly JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
+        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
         public static void AccountPage()
         {
@@ -42,9 +46,9 @@ namespace Festivity
                     Console.WriteLine();
                     Console.WriteLine("     Your account Information: ");
                     Console.WriteLine();
-                    Console.WriteLine($"1.  Firstname:              {user.firstName}");
-                    Console.WriteLine($"2.  Lastname:               {user.lastName}");
-                    Console.WriteLine($"3.  Email:                  {user.email}");
+                    Console.WriteLine($"1.  Firstname:              {user.FirstName}");
+                    Console.WriteLine($"2.  Lastname:               {user.LastName}");
+                    Console.WriteLine($"3.  Email:                  {user.Email}");
                     Console.WriteLine("4.  Total amount earned: " + AmountEarned() + " euros.");
 
 
@@ -336,10 +340,37 @@ namespace Festivity
             File.WriteAllText(PathUser, json);
         }
 
-        public static int AmountEarned()
+        public static double AmountEarned()
         {
+            List<Ticket> ticketList = new List<Ticket>();
+            double amountEarned = 0.0;
 
 
+            foreach (var festival in festivals.Festivals)
+            {
+                if (3 == festival.FestivalOrganiserID)
+                {
+                    foreach (var ticket in tickets.Tickets)
+                    {
+                        if(festival.FestivalID == ticket.FestivalID)
+                        {
+                            ticketList.Add(ticket);
+                        }
+                    }
+                }
+            }
+
+            foreach (var transaction in transactions.Transactions)
+            {
+                foreach (var organisatorTicket in ticketList)
+                {
+                    if (organisatorTicket.TicketID == transaction.TicketID)
+                    {
+                        amountEarned += organisatorTicket.TicketPrice * transaction.TicketAmount;
+                    }
+                }
+            }
+            return amountEarned;
         }
     }
 }

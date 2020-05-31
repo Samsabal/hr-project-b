@@ -8,6 +8,7 @@ namespace Festivity
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONUserList users = JSONFunctionality.GetUsers();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
         public static void ClearConsoleLine() //Removes the last line in the ticket table for a cleaner look
         {
@@ -45,17 +46,17 @@ namespace Festivity
             return false;
         }
 
-        public static int tickets_left(int ticketId, int maxTickets)
+        public static int TicketsLeft(int ticketId, int maxTickets)
         {
-            foreach (var ticket in Tickets.tickets)
+            foreach (var ticket in tickets.Tickets)
             {
-                if (ticket.ticketId == ticketId)
+                if (ticket.TicketID == ticketId)
                 {
-                    foreach (var transaction in Transactions.transactions)
+                    foreach (var transaction in transactions.Transactions)
                     {
-                        if (transaction.ticketID == ticket.ticketId)
+                        if (transaction.TicketID == ticket.TicketID)
                         {
-                            int ticketsLeft = ticket.maxTickets - transaction.ticketNumber;
+                            int ticketsLeft = ticket.MaxTickets - transaction.TicketAmount;
                             return ticketsLeft;
                         }
                     }
@@ -64,9 +65,9 @@ namespace Festivity
             return maxTickets;
         }
 
-        public static void festival_page(int festivalId)//Displays the festival page
+        public static void ShowFestivalPage(int festivalId)//Displays the festival page
         {
-            foreach (var festival in Festivals.festivals)
+            foreach (var festival in festivals.Festivals)
             {
                 if (festival.FestivalID == festivalId)
                 {
@@ -108,12 +109,12 @@ namespace Festivity
                             {
                                 if (ticket.FestivalID == festival.FestivalID)
                                 {
-                                    int ticketId = ticket.ticketId;
-                                    int maxTickets = ticket.maxTickets;
-                                    Console.WriteLine(ticket.ticketName);
-                                    Console.WriteLine("This ticket costs " + ticket.ticketPrice + " euro.");
-                                    Console.WriteLine("There are " + ticket.maxTickets + " in total of which there are " + tickets_left(ticketId, maxTickets) + " left.");
-                                    Console.WriteLine(ticket.ticketDescription);
+                                    int ticketId = ticket.TicketID;
+                                    int maxTickets = ticket.MaxTickets;
+                                    Console.WriteLine(ticket.TicketName);
+                                    Console.WriteLine("This ticket costs " + ticket.TicketPrice + " euro.");
+                                    Console.WriteLine("There are " + ticket.MaxTickets + " in total of which there are " + TicketsLeft(ticketId, maxTickets) + " left.");
+                                    Console.WriteLine(ticket.TicketDescription);
                                     Console.WriteLine();
                                 }
                             }
