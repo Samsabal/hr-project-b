@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Festivity
 {
-    class JSONFunctionality
+    internal class JSONFunctionality
     {
         private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
         private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
@@ -39,7 +39,6 @@ namespace Festivity
             JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PathTicket));
             return tickets;
         }
-
 
         public static void WriteTickets(JSONTicketList tickets)
         {
