@@ -30,6 +30,7 @@ namespace Festivity
                         Console.WriteLine($"    {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
                         Console.WriteLine($"    {user.userAddress.ZipCode} {user.userAddress.City}");
                         Console.WriteLine($"    {user.Email}");
+                        Console.WriteLine("    Amount earned: " + AmountEarned() + " euro");
                         Console.WriteLine("");
                         MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
                     }
@@ -49,8 +50,6 @@ namespace Festivity
                     Console.WriteLine($"1.  Firstname:              {user.FirstName}");
                     Console.WriteLine($"2.  Lastname:               {user.LastName}");
                     Console.WriteLine($"3.  Email:                  {user.Email}");
-                    Console.WriteLine("4.  Total amount earned: " + AmountEarned() + " euros.");
-
 
                     if (UserLoginPage.currentUserType == 1) // Organisator
                     {
