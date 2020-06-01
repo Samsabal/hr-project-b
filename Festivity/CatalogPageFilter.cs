@@ -25,7 +25,7 @@ namespace Festivity
             return CatalogPage.AddOrRemovePadding(festivalArray);
         }
 
-        public static Festival[] sort_price(Festival[] festivalArray)
+        public static Festival[] SortPrice(Festival[] festivalArray)
         {
             festivalArray = Festival.FestivalRemovePadding(festivalArray);
             Tuple<Festival, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);

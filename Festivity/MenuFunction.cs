@@ -189,7 +189,7 @@ namespace Festivity
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Sort by price":
-                        CatalogPage.festivalArray = CatalogPageFilter.sort_price(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = CatalogPageFilter.SortPrice(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
