@@ -327,7 +327,7 @@ namespace Festivity
 
             foreach (var festival in festivals.Festivals)
             {
-                if (3 == festival.FestivalOrganiserID)
+                if (LoggedInAccount.GetID() == festival.FestivalOrganiserID)
                 {
                     foreach (var ticket in tickets.Tickets)
                     {
