@@ -8,6 +8,7 @@ namespace Festivity
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONUserList users = JSONFunctionality.GetUserList();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
         public static void ClearConsoleLine() //Removes the last line in the ticket table for a cleaner look
         {
@@ -45,7 +46,26 @@ namespace Festivity
             return false;
         }
 
-        public static void ShowFestivalPage(int festivalId) //Displays the festival page
+        public static int TicketsLeft(int ticketId, int maxTickets)
+        {
+            foreach (var ticket in tickets.Tickets)
+            {
+                if (ticket.TicketID == ticketId)
+                {
+                    foreach (var transaction in transactions.Transactions)
+                    {
+                        if (transaction.TicketID == ticket.TicketID)
+                        {
+                            int ticketsLeft = ticket.MaxTickets - transaction.TicketAmount;
+                            return ticketsLeft;
+                        }
+                    }
+                }
+            }
+            return maxTickets;
+        }
+
+        public static void ShowFestivalPage(int festivalId)//Displays the festival page
         {
             foreach (var festival in festivals.Festivals)
             {
@@ -89,9 +109,11 @@ namespace Festivity
                             {
                                 if (ticket.FestivalID == festival.FestivalID)
                                 {
+                                    int ticketId = ticket.TicketID;
+                                    int maxTickets = ticket.MaxTickets;
                                     Console.WriteLine(ticket.TicketName);
-                                    Console.WriteLine("De prijs van dit ticket is " + ticket.TicketPrice + " euro.");
-                                    Console.WriteLine("Er zijn in totaal " + ticket.MaxTickets + " tickets waarvan er nog " + "(Will include remaining tickets)" + " over zijn");
+                                    Console.WriteLine("This ticket costs " + ticket.TicketPrice + " euro.");
+                                    Console.WriteLine("There are " + ticket.MaxTickets + " in total of which there are " + TicketsLeft(ticketId, maxTickets) + " left.");
                                     Console.WriteLine(ticket.TicketDescription);
                                     Console.WriteLine();
                                 }

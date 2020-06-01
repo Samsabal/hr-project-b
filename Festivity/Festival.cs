@@ -39,7 +39,7 @@ namespace Festivity
         [JsonProperty("festivalStatus")]
         public string FestivalStatus { get; set; }
 
-        [JsonProperty("festivalOrganisorId")]
+        [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
         public string CheckStatus()
