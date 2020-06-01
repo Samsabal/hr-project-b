@@ -45,7 +45,7 @@ namespace Festivity
                 {
                     ShowFestivals(festivalArray);
                     MenuFunction.Menu(new string[] { "Sort by name",
-                        "Sort by date", "Filter by festival name", "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
+                        "Sort by date", "Sort by price", "Filter by festival name", "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
                 }
             }
         }
@@ -69,7 +69,9 @@ namespace Festivity
                 Console.SetCursorPosition(48, Console.CursorTop);
                 Console.Write($"Genre: {festivalArray[i].FestivalGenre}\n");
                 Console.WriteLine($"Description: {description}");
-                Console.WriteLine($"City: {festivalArray[i].FestivalLocation.City}");
+                Console.Write($"City: {festivalArray[i].FestivalLocation.City}");
+                Console.SetCursorPosition(66-7-MinMaxPrice(festivalArray[i].FestivalID).Length, Console.CursorTop);
+                Console.Write($"Price: {MinMaxPrice(festivalArray[i].FestivalID)}\n");
                 Console.Write($"Status: {festivalArray[i].CheckStatus()}");
                 Console.SetCursorPosition(50, Console.CursorTop);
                 Console.Write($"Date: {festivalArray[i].FestivalDate} \n");
@@ -128,5 +130,42 @@ namespace Festivity
             }
             return resultArray;
         }
+        public static string MinMaxPrice(int festivalId)
+        {
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            Ticket[] ticketArray = tickets.Tickets.ToArray();
+            double minPrice = -1;
+            double maxPrice = -1;
+            foreach (Ticket t in ticketArray)
+            {
+                if ((t.FestivalID == festivalId) && (minPrice == -1))
+                {
+                    minPrice = t.TicketPrice;
+                    maxPrice = t.TicketPrice;
+                }
+                else if ((t.FestivalID == festivalId) && (t.TicketPrice < minPrice))
+                {
+                    minPrice = t.TicketPrice;
+                }
+                else if ((t.FestivalID == festivalId) && (t.TicketPrice > maxPrice))
+                {
+                    maxPrice = t.TicketPrice;
+                }
+            }
+
+            if (minPrice == -1)
+            {
+                return "";
+            }
+            else if (minPrice == maxPrice)
+            {
+                return $"\u20AC{minPrice}";
+            }
+            else
+            {
+                return $"\u20AC{minPrice} - \u20AC{maxPrice}";
+            }
+        }
+
     }
 }

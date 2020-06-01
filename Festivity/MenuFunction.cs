@@ -188,7 +188,12 @@ namespace Festivity
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
-
+                    case "Sort by price":
+                        CatalogPage.festivalArray = CatalogPageFilter.SortPrice(CatalogPage.festivalArray);
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
+                        break;
                     case "Filter by festival name":
                         string namesearch = Console.ReadLine();
                         CatalogPage.festivalArray = CatalogPageFilter.FilterName(CatalogPage.festivalArray, namesearch);
@@ -261,6 +266,7 @@ namespace Festivity
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
+                        option = 0;
                         Console.Clear();
                         Program.Main(); //new string[] { }
                         break;
