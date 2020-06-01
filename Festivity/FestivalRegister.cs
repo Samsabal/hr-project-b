@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace Festivity
 {
@@ -6,7 +9,7 @@ namespace Festivity
     {
         public static bool activeScreen = true;
         public static string currentRegisterSelection = null;
-
+        public static int[] deleteTicketList;
         // Festival vairables
 
         public static string festivalName = null;
@@ -24,49 +27,51 @@ namespace Festivity
         public static string festivalGenre = null;
         public static int festivalAgeRestriction = 0;
         public static string festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
-        public static string festivalAdress = "Country: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
+        public static string festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
         public static int cancelTime = 0;
 
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
 
+        // This is a function to retrieve the latest registered festivalid and create the next festivalid
+        public static int FestivalId(JSONFestivalList festivals)
+        {
+            int festivalId;
+            if (festivals.Festivals.Count == 0)
+            {
+                festivalId = 1;
+            }
+            else
+            {
+                int item = festivals.Festivals[^1].FestivalID;
+                festivalId = item + 1;
+            };
+
+            return festivalId;
+        }
+
+        // This is a function to retrieve the latest registered ticketid and create the next ticketid
+        public static int TicketID(JSONTicketList tickets)
+        {
+            int ticketId;
+            if (tickets.Tickets.Count == 0)
+            {
+                ticketId = 1;
+            }
+            else
+            {
+                int item = tickets.Tickets[^1].TicketID;
+                ticketId = item + 1;
+            };
+
+            return ticketId;
+        }
+
         public static void ShowFestivalRegister()
         {
-            // This is a function to retrieve the latest registered festivalid and create the next festivalid
-            static int festivalId(JSONFestivalList festivals)
-            {
-                int festivalId;
-                if (festivals.Festivals.Count == 0)
-                {
-                    festivalId = 1;
-                }
-                else
-                {
-                    int item = festivals.Festivals[^1].FestivalID;
-                    festivalId = item + 1;
-                };
+        
 
-                return festivalId;
-            }
-
-            // This is a function to retrieve the latest registered ticketid and create the next ticketid
-            int TicketID(JSONTicketList tickets)
-            {
-                int ticketId;
-                if (tickets.Tickets.Count == 0)
-                {
-                    ticketId = 1;
-                }
-                else
-                {
-                    int item = tickets.Tickets[^1].TicketID;
-                    ticketId = item + 1;
-                };
-
-                return ticketId;
-            }
-
-            int festivalID = FestivalID(festivals);
+            int festivalID = FestivalId(festivals);
 
             // Makes sure the console keeps refreshing, allowing input
 
@@ -85,7 +90,7 @@ namespace Festivity
                     "Festival Genre: " + festivalGenre + "\n" +
                     "Cancel Time: " + cancelTime + "\n" +
                     "===============================================\n");
-                    MenuFunction.Menu(new string[] { "Festival Name", "Festival Date", "Starting Time", "End Time", "Festival Adress", "Festival Description", "Age restriction", "Festival Genre", "Cancel Time", "Tickets", "Save Festival" });
+                    MenuFunction.Menu(new string[] { "Festival Name", "Festival Date", "Starting Time", "End Time", "Festival Adress", "Festival Description", "Age restriction", "Festival Genre", "Cancel Time", "Tickets", "Save Festival", "Cancel Festival Registration" });
                 }
                 else if (currentRegisterSelection == "Festival Name")
                 {
@@ -141,6 +146,7 @@ namespace Festivity
 
                     Console.WriteLine("Fill in the house number: ");
                     festivalLocationHouseNumber = Console.ReadLine();
+                    festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Description")
@@ -221,53 +227,84 @@ namespace Festivity
                 else if (currentRegisterSelection == "Save Festival")
                 {
                     Console.Clear();
-                    
-                    // Check if there are tickets register.
-                    // If not it will not save the festival.
-                    //if(tickets.tickets[^1].festivalId != festivalId(festivals))
-                    //{
-                    //    Console.WriteLine("Before you can save the festival to our database you must create a ticket!");
-                    //    currentRegisterSelection = "Main";
-                    //}
 
-                    //else
-                    //{
+                    // Check if there are tickets registered.
+                    // If not it will not save the festival.
+                    if (tickets.Tickets[^1].FestivalID != FestivalId(festivals))
+                    {
+                        Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
+                        Thread.Sleep(5000);
+                        currentRegisterSelection = "Main";
+                    }
+
+                    else
+                    {
                         // A format for creating a new festival
                         Festival festival = new Festival
                         {
-                            festivalId = festivalID,
-                            festivalName = festivalName,
-                            festivalDescription = festivalDescription,
-                            festivalLocation = new Address
+                            FestivalID = festivalID,
+                            FestivalName = festivalName,
+                            FestivalDescription = festivalDescription,
+                            FestivalLocation = new Address
                             {
-                                country = festivalLocationCountry,
-                                city = festivalLocationCity,
-                                zipCode = festivalLocationZipCode,
-                                streetName = festivalLocationStreet,
-                                streetNumber = festivalLocationHouseNumber
+                                Country = festivalLocationCountry,
+                                City = festivalLocationCity,
+                                ZipCode = festivalLocationZipCode,
+                                StreetName = festivalLocationStreet,
+                                StreetNumber = festivalLocationHouseNumber
                             },
-                            festivalDate = new Date
+                            FestivalDate = new Date
                             {
-                                day = festivalDateDay,
-                                month = festivalDateMonth,
-                                year = festivalDateYear
+                                Day = festivalDateDay,
+                                Month = festivalDateMonth,
+                                Year = festivalDateYear
                             },
-                            festivalStartingTime = festivalStartingTime,
-                            festivalEndTime = festivalEndTime,
-                            festivalGenre = festivalGenre,
-                            festivalAgeRestriction = festivalAgeRestriction,
-                            festivalCancelTime = cancelTime
+                            FestivalStartingTime = festivalStartingTime,
+                            FestivalEndTime = festivalEndTime,
+                            FestivalGenre = festivalGenre,
+                            FestivalAgeRestriction = festivalAgeRestriction,
+                            FestivalCancelTime = cancelTime
 
                         };
                         // Adds a new festival to the database
-                        festivals.festivals.Add(festival);
-                        string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
-                        File.WriteAllText(PATH_FESTIVAL, jsonfestival);
+                        festivals.Festivals.Add(festival);
+                        JSONFunctionality.WriteFestivals(festivals);
 
                         activeScreen = false;
                         currentRegisterSelection = null;
                         MenuFunction.option = 0;
-                    //}
+                    }
+                }
+                else if (currentRegisterSelection == "Cancel Festival Registration")
+                {
+                    // Reads database than deletes the tickets that belong to the festival
+                    JSONFunctionality.GetTickets();
+                    
+                    foreach (Ticket ticket in tickets.Tickets)
+                    {
+                        if (ticket.FestivalID == FestivalId(festivals))
+                        {
+                            //adds festivalID to a list and adds it to a list
+                            deleteTicketList = new int[] { ticket.TicketID};
+                        }
+
+                    }
+                    for (int i = 0; i < tickets.Tickets.Count; i++  )
+                    {
+                        foreach (var ticketID in deleteTicketList)
+                        {
+                            if (ticketID == tickets.Tickets.TicketID)
+                            {
+                                tickets.Tickets.Remove();
+                                JSONFunctionality.WriteTickets(tickets);
+                                
+                            }
+                        } 
+                    }
+                    // returns you to the main menu
+                    activeScreen = false;
+                    currentRegisterSelection = null;
+                    MenuFunction.option = 0;
                 }
             }
         }
