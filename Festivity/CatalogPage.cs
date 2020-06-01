@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.IO;
+﻿using System;
 
 namespace Festivity
 {
@@ -23,7 +21,7 @@ namespace Festivity
             currentPage = 0;
 
             // Makes an array with extra space to ensure there's always 5 festivals on screen
-            festivalArray = AddOrRemovePadding(festivals.Festivals.ToArray());
+            festivalArray = festivals.Festivals.ToArray();
 
             MenuFunction.option = 0;
 
@@ -35,6 +33,7 @@ namespace Festivity
                 Console.SetCursorPosition(0, 0);
                 if (currentCatalogNavigation == "main")
                 {
+                    for (int i = 0; i < 5; )
                     ShowFestivals(festivalArray);
                     MenuFunction.Menu(new string[]{"festival1", "festival2", "festival3", "festival4", "festival5",
                         "Next page", "Previous page", "Filter festivals", "Exit to Main Menu" },
@@ -53,30 +52,43 @@ namespace Festivity
         // Function that shows the currently selected festivals in the console
         private static void ShowFestivals(Festival[] festivalArray)
         {
-            for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
+            try
             {
-                string description;
+                for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
+                    if (festivalArray[i] != null)
+                    {
+                        {
+                            Console.WriteLine("------------------------------------------------------------------");
+                            ShowFestival(festivalArray[i]);
+                        }
+                    }
                 Console.WriteLine("------------------------------------------------------------------");
-                Console.Write($"Name: {festivalArray[i].FestivalName}");
-                if (festivalArray[i].FestivalDescription.Length > 50)
-                {
-                    description = festivalArray[i].FestivalDescription.Substring(0, 50) + "...";
-                }
-                else
-                {
-                    description = festivalArray[i].FestivalDescription;
-                }
-                Console.SetCursorPosition(48, Console.CursorTop);
-                Console.Write($"Genre: {festivalArray[i].FestivalGenre}\n");
-                Console.WriteLine($"Description: {description}");
-                Console.Write($"City: {festivalArray[i].FestivalLocation.City}");
-                Console.SetCursorPosition(66-7-MinMaxPrice(festivalArray[i].FestivalID).Length, Console.CursorTop);
-                Console.Write($"Price: {MinMaxPrice(festivalArray[i].FestivalID)}\n");
-                Console.Write($"Status: {festivalArray[i].CheckStatus()}");
-                Console.SetCursorPosition(50, Console.CursorTop);
-                Console.Write($"Date: {festivalArray[i].FestivalDate} \n");
             }
-            Console.WriteLine("------------------------------------------------------------------");
+            catch (IndexOutOfRangeException e) { Console.WriteLine("------------------------------------------------------------------"); }
+        }
+
+
+        private static void ShowFestival(Festival festival)
+        {
+            string description;
+            Console.Write($"Name: {festival.FestivalName}");
+            if (festival.FestivalDescription.Length > 50)
+            {
+                description = festival.FestivalDescription.Substring(0, 50) + "...";
+            }
+            else
+            {
+                description = festival.FestivalDescription;
+            }
+            Console.SetCursorPosition(48, Console.CursorTop);
+            Console.Write($"Genre: {festival.FestivalGenre}\n");
+            Console.WriteLine($"Description: {description}");
+            Console.Write($"City: {festival.FestivalLocation.City}");
+            Console.SetCursorPosition(66 - 7 - MinMaxPrice(festival.FestivalID).Length, Console.CursorTop);
+            Console.Write($"Price: {MinMaxPrice(festival.FestivalID)}\n");
+            Console.Write($"Status: {festival.CheckStatus()}");
+            Console.SetCursorPosition(50, Console.CursorTop);
+            Console.Write($"Date: {festival.FestivalDate} \n");
         }
 
         public static Festival[] AddOrRemovePadding(Festival[] festivals)
