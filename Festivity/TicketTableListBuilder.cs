@@ -44,6 +44,7 @@ namespace Festivity
                     index++;
                 }
             }
+            RefundTicket.SetTicketIDs(ticketList);
             DrawTicketTable.SetTicketList(ticketList);
         }
     }

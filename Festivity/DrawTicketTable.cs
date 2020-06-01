@@ -36,13 +36,20 @@ namespace Festivity
             {
                 Console.Write(ticketTable.ToString());
                 Console.WriteLine();
-                MenuFunction.Menu(new string[] { "Exit to Main Menu" });
+                MenuFunction.Menu(new string[] { "Exit to Main Menu", "Refund Ticket" });
             }
+        }
+
+        public static void DrawRefund()
+        {
+            Console.Write(ticketTable.ToString());
         }
 
         public static void SetTicketList(List<List<string>> ticketList)
         {
             TicketList = ticketList;
         }
+
+
     }
 }

@@ -19,11 +19,11 @@ namespace Festivity
                 {
                     if (UserLoginPage.currentUserType == 2) // Visitor
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "Account", "My Festivals", "Logout", "Exit" });
+                        MenuFunction.Menu(new string[] { "Festivals", "My Account", "My Tickets", "Logout", "Exit" });
                     }
                     if (UserLoginPage.currentUserType == 1) // Organisator
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "Register festival", "Account", "My Festivals", "Logout", "Exit" });
+                        MenuFunction.Menu(new string[] { "Festivals", "Register festival", "My Account", "My Tickets", "Logout", "Exit" });
                     }
                 }
             }

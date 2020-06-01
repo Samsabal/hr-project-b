@@ -19,7 +19,6 @@ namespace Festivity
                     MenuFunction.option = 0;
                     while (true)
                     {
-                        Console.WriteLine();
                         Console.WriteLine("Your account Information: ");
                         Console.WriteLine();
                         Console.WriteLine($"    {user.FirstName} {user.LastName}");
@@ -39,7 +38,6 @@ namespace Festivity
             {
                 if (UserLoginPage.currentUserID == user.AccountID)
                 {
-                    Console.WriteLine();
                     Console.WriteLine("     Your account Information: ");
                     Console.WriteLine();
                     Console.WriteLine($"1.  Firstname:              {user.FirstName}");
@@ -92,6 +90,7 @@ namespace Festivity
 
         public static void AccountEmailPrefference()
         {
+            Console.Clear();
             foreach (var user in users.Users)
             {
                 if (UserLoginPage.currentUserID == user.AccountID)
@@ -111,29 +110,34 @@ namespace Festivity
                         {
                             Console.Clear();
                             Console.WriteLine("Invalid input, please try again.");
-                            AccountEmailPrefference();
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                            //AccountEmailPrefference();
                         }
                     }
                     else if (user.NewsLetter == 0)
                     {
                         Console.WriteLine("Do you want to recieve Newsletters? [Y or N]");
                         string userInput = Console.ReadLine();
-                        if (userInput.ToLower() == "y")
-                        {
+                        if (userInput.ToLower() == "y")                       {
                             Console.Clear();
                             user.NewsLetter = 1;
                             Console.WriteLine("Preference successfully changed.");
                             Thread.Sleep(1000);
+                            Console.Clear();
                         }
                         else if (userInput.ToLower() != "n")
                         {
                             Console.Clear();
                             Console.WriteLine("Invalid input, please try again.");
-                            AccountEmailPrefference();
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                            //AccountEmailPrefference();
                         }
                     }
                 }
             }
+            Console.Clear();
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(PathUser, json);
         }
