@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace Festivity
@@ -22,6 +23,57 @@ namespace Festivity
                 }
             }
             return CatalogPage.AddOrRemovePadding(festivalArray);
+        }
+
+        public static Festival[] SortPrice(Festival[] festivalArray)
+        {
+            festivalArray = Festival.FestivalRemovePadding(festivalArray);
+            Tuple<Festival, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
+            for (int j = festivalArray.Length - 1; j > 0; j--)
+            {
+                for (int i = 0; i < j; i++)
+                {
+                    if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i+1].Item2)
+                    {
+                        Tuple<Festival, double> temp = festivalArrayWithPrices[i];
+                        festivalArrayWithPrices[i] = festivalArrayWithPrices[i + 1];
+                        festivalArrayWithPrices[i + 1] = temp;
+                    }
+                }
+            }
+            Festival[] resultArray = new Festival[festivalArrayWithPrices.Length];
+            for(int i = 0; i < festivalArrayWithPrices.Length; i++)
+            {
+                resultArray[i] = festivalArrayWithPrices[i].Item1;
+            }
+
+            return CatalogPage.AddOrRemovePadding(resultArray);
+        }
+
+        public static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
+        {
+            Tuple<Festival, double>[] festivalsWithPrices = new Tuple<Festival, double>[festivalArray.Length];
+            
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            Ticket[] ticketArray = tickets.Tickets.ToArray();
+
+
+            for (int i = 0; i < festivalArray.Length; i++)
+            {
+                double minPrice = int.MaxValue;
+                foreach (Ticket t in ticketArray)
+                {
+                    if (festivalArray[i].FestivalID == t.FestivalID)
+                    {
+                        if (t.TicketPrice < minPrice)
+                        {
+                            minPrice = t.TicketPrice;
+                        }
+                    }
+                }
+                festivalsWithPrices[i] = new Tuple<Festival, double>(festivalArray[i], minPrice);
+            }
+            return festivalsWithPrices;
         }
 
         // Receives a Festival array and sorts it in ascending order by date
