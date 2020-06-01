@@ -1,59 +1,56 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class UserLoginPage
+    internal class UserLoginPage
     {
- 
-
         public static int userLoginChoice;
-        public static int currentUserId = 0;
+        public static int currentUserID = 0;
         public static int currentUserType;
 
-        public static void login_page()
+        private static readonly JSONUserList users = JSONFunctionality.GetUsers();
+
+        public static void LoginPage()
         {
             userLoginChoice = 0;
             MenuFunction.option = 0;
             while (true)
             {
-                MenuFunction.menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
-            } 
+                MenuFunction.Menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
+            }
         }
-        public static void forgot_password()
-        {
-            JSONUserList users = JSONFunctionality.get_users();
 
+        public static void ForgotPassword()
+        {
             bool accountExists = false;
             Console.WriteLine("Enter Email: ");
             string userEmail = Console.ReadLine();
             Console.Clear();
 
-            foreach(var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (user.email.ToLower() == userEmail.ToLower())
+                if (user.Email.ToLower() == userEmail.ToLower())
                 {
                     accountExists = true;
-                    Console.WriteLine("Your password = " + user.password + "\n");
+                    Console.WriteLine("Your password = " + user.Password + "\n");
                     Console.WriteLine("Press <Enter> to go back");
                     Console.ReadLine();
-                } 
+                }
             }
             if (!accountExists)
             {
                 Console.Clear();
                 Console.WriteLine("Email does not exist, please try again.");
                 Thread.Sleep(1000);
-                forgot_password();
+                ForgotPassword();
             }
         }
-        public static void user_login(int loginOption = 0)
-        {
-            JSONUserList users = JSONFunctionality.get_users();
 
+        public static void UserLogin(int loginOption = 0)
+        {
             bool accountExists = false;
 
             Console.Write("Enter Email: ");
@@ -61,19 +58,19 @@ namespace Festivity
             Console.Clear();
             //Console.SetCursorPosition(0, 0);
 
-            foreach (var user in users.users)
+            foreach (var user in users.Users)
             {
-                if (user.email == userEmail.ToLower())
+                if (user.Email == userEmail.ToLower())
                 {
                     accountExists = true;
                     Console.Write("Password: ");
                     var userPassword = Console.ReadLine();
                     Console.Clear();
 
-                    if (user.password == userPassword)
+                    if (user.Password == userPassword)
                     {
-                        currentUserId = user.accountID;
-                        currentUserType = user.accountType;
+                        currentUserID = user.AccountID;
+                        currentUserType = user.AccountType;
                         Console.WriteLine("You are logged in!");
                         Thread.Sleep(1000);
                         Console.Clear();
@@ -82,27 +79,28 @@ namespace Festivity
                             Program.Main(); //new string[] { }
                         }
                         loginOption = 0;
-
-
-                    } else {
+                    }
+                    else
+                    {
                         Console.WriteLine("Wrong password, please try again");
                         Thread.Sleep(1000);
                         Console.Clear();
-                        user_login();
+                        UserLogin();
                     }
-                } 
+                }
             }
             if (!accountExists)
             {
                 Console.WriteLine("Account exists does not exist, please try again");
                 Thread.Sleep(1000);
                 Console.Clear();
-                user_login();
+                UserLogin();
             }
         }
-        public static void automaticLogin(User user)
+
+        public static void AutomaticLogin(User user)
         {
-            currentUserId = user.accountID;
+            currentUserID = user.AccountID;
             Program.Main();
         }
     }
