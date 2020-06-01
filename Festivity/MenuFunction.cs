@@ -266,6 +266,7 @@ namespace Festivity
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
+                        option = 0;
                         Console.Clear();
                         Program.Main(); //new string[] { }
                         break;
