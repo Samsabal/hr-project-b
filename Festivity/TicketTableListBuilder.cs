@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace Festivity
 {
@@ -17,7 +18,7 @@ namespace Festivity
             int index = 0;
             foreach (var transaction in transactions.Transactions)
             {
-                if (transaction.BuyerID == UserLoginPage.currentUserID)
+                if (transaction.BuyerID == LoggedInAccount.GetID())
                 {
                     List<string> tempList = new List<string>();
                     foreach (var festival in festivals.Festivals)
@@ -44,19 +45,15 @@ namespace Festivity
                     index++;
                 }
             }
-            Console.WriteLine("Good test");
-            Console.ReadKey();
-
             if (index > 0)
             {
-                Console.WriteLine("Wrong test");
-                Console.ReadKey();
                 RefundTicket.SetTicketIDs(ticketList);
                 DrawTicketTable.SetTicketList(ticketList);
                 return true;
             }
-            Console.WriteLine("Good test2");
-            Console.ReadKey();
+            Console.WriteLine("Sorry, you don't have any Tickets");
+            Thread.Sleep(1000);
+            ConsoleHelperFunctions.ClearCurrentConsole();
             return false;
 
         }
