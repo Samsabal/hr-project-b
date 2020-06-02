@@ -66,45 +66,32 @@ namespace Festivity
 
                 if (currentFestivalId == festival.FestivalID)
                 {
-                    if (AgeCheck(currentFestivalId))
+                    UpdateCurrentFestivalTickets(currentFestivalId);
+
+                    MenuFunction.option = 0;
+
+                    while (true)
                     {
-                        UpdateCurrentFestivalTickets(currentFestivalId);
-
-                        MenuFunction.option = 0;
-
-                        while (true)
+                        if (AgeCheck(currentFestivalId))
                         {
-                            if (AgeCheck(currentFestivalId))
-                            {
-                                List<string> menuOptionsList = new List<string>();
-                                string line = "----------------------------------------------------------------------";
+                            List<string> menuOptionsList = new List<string>();
+                            string line = "----------------------------------------------------------------------";
 
-                                // Displays the Tickets for the current Festival
-                                foreach (var ticket in CurrentTicketList)
-                                {
-                                    Console.WriteLine(ticket.TicketName);
-                                    Console.WriteLine("Description: " + ticket.TicketDescription);
-                                    Console.WriteLine("Price: " + ticket.TicketPrice + " euros");
-                                    Console.WriteLine(line);
-                                    menuOptionsList.Add("Buy Ticket:" + ticket.TicketID);
-                                }
-
-                                menuOptionsList.Add("Return to Festival Page");
-                                menuOptionsList.Add("Exit to Main Menu");
-                                MenuFunction.Menu(menuOptionsList.ToArray(), CurrentTicketList.ToArray());
-                            }
-                            else
+                            // Displays the Tickets for the current Festival
+                            foreach (var ticket in CurrentTicketList)
                             {
-                                    Console.WriteLine("Sorry but you are too young to enter this festival.");
-                                    Console.WriteLine("You need to be at least " + festival.FestivalAgeRestriction + " years old in order to enter.");
-                                    Console.WriteLine("");
-                                    MenuFunction.Menu(new string[] { "Return to Festival Page", "Return to Catalog", "Exit to Main Menu" });
+                                Console.WriteLine(ticket.TicketName);
+                                Console.WriteLine("Description: " + ticket.TicketDescription);
+                                Console.WriteLine("Price: " + ticket.TicketPrice + " euros");
+                                Console.WriteLine(line);
+                                menuOptionsList.Add("Buy Ticket:" + ticket.TicketID);
                             }
+
+                            menuOptionsList.Add("Return to Festival Page");
+                            menuOptionsList.Add("Exit to Main Menu");
+                            MenuFunction.Menu(menuOptionsList.ToArray(), CurrentTicketList.ToArray());
                         }
-                    }
-                    else
-                    {
-                        while (true)
+                        else
                         {
                             Console.WriteLine("Sorry but you are too young to enter this festival.");
                             Console.WriteLine("You need to be at least " + festival.FestivalAgeRestriction + " years old in order to enter.");
