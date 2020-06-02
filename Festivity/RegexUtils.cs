@@ -106,6 +106,11 @@ namespace Festivity
             return RegexCheck(addressName, new Regex(@"^[A-Za-z]{1,500}$"));
         }
 
+        public static bool IsValidCancelTime(string cancelTime)
+        {
+            return NumberCheck(cancelTime, 0, 52);
+        }
+
         public static bool IsValidAge(string age)
         {
             return NumberCheck(age, 0, 120);
