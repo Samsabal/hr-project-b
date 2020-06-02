@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -9,7 +10,8 @@ namespace Festivity
     {
         public static bool activeScreen = true;
         public static string currentRegisterSelection = null;
-        public static int[] deleteTicketList;
+        public static List<Ticket> ticketList { get; set; }
+
         // Festival vairables
 
         public static string festivalName = null;
@@ -30,8 +32,55 @@ namespace Festivity
         public static string festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
         public static int cancelTime = 0;
 
+        // Ticket vairables
+
+        public static int ticketID;
+        public static string festivalTicketName;
+        public static string festivalTicketDescription;
+        public static double festivalTicketPrice;
+        public static int festivalMaxTickets;
+        public static int festivalMaxTicketsPerPerson;
+
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+
+
+        // This is a function to reset all variables upon leaving the festival registration
+        public static void ResetFestivalAndTicketRegistration()
+        {
+
+        // Festival vairables
+
+        festivalName = null;
+        festivalDescription = null;
+        festivalDateDay = 00;
+        festivalDateMonth = 00;
+        festivalDateYear = 00;
+        festivalStartingTime = null;
+        festivalEndTime = null;
+        festivalLocationCountry = null;
+        festivalLocationCity = null;
+        festivalLocationStreet = null;
+        festivalLocationZipCode = null;
+        festivalLocationHouseNumber = null;
+        festivalGenre = null;
+        festivalAgeRestriction = 0;
+        festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
+        festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
+        cancelTime = 0;
+
+        // Ticket vairables
+
+        festivalTicketName = null;
+        festivalTicketDescription = null;
+        festivalTicketPrice = 0.0;
+        festivalMaxTickets = 0;
+        festivalMaxTicketsPerPerson = 0;
+        
+        // Removes all tickets from the ticketList
+
+        ticketList.Clear();
+        }
 
         // This is a function to retrieve the latest registered festivalid and create the next festivalid
         public static int FestivalId(JSONFestivalList festivals)
@@ -183,27 +232,28 @@ namespace Festivity
                     Console.WriteLine("Fill in the amount of various tickets as a number: ");
                     int festivalAmountVariousTickets = int.Parse(Console.ReadLine());
 
+                    ticketList = new List<Ticket>();
                     // this for loop loops the amount of times the organiser filled in for various amounts of tickets
                     for (int i = 0; i < festivalAmountVariousTickets; i++)
                     {
                         // This variable connected to the ticketid function is placed inside the loop to give every ticket a new ticketid
-                        int ticketID = TicketID(tickets);
+                        ticketID = TicketID(tickets);
 
                         Console.WriteLine("Fill in the ticket name of ticket ", (i + 1),
                         ": ");
-                        string festivalTicketName = Console.ReadLine();
+                        festivalTicketName = Console.ReadLine();
 
                         Console.WriteLine("Fill in ticket description");
-                        string festivalTicketDescription = Console.ReadLine();
+                        festivalTicketDescription = Console.ReadLine();
 
                         Console.WriteLine("Fill in the price of the ticket in euros: ");
-                        double festivalTicketPrice = double.Parse(Console.ReadLine());
+                        festivalTicketPrice = double.Parse(Console.ReadLine());
 
                         Console.WriteLine("Fill in the maximum available amount of this type ticket: ");
-                        int festivalMaxTickets = Int32.Parse(Console.ReadLine());
+                        festivalMaxTickets = Int32.Parse(Console.ReadLine());
 
                         Console.WriteLine("Fill in the maximum amount of tickets a single person may buy: ");
-                        int festivalMaxTicketsPerPerson = Int32.Parse(Console.ReadLine());
+                        festivalMaxTicketsPerPerson = Int32.Parse(Console.ReadLine());
 
                         // This is a format to create the new ticket
                         Ticket ticket = new Ticket
@@ -217,10 +267,8 @@ namespace Festivity
                             MaxTicketsPerPerson = festivalMaxTicketsPerPerson
                         };
 
-                        // Adds a new ticket to the database
-                        tickets.Tickets.Add(ticket);
-
-                        JSONFunctionality.WriteTickets(tickets);
+                        ticketList.Add(ticket);
+                        
                     };
                     currentRegisterSelection = "Main";
                 }
@@ -230,7 +278,7 @@ namespace Festivity
 
                     // Check if there are tickets registered.
                     // If not it will not save the festival.
-                    if (tickets.Tickets[^1].FestivalID != FestivalId(festivals))
+                    if (ticketList.Count < 1)
                     {
                         Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
                         Thread.Sleep(5000);
@@ -239,6 +287,14 @@ namespace Festivity
 
                     else
                     {
+                        foreach (var Ticket in ticketList)
+                        {
+                            // Adds a new ticket to the database
+                            tickets.Tickets.Add((Ticket)Ticket);
+
+                        }
+                        JSONFunctionality.WriteTickets(tickets);
+                        
                         // A format for creating a new festival
                         Festival festival = new Festival
                         {
@@ -270,6 +326,7 @@ namespace Festivity
                         festivals.Festivals.Add(festival);
                         JSONFunctionality.WriteFestivals(festivals);
 
+                        ResetFestivalAndTicketRegistration();
                         activeScreen = false;
                         currentRegisterSelection = null;
                         MenuFunction.option = 0;
@@ -277,31 +334,9 @@ namespace Festivity
                 }
                 else if (currentRegisterSelection == "Cancel Festival Registration")
                 {
-                    // Reads database than deletes the tickets that belong to the festival
-                    JSONFunctionality.GetTickets();
-                    
-                    foreach (Ticket ticket in tickets.Tickets)
-                    {
-                        if (ticket.FestivalID == FestivalId(festivals))
-                        {
-                            //adds festivalID to a list and adds it to a list
-                            deleteTicketList = new int[] { ticket.TicketID};
-                        }
-
-                    }
-                    for (int i = 0; i < tickets.Tickets.Count; i++  )
-                    {
-                        foreach (var ticketID in deleteTicketList)
-                        {
-                            if (ticketID == tickets.Tickets.TicketID)
-                            {
-                                tickets.Tickets.Remove();
-                                JSONFunctionality.WriteTickets(tickets);
-                                
-                            }
-                        } 
-                    }
-                    // returns you to the main menu
+                    // Reset all vairables
+                    ResetFestivalAndTicketRegistration();
+                    // Returns you to the main menu
                     activeScreen = false;
                     currentRegisterSelection = null;
                     MenuFunction.option = 0;
