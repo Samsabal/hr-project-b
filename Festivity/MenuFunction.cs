@@ -396,7 +396,7 @@ namespace Festivity
                     case "Order Tickets":
                         Console.Clear();
                         CatalogPage.activeScreen = false;
-                        if (LoggedInAccount.User.AccountID == 0)
+                        if (LoggedInAccount.IsLoggedIn() == false)
                         {
                             UserLoginPage.UserLogin(1);
                         }
