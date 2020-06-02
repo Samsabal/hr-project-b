@@ -17,8 +17,8 @@
             "accountID": 1,
             "firstName": "enny",
             "lastName": "adeoye",
-            "email": "visitor",
-            "password": "visitor",
+            "email": "asd@gmail.com",
+            "password": "Iwmcghr2ABC!",
             "companyContactperson": null,
             "companyPhoneNumber": null,
             "companyName": null,
@@ -85,24 +85,50 @@
                 "year": 0
             },
             "userAddress": {
-                "country": "Adminland",
-                "city": "Admincity",
-                "zipCode": "1337GM",
-                "streetName": "Adminlane",
-                "streetNumber": "99"
+                "country": "Netherlands",
+                "city": "Rotterdam",
+                "zipCode": "7777EB",
+                "streetName": "Wijnhaven",
+                "streetNumber": "70"
             },
-            "accountType": 2,
-            "accountID": 2,
-            "firstName": "enny",
-            "lastName": "adeoye",
-            "email": "admin",
-            "password": "admin",
-            "companyContactperson": "Justin",
-            "companyPhoneNumber": "0612345678",
-            "companyName": "Amazon",
-            "companyIBAN": "IBAN09RABO1234567890",
-            "newsLetter": 1,
-            "phoneNumber": "91283129831"
+            "accountType": 1,
+            "accountID": 4,
+            "firstName": "Mark",
+            "lastName": "Bergsma",
+            "email": "test",
+            "password": "Test!1",
+            "companyContactperson": "test",
+            "companyPhoneNumber": "0636221537",
+            "companyName": "Test",
+            "companyIBAN": "NL99TEST0123456789",
+            "newsLetter": 0,
+            "phoneNumber": null
+        },
+        {
+            "birthDate": {
+                "day": 0,
+                "month": 0,
+                "year": 0
+            },
+            "userAddress": {
+                "country": "Rotterdam",
+                "city": "Rotterdam",
+                "zipCode": "2222AA",
+                "streetName": "Rotterdam",
+                "streetNumber": "22"
+            },
+            "accountType": 1,
+            "accountID": 5,
+            "firstName": "Mark",
+            "lastName": "Bergsma",
+            "email": "testemail2@gmail.com",
+            "password": "helloThere!2",
+            "companyContactperson": "helloThere!2",
+            "companyPhoneNumber": "0636221537",
+            "companyName": "test2",
+            "companyIBAN": "NL99TEST0123456789",
+            "newsLetter": 0,
+            "phoneNumber": null
         }
     ]
 }

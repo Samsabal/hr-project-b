@@ -1,68 +1,85 @@
 {
-    "tickets": [
-        {
-            "festivalId": 1,
-            "ticketId": 1,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 35,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 1,
-            "ticketId": 2,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 50,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 2,
-            "ticketId": 3,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 69,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 3,
-            "ticketId": 4,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 55,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 4,
-            "ticketId": 5,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 500,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 5,
-            "ticketId": 6,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 40,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 5,
-            "ticketId": 7,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 500,
-            "maxTickets": 5000
-        },
-        {
-            "festivalId": 5,
-            "ticketId": 8,
-            "ticketName": "Normal Ticket",
-            "ticketDescription": "This is a normal ticket.",
-            "ticketPrice": 400,
-            "maxTickets": 5000
-        }
-    ]
+  "tickets": [
+    {
+      "festivalId": 1,
+      "ticketId": 1,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 35.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 1,
+      "ticketId": 2,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 50.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 2,
+      "ticketId": 3,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 69.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 3,
+      "ticketId": 4,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 55.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 4,
+      "ticketId": 5,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 500.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 5,
+      "ticketId": 6,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 40.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 5,
+      "ticketId": 7,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 500.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 5,
+      "ticketId": 8,
+      "ticketName": "Normal Ticket",
+      "ticketDescription": "This is a normal ticket.",
+      "ticketPrice": 400.0,
+      "maxTickets": 5000,
+      "maxTicketsPerPerson": 0
+    },
+    {
+      "festivalId": 6,
+      "ticketId": 9,
+      "ticketName": "Page 2 testparty ticket",
+      "ticketDescription": "this is a manual added into the database ticket",
+      "ticketPrice": 200.0,
+      "maxTickets": 1945,
+      "maxTicketsPerPerson": 10
+    }
+  ]
 }
