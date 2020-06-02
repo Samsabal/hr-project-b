@@ -393,6 +393,11 @@ namespace Festivity
                         FestivalRegister.currentRegisterSelection = "Cancel Time";
                         break;
 
+                    case "Cancel Festival Registration":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Cancel Festival Registration";
+                        break;
+
                     case "Order Tickets":
                         Console.Clear();
                         CatalogPage.activeScreen = false;

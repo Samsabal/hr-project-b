@@ -98,7 +98,7 @@ namespace Festivity
 
         public static bool IsValidPrice(string price)
         {
-            return RegexCheck(price, new Regex(@"^[0-9]*(\.)?[0-9]?[0-9]?$"));
+            return RegexCheck(price, new Regex(@"^[0-9]*(\,)?[0-9]?[0-9]?$"));
         }
 
         public static bool IsValidTimeFormat(string time)
@@ -108,7 +108,7 @@ namespace Festivity
 
         public static bool IsValidDescription(string addressName)
         {
-            return RegexCheck(addressName, new Regex(@"^[A-Za-z]{1,500}$"));
+            return RegexCheck(addressName, new Regex(@"^.{1,500}$"));
         }
 
         public static bool IsValidCancelTime(string cancelTime)
@@ -130,12 +130,12 @@ namespace Festivity
             return RegexCheck(email, isValidEmail);
         }
 
-        public static bool IsValidMaxTIckets(string ticketAmount)
+        public static bool IsValidMaxTickets(string ticketAmount)
         {
             return NumberCheck(ticketAmount, 1, 100000);
         }
 
-        public static bool IsValidTicketPP(string ticketAmount)
+        public static bool IsValidMaxTicketsPerPerson(string ticketAmount)
         {
             return NumberCheck(ticketAmount, 1, 100);
         }
