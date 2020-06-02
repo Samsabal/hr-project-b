@@ -435,7 +435,7 @@ namespace Festivity
                         Program.Main(); //new string[] { }
                         break;
 
-                    case "Account":
+                    case "My Account":
                         Console.Clear();
                         UserAccountPage.AccountPage();
                         break;
@@ -480,9 +480,12 @@ namespace Festivity
                         FestivalRegister.currentRegisterSelection = "Main";
                         break;
 
-                    case "My Festivals":
+                    case "My Tickets":
                         Console.Clear();
-                        TicketTable.TicketTablePage();
+                        TicketTableManager.Initiate();
+                        break;
+                    case "Refund Ticket":
+                        RefundTicket.InitiateRefund();
                         break;
 
                     case "iDEAL":
