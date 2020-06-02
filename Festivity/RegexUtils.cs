@@ -37,7 +37,7 @@ namespace Festivity
             return RegexCheck(name, new Regex(@"\b[A-Za-z]{2,33}\b"));
         }
 
-        public static bool isValidIBAN(string IBAN)
+        public static bool IsValidIBAN(string IBAN)
         /// First two characters must be 'NL'
         /// 3rd and 4th characters must be 2 numbers
         /// 5th to 8th characters must be 4 letters
@@ -96,6 +96,11 @@ namespace Festivity
             return RegexCheck(phoneNumber, new Regex(@"^06\d{8}$"));
         }
 
+        public static bool IsValidPrice(string price)
+        {
+            return RegexCheck(price, new Regex(@"^[0-9]*(\.)?[0-9]?[0-9]?$"));
+        }
+
         public static bool IsValidTimeFormat(string time)
         {
             return RegexCheck(time, new Regex(@"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"));
@@ -104,6 +109,11 @@ namespace Festivity
         public static bool IsValidDescription(string addressName)
         {
             return RegexCheck(addressName, new Regex(@"^[A-Za-z]{1,500}$"));
+        }
+
+        public static bool IsValidCancelTime(string cancelTime)
+        {
+            return NumberCheck(cancelTime, 0, 52);
         }
 
         public static bool IsValidAge(string age)
@@ -118,6 +128,16 @@ namespace Festivity
                                             + "@"
                                             + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
             return RegexCheck(email, isValidEmail);
+        }
+
+        public static bool IsValidMaxTIckets(string ticketAmount)
+        {
+            return NumberCheck(ticketAmount, 1, 100000);
+        }
+
+        public static bool IsValidTicketPP(string ticketAmount)
+        {
+            return NumberCheck(ticketAmount, 1, 100);
         }
 
         public static bool IsValidPassword(string password)
