@@ -127,10 +127,9 @@ namespace Festivity
 
         private static void WriteToJson(User user)
         {
-            JSONUserList users = JSONFunctionality.GetUsers();
+            JSONUserList users = JSONFunctionality.GetUserList();
             users.Users.Add(user);
-            JSONFunctionality.WriteUsers(users);
-            UserLoginPage.currentUserType = user.AccountType;
+            JSONFunctionality.WriteToUserList(users);
             UserLoginPage.AutomaticLogin(user);
         }
 
@@ -150,7 +149,7 @@ namespace Festivity
             while (newsLetter == 0)
             {
                 Console.WriteLine("Do you want to recieve a newsletter? \n");
-                MenuFunction.Menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve a newsletters" });
+                MenuFunction.Menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve newsletters" });
             }
         }
 

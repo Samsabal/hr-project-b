@@ -16,25 +16,23 @@ namespace Festivity
 
         public static void AccountPage()
         {
-            foreach (var user in users.Users)
+            MenuFunction.option = 0;
+            while (true)
             {
-                if (UserLoginPage.currentUserID == user.AccountID)
+                Console.WriteLine();
+                Console.WriteLine("Your account Information: ");
+                Console.WriteLine();
+                Console.WriteLine($"    {LoggedInAccount.User.FirstName} {LoggedInAccount.User.LastName}");
+                Console.WriteLine($"    {LoggedInAccount.User.userAddress.StreetName} {LoggedInAccount.User.userAddress.StreetNumber}");
+                Console.WriteLine($"    {LoggedInAccount.User.userAddress.ZipCode} {LoggedInAccount.User.userAddress.City}");
+                Console.WriteLine($"    {LoggedInAccount.User.Email}");
+                Console.WriteLine();
+                if(LoggedInAccount.User.AccountType == 1)
                 {
-                    MenuFunction.option = 0;
-                    while (true)
-                    {
-                        Console.WriteLine("Your account Information: ");
-                        Console.WriteLine();
-                        Console.WriteLine($"    {user.FirstName} {user.LastName}");
-                        Console.WriteLine($"    {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
-                        Console.WriteLine($"    {user.userAddress.ZipCode} {user.userAddress.City}");
-                        Console.WriteLine($"    {user.Email}");
-                        Console.WriteLine();
-                        Console.WriteLine($"    Total amount earned: {AmountEarned()} Euro's");
-                        Console.WriteLine("");
-                        MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
-                    }
+                    Console.WriteLine($"    Total amount earned: {AmountEarned()} Euro's");
                 }
+                Console.WriteLine("");
+                MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
             }
         }
 
@@ -42,7 +40,7 @@ namespace Festivity
         {
             foreach (var user in users.Users)
             {
-                if (UserLoginPage.currentUserID == user.AccountID)
+                if (LoggedInAccount.GetID() == user.AccountID)
                 {
                     Console.WriteLine("     Your account Information: ");
                     Console.WriteLine();
@@ -50,7 +48,7 @@ namespace Festivity
                     Console.WriteLine($"2.  Lastname:               {user.LastName}");
                     Console.WriteLine($"3.  Email:                  {user.Email}");
 
-                    if (UserLoginPage.currentUserType == 1) // Organisator
+                    if (LoggedInAccount.User.AccountType == 1) // Organisator
                     {
                         Console.WriteLine("");
                         Console.WriteLine($"4.  Street address:         {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
@@ -64,7 +62,7 @@ namespace Festivity
                         Console.WriteLine("Transaction information");
                         Console.WriteLine("You have made {ticketMoney} from tickets.");
                     }
-                    if (UserLoginPage.currentUserType == 2) // Festival goer
+                    if (LoggedInAccount.User.AccountType == 2) // Festival goer
                     {
                         Console.WriteLine($"4.  Phonenumber:            {user.PhoneNumber}");
                         Console.WriteLine($"5.  Street address:         {user.userAddress.StreetName} {user.userAddress.StreetNumber}");
@@ -96,254 +94,230 @@ namespace Festivity
 
         public static void AccountEmailPrefference()
         {
-            Console.Clear();
-            foreach (var user in users.Users)
+            if (LoggedInAccount.User.NewsLetter == 1)
             {
-                if (UserLoginPage.currentUserID == user.AccountID)
+                Console.WriteLine("Do you want to stop recieving Newsletters? [Y or N].");
+                string userInput = Console.ReadLine();
+                if (userInput.ToLower() == "y")
                 {
-                    if (user.NewsLetter == 1)
-                    {
-                        Console.WriteLine("Do you want to stop recieving Newsletters? [Y or N].");
-                        string userInput = Console.ReadLine();
-                        if (userInput.ToLower() == "y")
-                        {
-                            Console.Clear();
-                            user.NewsLetter = 0;
-                            Console.WriteLine("Preference successfully changed.");
-                            Thread.Sleep(1000);
-                            Console.Clear();
-                        } else if (userInput.ToLower() != "n")
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Invalid input, please try again.");
-                            Thread.Sleep(1000);
-                            Console.Clear();
-                            //AccountEmailPrefference();
-                        }
-                    }
-                    else if (user.NewsLetter == 0)
-                    {
-                        Console.WriteLine("Do you want to recieve Newsletters? [Y or N]");
-                        string userInput = Console.ReadLine();
-                        if (userInput.ToLower() == "y")                       {
-                            Console.Clear();
-                            user.NewsLetter = 1;
-                            Console.WriteLine("Preference successfully changed.");
-                            Thread.Sleep(1000);
-                            Console.Clear();
-                        }
-                        else if (userInput.ToLower() != "n")
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Invalid input, please try again.");
-                            Thread.Sleep(1000);
-                            Console.Clear();
-                            //AccountEmailPrefference();
-                        }
-                    }
+                    Console.Clear();
+                    LoggedInAccount.User.NewsLetter = 0;
+                    Console.WriteLine("Preference successfully changed.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
+                else if (userInput.ToLower() != "n")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input, please try again.");
+                    AccountEmailPrefference();
                 }
             }
-            Console.Clear();
-            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(PathUser, json);
+            else if (LoggedInAccount.User.NewsLetter == 0)
+            {
+                Console.WriteLine("Do you want to recieve Newsletters? [Y or N]");
+                string userInput = Console.ReadLine();
+                if (userInput.ToLower() == "y")
+                {
+                    Console.Clear();
+                    LoggedInAccount.User.NewsLetter = 1;
+                    Console.WriteLine("Preference successfully changed.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
+                else if (userInput.ToLower() != "n")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input, please try again.");
+                    AccountEmailPrefference();
+                }
+            }
+            LoggedInAccount.UpdateDatabase();
         }
 
         public static void AccountChangeOrganisator(int userSelection)
         {
             string userInput;
-
-            foreach (var user in users.Users)
+            if (LoggedInAccount.User.AccountType == 1)
             {
-                if (UserLoginPage.currentUserID == user.AccountID)
+                switch (userSelection)
                 {
-                    if (UserLoginPage.currentUserType == 1)
-                    {
-                        switch (userSelection)
-                        {
-                            case 1:
-                                Console.Clear();
-                                Console.WriteLine("Input new firstname: ");
-                                userInput = Console.ReadLine();
-                                user.FirstName = userInput;
-                                break;
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Input new firstname: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.FirstName = userInput;
+                        break;
 
-                            case 2:
-                                Console.Clear();
-                                Console.WriteLine("Input new lastname: ");
-                                userInput = Console.ReadLine();
-                                user.LastName = userInput;
-                                break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Input new lastname: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.LastName = userInput;
+                        break;
 
-                            case 3:
-                                Console.Clear();
-                                Console.WriteLine("Input new email: ");
-                                userInput = Console.ReadLine();
-                                user.Email = userInput;
-                                break;
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Input new email: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.Email = userInput;
+                        break;
 
-                            case 4:
-                                Console.Clear();
-                                Console.WriteLine("Input new streetname: ");
-                                string userInput1 = Console.ReadLine();
-                                Console.Clear();
-                                Console.WriteLine("Input new streetnumber: ");
-                                string userInput2 = Console.ReadLine();
-                                user.userAddress.StreetName = userInput1;
-                                user.userAddress.StreetNumber = userInput2;
-                                break;
+                    case 4:
+                        Console.Clear();
+                        Console.WriteLine("Input new streetname: ");
+                        string userInput1 = Console.ReadLine();
+                        Console.Clear();
+                        Console.WriteLine("Input new streetnumber: ");
+                        string userInput2 = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.StreetName = userInput1;
+                        LoggedInAccount.User.userAddress.StreetNumber = userInput2;
+                        break;
 
-                            case 5:
-                                Console.Clear();
-                                Console.WriteLine("Input new city: ");
-                                userInput = Console.ReadLine();
-                                user.userAddress.City = userInput;
-                                break;
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("Input new city: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.City = userInput;
+                        break;
 
-                            case 6:
-                                Console.Clear();
-                                Console.WriteLine("Input new zipcode: ");
-                                userInput = Console.ReadLine();
-                                user.userAddress.ZipCode = userInput;
-                                break;
+                    case 6:
+                        Console.Clear();
+                        Console.WriteLine("Input new zipcode: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.ZipCode = userInput;
+                        break;
 
-                            case 7:
-                                Console.Clear();
-                                Console.WriteLine("Input new country: ");
-                                userInput = Console.ReadLine();
-                                user.userAddress.Country = userInput;
-                                break;
+                    case 7:
+                        Console.Clear();
+                        Console.WriteLine("Input new country: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.Country = userInput;
+                        break;
 
-                            case 8:
-                                Console.Clear();
-                                Console.WriteLine("Input new companyname: ");
-                                userInput = Console.ReadLine();
-                                user.CompanyName = userInput;
-                                break;
+                    case 8:
+                        Console.Clear();
+                        Console.WriteLine("Input new companyname: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.CompanyName = userInput;
+                        break;
 
-                            case 9:
-                                Console.Clear();
-                                Console.WriteLine("Input new companynumber: ");
-                                userInput = Console.ReadLine();
-                                user.CompanyPhoneNumber = userInput;
-                                break;
+                    case 9:
+                        Console.Clear();
+                        Console.WriteLine("Input new companynumber: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.CompanyPhoneNumber = userInput;
+                        break;
 
-                            default:
-                                break;
-                        }
-                    }
-                    if (UserLoginPage.currentUserType == 2) // Festival Goer
-                    {
-                        switch (userSelection)
-                        {
-                            case 1:
-                                Console.Clear();
-                                Console.WriteLine("Input new firstname: ");
-                                userInput = Console.ReadLine();
-                                user.FirstName = userInput;
-                                break;
-
-                            case 2:
-                                Console.Clear();
-                                Console.WriteLine("Input new lastname: ");
-                                userInput = Console.ReadLine();
-                                user.LastName = userInput;
-                                break;
-
-                            case 3:
-                                Console.Clear();
-                                Console.WriteLine("Input new email: ");
-                                userInput = Console.ReadLine();
-                                user.Email = userInput;
-                                break;
-
-                            case 4:
-                                Console.Clear();
-                                Console.WriteLine("Input new phoneNumber: ");
-                                userInput = Console.ReadLine();
-                                user.PhoneNumber = userInput;
-                                break;
-
-                            case 5:
-                                Console.Clear();
-                                Console.WriteLine("Input new streetname: ");
-                                string userInput1 = Console.ReadLine();
-                                Console.WriteLine("Input new streetnumber: ");
-                                string userInput2 = Console.ReadLine();
-                                user.userAddress.StreetName = userInput1;
-                                user.userAddress.StreetNumber = userInput2;
-                                break;
-
-                            case 6:
-                                Console.Clear();
-                                Console.WriteLine("Input new city: ");
-                                userInput = Console.ReadLine();
-                                user.userAddress.City = userInput;
-                                break;
-
-                            case 7:
-                                Console.Clear();
-                                Console.WriteLine("Input new zipcode: ");
-                                userInput = Console.ReadLine();
-                                user.userAddress.ZipCode = userInput;
-                                break;
-
-                            case 8:
-                                Console.Clear();
-                                Console.WriteLine("Input new country: ");
-                                userInput = Console.ReadLine();
-                                user.userAddress.Country = userInput;
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-                    string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-                    File.WriteAllText(PathUser, json);
+                    default:
+                        break;
                 }
             }
+            if (LoggedInAccount.User.AccountType == 2) // Festival Goer
+            {
+                switch (userSelection)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Input new firstname: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.FirstName = userInput;
+                        break;
+
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Input new lastname: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.LastName = userInput;
+                        break;
+
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Input new email: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.Email = userInput;
+                        break;
+
+                    case 4:
+                        Console.Clear();
+                        Console.WriteLine("Input new phoneNumber: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.PhoneNumber = userInput;
+                        break;
+
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("Input new streetname: ");
+                        string userInput1 = Console.ReadLine();
+                        Console.WriteLine("Input new streetnumber: ");
+                        string userInput2 = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.StreetName = userInput1;
+                        LoggedInAccount.User.userAddress.StreetNumber = userInput2;
+                        break;
+
+                    case 6:
+                        Console.Clear();
+                        Console.WriteLine("Input new city: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.City = userInput;
+                        break;
+
+                    case 7:
+                        Console.Clear();
+                        Console.WriteLine("Input new zipcode: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.ZipCode = userInput;
+                        break;
+
+                    case 8:
+                        Console.Clear();
+                        Console.WriteLine("Input new country: ");
+                        userInput = Console.ReadLine();
+                        LoggedInAccount.User.userAddress.Country = userInput;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            LoggedInAccount.UpdateDatabase();
         }
 
         public static void ChangePassword()
         {
             string userInput;
-
-            foreach (var user in users.Users)
+            Console.WriteLine("Input current password: ");
+            userInput = Console.ReadLine();
+            Console.Clear();
+            if (userInput == LoggedInAccount.User.Password)
             {
-                if (UserLoginPage.currentUserID == user.AccountID)
+                Console.WriteLine("Input new password: ");
+                string userInput1 = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("Input new password again: ");
+                string userInput2 = Console.ReadLine();
+                Console.Clear();
+                if (userInput1 == userInput2)
                 {
-                    Console.WriteLine("Input current password: ");
-                    userInput = Console.ReadLine();
+                    LoggedInAccount.User.Password = userInput2;
+                    Console.WriteLine("Password successfully changed.");
+                    Thread.Sleep(1000);
                     Console.Clear();
-                    if (userInput == user.Password)
-                    {
-                        Console.WriteLine("Input new password: ");
-                        string userInput1 = Console.ReadLine();
-                        Console.Clear();
-                        Console.WriteLine("Input new password again: ");
-                        string userInput2 = Console.ReadLine();
-                        Console.Clear();
-                        if (userInput1 == userInput2)
-                        {
-                            user.Password = userInput2;
-                            Console.WriteLine("Password successfully changed.");
-                            Thread.Sleep(1000);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Passwords do not match, please try again.");
-                            ChangePassword();
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid password, please try again.");
-                        ChangePassword();
-                    }
+                }
+                else
+                {
+                    Console.WriteLine("Passwords do not match, please try again.");
+                    Thread.Sleep(1000);
+                    ChangePassword();
                 }
             }
-            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(PathUser, json);
+            else
+            {
+                Console.WriteLine("Invalid password, please try again.");
+                Thread.Sleep(1000);
+                ChangePassword();
+            }
+            LoggedInAccount.UpdateDatabase();
         }
 
         public static double AmountEarned()
@@ -354,7 +328,7 @@ namespace Festivity
 
             foreach (var festival in festivals.Festivals)
             {
-                if (3 == festival.FestivalOrganiserID)
+                if (LoggedInAccount.GetID() == festival.FestivalOrganiserID)
                 {
                     foreach (var ticket in tickets.Tickets)
                     {
