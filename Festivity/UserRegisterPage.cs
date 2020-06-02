@@ -54,7 +54,7 @@ namespace Festivity
                 while (!RegexUtils.IsValidName(companyName));
 
                 do { companyIBAN = InputLoop("Company IBAN (Example: 'NL99BANK0123456789'): "); }
-                while (!RegexUtils.isValidIBAN(companyIBAN));
+                while (!RegexUtils.IsValidIBAN(companyIBAN));
             }
 
             if (userAccountType == 2) // Visitor
