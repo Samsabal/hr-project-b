@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Festivity
 {
@@ -15,14 +16,13 @@ namespace Festivity
         public static void CatalogMain()
         {
             JSONFestivalList festivals = JSONFunctionality.GetFestivals();
-
             activeScreen = true;
             currentCatalogNavigation = "main";
             currentPage = 0;
 
             // Makes an array with extra space to ensure there's always 5 festivals on screen
             festivalArray = festivals.Festivals.ToArray();
-
+            int lastpage = festivalArray.Length / 5;
             MenuFunction.option = 0;
 
             festivalArray = CatalogPageFilter.SortDate(festivalArray);
@@ -33,12 +33,32 @@ namespace Festivity
                 Console.SetCursorPosition(0, 0);
                 if (currentCatalogNavigation == "main")
                 {
-                    for (int i = 0; i < 5; )
+                    List<string> menuOptionsList = new List<string>();
+                    List<Festival> currentFestivalList = new List<Festival>();
+                    if (currentPage == lastpage)
+                    {
+                        for (int i = 0; i < festivalArray.Length % 5; i++)
+                        {
+                            menuOptionsList.Add("Select festival:" + festivalArray[currentPage * 5 + i]);
+                            currentFestivalList.Add(festivalArray[currentPage * 5 + i]);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            menuOptionsList.Add("Select festival:" + festivalArray[currentPage * 5 + i]);
+                            currentFestivalList.Add(festivalArray[currentPage * 5 + i]);
+                        }
+                    }
+
+                    menuOptionsList.Add("Next page");
+                    menuOptionsList.Add("Previous page");
+                    menuOptionsList.Add("Filter festivals");
+                    menuOptionsList.Add("Exit to Main Menu");
+
                     ShowFestivals(festivalArray);
-                    MenuFunction.Menu(new string[]{"festival1", "festival2", "festival3", "festival4", "festival5",
-                        "Next page", "Previous page", "Filter festivals", "Exit to Main Menu" },
-                        new Festival[]{festivalArray[currentPage * 5 + 0], festivalArray[currentPage * 5 + 1],
-                            festivalArray[currentPage * 5 + 2], festivalArray[currentPage * 5 + 3], festivalArray[currentPage * 5 + 4]});
+                    MenuFunction.Menu(menuOptionsList.ToArray(), currentFestivalList.ToArray());
                 }
                 else
                 {
