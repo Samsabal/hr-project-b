@@ -125,7 +125,6 @@ namespace Festivity
                     count++;
                 }
             }
-            resultArray = resultArray;
             return resultArray;
         }
 

@@ -341,7 +341,6 @@ namespace Festivity
 
                     case "Order Tickets":
                         Console.Clear();
-                        CatalogPage.activeScreen = false;
                         if (UserLoginPage.currentUserID == 0)
                         {
                             UserLoginPage.UserLogin(1);
@@ -456,7 +455,6 @@ namespace Festivity
                         {
                             Festival tempfestival = (Festival) objects[option];
                             Console.Clear();
-                            CatalogPage.activeScreen = false;
                             CatalogPage.selectedFestival = tempfestival.FestivalID;
                             FestivalPage.ShowFestivalPage(tempfestival.FestivalID);
                         }
