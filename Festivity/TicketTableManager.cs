@@ -8,9 +8,11 @@ namespace Festivity
     {
         public static void Initiate()
         {
-            TicketTableListBuilder.Build();
-            DrawTicketTable.CreateTable();
-            DrawTicketTable.Draw();
+            if (TicketTableListBuilder.Build())
+            {
+                DrawTicketTable.CreateTable();
+                DrawTicketTable.Draw();
+            }
         }
 
         public static void RefundTicket()

@@ -11,7 +11,7 @@ namespace Festivity
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
         private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
-        public static void Build()
+        public static bool Build()
         {
             List<List<string>> ticketList = new List<List<string>>();
             int index = 0;
@@ -44,11 +44,21 @@ namespace Festivity
                     index++;
                 }
             }
+            Console.WriteLine("Good test");
+            Console.ReadKey();
+
             if (index > 0)
             {
+                Console.WriteLine("Wrong test");
+                Console.ReadKey();
                 RefundTicket.SetTicketIDs(ticketList);
                 DrawTicketTable.SetTicketList(ticketList);
+                return true;
             }
+            Console.WriteLine("Good test2");
+            Console.ReadKey();
+            return false;
+
         }
     }
 }

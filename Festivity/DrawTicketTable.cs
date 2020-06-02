@@ -32,22 +32,13 @@ namespace Festivity
 
         public static void Draw()
         {
-            if (TicketList.Count > 0)
+            MenuFunction.option = 0;
+            while (true)
             {
-                MenuFunction.option = 0;
-                while (true)
-                {
-                    Console.Write(ticketTable.ToString());
-                    Console.WriteLine();
-                    MenuFunction.Menu(new string[] { "Exit to Main Menu", "Refund Ticket" });
-                }
+                Console.Write(ticketTable.ToString());
+                Console.WriteLine();
+                MenuFunction.Menu(new string[] { "Exit to Main Menu", "Refund Ticket" });
             }
-            else
-            {
-                Console.WriteLine("You have no tickets");
-                MenuFunction.Menu(new string[] { "Exit to Main Menu"});
-            }
-
         }
 
         public static void DrawRefund()
