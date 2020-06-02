@@ -15,29 +15,39 @@ namespace Festivity
 
         public static void CreateTable()
         {
-            ticketTable = new Table("ID", "Festival name", "Festival date", "Ticket type", "Price",
-                                          "Bought", "Amount", "Festival Status", "Refunable");
-
-            for (int i = 0; i < TicketList.Count; i++)
+            if (TicketList.Count > 0)
             {
-                ticketTable.AddRow($"{TicketList[i][6]}", $"{TicketList[i][0]}", $"{TicketList[i][1]}",
-                                   $"{TicketList[i][3]}", $"{TicketList[i][4]}", $"{TicketList[i][5]}",
-                                   $"{TicketList[i][7]}", $"{TicketList[i][2]}", "NULL");
-            }
-            ticketTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
+                ticketTable = new Table("ID", "Festival name", "Festival date", "Ticket type", "Price",
+                              "Bought", "Amount", "Festival Status", "Refunable");
 
-            
+                for (int i = 0; i < TicketList.Count; i++)
+                {
+                    ticketTable.AddRow($"{TicketList[i][6]}", $"{TicketList[i][0]}", $"{TicketList[i][1]}",
+                                       $"{TicketList[i][3]}", $"{TicketList[i][4]}", $"{TicketList[i][5]}",
+                                       $"{TicketList[i][7]}", $"{TicketList[i][2]}", "NULL");
+                }
+                ticketTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
+            } 
         }
 
         public static void Draw()
         {
-            MenuFunction.option = 0;
-            while (true)
+            if (TicketList.Count > 0)
             {
-                Console.Write(ticketTable.ToString());
-                Console.WriteLine();
-                MenuFunction.Menu(new string[] { "Exit to Main Menu", "Refund Ticket" });
+                MenuFunction.option = 0;
+                while (true)
+                {
+                    Console.Write(ticketTable.ToString());
+                    Console.WriteLine();
+                    MenuFunction.Menu(new string[] { "Exit to Main Menu", "Refund Ticket" });
+                }
             }
+            else
+            {
+                Console.WriteLine("You have no tickets");
+                MenuFunction.Menu(new string[] { "Exit to Main Menu"});
+            }
+
         }
 
         public static void DrawRefund()

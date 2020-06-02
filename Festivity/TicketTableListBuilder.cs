@@ -44,8 +44,11 @@ namespace Festivity
                     index++;
                 }
             }
-            RefundTicket.SetTicketIDs(ticketList);
-            DrawTicketTable.SetTicketList(ticketList);
+            if (index > 0)
+            {
+                RefundTicket.SetTicketIDs(ticketList);
+                DrawTicketTable.SetTicketList(ticketList);
+            }
         }
     }
 }
