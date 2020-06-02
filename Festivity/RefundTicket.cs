@@ -21,15 +21,9 @@ namespace Festivity
                 userInput = UserRegisterPage.InputLoop("\nInput Transaction ID of ticket you want to refund: "); }
             while (!IsValidTransactionID(userInput));
 
-            //for(int i = 0; i < transactions.Transactions.Count; i++)
-            //{
-            //    if (!(int.Parse(userInput) == transactions.Transactions[i].TransactionID))
-            //    {
-            //        newTransactions.Transactions.Add(transactions.Transactions[i]); // This line gives an Error.
-            //    }
-            //}
+            // Remove ticket here
 
-            //JSONFunctionality.WriteTransactions(newTransactions);
+            JSONFunctionality.WriteTransactions(newTransactions);
         }
 
         private static bool IsValidTransactionID(string value)
