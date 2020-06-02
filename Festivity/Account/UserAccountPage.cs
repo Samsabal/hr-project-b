@@ -8,7 +8,7 @@ namespace Festivity
 {
     internal class UserAccountPage
     {
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
+        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
         private static readonly JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();

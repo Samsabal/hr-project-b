@@ -5,10 +5,10 @@ namespace Festivity
 {
     internal class JSONFunctionality
     {
-        private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-        private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+        private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"FestivalsDatabase.json");
+        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
+        private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TicketDatabase.json");
+        private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TransactionDatabase.json");
 
         public static JSONFestivalList GetFestivals()
         {
