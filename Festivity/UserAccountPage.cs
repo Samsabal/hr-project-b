@@ -42,7 +42,6 @@ namespace Festivity
             {
                 if (LoggedInAccount.GetID() == user.AccountID)
                 {
-                    Console.WriteLine();
                     Console.WriteLine("     Your account Information: ");
                     Console.WriteLine();
                     Console.WriteLine($"1.  Firstname:              {user.FirstName}");
@@ -60,6 +59,8 @@ namespace Festivity
                         Console.WriteLine($"8.  Company name:           {user.CompanyName}");
                         Console.WriteLine($"9.  Company phonenumber:    {user.CompanyPhoneNumber}\n");
                         Console.WriteLine("");
+                        Console.WriteLine("Transaction information");
+                        Console.WriteLine("You have made {ticketMoney} from tickets.");
                     }
                     if (LoggedInAccount.User.AccountType == 2) // Festival goer
                     {
