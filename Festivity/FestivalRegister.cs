@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
@@ -123,7 +124,7 @@ namespace Festivity
 
             return ticketId;
         }
-
+        
         public static void ShowFestivalRegister()
         {
         
@@ -232,13 +233,16 @@ namespace Festivity
                 }
                 else if (currentRegisterSelection == "Tickets")
                 {
+                    string festivalAmountVariousTickets;
                     Console.Clear();
-                    Console.WriteLine("Fill in the amount of various tickets as a number: ");
-                    int festivalAmountVariousTickets = int.Parse(Console.ReadLine());
+                    do { festivalAmountVariousTickets = InputLoop("Fill in the amount of various tickets as a number: "); }
+                    while (!RegexUtils.NumberCheck(festivalAmountVariousTickets, 1, 20));
+                    
+                    int variousTickets = int.Parse(festivalAmountVariousTickets);
 
                     ticketList = new List<Ticket>();
                     // this for loop loops the amount of times the organiser filled in for various amounts of tickets
-                    for (int i = 0; i < festivalAmountVariousTickets; i++)
+                    for (int i = 0; i < variousTickets; i++)
                     {
                         // This variable connected to the ticketid function is placed inside the loop to give every ticket a new ticketid
                         ticketID = TicketID(tickets);
@@ -246,17 +250,17 @@ namespace Festivity
                         do { festivalTicketName = InputLoop($"Fill in the ticket name of ticket {(i + 1)} : "); }
                         while (!RegexUtils.IsValidAddressName(festivalTicketName));
 
-                        do { festivalTicketDescription = InputLoop("Fill in the ticket description"); }
+                        do { festivalTicketDescription = InputLoop("Fill in the ticket description: "); }
                         while (!RegexUtils.IsValidDescription(festivalTicketDescription));
 
                         do { festivalTicketPrice = InputLoop("Fill in the price of the ticket in euros: "); }
                         while (!RegexUtils.IsValidPrice(festivalTicketPrice));
 
-                        do { festivalMaxTickets = InputLoop("Fill in the maximum amount of available tikets of this type: "); }
+                        do { festivalMaxTickets = InputLoop("Fill in the maximum amount of available tikets of this ticket type: "); }
                         while (!RegexUtils.IsValidMaxTickets(festivalMaxTickets));
 
 
-                        do { festivalMaxTickets = InputLoop("Fill in the maximum amount of tickets a single person may buy: "); }
+                        do { festivalMaxTicketsPerPerson = InputLoop("Fill in the maximum amount of tickets a single person may buy: "); }
                         while (!RegexUtils.IsValidMaxTicketsPerPerson(festivalMaxTicketsPerPerson));
                         
 
@@ -283,13 +287,22 @@ namespace Festivity
 
                     // Checks if there are tickets registered.
                     // If not it will not save the festival.
-                    if (ticketList.Count == 0)
+                    
+                    if (ticketList == null)
                     {
                         Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
                         Thread.Sleep(5000);
                         currentRegisterSelection = "Main";
                     }
-
+                    else if (festivalName == null || festivalDescription == null || festivalLocationCountry == null || festivalLocationCity == null ||
+                        festivalLocationStreet == null || festivalLocationHouseNumber == null || festivalLocationZipCode == null || festivalDateDay == null|| festivalDateMonth == null || festivalDateYear == null ||
+                        festivalStartingTime == null || festivalEndTime == null || festivalGenre == null || festivalAgeRestriction == null || cancelTime == null)
+                    {
+                        // Checks if every field is filled in so the application does not crash
+                        Console.WriteLine("Before you can save the festival to our database you must assign a value to every option but you dont have to register the tickets again");
+                        Thread.Sleep(5000);
+                        currentRegisterSelection = "Main";
+                    }
                     else
                     {
                         foreach (var Ticket in ticketList)
@@ -299,7 +312,7 @@ namespace Festivity
 
                         }
                         JSONFunctionality.WriteTickets(tickets);
-                        
+
                         // A format for creating a new festival
                         Festival festival = new Festival
                         {
@@ -324,7 +337,8 @@ namespace Festivity
                             FestivalEndTime = festivalEndTime,
                             FestivalGenre = festivalGenre,
                             FestivalAgeRestriction = int.Parse(festivalAgeRestriction),
-                            FestivalCancelTime = int.Parse(cancelTime)
+                            FestivalCancelTime = int.Parse(cancelTime),
+                            FestivalOrganiserID = LoggedInAccount.GetID()
 
                         };
                         // Adds a new festival to the database
