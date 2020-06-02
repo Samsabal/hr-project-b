@@ -30,7 +30,7 @@ namespace Festivity
             }
         }
 
-        public static bool AgeCheck(int festivalId) //Checks if the user is old enough to use the program
+        public static bool AgeCheck(int festivalId) //Checks if the user is old enough to enter the festival
         {
             foreach (var festival in festivals.Festivals)
             {
