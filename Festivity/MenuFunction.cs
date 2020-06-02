@@ -401,7 +401,7 @@ namespace Festivity
                     case "Order Tickets":
                         Console.Clear();
                         CatalogPage.activeScreen = false;
-                        if (UserLoginPage.currentUserID == 0)
+                        if (LoggedInAccount.User.AccountID == 0)
                         {
                             UserLoginPage.UserLogin(1);
                         }
@@ -431,7 +431,7 @@ namespace Festivity
                         Thread.Sleep(1000);
                         Console.Clear();
                         option = 0;
-                        UserLoginPage.currentUserID = 0;
+                        LoggedInAccount.LogOut();
                         Program.Main(); //new string[] { }
                         break;
 

@@ -8,10 +8,10 @@ namespace Festivity
     internal class UserLoginPage
     {
         public static int userLoginChoice;
-        public static int currentUserID = 0;
-        public static int currentUserType;
+        //public static int currentUserID = 0;
+        //public static int currentUserType;
 
-        private static readonly JSONUserList users = JSONFunctionality.GetUsers();
+        private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
 
         public static void LoginPage()
         {
@@ -30,7 +30,7 @@ namespace Festivity
             string userEmail = Console.ReadLine();
             Console.Clear();
 
-            foreach (var user in users.Users)
+            foreach (var user in userList.Users)
             {
                 if (user.Email.ToLower() == userEmail.ToLower())
                 {
@@ -58,7 +58,7 @@ namespace Festivity
             Console.Clear();
             //Console.SetCursorPosition(0, 0);
 
-            foreach (var user in users.Users)
+            foreach (var user in userList.Users)
             {
                 if (user.Email == userEmail.ToLower())
                 {
@@ -69,8 +69,8 @@ namespace Festivity
 
                     if (user.Password == userPassword)
                     {
-                        currentUserID = user.AccountID;
-                        currentUserType = user.AccountType;
+                        LoggedInAccount.SetUser(user.AccountID);
+                        //currentUserType = user.AccountType; Temp disabled
                         Console.WriteLine("You are logged in!");
                         Thread.Sleep(1000);
                         Console.Clear();
@@ -100,7 +100,8 @@ namespace Festivity
 
         public static void AutomaticLogin(User user)
         {
-            currentUserID = user.AccountID;
+            LoggedInAccount.SetUser(user.AccountID);
+
             Program.Main();
         }
     }
