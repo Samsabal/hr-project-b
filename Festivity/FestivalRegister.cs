@@ -184,7 +184,6 @@ namespace Festivity
                     Console.WriteLine("Fill in the country: ");
                     festivalLocationCountry = Console.ReadLine();
 
-
                     Console.WriteLine("Fill in the city: ");
                     festivalLocationCity = Console.ReadLine();
 
