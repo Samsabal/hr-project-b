@@ -6,7 +6,7 @@ namespace Festivity
     public class FestivalPage
     {
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
-        private static readonly JSONUserList users = JSONFunctionality.GetUsers();
+        private static readonly JSONUserList users = JSONFunctionality.GetUserList();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
         private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
@@ -26,7 +26,7 @@ namespace Festivity
                 {
                     foreach (var user in users.Users)
                     {
-                        if (UserLoginPage.currentUserID == user.AccountID)
+                        if (LoggedInAccount.GetID() == user.AccountID)
                         {
                             int userAgeYear = festival.FestivalDate.Year - user.birthDate.Year;
                             int userAgeMonth = festival.FestivalDate.Month - user.birthDate.Month;

@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class TicketTable
     {
-        private static JSONUserList users = JSONFunctionality.GetUsers();
+        private static JSONUserList users = JSONFunctionality.GetUserList();
 
         public static void TicketTablePage()
         {
