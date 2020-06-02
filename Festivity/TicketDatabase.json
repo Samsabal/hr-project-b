@@ -1,20 +1,68 @@
-﻿{
-	"tickets": [
-		{
-			"festivalId": 1,
-			"ticketId": 1,
-			"ticketName": "Normal Ticket",
-			"ticketDescription": "This is a normal ticket.",
-			"ticketPrice": "35",
-			"maxTickets": 5000
-		},
-		{
-			"festivalId": 1,
-			"ticketId": 2,
-			"ticketName": "VIP Ticket",
-			"ticketDescription": "This is a VIP ticket.",
-			"ticketPrice": "75",
-			"maxTickets": 500
-		}
-	]
+{
+    "tickets": [
+        {
+            "festivalId": 1,
+            "ticketId": 1,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 35,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 1,
+            "ticketId": 2,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 50,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 2,
+            "ticketId": 3,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 69,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 3,
+            "ticketId": 4,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 55,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 4,
+            "ticketId": 5,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 500,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 5,
+            "ticketId": 6,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 40,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 5,
+            "ticketId": 7,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 500,
+            "maxTickets": 5000
+        },
+        {
+            "festivalId": 5,
+            "ticketId": 8,
+            "ticketName": "Normal Ticket",
+            "ticketDescription": "This is a normal ticket.",
+            "ticketPrice": 400,
+            "maxTickets": 5000
+        }
+    ]
 }

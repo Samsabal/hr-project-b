@@ -1,51 +1,54 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Festivity
 {
-    class User // base class (parent)
+    internal class User // base class (parent)
     {
         [JsonProperty("accountType")]
-        public int accountType { get; set; }
+        public int AccountType { get; set; }
 
         [JsonProperty("accountID")]
-        public int accountID { get; set; }
+        public int AccountID { get; set; }
+
         [JsonProperty("firstName")]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
         [JsonProperty("lastName")]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
 
         [JsonProperty("email")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("password")]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         [JsonProperty("companyContactperson")]
-        public string contactPerson { get; set; }
+        public string ContactPerson { get; set; }
 
         [JsonProperty("companyPhoneNumber")]
-        public string companyPhoneNumber { get; set; }
+        public string CompanyPhoneNumber { get; set; }
 
         [JsonProperty("companyName")]
-        public string companyName { get; set; }
+        public string CompanyName { get; set; }
 
-        [JsonProperty("birthDate")]
-        public string birthDate { get; set; }
+        [JsonProperty("companyIBAN")]
+        public string CompanyIBAN { get; set; }
+
+        public Date birthDate = new Date();
 
         [JsonProperty("newsLetter")]
-        public int newsLetter { get; set; }
+        public int NewsLetter { get; set; }
 
         [JsonProperty("phoneNumber")]
-        public string phoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public Address userAddress = new Address();
     }
 
-    class JSONUserList
+    internal class JSONUserList
     {
         [JsonProperty("users")]
-        public List<User> users { get; set; } // Change this to change back to userOrganisator/Visitor
+        public List<User> Users { get; set; } // Change this to change back to userOrganisator/Visitor
     }
 }

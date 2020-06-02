@@ -1,56 +1,127 @@
-using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Threading;
 
 namespace Festivity
 {
     public class FestivalPage
     {
+        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+        private static readonly JSONUserList users = JSONFunctionality.GetUserList();
+        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
+        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
-        public static void festival_page(int festivalId)
+        public static void ClearConsoleLine() //Removes the last line in the ticket table for a cleaner look
         {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+        }
 
-            string PATH_USER = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-            JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PATH_USER));
-
-            foreach (var user in users.users)
+        public static bool AgeCheck(int festivalId) //Checks if the user is old enough to use the program
+        {
+            foreach (var festival in festivals.Festivals)
             {
-                foreach (var festival in Festivals.festivals)
+                if (festival.FestivalID == festivalId)
                 {
-                    if (festival.festivalId == festivalId)
+                    foreach (var user in users.Users)
                     {
-                        if (false) //Needs to contain an age check -> (users.birthDate - festival.festivalDate < 18)
+                        if (LoggedInAccount.GetID() == user.AccountID)
+                        {
+                            int userAgeYear = festival.FestivalDate.Year - user.birthDate.Year;
+                            int userAgeMonth = festival.FestivalDate.Month - user.birthDate.Month;
+                            int userAgeDay = festival.FestivalDate.Day - user.birthDate.Day;
+                            if (userAgeYear * 365 + userAgeMonth * 30 + userAgeDay > festival.FestivalAgeRestriction * 365)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static int TicketsLeft(int ticketId, int maxTickets)
+        {
+            foreach (var ticket in tickets.Tickets)
+            {
+                if (ticket.TicketID == ticketId)
+                {
+                    foreach (var transaction in transactions.Transactions)
+                    {
+                        if (transaction.TicketID == ticket.TicketID)
+                        {
+                            int ticketsLeft = ticket.MaxTickets - transaction.TicketAmount;
+                            return ticketsLeft;
+                        }
+                    }
+                }
+            }
+            return maxTickets;
+        }
+
+        public static void ShowFestivalPage(int festivalId)//Displays the festival page
+        {
+            foreach (var festival in festivals.Festivals)
+            {
+                if (festival.FestivalID == festivalId)
+                {
+                    MenuFunction.option = 0;
+                    while (true)
+                    {
+                        if (AgeCheck(festivalId))
                         {
                             Console.WriteLine("Sorry but you are too young to enter this festival.");
+                            Console.WriteLine("You need to be at least " + festival.FestivalAgeRestriction + " years old in order to enter.");
+                            Console.WriteLine("");
+                            MenuFunction.Menu(new string[] { "Return to Catalog", "Exit to Main Menu" });
                         }
                         else
                         {
-                            MenuFunction.option = 0;
-                            while (true)
+                            string line = "----------------------------------------------------------------------";
+                            string thickLine = "======================================================================";
+
+                            Console.WriteLine(thickLine);
+                            Console.WriteLine(festival.FestivalName);
+                            foreach (var user in users.Users)
                             {
-                                string line = "----------------------------------------------------------------------";
-                                string thickLine = "======================================================================";
-                                Console.WriteLine(thickLine);
-                                Console.WriteLine("#" + festival.festivalId + " " + festival.festivalName);
-                                Console.WriteLine(thickLine);
-                                Console.WriteLine(festival.festivalLocation.city + ", " + festival.festivalLocation.country);
-                                Console.WriteLine(festival.festivalLocation.streetName + " " + festival.festivalLocation.streetNumber + ", " + festival.festivalLocation.zipCode);
-                                Console.WriteLine(line);
-                                Console.WriteLine(festival.festivalDate.day + "/" + festival.festivalDate.month + "/" + festival.festivalDate.year);
-                                Console.WriteLine("Starts at " + festival.festivalStartingTime + " and ends on " + festival.festivalEndTime + ".");
-                                Console.WriteLine("You need to be at least " + festival.festivalAgeRestriction + " years old in order to enter.");
-                                Console.WriteLine(line);
-                                Console.WriteLine("Bier Bende"); //Needs to be retrieved from the userDatabase.
-                                Console.WriteLine(festival.festivalDescription);
-                                Console.WriteLine(thickLine);
-                                Console.WriteLine("Ticket Info:");
-                                Console.WriteLine("Hier komt de ticket info/table."); //Ticket info needs to be retrieved here.
-                                Console.WriteLine(thickLine);
-                                MenuFunction.menu(new string[] { "Order Ticket", "Return to Catalog", "Exit to Main Menu" });
+                                if (festival.FestivalOrganiserID == user.AccountID)
+                                {
+                                    Console.WriteLine("Organised by: " + user.CompanyName);
+                                }
                             }
+                            Console.WriteLine(line);
+                            Console.WriteLine("You need to be at least " + festival.FestivalAgeRestriction + " years old in order to enter.");
+                            Console.WriteLine(festival.FestivalDescription);
+                            Console.WriteLine(line);
+                            Console.WriteLine("Starts at " + festival.FestivalStartingTime + " and ends on " + festival.FestivalEndTime + ".");
+                            Console.WriteLine("Takes place on: " + festival.FestivalDate.Day + "-" + festival.FestivalDate.Month + "-" + festival.FestivalDate.Year);
+                            Console.WriteLine();
+                            Console.WriteLine(festival.FestivalLocation.StreetName + " " + festival.FestivalLocation.StreetNumber + ", " + festival.FestivalLocation.ZipCode);
+                            Console.WriteLine(festival.FestivalLocation.City + ", " + festival.FestivalLocation.Country);
+                            Console.WriteLine(thickLine);
+                            foreach (var ticket in tickets.Tickets)//Shows the tickets from the corresponding festival
+                            {
+                                if (ticket.FestivalID == festival.FestivalID)
+                                {
+                                    int ticketId = ticket.TicketID;
+                                    int maxTickets = ticket.MaxTickets;
+                                    Console.WriteLine(ticket.TicketName);
+                                    Console.WriteLine("This ticket costs " + ticket.TicketPrice + " euro.");
+                                    Console.WriteLine("There are " + ticket.MaxTickets + " in total of which there are " + TicketsLeft(ticketId, maxTickets) + " left.");
+                                    Console.WriteLine(ticket.TicketDescription);
+                                    Console.WriteLine();
+                                }
+                            }
+                            Console.SetCursorPosition(0, Console.CursorTop - 1);
+                            ClearConsoleLine();
+                            Console.WriteLine(thickLine);
+                            MenuFunction.Menu(new string[] { "Order Tickets", "Return to Catalog", "Exit to Main Menu" });//The menu used in the festivalpage
                         }
                     }
                 }
