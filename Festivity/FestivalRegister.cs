@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
@@ -16,9 +17,9 @@ namespace Festivity
 
         public static string festivalName = null;
         public static string festivalDescription = null;
-        public static int festivalDateDay = 00;
-        public static int festivalDateMonth = 00;
-        public static int festivalDateYear = 00;
+        public static string festivalDateDay = null;
+        public static string festivalDateMonth = null;
+        public static string festivalDateYear = null;
         public static string festivalStartingTime = null;
         public static string festivalEndTime = null;
         public static string festivalLocationCountry = null;
@@ -27,23 +28,31 @@ namespace Festivity
         public static string festivalLocationZipCode = null;
         public static string festivalLocationHouseNumber = null;
         public static string festivalGenre = null;
-        public static int festivalAgeRestriction = 0;
+        public static string festivalAgeRestriction = null;
         public static string festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
         public static string festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
-        public static int cancelTime = 0;
+        public static string cancelTime = null;
 
         // Ticket vairables
 
         public static int ticketID;
         public static string festivalTicketName;
         public static string festivalTicketDescription;
-        public static double festivalTicketPrice;
-        public static int festivalMaxTickets;
-        public static int festivalMaxTicketsPerPerson;
+        public static string festivalTicketPrice;
+        public static string festivalMaxTickets;
+        public static string festivalMaxTicketsPerPerson;
 
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
-
+        
+        // This function is used to apply regex
+        public static string InputLoop(string printString)
+        {
+            string userInput;
+            Console.Write(printString); userInput = Console.ReadLine();
+            Console.Clear();
+            return userInput;
+        }
 
         // This is a function to reset all variables upon leaving the festival registration
         public static void ResetFestivalAndTicketRegistration()
@@ -53,9 +62,9 @@ namespace Festivity
 
         festivalName = null;
         festivalDescription = null;
-        festivalDateDay = 00;
-        festivalDateMonth = 00;
-        festivalDateYear = 00;
+        festivalDateDay = null;
+        festivalDateMonth = null;
+        festivalDateYear = null;
         festivalStartingTime = null;
         festivalEndTime = null;
         festivalLocationCountry = null;
@@ -64,21 +73,20 @@ namespace Festivity
         festivalLocationZipCode = null;
         festivalLocationHouseNumber = null;
         festivalGenre = null;
-        festivalAgeRestriction = 0;
+        festivalAgeRestriction = null;
         festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
         festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
-        cancelTime = 0;
+        cancelTime = null;
 
         // Ticket vairables
 
         festivalTicketName = null;
         festivalTicketDescription = null;
-        festivalTicketPrice = 0.0;
-        festivalMaxTickets = 0;
-        festivalMaxTicketsPerPerson = 0;
-        
-        // Removes all tickets from the ticketList
+        festivalTicketPrice = null;
+        festivalMaxTickets = null;
+        festivalMaxTicketsPerPerson = null;
 
+        // Removes all tickets from the ticketList if the ticketlist contains a ticket
         ticketList.Clear();
         }
 
@@ -144,71 +152,68 @@ namespace Festivity
                 else if (currentRegisterSelection == "Festival Name")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the name of the festival: ");
-                    festivalName = Console.ReadLine();
+                    do { festivalName = InputLoop("Fill in the name of the festival: "); }
+                    while (!RegexUtils.IsValidName(festivalName));
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Date")
                 {
                     Console.Clear();
+                    
                     Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
-                    Console.WriteLine("Fill in the day: ");
-                    festivalDateDay = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Fill in the month: ");
-                    festivalDateMonth = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Fill in the year: ");
-                    festivalDateYear = int.Parse(Console.ReadLine());
+                    do { festivalDateDay = InputLoop("Fill in the day: "); }
+                    while (!RegexUtils.IsValidFestivalDay(festivalDateDay));
+                    do { festivalDateMonth = InputLoop("Fill in the month: "); }
+                    while (!RegexUtils.IsValidFestivalMonth(festivalDateMonth));
+                    do { festivalDateYear = InputLoop("Fill in the year: "); }
+                    while (!RegexUtils.IsValidFestivalYear(festivalDateYear));
                     festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Starting Time")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in starting time(hh:mm): ");
-                    festivalStartingTime = Console.ReadLine();
+                    do { festivalStartingTime = InputLoop("Fill in starting time(hh:mm): "); }
+                    while (!RegexUtils.IsValidTimeFormat(festivalStartingTime));
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "End Time")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the expected end time(hh:mm): ");
-                    festivalEndTime = Console.ReadLine();
+                    do { festivalEndTime = InputLoop("Fill in the expected end time(hh:mm): "); }
+                    while (!RegexUtils.IsValidTimeFormat(festivalEndTime));
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Adress")
                 {
                     Console.Clear();
                     Console.WriteLine("Fill in the adress of the location.");
-                    Console.WriteLine("Fill in the country: ");
-                    festivalLocationCountry = Console.ReadLine();
+                    do { festivalLocationCountry = InputLoop("Fill in the country: "); }
+                    while (!RegexUtils.IsValidAddressName(festivalLocationCountry));
+                    do { festivalLocationCity = InputLoop("Fill in the city: "); }
+                    while (!RegexUtils.IsValidAddressName(festivalLocationCity));
+                    do { festivalLocationZipCode = InputLoop("Fill in the zipcode: "); }
+                    while (!RegexUtils.IsValidZipCode(festivalLocationZipCode));
+                    do { festivalLocationStreet = InputLoop("Fill in the street: "); }
+                    while (!RegexUtils.IsValidAddressName(festivalLocationStreet));
+                    do { festivalLocationHouseNumber = InputLoop("Fill in the house number: "); }
+                    while (!RegexUtils.IsValidStreetNumber(festivalLocationHouseNumber));
 
-                    Console.WriteLine("Fill in the city: ");
-                    festivalLocationCity = Console.ReadLine();
-
-                    Console.WriteLine("Fill in the zipcode");
-                    festivalLocationZipCode = Console.ReadLine();
-                    Console.WriteLine("Fill in the street: ");
-                    festivalLocationStreet = Console.ReadLine();
-
-                    Console.WriteLine("Fill in the house number: ");
-                    festivalLocationHouseNumber = Console.ReadLine();
                     festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Description")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the festival description (press enter when finished but don't press enter for a new line): ");
-                    festivalDescription = Console.ReadLine();
+                    do { festivalDescription = InputLoop("Fill in the festival description (press enter when finished but don't press enter for a new line): "); }
+                    while (!RegexUtils.IsValidDescription(festivalLocationCountry));
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Age Restriction")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the age restriction as a number");
-                    festivalAgeRestriction = int.Parse(Console.ReadLine());
+                    do { festivalAgeRestriction = InputLoop("Fill in the age restriction as a number(if there is no age restriction please fill in 0)"); }
+                    while (!RegexUtils.IsValidAge(festivalAgeRestriction));
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Festival Genre")
@@ -221,8 +226,8 @@ namespace Festivity
                 else if (currentRegisterSelection == "Cancel Time")
                 {
                     Console.Clear();
-                    Console.WriteLine("Fill in the amount of days before the start of the festival a customer is allowed to cancel their order: ");
-                    cancelTime = int.Parse(Console.ReadLine());
+                    do { cancelTime = InputLoop("Fill in the amount of days before the start of the festival a customer is allowed to cancel their order: "); }
+                    while (!RegexUtils.IsValidCancelTime(cancelTime));
                     currentRegisterSelection = "Main";
                 }
                 else if (currentRegisterSelection == "Tickets")
@@ -238,21 +243,22 @@ namespace Festivity
                         // This variable connected to the ticketid function is placed inside the loop to give every ticket a new ticketid
                         ticketID = TicketID(tickets);
 
-                        Console.WriteLine("Fill in the ticket name of ticket ", (i + 1),
-                        ": ");
-                        festivalTicketName = Console.ReadLine();
+                        do { festivalTicketName = InputLoop($"Fill in the ticket name of ticket {(i + 1)} : "); }
+                        while (!RegexUtils.IsValidAddressName(festivalTicketName));
 
-                        Console.WriteLine("Fill in ticket description");
-                        festivalTicketDescription = Console.ReadLine();
+                        do { festivalTicketDescription = InputLoop("Fill in the ticket description"); }
+                        while (!RegexUtils.IsValidDescription(festivalTicketDescription));
 
-                        Console.WriteLine("Fill in the price of the ticket in euros: ");
-                        festivalTicketPrice = double.Parse(Console.ReadLine());
+                        do { festivalTicketPrice = InputLoop("Fill in the price of the ticket in euros: "); }
+                        while (!RegexUtils.IsValidPrice(festivalTicketPrice));
 
-                        Console.WriteLine("Fill in the maximum available amount of this type ticket: ");
-                        festivalMaxTickets = Int32.Parse(Console.ReadLine());
+                        do { festivalMaxTickets = InputLoop("Fill in the maximum amount of available tikets of this type: "); }
+                        while (!RegexUtils.IsValidMaxTickets(festivalMaxTickets));
 
-                        Console.WriteLine("Fill in the maximum amount of tickets a single person may buy: ");
-                        festivalMaxTicketsPerPerson = Int32.Parse(Console.ReadLine());
+
+                        do { festivalMaxTickets = InputLoop("Fill in the maximum amount of tickets a single person may buy: "); }
+                        while (!RegexUtils.IsValidMaxTicketsPerPerson(festivalMaxTicketsPerPerson));
+                        
 
                         // This is a format to create the new ticket
                         Ticket ticket = new Ticket
@@ -261,9 +267,9 @@ namespace Festivity
                             TicketID = ticketID,
                             TicketName = festivalTicketName,
                             TicketDescription = festivalTicketDescription,
-                            TicketPrice = festivalTicketPrice,
-                            MaxTickets = festivalMaxTickets,
-                            MaxTicketsPerPerson = festivalMaxTicketsPerPerson
+                            TicketPrice = double.Parse(festivalTicketPrice),
+                            MaxTickets = int.Parse(festivalMaxTickets),
+                            MaxTicketsPerPerson = int.Parse(festivalMaxTicketsPerPerson)
                         };
 
                         ticketList.Add(ticket);
@@ -275,9 +281,9 @@ namespace Festivity
                 {
                     Console.Clear();
 
-                    // Check if there are tickets registered.
+                    // Checks if there are tickets registered.
                     // If not it will not save the festival.
-                    if (ticketList.Count < 1)
+                    if (ticketList.Count == 0)
                     {
                         Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
                         Thread.Sleep(5000);
@@ -310,15 +316,15 @@ namespace Festivity
                             },
                             FestivalDate = new Date
                             {
-                                Day = festivalDateDay,
-                                Month = festivalDateMonth,
-                                Year = festivalDateYear
+                                Day = int.Parse(festivalDateDay),
+                                Month = int.Parse(festivalDateMonth),
+                                Year = int.Parse(festivalDateYear)
                             },
                             FestivalStartingTime = festivalStartingTime,
                             FestivalEndTime = festivalEndTime,
                             FestivalGenre = festivalGenre,
-                            FestivalAgeRestriction = festivalAgeRestriction,
-                            FestivalCancelTime = cancelTime
+                            FestivalAgeRestriction = int.Parse(festivalAgeRestriction),
+                            FestivalCancelTime = int.Parse(cancelTime)
 
                         };
                         // Adds a new festival to the database

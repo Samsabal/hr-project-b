@@ -22,7 +22,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganisorId": 0
+      "festivalOrganiserID": 0
     },
     {
       "festivalId": 2,
@@ -46,7 +46,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganisorId": 0
+      "festivalOrganiserID": 0
     },
     {
       "festivalId": 3,
@@ -70,7 +70,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganisorId": 0
+      "festivalOrganiserID": 0
     },
     {
       "festivalId": 4,
@@ -94,7 +94,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganisorId": 0
+      "festivalOrganiserID": 0
     },
     {
       "festivalId": 5,
@@ -118,7 +118,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganisorId": 0
+      "festivalOrganiserID": 0
     },
     {
       "festivalId": 6,
@@ -142,7 +142,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganisorId": 0
+      "festivalOrganiserID": 0
     }
   ]
 }
