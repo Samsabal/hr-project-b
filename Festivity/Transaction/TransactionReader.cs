@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace Festivity
@@ -44,11 +45,27 @@ namespace Festivity
         {
             bool response = false;
             ConsoleKey input;
+            Console.WriteLine("Confirm Order? [y/n]");
             do
             {
-                Console.WriteLine("Confirm Order? [y/n]");
                 input = Console.ReadKey(true).Key;
-            } while (input != ConsoleKey.Y && input != ConsoleKey.N);
+            } while (ResponseCheck());
+
+            bool ResponseCheck()
+            {
+                if (input != ConsoleKey.Y && input != ConsoleKey.N)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Wrong input, please type 'y' or 'n'");
+                    Console.ResetColor();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
             if (input == ConsoleKey.Y)
             {
                 response = true;
