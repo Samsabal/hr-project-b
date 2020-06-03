@@ -8,13 +8,15 @@ namespace Festivity
 {
     internal static class TicketTableListBuilder
     {
-        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
-        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
-        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
+        private static List<List<string>> ticketList = new List<List<string>>();
 
         public static bool Build()
         {
-            List<List<string>> ticketList = new List<List<string>>();
+            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+            JSONTransactionList transactions = JSONFunctionality.GetTransactions();
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            ticketList.Clear();
+
             int index = 0;
             foreach (var transaction in transactions.Transactions)
             {
