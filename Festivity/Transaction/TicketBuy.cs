@@ -8,17 +8,16 @@ namespace Festivity
     {
         private static int ticketAmount;
         private static int currentFestivalId;
-        public static List<Ticket> CurrentTicketList { get; private set; }
+        private static List<Ticket> CurrentTicketList { get; set; }
         private static int indexTicket;
 
-        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
-        private static readonly JSONTransactionList transactions =JSONFunctionality.GetTransactions();
+        private static readonly JSONTransactionList transactionList =JSONFunctionality.GetTransactions();
 
-        private static void UpdateCurrentFestivalTickets(int festivalId)
+        private static void SetCurrentFestivalTickets(int festivalId)
         {
             CurrentTicketList = new List<Ticket>();
-            // Gets all Tickets related to the current Festival
-            foreach (var ticket in tickets.Tickets)
+            
+            foreach (var ticket in JSONFunctionality.GetTickets().Tickets)
             {
                 if (festivalId == ticket.FestivalID)
                 {
@@ -31,7 +30,7 @@ namespace Festivity
         {
             currentFestivalId = CatalogPage.selectedFestival;
 
-            UpdateCurrentFestivalTickets(currentFestivalId);
+            SetCurrentFestivalTickets(currentFestivalId);
 
             MenuFunction.option = 0;
 
@@ -60,7 +59,7 @@ namespace Festivity
         {
             indexTicket = index;
             Console.WriteLine("How many tickets would you like to buy?");
-            ticketAmount = TicketAmount();
+            ticketAmount = TicketAmountInput();
             TransactionOverview(indexTicket, ticketAmount);
 
             ConsoleKey response;
@@ -102,7 +101,7 @@ namespace Festivity
 
             Transaction transaction = new Transaction
             {
-                TransactionID = TransactionID(transactions),
+                TransactionID = GetTransactionID(),
                 FestivalID = (int)CatalogPage.selectedFestival,
                 TicketID = ticket.TicketID,
                 BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID, 
@@ -110,27 +109,27 @@ namespace Festivity
                 OrderDate = timeStamp
             };
 
-            transactions.Transactions.Add(transaction);
-            JSONFunctionality.WriteTransactions(transactions);
+            transactionList.Transactions.Add(transaction);
+            JSONFunctionality.WriteTransactions(transactionList);
         }
 
-        private static int TransactionID(JSONTransactionList transactions)
+        private static int GetTransactionID()
         {
             int transactionID;
-            if (transactions.Transactions.Count == 0)
+            if (transactionList.Transactions.Count == 0)
             {
                 transactionID = 1;
             }
             else
             {
-                int item = transactions.Transactions[transactions.Transactions.Count - 1].TransactionID;
+                int item = transactionList.Transactions[^1].TransactionID;
                 transactionID = item + 1;
             };
 
             return transactionID;
         }
 
-        private static int TicketAmount()
+        private static int TicketAmountInput()
         {
             int userInput;
             while (!int.TryParse(Console.ReadLine(), out userInput))
@@ -148,7 +147,7 @@ namespace Festivity
                 Console.Clear();
                 Console.WriteLine("You entered an invalid number");
                 Console.WriteLine("Enter the number and press <Enter>: ");
-                return TicketAmount();
+                return TicketAmountInput();
             }
         }
 
