@@ -52,7 +52,7 @@ namespace Festivity
                 return true;
             }
             Console.WriteLine("Sorry, you don't have any Tickets");
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             ConsoleHelperFunctions.ClearCurrentConsole();
             return false;
 
