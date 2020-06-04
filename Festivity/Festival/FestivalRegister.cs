@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Dynamic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace Festivity
@@ -18,9 +14,9 @@ namespace Festivity
 
         public static string festivalName = null;
         public static string festivalDescription = null;
-        public static string festivalDateDay = "1";
-        public static string festivalDateMonth = "1";
-        public static string festivalDateYear = "1990";
+        public static string festivalDateDay = null;
+        public static string festivalDateMonth = null;
+        public static string festivalDateYear = null;
         public static string festivalStartingTime = null;
         public static string festivalEndTime = null;
         public static string festivalLocationCountry = null;
@@ -316,6 +312,15 @@ namespace Festivity
                         // A format for creating a new festival
 
                         DateTime FestivalDate = new DateTime(int.Parse(festivalDateYear), int.Parse(festivalDateMonth), int.Parse(festivalDateDay));
+                        DateTime FestivalStartingTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, int.Parse(festivalStartingTime.Substring(0, 2)),
+                            int.Parse(festivalStartingTime.Substring(3, 2)), 0);
+                        DateTime FestivalEndTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, int.Parse(festivalEndTime.Substring(0, 2)),
+                            int.Parse(festivalEndTime.Substring(3, 2)), 0);
+                        if ( FestivalEndTime < FestivalStartingTime)
+                        {
+                            FestivalEndTime.AddDays(1);
+                        }
+
                         Festival festival = new Festival
                         {
                             FestivalID = festivalID,
@@ -330,8 +335,8 @@ namespace Festivity
                                 StreetNumber = festivalLocationHouseNumber
                             },
                             FestivalDate = FestivalDate,
-                            FestivalStartingTime = festivalStartingTime,
-                            FestivalEndTime = festivalEndTime,
+                            FestivalStartingTime = FestivalStartingTime,
+                            FestivalEndTime = FestivalEndTime,
                             FestivalGenre = festivalGenre,
                             FestivalAgeRestriction = int.Parse(festivalAgeRestriction),
                             FestivalCancelTime = int.Parse(cancelTime),

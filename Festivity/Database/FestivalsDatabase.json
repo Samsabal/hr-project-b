@@ -4,8 +4,8 @@
       "festivalId": 1,
       "festivalName": "test",
       "dateTimeField": "2023-07-29T00:00:00",
-      "festivalStartingTime": "15:00",
-      "festivalEndTime": "21:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -17,6 +17,46 @@
       "festivalAgeRestriction": 21,
       "festivalGenre": "Techno",
       "festivalCancelTime": 10,
+      "festivalStatus": null,
+      "festivalOrganiserID": 1
+    },
+    {
+      "festivalId": 2,
+      "festivalName": "test",
+      "dateTimeField": "2021-03-29T00:00:00",
+      "festivalStartingTime": "2021-03-29T15:00:00",
+      "festivalEndTime": "2021-03-29T23:00:00",
+      "festivalLocation": {
+        "country": "nederland",
+        "city": "rotterdam",
+        "zipCode": "3066GK",
+        "streetName": "teststraat",
+        "streetNumber": "25"
+      },
+      "festivalDescription": "yrsdyrrdsylksejalksajefkl;",
+      "festivalAgeRestriction": 0,
+      "festivalGenre": "Techno",
+      "festivalCancelTime": 5,
+      "festivalStatus": null,
+      "festivalOrganiserID": 1
+    },
+    {
+      "festivalId": 3,
+      "festivalName": "testestetset",
+      "dateTimeField": "2021-07-30T00:00:00",
+      "festivalStartingTime": "2021-07-30T12:00:00",
+      "festivalEndTime": "2021-07-30T23:00:00",
+      "festivalLocation": {
+        "country": "nederland",
+        "city": "rotterdam",
+        "zipCode": "3099GK",
+        "streetName": "straatweg",
+        "streetNumber": "25"
+      },
+      "festivalDescription": "36etrsertesrg",
+      "festivalAgeRestriction": 21,
+      "festivalGenre": "Techno",
+      "festivalCancelTime": 5,
       "festivalStatus": null,
       "festivalOrganiserID": 1
     }

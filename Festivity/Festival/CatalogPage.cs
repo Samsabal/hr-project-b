@@ -75,7 +75,7 @@ namespace Festivity
                 Console.Write($"Status: {festivalArray[i].CheckStatus()}");
                 Console.SetCursorPosition(50, Console.CursorTop);
                 //
-                Console.Write($"Date: {festivalArray[i].FestivalDate} \n");
+                Console.Write($"Date: {festivalArray[i].FestivalDate.ToShortDateString()} \n");
             }
             Console.WriteLine("------------------------------------------------------------------");
         }
@@ -88,8 +88,8 @@ namespace Festivity
                 FestivalID = -1,
                 FestivalName = "",
                 FestivalDate = FestivalDate,
-                FestivalStartingTime = "",
-                FestivalEndTime = "",
+                FestivalStartingTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, 0, 0, 0),
+                FestivalEndTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, 0, 0, 0),
                 FestivalLocation = new Address
                 {
                     Country = "",
