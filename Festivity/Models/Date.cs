@@ -44,6 +44,21 @@ namespace Festivity
             return int.Parse(result);
         }
 
+        public static bool operator< (Date dateA, Date dateB)
+        {
+            if (dateA.ToIdentifier() < dateB.ToIdentifier())
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        public static bool operator> (Date dateA, Date dateB)
+        {
+            return !(dateA < dateB);
+        }
+
         public override string ToString()
         {
             if (Day == -1 || Month == -1 || Year == -1)

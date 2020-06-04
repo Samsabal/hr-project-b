@@ -28,7 +28,7 @@ namespace Festivity
                     }
                 }
             }
-            return CatalogPage.AddOrRemovePadding(festivalArray);
+            return festivalArray;
         }
 
         public static Festival[] SortPrice(Festival[] festivalArray)
@@ -53,7 +53,7 @@ namespace Festivity
                 resultArray[i] = festivalArrayWithPrices[i].Item1;
             }
 
-            return CatalogPage.AddOrRemovePadding(resultArray);
+            return resultArray;
         }
 
         public static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
@@ -90,7 +90,7 @@ namespace Festivity
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].FestivalDate.ToIdentifier() > festivalArray[i + 1].FestivalDate.ToIdentifier())
+                    if (festivalArray[i].FestivalDate > festivalArray[i + 1].FestivalDate)
                     {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
@@ -98,7 +98,7 @@ namespace Festivity
                     }
                 }
             }
-            return CatalogPage.AddOrRemovePadding(festivalArray);
+            return festivalArray;
         }
 
         public static Festival[] FilterName(Festival[] festivalArray, string searchText)
@@ -114,7 +114,6 @@ namespace Festivity
                     count++;
                 }
             }
-            resultArray = CatalogPage.AddOrRemovePadding(resultArray);
             return resultArray;
         }
 
@@ -132,7 +131,6 @@ namespace Festivity
                     count++;
                 }
             }
-            resultArray = CatalogPage.AddOrRemovePadding(resultArray);
             return resultArray;
         }
 
@@ -149,7 +147,6 @@ namespace Festivity
                     count++;
                 }
             }
-            resultArray = CatalogPage.AddOrRemovePadding(resultArray);
             return resultArray;
         }
 
@@ -157,7 +154,7 @@ namespace Festivity
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-            CatalogPage.festivalArray = CatalogPage.AddOrRemovePadding(Festivals.Festivals.ToArray());
+            CatalogPage.festivalArray = Festivals.Festivals.ToArray();
         }
     }
 }
