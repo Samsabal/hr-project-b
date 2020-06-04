@@ -3,41 +3,56 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
+    /// <summary>
+    /// The main class for the festival catalog.
+    /// Contains all methods for drawing information on the catalog screen.
+    /// </summary>
     public class CatalogPage
     {
         public static int currentPage { get; set; }
-        public static Festival[] festivalArray;
-        public static string currentCatalogNavigation;
+        public static Festival[] festivalArray { get; set; }
+        public static string currentCatalogNavigation { get; set; }
         public static int selectedFestival;
 
-        // Class containing everything relevant to the catalog page in the console
-
+        /// <summary>
+        /// The main method of the Catalog class, should be used when trying to go to the Catalog screen.
+        /// </summary>
         public static void CatalogMain()
         {
-            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
-            currentCatalogNavigation = "main";
-            currentPage = 0;
-
-            // Makes an array with extra space to ensure there's always 5 festivals on screen
-            festivalArray = festivals.Festivals.ToArray();
-            festivalArray = CatalogPageFilter.SortDate(festivalArray);
-
+            CatalogSetup();
             // Makes sure the console keeps refreshing, allowing input
             while (true)
             {
                 Console.SetCursorPosition(0, 0);
+                DrawCatalog();
                 if (currentCatalogNavigation == "main")
                 {
-                    DrawCatalogMain();
+                    DrawMenuMain();
                 }
                 else
                 {
-                    DrawCatalogFilter();
+                    MenuFunction.Menu(new string[] { "Sort by name", "Sort by date", "Sort by price", "Filter by festival name",
+                        "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
                 }
             }
         }
+        /// <summary>
+        /// This method handles the initial setup of the Catalog screen variables.
+        /// </summary>
+        private static void CatalogSetup()
+        {
+            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+            festivalArray = festivals.Festivals.ToArray();
+            festivalArray = CatalogPageFilter.SortDate(festivalArray);
 
-        private static void DrawCatalogMain()
+            currentCatalogNavigation = "main";
+            currentPage = 0;
+        }
+
+        /// <summary>
+        /// This method checks the amount of festivals on the current page and draws the right amount of menu options.
+        /// </summary>
+        private static void DrawMenuMain()
         {
             int lastpage = festivalArray.Length / 5;
             List<string> menuOptionsList = new List<string>();
@@ -64,19 +79,13 @@ namespace Festivity
             menuOptionsList.Add("Filter festivals");
             menuOptionsList.Add("Exit to Main Menu");
 
-            DrawCatalog(festivalArray);
             MenuFunction.Menu(menuOptionsList.ToArray(), currentFestivalList.ToArray());
         }
 
-        private static void DrawCatalogFilter()
-        {
-            DrawCatalog(festivalArray);
-            MenuFunction.Menu(new string[] { "Sort by name", "Sort by date", "Sort by price", "Filter by festival name",
-                "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
-        }
-
-        // Function that shows the currently selected festivals in the console
-        private static void DrawCatalog(Festival[] festivalArray)
+        /// <summary>
+        /// This method checks the amount of festivals on the current page and draws them with dividing lines in between.
+        /// </summary>
+        private static void DrawCatalog()
         {
             int lastpage = festivalArray.Length / 5;
             if (currentPage == lastpage)
@@ -111,7 +120,10 @@ namespace Festivity
             }
             Console.WriteLine("==================================================================");
         }
-
+        /// <summary>
+        /// This method takes a festival and draws it in the desired format for the festival catalog.
+        /// </summary>
+        /// <param name="festival">A Festival object</param>
         private static void DrawFestival(Festival festival)
         {
             Console.Write($"Name: {festival.FestivalName}");
@@ -119,13 +131,19 @@ namespace Festivity
             Console.Write($"Genre: {festival.FestivalGenre}\n");
             Console.WriteLine($"Description: {ShortenFestivalDescription(festival.FestivalDescription)}");
             Console.Write($"City: {festival.FestivalLocation.City}");
-            Console.SetCursorPosition(66 - 7 - MinMaxPrice(festival.FestivalID).Length, Console.CursorTop);
-            Console.Write($"Price: {MinMaxPrice(festival.FestivalID)}\n");
+            Console.SetCursorPosition(66 - 7 - PricesToString(MinMaxPrice(festival.FestivalID)).Length, Console.CursorTop);
+            Console.Write($"Price: {PricesToString(MinMaxPrice(festival.FestivalID))}\n");
             Console.Write($"Status: {festival.CheckStatus()}");
             Console.SetCursorPosition(50, Console.CursorTop);
             Console.Write($"Date: {festival.FestivalDate} \n");
         }
-
+        /// <summary>
+        /// This method takes a string and returns a shortened version if it is over 50 characters long.
+        /// </summary>
+        /// <param name="description">A festival description string.</param>
+        /// <returns>
+        /// A shortened version of the input string if it is over 50 characters, otherwise returns the entire string.
+        /// </returns>
         private static string ShortenFestivalDescription(string description)
         {
             if (description.Length > 50)
@@ -137,8 +155,14 @@ namespace Festivity
                 return description;
             }
         }
-
-        private static string MinMaxPrice(int festivalId)
+        /// <summary>
+        /// This method takes a festivalID and checks all the associated tickets for the lowest and highest price.
+        /// </summary>
+        /// <param name="festivalId">A festivalID to check prices for</param>
+        /// <returns>
+        /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
+        /// </returns>
+        private static Tuple<double,double> MinMaxPrice(int festivalId)
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
             Ticket[] ticketArray = tickets.Tickets.ToArray();
@@ -160,18 +184,28 @@ namespace Festivity
                     maxPrice = t.TicketPrice;
                 }
             }
-
-            if (minPrice == -1)
+            return new Tuple<double, double>(minPrice,maxPrice);
+        }
+        /// <summary>
+        /// This method takes a Tuple<double,double> and returns a string formatted version for display on the catalog screen
+        /// </summary>
+        /// <param name="minMax">A Tuple<double,double> containing the lowest and highest price of a festival</param>
+        /// <returns>
+        /// A string depending on the amount of different values found in minMax
+        /// </returns>
+        private static string PricesToString(Tuple<double, double> minMax)
+        {
+            if (minMax.Item1 == -1)
             {
-                return "";
+                return "Price not found";
             }
-            else if (minPrice == maxPrice)
+            else if (minMax.Item1 == minMax.Item2)
             {
-                return $"\u20AC{minPrice}";
+                return $"\u20AC{minMax.Item1}";
             }
             else
             {
-                return $"\u20AC{minPrice} - \u20AC{maxPrice}";
+                return $"\u20AC{minMax.Item1} - \u20AC{minMax.Item2}";
             }
         }
     }
