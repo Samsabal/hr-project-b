@@ -65,7 +65,7 @@ namespace Festivity
             }
             else if (objects[0].GetType() == typeof(Ticket))
             {
-                for (int i = 0; i < TransactionBuilder.GetTicketListLength(); i++)
+                for (int i = 0; i < Transaction.CurrentTicketListBuilder.GetTicketListLength(); i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -82,7 +82,7 @@ namespace Festivity
                     }
                 }
 
-                for (int i = TransactionBuilder.GetTicketListLength(); i < consoleOptions.Length; i++)
+                for (int i = Transaction.CurrentTicketListBuilder.GetTicketListLength(); i < consoleOptions.Length; i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -405,7 +405,7 @@ namespace Festivity
                         {
                             UserLoginPage.UserLogin(1);
                         }
-                        DrawBuyTicketPage.Draw();
+                        Transaction.DrawBuyTicketPage.Draw();
                         break;
 
                     case "Return to Festival Page":
@@ -490,29 +490,29 @@ namespace Festivity
 
                     case "iDEAL":
                         Console.Clear();
-                        TransactionManager.TransactionComplete();
+                        Transaction.DisplayManager.TransactionComplete();
                         break;
 
                     case "Paypal":
                         Console.Clear();
-                        TransactionManager.TransactionComplete();
+                        Transaction.DisplayManager.TransactionComplete();
                         break;
 
                     case "Creditcard":
                         Console.Clear();
-                        TransactionManager.TransactionComplete();
+                        Transaction.DisplayManager.TransactionComplete();
                         break;
 
                     case "Cancel Order":
                         Console.Clear();
-                        DrawBuyTicketPage.Draw();
+                        Transaction.DrawBuyTicketPage.Draw();
                         break;
 
                     default:
                         if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
                             Console.Clear();
-                            TransactionManager.Initiate(option);
+                            Transaction.DisplayManager.Initiate(option);
                         }
                         break;
                 }

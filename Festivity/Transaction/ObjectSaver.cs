@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Festivity
+namespace Festivity.Transaction
 {
-    class TransactionCalc
+    class ObjectSaver
     {
         public static void WriteToDatabase(Ticket ticket)
         {
@@ -12,13 +12,13 @@ namespace Festivity
             DateTime now = DateTime.Now;
             string timeStamp = "" + now;
 
-            Transaction transaction = new Transaction
+            TransactionModel transaction = new TransactionModel
             {
-                TransactionID = TransactionBuilder.GetTransactionID(),
+                TransactionID = CurrentTicketListBuilder.GetTransactionID(),
                 FestivalID = (int)CatalogPage.selectedFestival,
                 TicketID = ticket.TicketID,
                 BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID, 
-                TicketAmount = TransactionManager.GetTicketAmount(),
+                TicketAmount = DisplayManager.GetTicketAmount(),
                 OrderDate = timeStamp
             };
 

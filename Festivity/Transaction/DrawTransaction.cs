@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Festivity
+namespace Festivity.Transaction
 {
     class DrawTransaction
     {
-        public static void TransactionOverview(int index, int amount)
+        public static void Overview(int index, int amount)
         {
             Console.Clear();
-            Ticket selectedTicket = TransactionBuilder.GetSelectedTicket(index);
+            Ticket selectedTicket = CurrentTicketListBuilder.GetSelectedTicket(index);
 
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Transaction Information");

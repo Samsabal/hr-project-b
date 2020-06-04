@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace Festivity
+namespace Festivity.Transaction
 {
-    class TransactionReader
+    class InputReader
     {
-        public static int TicketAmountInput()
+        public static int TicketAmount()
         {
             int userInput;
             Console.WriteLine("How many tickets would you like to buy?");
@@ -27,11 +27,11 @@ namespace Festivity
                 Console.Clear();
                 Console.WriteLine("You entered an invalid number");
                 Console.WriteLine("Enter the number and press <Enter>: ");
-                return TicketAmountInput();
+                return TicketAmount();
             }
         }
 
-        public static void PaymentOptionInput()
+        public static void PaymentOption()
         {
             Console.Clear();
             while (true)
@@ -41,7 +41,7 @@ namespace Festivity
             }
         }
 
-        public static bool ConfirmTransactionInput()
+        public static bool ConfirmTransaction()
         {
             bool response = false;
             ConsoleKey input;
@@ -69,7 +69,7 @@ namespace Festivity
             if (input == ConsoleKey.Y)
             {
                 response = true;
-                TransactionReader.PaymentOptionInput();
+                InputReader.PaymentOption();
                 // Go to payment option
             }
             if (input == ConsoleKey.N)

@@ -3,23 +3,23 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Festivity
+namespace Festivity.Transaction
 {
-    class TransactionManager
+    class DisplayManager
     {
         private static int TicketAmount { get; set; }
         private static int indexTicket;
         public static void Initiate(int option)
         {
             indexTicket = option;
-            TicketAmount = TransactionReader.TicketAmountInput();
-            DrawTransaction.TransactionOverview(indexTicket, TicketAmount);
-            TransactionReader.ConfirmTransactionInput();
+            TicketAmount = InputReader.TicketAmount();
+            DrawTransaction.Overview(indexTicket, TicketAmount);
+            InputReader.ConfirmTransaction();
         }
 
         public static void TransactionComplete()
         {
-            TransactionCalc.WriteToDatabase(TransactionBuilder.GetSelectedTicket(indexTicket));
+            ObjectSaver.WriteToDatabase(CurrentTicketListBuilder.GetSelectedTicket(indexTicket));
             Console.WriteLine("Ordered Succesfully!");
             Thread.Sleep(2000);
             Console.Clear();

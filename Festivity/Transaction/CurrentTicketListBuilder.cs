@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Festivity
+namespace Festivity.Transaction
 {
-    class TransactionBuilder
+    class CurrentTicketListBuilder
     {
         private static List<Ticket> CurrentTicketList { get; set; }
         private static readonly JSONTransactionList transactionList = JSONFunctionality.GetTransactions();

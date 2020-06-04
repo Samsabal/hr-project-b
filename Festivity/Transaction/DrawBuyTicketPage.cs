@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Festivity
+namespace Festivity.Transaction
 {
     internal class DrawBuyTicketPage
     {   
@@ -12,7 +12,7 @@ namespace Festivity
         {
             currentFestivalId = CatalogPage.selectedFestival;
 
-            TransactionBuilder.SetCurrentTicketList(currentFestivalId);
+            CurrentTicketListBuilder.SetCurrentTicketList(currentFestivalId);
 
             MenuFunction.option = 0;
 
@@ -22,7 +22,7 @@ namespace Festivity
                 string line = "----------------------------------------------------------------------";
 
                 // Displays the Tickets for the current Festival
-                foreach (var ticket in TransactionBuilder.GetCurrentTicketList())
+                foreach (var ticket in CurrentTicketListBuilder.GetCurrentTicketList())
                 {
                     Console.WriteLine(ticket.TicketName);
                     Console.WriteLine("Description: " + ticket.TicketDescription);
@@ -33,7 +33,7 @@ namespace Festivity
 
                 menuOptionsList.Add("Return to Festival Page");
                 menuOptionsList.Add("Exit to Main Menu");
-                MenuFunction.Menu(menuOptionsList.ToArray(), TransactionBuilder.GetCurrentTicketList().ToArray());
+                MenuFunction.Menu(menuOptionsList.ToArray(), CurrentTicketListBuilder.GetCurrentTicketList().ToArray());
             }
         }
     }
