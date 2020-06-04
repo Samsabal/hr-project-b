@@ -205,6 +205,9 @@ namespace Festivity
             return resultList.ToArray();
         }
 
+        /// <summary>
+        /// This method resets the array
+        /// </summary>
         public static void ClearFilters()
         {
             string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
