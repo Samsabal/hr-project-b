@@ -72,15 +72,6 @@ namespace Festivity
                     menuOptionsList.Add("Select festival:" + festivalArray[currentPage * 5 + i]);
                     currentFestivalList.Add(festivalArray[currentPage * 5 + i]);
                 }
-                Console.SetCursorPosition(48, Console.CursorTop);
-                Console.Write($"Genre: {festivalArray[i].FestivalGenre}\n");
-                Console.WriteLine($"Description: {description}");
-                Console.Write($"City: {festivalArray[i].FestivalLocation.City}");
-                Console.SetCursorPosition(66-7-MinMaxPrice(festivalArray[i].FestivalID).Length, Console.CursorTop);
-                Console.Write($"Price: {MinMaxPrice(festivalArray[i].FestivalID)}\n");
-                Console.Write($"Status: {festivalArray[i].CheckStatus()}");
-                Console.SetCursorPosition(50, Console.CursorTop);
-                Console.Write($"Date: {festivalArray[i].FestivalDate} \n");
             }
 
             menuOptionsList.Add("Next page");
@@ -96,19 +87,25 @@ namespace Festivity
         /// </summary>
         private static void DrawCatalog()
         {
-            Festival emptyFestival = new Festival
+            int lastpage = festivalArray.Length / 5;
+            if (currentPage == lastpage)
             {
-                FestivalID = -1,
-                FestivalName = "",
-                FestivalDate = new Date
+                for (int i = currentPage * 5; i < festivalArray.Length; i++)
                 {
-                    Day = -1,
-                    Month = -1,
-                    Year = -1
-                },
-                FestivalStartingTime = "",
-                FestivalEndTime = "",
-                FestivalLocation = new Address
+                    if (i == currentPage * 5)
+                    {
+                        Console.WriteLine("==================================================================");
+                    }
+                    else
+                    {
+                        Console.WriteLine("------------------------------------------------------------------");
+                    }
+                    DrawFestival(festivalArray[i]);
+                }
+            }
+            else
+            {
+                for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
                 {
                     if (i == currentPage * 5)
                     {
@@ -165,7 +162,7 @@ namespace Festivity
         /// <returns>
         /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
         /// </returns>
-        private static Tuple<double,double> MinMaxPrice(int festivalId)
+        private static Tuple<double, double> MinMaxPrice(int festivalId)
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
             Ticket[] ticketArray = tickets.Tickets.ToArray();
@@ -187,7 +184,7 @@ namespace Festivity
                     maxPrice = t.TicketPrice;
                 }
             }
-            return new Tuple<double, double>(minPrice,maxPrice);
+            return new Tuple<double, double>(minPrice, maxPrice);
         }
         /// <summary>
         /// This method takes a Tuple<double,double> and returns a string formatted version for display on the catalog screen
