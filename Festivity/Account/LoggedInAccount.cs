@@ -6,7 +6,6 @@ namespace Festivity
 {
     class LoggedInAccount
     {
-        //private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
         public static User User;
         
         public static void SetUser(int accountID)

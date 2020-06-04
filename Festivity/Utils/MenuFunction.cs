@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festivity.Account;
+using System;
 using System.Threading;
 
 namespace Festivity
@@ -415,13 +416,15 @@ namespace Festivity
 
                     case "Login to your Account":
                         Console.Clear();
-                        UserLoginPage.userLoginChoice = 1;
+                        LoginManager.Login();
+                        //UserLoginPage.userLoginChoice = 1;
                         UserLoginPage.UserLogin();
                         break;
 
                     case "Forgot password":
                         Console.Clear();
-                        UserLoginPage.userLoginChoice = 2;
+                        LoginManager.ForgotPassword();
+                        //UserLoginPage.userLoginChoice = 2;
                         UserLoginPage.ForgotPassword();
                         break;
 

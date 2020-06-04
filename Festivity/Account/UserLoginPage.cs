@@ -7,15 +7,12 @@ namespace Festivity
 {
     internal class UserLoginPage
     {
-        public static int userLoginChoice;
-        //public static int currentUserID = 0;
-        //public static int currentUserType;
-
+        //private static int userLoginChoice;
         private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
 
         public static void LoginPage()
         {
-            userLoginChoice = 0;
+            //userLoginChoice = 0;
             MenuFunction.option = 0;
             while (true)
             {
