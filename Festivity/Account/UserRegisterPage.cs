@@ -95,7 +95,7 @@ namespace Festivity
             Thread.Sleep(1000);
             Console.Clear();
 
-            User user = new User //Creates a new user object
+            UserModel user = new UserModel //Creates a new user object
             {
                 AccountType = userAccountType,
                 AccountID = accountID,
@@ -125,7 +125,7 @@ namespace Festivity
             WriteToJson(user);
         }
 
-        private static void WriteToJson(User user)
+        private static void WriteToJson(UserModel user)
         {
             JSONUserList users = JSONFunctionality.GetUserList();
             users.Users.Add(user);
