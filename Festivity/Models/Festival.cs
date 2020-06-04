@@ -12,8 +12,7 @@ namespace Festivity
         [JsonProperty("festivalName")]
         public string FestivalName { get; set; }
 
-        [JsonProperty("dateTimeField", Required = Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
+        [JsonProperty("festivalDate")]
         [System.ComponentModel.DataAnnotations.RegularExpression(@"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$")]
         public DateTime FestivalDate { get; set; }
 

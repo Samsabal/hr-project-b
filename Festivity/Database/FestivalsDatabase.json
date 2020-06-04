@@ -3,7 +3,7 @@
     {
       "festivalId": 1,
       "festivalName": "test",
-      "dateTimeField": "2023-07-29T00:00:00",
+      "festivalDate": "2023-07-29T00:00:00",
       "festivalStartingTime": "2023-07-29T00:15:00",
       "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
@@ -23,7 +23,7 @@
     {
       "festivalId": 2,
       "festivalName": "test",
-      "dateTimeField": "2021-03-29T00:00:00",
+      "festivalDate": "2021-03-29T00:00:00",
       "festivalStartingTime": "2021-03-29T15:00:00",
       "festivalEndTime": "2021-03-29T23:00:00",
       "festivalLocation": {
@@ -43,7 +43,7 @@
     {
       "festivalId": 3,
       "festivalName": "testestetset",
-      "dateTimeField": "2021-07-30T00:00:00",
+      "festivalDate": "2021-07-30T00:00:00",
       "festivalStartingTime": "2021-07-30T12:00:00",
       "festivalEndTime": "2021-07-30T23:00:00",
       "festivalLocation": {
