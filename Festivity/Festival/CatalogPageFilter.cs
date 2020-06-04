@@ -6,7 +6,13 @@ namespace Festivity
 {
     internal class CatalogPageFilter
     {
-        // Receives a Festival array and sorts it in alphabetical order by name
+        /// <summary>
+        /// Sorts a given Festival[] alphabetically by the names of the festivals.
+        /// </summary>
+        /// <param name="festivalArray">Input array to be sorted.</param>
+        /// <returns>
+        /// Ret
+        /// </returns>
         public static Festival[] SortName(Festival[] festivalArray)
         {
             festivalArray = Festival.FestivalRemovePadding(festivalArray);
