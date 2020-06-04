@@ -347,11 +347,14 @@ namespace Festivity
 
                     case "Order Tickets":
                         Console.Clear();
-                        if (LoggedInAccount.User.AccountID == 0)
+                        if (LoggedInAccount.IsLoggedIn())
+                        {
+                            TicketBuy.TicketShow();
+                        }
+                        else
                         {
                             UserLoginPage.UserLogin(1);
                         }
-                        TicketBuy.TicketShow();
                         break;
 
                     case "Return to Festival Page":

@@ -11,13 +11,8 @@ namespace Festivity
             if (TicketTableListBuilder.Build())
             {
                 DrawTicketTable.CreateTable();
-                DrawTicketTable.Draw();
+                DrawTicketTable.Menu();
             }
-        }
-
-        public static void RefundTicket()
-        {
-
         }
     }
 }
