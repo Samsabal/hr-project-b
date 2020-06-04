@@ -206,7 +206,7 @@ namespace Festivity
         }
 
         /// <summary>
-        /// This method resets the array
+        /// This method resets the currently selected filters for the CatalogPage by reloading the data from the Festival JSON
         /// </summary>
         public static void ClearFilters()
         {
