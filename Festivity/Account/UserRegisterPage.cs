@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festivity.Account;
+using System;
 using System.Threading;
 
 namespace Festivity
@@ -130,7 +131,7 @@ namespace Festivity
             JSONUserList users = JSONFunctionality.GetUserList();
             users.Users.Add(user);
             JSONFunctionality.WriteToUserList(users);
-            UserLoginPage.AutomaticLogin(user);
+            LoginManager.InitateAutomaticLogin(user);
         }
 
         private static bool CheckIfEmailExists(string email)

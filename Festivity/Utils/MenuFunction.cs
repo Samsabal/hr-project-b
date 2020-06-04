@@ -147,7 +147,8 @@ namespace Festivity
 
                     case "Login": // "Login" option home screen
                         Console.Clear();
-                        UserLoginPage.LoginPage();
+                        LoginManager.InitiateLoginPage();
+                        //UserLoginPage.LoginPage();
                         break;
 
                     case "Festivals": // "Festival catalog" option home screen
@@ -404,7 +405,7 @@ namespace Festivity
                         CatalogPage.activeScreen = false;
                         if (LoggedInAccount.User.AccountID == 0)
                         {
-                            UserLoginPage.UserLogin(1);
+                            LoginManager.InitateLogin(true);
                         }
                         TicketBuy.TicketShow();
                         break;
@@ -416,16 +417,16 @@ namespace Festivity
 
                     case "Login to your Account":
                         Console.Clear();
-                        LoginManager.Login();
+                        LoginManager.InitateLogin(false);
                         //UserLoginPage.userLoginChoice = 1;
-                        UserLoginPage.UserLogin();
+                        //UserLoginPage.UserLogin();
                         break;
 
                     case "Forgot password":
                         Console.Clear();
-                        LoginManager.ForgotPassword();
+                        LoginManager.InitateForgotPassword();
                         //UserLoginPage.userLoginChoice = 2;
-                        UserLoginPage.ForgotPassword();
+                        //UserLoginPage.ForgotPassword();
                         break;
 
                     case "Logout":
