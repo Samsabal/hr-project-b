@@ -30,15 +30,22 @@ namespace Festivity
             } 
         }
 
-        public static void Draw()
+        public static void Menu()
         {
             MenuFunction.option = 0;
-            while (true)
+            while (TicketTableListBuilder.Build())
             {
-                Console.Write(ticketTable.ToString());
-                Console.WriteLine();
+                Draw();
                 MenuFunction.Menu(new string[] { "Exit to Main Menu", "Refund Ticket" });
             }
+        }
+
+        public static void Draw()
+        {
+              CreateTable();
+              Console.Write(ticketTable.ToString());
+              Console.WriteLine();
+
         }
 
         public static void DrawRefund()

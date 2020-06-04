@@ -34,7 +34,7 @@ namespace Festivity
             File.WriteAllText(PathUser, json);
         }
 
-        public static void WriteUser(User user)
+        public static void WriteUser(UserModel user)
         {
             JSONUserList users = GetUserList();
             users.Users.Add(user);

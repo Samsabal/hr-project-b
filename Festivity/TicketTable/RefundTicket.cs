@@ -9,34 +9,61 @@ namespace Festivity
     {
         private static string userInput;
         private static List<string> TransactionIDList = new List<string>();
-        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
-        private static JSONTransactionList newTransactions = new JSONTransactionList();
+
 
         public static void InitiateRefund()
         {
+            JSONTransactionList OldTransactionsList = JSONFunctionality.GetTransactions();
+            JSONTransactionList NewTransactionsList = JSONFunctionality.GetTransactions();
+
             do
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
-                DrawTicketTable.DrawRefund(); 
-                userInput = UserRegisterPage.InputLoop("\nInput Transaction ID of ticket you want to refund: "); }
+                DrawTicketTable.Draw(); 
+                userInput = UserRegisterPage.InputLoop("\nInput Transaction ID of the order you want to refund: "); }
             while (!IsValidTransactionID(userInput));
 
-            // Remove ticket here
+            NewTransactionsList.Transactions.Clear();
 
-            JSONFunctionality.WriteTransactions(newTransactions);
+            foreach (var item in OldTransactionsList.Transactions)
+            {
+                if (item.TransactionID != int.Parse(userInput))
+                {
+                    Transaction transaction = new Transaction
+                    {
+                        TransactionID = item.TransactionID,
+                        FestivalID = item.FestivalID,
+                        TicketID = item.TicketID,
+                        BuyerID = item.BuyerID,
+                        TicketAmount = item.TicketAmount,
+                        OrderDate = item.OrderDate
+                    };
+                    NewTransactionsList.Transactions.Add(transaction);
+                }
+            }
+            JSONFunctionality.WriteTransactions(NewTransactionsList);
+            Console.WriteLine("Ticket Succesfully refunded");
+            Thread.Sleep(2000);
         }
 
         private static bool IsValidTransactionID(string value)
         {
             if (Int32.TryParse(value, out int result))
             {
-                if (TransactionIDList.Contains(result.ToString()))
+                for (int i = 0; i < TransactionIDList.Count; i++)
                 {
-                    return true;
+                    if (TransactionIDList[i] == result.ToString())
+                    {
+                        TransactionIDList.RemoveAt(i);
+                        return true;
+                    }
                 }
                 Console.WriteLine("Transaction ID does not exist, please try again");
+                Thread.Sleep(2000);
                 return false;
             }
+            Console.WriteLine("Invalid input, please try again");
+            Thread.Sleep(2000);
             return false;
         }
 
