@@ -34,7 +34,7 @@ namespace Festivity
             while (!RegexUtils.IsValidName(lastName));
 
             do { email = InputLoop("Email: "); }
-            while (!RegexUtils.IsValidEmail(email));
+            while (!RegexUtils.IsValidEmail(email) || CheckIfEmailExists(email));
 
             do { userPassword = InputLoop("Password: "); }
             while (!RegexUtils.IsValidPassword(userPassword));
@@ -131,6 +131,22 @@ namespace Festivity
             users.Users.Add(user);
             JSONFunctionality.WriteToUserList(users);
             UserLoginPage.AutomaticLogin(user);
+        }
+
+        private static bool CheckIfEmailExists(string email)
+        {
+            bool exists = false;
+            JSONUserList userList = JSONFunctionality.GetUserList();
+
+            foreach (var user in userList.Users)
+            {
+                if (user.Email == email)
+                {
+                    Console.WriteLine("Email already in use, please try again");
+                    exists = true;
+                }
+            }
+            return exists;
         }
 
         private static void UserAccountTypeInput()
