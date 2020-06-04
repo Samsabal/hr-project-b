@@ -5,10 +5,10 @@ namespace Festivity
 {
     internal class JSONFunctionality
     {
-        private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"UsersDatabase.json");
-        private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TicketDatabase.json");
-        private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"TransactionDatabase.json");
+        private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"FestivalsDatabase.json");
+        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
+        private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TicketDatabase.json");
+        private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TransactionDatabase.json");
 
         public static JSONFestivalList GetFestivals()
         {
@@ -22,17 +22,26 @@ namespace Festivity
             File.WriteAllText(PathFestival, jsonfestival);
         }
 
-        public static JSONUserList GetUsers()
+        public static JSONUserList GetUserList()
         {
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
             return users;
         }
 
-        public static void WriteUsers(JSONUserList users)
+        public static void WriteToUserList(JSONUserList users)
         {
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(PathUser, json);
         }
+
+        public static void WriteUser(User user)
+        {
+            JSONUserList users = GetUserList();
+            users.Users.Add(user);
+            WriteToUserList(users);
+        }
+
+
 
         public static JSONTicketList GetTickets()
         {
@@ -60,7 +69,7 @@ namespace Festivity
 
         public static int GenerateUserID()
         {
-            JSONUserList userList = GetUsers();
+            JSONUserList userList = GetUserList();
             int accountID;
             if (userList.Users.Count == 0)
             {

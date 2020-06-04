@@ -105,7 +105,7 @@ namespace Festivity
                 TransactionID = TransactionID(transactions),
                 FestivalID = (int)CatalogPage.selectedFestival,
                 TicketID = ticket.TicketID,
-                BuyerID = (int)UserLoginPage.currentUserID,
+                BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID, 
                 TicketAmount = ticketAmount,
                 OrderDate = timeStamp
             };

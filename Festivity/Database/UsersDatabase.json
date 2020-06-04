@@ -29,7 +29,7 @@
         {
             "birthDate": {
                 "day": 12,
-                "month": -2,
+                "month": 2,
                 "year": 1999
             },
             "userAddress": {
@@ -69,8 +69,8 @@
             "accountID": 3,
             "firstName": "Mark",
             "lastName": "Bergsma",
-            "email": "mbergsma002@gmail.com",
-            "password": "HelloThere!1",
+            "email": "admin",
+            "password": "admin",
             "companyContactperson": "Mark Bergsma",
             "companyPhoneNumber": "0636221537",
             "companyName": "Festivity",
@@ -95,8 +95,8 @@
             "accountID": 4,
             "firstName": "Mark",
             "lastName": "Bergsma",
-            "email": "testemail@gmail.com",
-            "password": "HelloTest!1",
+            "email": "test",
+            "password": "Test!1",
             "companyContactperson": "test",
             "companyPhoneNumber": "0636221537",
             "companyName": "Test",
@@ -119,7 +119,7 @@
             },
             "accountType": 1,
             "accountID": 5,
-            "firstName": "Mark Bergsma",
+            "firstName": "Mark",
             "lastName": "Bergsma",
             "email": "testemail2@gmail.com",
             "password": "helloThere!2",

@@ -268,6 +268,7 @@ namespace Festivity
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
+                        option = 0;
                         Console.Clear();
                         Program.Main(); //new string[] { }
                         break;
@@ -339,9 +340,14 @@ namespace Festivity
                         FestivalRegister.currentRegisterSelection = "Cancel Time";
                         break;
 
+                    case "Cancel Festival Registration":
+                        Console.Clear();
+                        FestivalRegister.currentRegisterSelection = "Cancel Festival Registration";
+                        break;
+
                     case "Order Tickets":
                         Console.Clear();
-                        if (UserLoginPage.currentUserID == 0)
+                        if (LoggedInAccount.User.AccountID == 0)
                         {
                             UserLoginPage.UserLogin(1);
                         }
@@ -371,11 +377,11 @@ namespace Festivity
                         Thread.Sleep(1000);
                         Console.Clear();
                         option = 0;
-                        UserLoginPage.currentUserID = 0;
+                        LoggedInAccount.LogOut();
                         Program.Main(); //new string[] { }
                         break;
 
-                    case "Account":
+                    case "My Account":
                         Console.Clear();
                         UserAccountPage.AccountPage();
                         break;
@@ -420,9 +426,12 @@ namespace Festivity
                         FestivalRegister.currentRegisterSelection = "Main";
                         break;
 
-                    case "My Festivals":
+                    case "My Tickets":
                         Console.Clear();
-                        TicketTable.TicketTablePage();
+                        TicketTableManager.Initiate();
+                        break;
+                    case "Refund Ticket":
+                        RefundTicket.InitiateRefund();
                         break;
 
                     case "iDEAL":
