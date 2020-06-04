@@ -75,7 +75,7 @@ namespace Festivity
             }
             return festivalsWithPrices;
         }
-        //
+        
         // Receives a Festival array and sorts it in ascending order by date
         public static Festival[] SortDate(Festival[] festivalArray)
         {
