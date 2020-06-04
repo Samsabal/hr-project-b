@@ -14,7 +14,7 @@ namespace Festivity.Transaction
             indexTicket = option;
             TicketAmount = InputReader.TicketAmount();
             DrawTransaction.Overview(indexTicket, TicketAmount);
-            InputReader.ConfirmTransaction();
+            if (InputReader.ConfirmTransaction()) { InputReader.PaymentOption(); }
         }
 
         public static void TransactionComplete()

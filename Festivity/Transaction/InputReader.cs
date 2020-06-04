@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace Festivity.Transaction
 {
@@ -9,26 +6,11 @@ namespace Festivity.Transaction
     {
         public static int TicketAmount()
         {
-            int userInput;
-            Console.WriteLine("How many tickets would you like to buy?");
-
-            while (!int.TryParse(Console.ReadLine(), out userInput))
-            {
-                Console.Clear();
-                Console.WriteLine("You entered an invalid number");
-                Console.WriteLine("Enter the number and press <Enter>: ");
-            }
-            if (userInput > 0 && userInput <= 10)
-            {
-                return userInput;
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("You entered an invalid number");
-                Console.WriteLine("Enter the number and press <Enter>: ");
-                return TicketAmount();
-            }
+            string userInput;
+            Console.WriteLine("How many tickets would you like to buy? ");
+            do { userInput = InputLoopString(); }
+            while (!NumberCheck(userInput, 1, 10));
+            return Int32.Parse(userInput);
         }
 
         public static void PaymentOption()
@@ -43,43 +25,62 @@ namespace Festivity.Transaction
 
         public static bool ConfirmTransaction()
         {
-            bool response = false;
             ConsoleKey input;
             Console.WriteLine("Confirm Order? [y/n]");
-            do
-            {
-                input = Console.ReadKey(true).Key;
-            } while (ResponseCheck());
+            do { input = InputLoopKey();}
+            while (YesOrNoCheck(input) );
 
-            bool ResponseCheck()
+            Console.Clear();
+            return input == ConsoleKey.Y;
+        }
+
+        private static bool NumberCheck(string value, int min, int max)
+        {
+            if (Int32.TryParse(value, out int result))
             {
-                if (input != ConsoleKey.Y && input != ConsoleKey.N)
+                if (result >= min && result <= max)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Wrong input, please type 'y' or 'n'");
-                    Console.ResetColor();
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid input, please  try again");
+                Console.ResetColor();
+                return false;
             }
-
-            if (input == ConsoleKey.Y)
-            {
-                response = true;
-                InputReader.PaymentOption();
-                // Go to payment option
-            }
-            if (input == ConsoleKey.N)
-            {
-                response = false;
-                Console.Clear();
-                // Go back to main menu
-            }
-            Console.Clear();
-            return response;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Invalid input, please  try again");
+            Console.ResetColor();
+            return false;
         }
+
+        private static bool YesOrNoCheck(ConsoleKey input)
+        {
+            if (input != ConsoleKey.Y && input != ConsoleKey.N)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Wrong input, please type 'y' or 'n'");
+                Console.ResetColor();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static string InputLoopString()
+        {
+            string userInput;
+            userInput = Console.ReadLine();
+            return userInput;
+        }
+
+        private static ConsoleKey InputLoopKey()
+        {
+            ConsoleKey userInput;
+            userInput = Console.ReadKey(true).Key;
+            return userInput;
+        }
+
     }
 }
