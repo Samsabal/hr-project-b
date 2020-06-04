@@ -98,7 +98,7 @@ namespace Festivity
             }
         }
 
-        public static void AutomaticLogin(User user)
+        public static void AutomaticLogin(UserModel user)
         {
             LoggedInAccount.SetUser(user.AccountID);
 
