@@ -18,9 +18,9 @@ namespace Festivity
 
         public static string festivalName = null;
         public static string festivalDescription = null;
-        public static string festivalDateDay = null;
-        public static string festivalDateMonth = null;
-        public static string festivalDateYear = null;
+        public static string festivalDateDay = "1";
+        public static string festivalDateMonth = "1";
+        public static string festivalDateYear = "1990";
         public static string festivalStartingTime = null;
         public static string festivalEndTime = null;
         public static string festivalLocationCountry = null;
@@ -314,6 +314,8 @@ namespace Festivity
                         JSONFunctionality.WriteTickets(tickets);
 
                         // A format for creating a new festival
+
+                        DateTime FestivalDate = new DateTime(int.Parse(festivalDateYear), int.Parse(festivalDateMonth), int.Parse(festivalDateDay));
                         Festival festival = new Festival
                         {
                             FestivalID = festivalID,
@@ -327,12 +329,7 @@ namespace Festivity
                                 StreetName = festivalLocationStreet,
                                 StreetNumber = festivalLocationHouseNumber
                             },
-                            FestivalDate = new Date
-                            {
-                                Day = int.Parse(festivalDateDay),
-                                Month = int.Parse(festivalDateMonth),
-                                Year = int.Parse(festivalDateYear)
-                            },
+                            FestivalDate = FestivalDate,
                             FestivalStartingTime = festivalStartingTime,
                             FestivalEndTime = festivalEndTime,
                             FestivalGenre = festivalGenre,

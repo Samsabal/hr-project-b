@@ -75,7 +75,7 @@ namespace Festivity
             }
             return festivalsWithPrices;
         }
-
+        //
         // Receives a Festival array and sorts it in ascending order by date
         public static Festival[] SortDate(Festival[] festivalArray)
         {
@@ -84,7 +84,7 @@ namespace Festivity
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArray[i].FestivalDate.ToIdentifier() > festivalArray[i + 1].FestivalDate.ToIdentifier())
+                    if (festivalArray[i].FestivalDate > festivalArray[i + 1].FestivalDate)
                     {
                         Festival temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];

@@ -74,6 +74,7 @@ namespace Festivity
                 Console.Write($"Price: {MinMaxPrice(festivalArray[i].FestivalID)}\n");
                 Console.Write($"Status: {festivalArray[i].CheckStatus()}");
                 Console.SetCursorPosition(50, Console.CursorTop);
+                //
                 Console.Write($"Date: {festivalArray[i].FestivalDate} \n");
             }
             Console.WriteLine("------------------------------------------------------------------");
@@ -81,16 +82,12 @@ namespace Festivity
 
         public static Festival[] AddOrRemovePadding(Festival[] festivals)
         {
+            DateTime FestivalDate = new DateTime();
             Festival emptyFestival = new Festival
             {
                 FestivalID = -1,
                 FestivalName = "",
-                FestivalDate = new Date
-                {
-                    Day = -1,
-                    Month = -1,
-                    Year = -1
-                },
+                FestivalDate = FestivalDate,
                 FestivalStartingTime = "",
                 FestivalEndTime = "",
                 FestivalLocation = new Address

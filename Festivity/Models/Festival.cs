@@ -12,8 +12,10 @@ namespace Festivity
         [JsonProperty("festivalName")]
         public string FestivalName { get; set; }
 
-        [JsonProperty("festivalDate")]
-        public Date FestivalDate { get; set; }
+        [JsonProperty("dateTimeField", Required = Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.RegularExpression(@"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$")]
+        public DateTime FestivalDate { get; set; }
 
         [JsonProperty("festivalStartingTime")]
         public string FestivalStartingTime { get; set; }
@@ -58,13 +60,12 @@ namespace Festivity
             }
             else
             {
-                int currentDate = int.Parse(DateTime.UtcNow.Year.ToString() + DateTime.UtcNow.Month.ToString() + DateTime.UtcNow.Day.ToString());
                 int currentTime = int.Parse(DateTime.UtcNow.Hour.ToString() + DateTime.UtcNow.Minute.ToString());
-                if (this.FestivalDate.ToIdentifier() < currentDate)
+                if (this.FestivalDate < DateTime.Today)
                 {
                     return "This festival has ended";
                 }
-                else if (this.FestivalDate.ToIdentifier() == currentDate)
+                else if (this.FestivalDate == DateTime.Today)
                 {
                     if (int.Parse(this.FestivalEndTime) < currentTime)
                     {
