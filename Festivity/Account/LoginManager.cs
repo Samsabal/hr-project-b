@@ -6,8 +6,6 @@ namespace Festivity.Account
 {
     class LoginManager
     {
-        //private static int userLoginChoice;
-
         public static void InitiateLoginPage()
         {
             MenuFunction.option = 0;
