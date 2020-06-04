@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Festivity
@@ -9,13 +10,14 @@ namespace Festivity
         /// <summary>
         /// Sorts a given Festival[] alphabetically by the names of the festivals.
         /// </summary>
-        /// <param name="festivalArray">Input array to be sorted.</param>
+        /// <param name="festivalArray">
+        /// Festival array to be sorted.
+        /// </param>
         /// <returns>
-        /// Ret
+        /// Returns a Festival[] sorted alphabetically by festivalname
         /// </returns>
         public static Festival[] SortName(Festival[] festivalArray)
         {
-            festivalArray = Festival.FestivalRemovePadding(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
@@ -31,9 +33,17 @@ namespace Festivity
             return festivalArray;
         }
 
+        /// <summary>
+        /// Sorts a given Festival[] lowest to highest according to the lowest ticket prices of the festivals.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be sorted.
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] sorted by the lowest prices.
+        /// </returns>
         public static Festival[] SortPrice(Festival[] festivalArray)
         {
-            festivalArray = Festival.FestivalRemovePadding(festivalArray);
             Tuple<Festival, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
@@ -56,13 +66,20 @@ namespace Festivity
             return resultArray;
         }
 
+        /// <summary>
+        /// Takes a Festival[] and returns a Tuple<Festival, double>[] containing the same festivals buy with their minimum ticket prices.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival[] that you want to get the minimum prices for.
+        /// </param>
+        /// <returns>
+        /// Returns a Tuple<festival, double>[] containing the input Festivals with their lowest ticket prices.
+        /// </returns>
         public static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
         {
             Tuple<Festival, double>[] festivalsWithPrices = new Tuple<Festival, double>[festivalArray.Length];
             
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            Ticket[] ticketArray = tickets.Tickets.ToArray();
-
+            Ticket[] ticketArray = JSONFunctionality.GetTickets().Tickets.ToArray();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
@@ -82,10 +99,17 @@ namespace Festivity
             return festivalsWithPrices;
         }
 
-        // Receives a Festival array and sorts it in ascending order by date
+        /// <summary>
+        /// Sorts a given Festival[] from earliest to latest by the dates of the festivals.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be sorted.
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] sorted by FestivalDate
+        /// </returns>
         public static Festival[] SortDate(Festival[] festivalArray)
         {
-            festivalArray = Festival.FestivalRemovePadding(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
@@ -101,53 +125,84 @@ namespace Festivity
             return festivalArray;
         }
 
+        /// <summary>
+        /// Takes a Festival[] and a string and returns all Festivals where the festival name contains the search text.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be searched in.
+        /// </param>
+        /// <param name="searchText">
+        /// string that needs to be searched for
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] containing all the festivals where the name contains the search text.
+        /// </returns>
         public static Festival[] FilterName(Festival[] festivalArray, string searchText)
         {
-            Festival[] resultArray = new Festival[festivalArray.Length];
-            int count = 0;
+            List<Festival> resultList = new List<Festival>();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
                 if (festivalArray[i].FestivalName.ToLower().Contains(searchText.ToLower()))
                 {
-                    resultArray[count] = festivalArray[i];
-                    count++;
+                    resultList.Add(festivalArray[i]);
                 }
             }
-            return resultArray;
+
+            return resultList.ToArray();
         }
 
+        /// <summary>
+        /// Takes a Festival[] and a string and returns all Festivals where the festival location contains the search text.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be searched in.
+        /// </param>
+        /// <param name="searchText">
+        /// string that needs to be searched for
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] containing all the festivals where the festival location contains the search text.
+        /// </returns>
         public static Festival[] FilterLocation(Festival[] festivalArray, string searchText)
         {
-            Festival[] resultArray = new Festival[festivalArray.Length];
-            int count = 0;
+            List<Festival> resultList = new List<Festival>();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
                 if (festivalArray[i].FestivalLocation.City.ToLower().Contains(searchText.ToLower())
                     || festivalArray[i].FestivalLocation.StreetName.ToLower().Contains(searchText.ToLower()))
                 {
-                    resultArray[count] = festivalArray[i];
-                    count++;
+                    resultList.Add(festivalArray[i]);
                 }
             }
-            return resultArray;
+            return resultList.ToArray();
         }
 
+        /// <summary>
+        /// Takes a Festival[] and a string and returns all Festivals where the festival genre contains the search text.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be searched in.
+        /// </param>
+        /// <param name="searchText">
+        /// string that needs to be searched for
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] containing all the festivals where the festival genre contains the search text.
+        /// </returns>
         public static Festival[] FilterGenre(Festival[] festivalArray, string searchText)
         {
-            Festival[] resultArray = new Festival[festivalArray.Length];
-            int count = 0;
+            List<Festival> resultList = new List<Festival>();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
                 if (festivalArray[i].FestivalGenre.ToLower().Contains(searchText.ToLower()))
                 {
-                    resultArray[count] = festivalArray[i];
-                    count++;
+                    resultList.Add(festivalArray[i]);
                 }
             }
-            return resultArray;
+            return resultList.ToArray();
         }
 
         public static void ClearFilters()

@@ -85,26 +85,6 @@ namespace Festivity
                 }
             }
         }
-
-        public static Festival[] FestivalRemovePadding(Festival[] festivals)
-        {
-            int count = 0;
-            for (int i = 0; i < festivals.Length; i++)
-            {
-                if (festivals[i].FestivalID != -1)
-                {
-                    count++;
-                }
-            }
-
-            Festival[] resultArray = new Festival[count];
-            for (int i = 0; i < count; i++)
-            {
-                resultArray[i] = festivals[i];
-            }
-
-            return resultArray;
-        }
     }
 
     internal class JSONFestivalList
