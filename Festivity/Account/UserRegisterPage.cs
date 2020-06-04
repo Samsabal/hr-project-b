@@ -98,7 +98,7 @@ namespace Festivity
 
             DateTime birthDate = new DateTime(int.Parse(userDateYear), int.Parse(userDateMonth), int.Parse(userDateDay));
 
-            User user = new User //Creates a new user object
+            UserModel user = new UserModel //Creates a new user object
             {
                 AccountType = userAccountType,
                 AccountID = accountID,

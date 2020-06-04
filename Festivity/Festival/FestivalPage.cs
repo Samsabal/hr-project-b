@@ -28,9 +28,9 @@ namespace Festivity
                     {
                         if (LoggedInAccount.GetID() == user.AccountID)
                         {
-                            int userAgeYear = festival.FestivalDate.Year - user.birthDate.Year;
-                            int userAgeMonth = festival.FestivalDate.Month - user.birthDate.Month;
-                            int userAgeDay = festival.FestivalDate.Day - user.birthDate.Day;
+                            int userAgeYear = festival.FestivalDate.Year - user.BirthDate.Year;
+                            int userAgeMonth = festival.FestivalDate.Month - user.BirthDate.Month;
+                            int userAgeDay = festival.FestivalDate.Day - user.BirthDate.Day;
                             if (userAgeYear * 365 + userAgeMonth * 30 + userAgeDay > festival.FestivalAgeRestriction * 365)
                             {
                                 return false;
