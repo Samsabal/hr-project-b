@@ -8,8 +8,8 @@ namespace Festivity
 {
     internal class UserAccountPage
     {
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
-        private static readonly JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
+        //private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
+        private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
         private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
@@ -19,7 +19,6 @@ namespace Festivity
             MenuFunction.option = 0;
             while (true)
             {
-                Console.WriteLine();
                 Console.WriteLine("Your account Information: ");
                 Console.WriteLine();
                 Console.WriteLine($"    {LoggedInAccount.User.FirstName} {LoggedInAccount.User.LastName}");
@@ -38,7 +37,7 @@ namespace Festivity
 
         public static void AccountChangeInfo()
         {
-            foreach (var user in users.Users)
+            foreach (var user in userList.Users)
             {
                 if (LoggedInAccount.GetID() == user.AccountID)
                 {
@@ -59,8 +58,6 @@ namespace Festivity
                         Console.WriteLine($"8.  Company name:           {user.CompanyName}");
                         Console.WriteLine($"9.  Company phonenumber:    {user.CompanyPhoneNumber}\n");
                         Console.WriteLine("");
-                        Console.WriteLine("Transaction information");
-                        Console.WriteLine("You have made {ticketMoney} from tickets.");
                     }
                     if (LoggedInAccount.User.AccountType == 2) // Festival goer
                     {

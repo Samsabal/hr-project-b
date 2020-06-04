@@ -33,7 +33,7 @@ namespace Festivity
             }
             else if (objects[0].GetType() == typeof(Festival))
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < objects.Length; i++)
                 {
                     if (option == i)
                     {
@@ -49,7 +49,7 @@ namespace Festivity
                     }
                 }
 
-                for (int i = 5; i < consoleOptions.Length; i++)
+                for (int i = objects.Length; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
                     {
@@ -232,6 +232,7 @@ namespace Festivity
                     case "Next page": // "Next page" option on catalog page screen
                         if (CatalogPage.currentPage * 5 + 5 < CatalogPage.festivalArray.Length)
                         {
+                            option = 0;
                             ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage++;
                         }
@@ -240,6 +241,7 @@ namespace Festivity
                     case "Previous page": // "Previous page" option on catalog page screen
                         if (CatalogPage.currentPage > 0)
                         {
+                            option = 0;
                             ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage--;
                         }
@@ -269,61 +271,6 @@ namespace Festivity
                         option = 0;
                         Console.Clear();
                         Program.Main(); //new string[] { }
-                        break;
-
-                    case "festival1": // First festival option in the catalog screen
-                        Festival festival1 = (Festival)objects[0];
-                        if (festival1.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival1.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival1.FestivalID);
-                        }
-                        break;
-
-                    case "festival2": // Second festival option in the catalog screen
-                        Festival festival2 = (Festival)objects[1];
-                        if (festival2.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival2.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival2.FestivalID);
-                        }
-                        break;
-
-                    case "festival3": // Third festival option in the catalog screen
-                        Festival festival3 = (Festival)objects[2];
-                        if (festival3.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival3.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival3.FestivalID);
-                        }
-                        break;
-
-                    case "festival4": // Fourth festival option in the catalog screen
-                        Festival festival4 = (Festival)objects[3];
-                        if (festival4.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival4.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival4.FestivalID);
-                        }
-                        break;
-
-                    case "festival5": // Fifth festival option in the catalog screen
-                        Festival festival5 = (Festival)objects[4];
-                        if (festival5.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival5.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival5.FestivalID);
-                        }
                         break;
 
                     case "Filter festivals": // Filter festivals option on the main CatalogPage screen
@@ -400,12 +347,14 @@ namespace Festivity
 
                     case "Order Tickets":
                         Console.Clear();
-                        CatalogPage.activeScreen = false;
-                        if (LoggedInAccount.User.AccountID == 0)
+                        if (LoggedInAccount.IsLoggedIn())
+                        {
+                            TicketBuy.TicketShow();
+                        }
+                        else
                         {
                             UserLoginPage.UserLogin(1);
                         }
-                        TicketBuy.TicketShow();
                         break;
 
                     case "Return to Festival Page":
@@ -513,6 +462,13 @@ namespace Festivity
                         {
                             Console.Clear();
                             TicketBuy.TicketConfirmation(option);
+                        }
+                        else if (consoleOptions[option].StartsWith("Select festival"))
+                        {
+                            Festival tempfestival = (Festival) objects[option];
+                            Console.Clear();
+                            CatalogPage.selectedFestival = tempfestival.FestivalID;
+                            FestivalPage.ShowFestivalPage(tempfestival.FestivalID);
                         }
                         break;
                 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class User // base class (parent)
+    internal class UserModel // base class (parent)
     {
         [JsonProperty("accountType")]
         public int AccountType { get; set; }
@@ -53,6 +53,6 @@ namespace Festivity
     internal class JSONUserList
     {
         [JsonProperty("users")]
-        public List<User> Users { get; set; } // Change this to change back to userOrganisator/Visitor
+        public List<UserModel> Users { get; set; } // Change this to change back to userOrganisator/Visitor
     }
 }
