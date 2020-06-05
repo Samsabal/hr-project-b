@@ -42,14 +42,10 @@ namespace Festivity.Transaction
                 {
                     return true;
                 }
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid input, please  try again");
-                Console.ResetColor();
+                Error.Write("Invalid input, please  try again");
                 return false;
             }
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Invalid input, please  try again");
-            Console.ResetColor();
+            Error.Write("Invalid input, please  try again");
             return false;
         }
 
@@ -57,9 +53,7 @@ namespace Festivity.Transaction
         {
             if (input != ConsoleKey.Y && input != ConsoleKey.N)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Wrong input, please type 'y' or 'n'");
-                Console.ResetColor();
+                Error.Write("Wrong input, please type 'y' or 'n'");
                 return true;
             }
             else
