@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace Festivity.Transaction
 {
     internal class DrawBuyTicketPage
-    {   
+    {
         private static int currentFestivalId;
 
         public static void Draw()

@@ -490,17 +490,17 @@ namespace Festivity
 
                     case "iDEAL":
                         Console.Clear();
-                        Transaction.DisplayManager.TransactionComplete();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Paypal":
                         Console.Clear();
-                        Transaction.DisplayManager.TransactionComplete();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Creditcard":
                         Console.Clear();
-                        Transaction.DisplayManager.TransactionComplete();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Cancel Order":

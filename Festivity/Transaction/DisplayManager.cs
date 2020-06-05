@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Transaction
 {
-    class DisplayManager
+    internal class DisplayManager
     {
         private static int TicketAmount { get; set; }
         private static int indexTicket;
+
         public static void Initiate(int option)
         {
             indexTicket = option;
-            InputReader.TicketAmount();
+            TicketAmount = InputReader.TicketAmount();
             Writer.Overview(CurrentTicketListBuilder.GetSelectedTicket(indexTicket), TicketAmount);
             if (InputReader.ConfirmTransaction()) { InputReader.PaymentOption(); }
         }
 
-        public static void TransactionComplete()
+        public static void Complete()
         {
             ObjectSaver.WriteToDatabase(CurrentTicketListBuilder.GetSelectedTicket(indexTicket));
             Console.WriteLine("Ordered Succesfully!");
@@ -30,6 +29,5 @@ namespace Festivity.Transaction
         {
             return TicketAmount;
         }
-
     }
 }

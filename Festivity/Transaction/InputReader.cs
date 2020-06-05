@@ -2,7 +2,7 @@
 
 namespace Festivity.Transaction
 {
-    class InputReader
+    internal class InputReader
     {
         public static int TicketAmount()
         {
@@ -16,6 +16,7 @@ namespace Festivity.Transaction
         public static void PaymentOption()
         {
             Console.Clear();
+            MenuFunction.option = 0;
             while (true)
             {
                 Console.WriteLine("Choose your payment method:");
@@ -27,8 +28,8 @@ namespace Festivity.Transaction
         {
             ConsoleKey input;
             Console.WriteLine("Confirm Order? [y/n]");
-            do { input = InputLoopKey();}
-            while (YesOrNoCheck(input) );
+            do { input = InputLoopKey(); }
+            while (YesOrNoCheck(input));
 
             Console.Clear();
             return input == ConsoleKey.Y;
@@ -42,10 +43,10 @@ namespace Festivity.Transaction
                 {
                     return true;
                 }
-                Error.Write("Invalid input, please  try again");
+                Error.Write("Invalid input, please try again");
                 return false;
             }
-            Error.Write("Invalid input, please  try again");
+            Error.Write("Invalid input, please try again");
             return false;
         }
 
@@ -53,7 +54,7 @@ namespace Festivity.Transaction
         {
             if (input != ConsoleKey.Y && input != ConsoleKey.N)
             {
-                Error.Write("Wrong input, please type 'y' or 'n'");
+                Error.Write("Wrong input, please press 'y' or 'n'");
                 return true;
             }
             else
@@ -75,6 +76,5 @@ namespace Festivity.Transaction
             userInput = Console.ReadKey(true).Key;
             return userInput;
         }
-
     }
 }

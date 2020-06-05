@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Festivity.Transaction
 {
-    class Writer
+    internal class Writer
     {
         public static void Overview(Ticket selectedTicket, int amount)
         {

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Transaction
 {
-    class ObjectSaver
+    internal class ObjectSaver
     {
         public static void WriteToDatabase(Ticket ticket)
         {
@@ -17,7 +15,7 @@ namespace Festivity.Transaction
                 TransactionID = CurrentTicketListBuilder.GetTransactionID(),
                 FestivalID = (int)CatalogPage.selectedFestival,
                 TicketID = ticket.TicketID,
-                BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID, 
+                BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID,
                 TicketAmount = DisplayManager.GetTicketAmount(),
                 OrderDate = timeStamp
             };

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Festivity.Transaction
 {
-    class CurrentTicketListBuilder
+    internal class CurrentTicketListBuilder
     {
         private static List<Ticket> CurrentTicketList { get; set; }
         private static readonly JSONTransactionList transactionList = JSONFunctionality.GetTransactions();
