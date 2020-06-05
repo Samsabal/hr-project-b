@@ -67,6 +67,38 @@ namespace Festivity
         }
 
         /// <summary>
+        /// This method takes a festivalID and checks all the associated tickets for the lowest and highest price.
+        /// </summary>
+        /// <param name="festivalId">A festivalID to check prices for</param>
+        /// <returns>
+        /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
+        /// </returns>
+        private static Tuple<double, double> MinMaxPrice(int festivalId)
+        {
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            Ticket[] ticketArray = tickets.Tickets.ToArray();
+            double minPrice = -1;
+            double maxPrice = -1;
+            foreach (Ticket t in ticketArray)
+            {
+                if ((t.FestivalID == festivalId) && (minPrice == -1))
+                {
+                    minPrice = t.TicketPrice;
+                    maxPrice = t.TicketPrice;
+                }
+                else if ((t.FestivalID == festivalId) && (t.TicketPrice < minPrice))
+                {
+                    minPrice = t.TicketPrice;
+                }
+                else if ((t.FestivalID == festivalId) && (t.TicketPrice > maxPrice))
+                {
+                    maxPrice = t.TicketPrice;
+                }
+            }
+            return new Tuple<double, double>(minPrice, maxPrice);
+        }
+
+        /// <summary>
         /// This method gives a string representing the current status of the Festival to be displayed on the TicketTable.
         /// </summary>
         /// <returns>
@@ -132,6 +164,79 @@ namespace Festivity
                 }
             }
             return resultList;
+        }
+
+        /// <summary>
+        /// This method takes a festivalID and checks all the associated tickets for the lowest and highest price.
+        /// </summary>
+        /// <param name="festivalId">A festivalID to check prices for</param>
+        /// <returns>
+        /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
+        /// </returns>
+        private Tuple<double, double> MinMaxPrice()
+        {
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            Ticket[] ticketArray = tickets.Tickets.ToArray();
+            double minPrice = -1;
+            double maxPrice = -1;
+            foreach (Ticket t in ticketArray)
+            {
+                if ((t.FestivalID == FestivalID) && (minPrice == -1))
+                {
+                    minPrice = t.TicketPrice;
+                    maxPrice = t.TicketPrice;
+                }
+                else if ((t.FestivalID == FestivalID) && (t.TicketPrice < minPrice))
+                {
+                    minPrice = t.TicketPrice;
+                }
+                else if ((t.FestivalID == FestivalID) && (t.TicketPrice > maxPrice))
+                {
+                    maxPrice = t.TicketPrice;
+                }
+            }
+            return new Tuple<double, double>(minPrice, maxPrice);
+        }
+
+        /// <summary>
+        /// This method returns a string with the lowest and highest priced ticket for the Festival.
+        /// </summary>
+        /// <returns>
+        /// A string depending on the prices of tickets for the Festival
+        /// </returns>
+        public string PricesToString()
+        {
+            if (MinMaxPrice().Item1 == -1)
+            {
+                return "Price not found";
+            }
+            else if (MinMaxPrice().Item1 == MinMaxPrice().Item2)
+            {
+                return $"\u20AC{MinMaxPrice().Item1}";
+            }
+            else
+            {
+                return $"\u20AC{MinMaxPrice().Item1} - \u20AC{MinMaxPrice().Item2}";
+            }
+        }
+
+        /// <summary>
+        /// This method returns a shortened version of the FestivalDescription if it is longer than "maxLength".
+        /// </summary>
+        /// <param name="maxLength">The length you want to shorten the FestivalDescription to</param>
+        /// <returns>
+        /// A shortened version of FestivalDescription if it is over maxLength characters, otherwise returns the entire string.
+        /// </returns>
+        public string ShortenDescription(int maxLength)
+        {
+            if (FestivalDescription.Length > maxLength)
+            {
+                return FestivalDescription.Substring(0, maxLength - 3) + "...";
+            }
+            else
+            {
+                return FestivalDescription;
+            }
         }
     }
 
