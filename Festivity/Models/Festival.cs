@@ -43,6 +43,12 @@ namespace Festivity
         [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
+        /// <summary>
+        /// This method gives a string representing the current status of the Festival to be displayed on the CatalogPage.
+        /// </summary>
+        /// <returns>
+        /// Returns a string containing "Tickets available" or "No tickets available" if the festival hasn't happened yet, and returns "This festival has ended" if it has ended.
+        /// </returns>
         public string CheckStatusCatalog()
         {
             if (this.FestivalEndTime < DateTime.Now)
@@ -60,9 +66,16 @@ namespace Festivity
             }
         }
 
+        /// <summary>
+        /// This method gives a string representing the current status of the Festival to be displayed on the TicketTable.
+        /// </summary>
+        /// <returns>
+        /// Returns a string containing the date status of the Festival if no FestivalStatus has been set, otherwise returns FestivalStatus.
+        /// </returns>
         public string CheckStatusTicketTable()
         {
-            if (FestivalStatus == null) {
+            if (FestivalStatus == null)
+            {
                 if (FestivalEndTime < DateTime.Now)
                 {
                     return "This festival has ended";
@@ -81,11 +94,16 @@ namespace Festivity
                 return FestivalStatus;
             }
         }
-        
 
+        /// <summary>
+        /// This method checks if the Festival has any tickets available for sale.
+        /// </summary>
+        /// <returns>
+        /// Returns true if there are tickets available, returns false if there aren't
+        /// </returns>
         private bool TicketsLeft()
         {
-            foreach(Ticket t in this.GetTickets())
+            foreach (Ticket t in this.GetTickets())
             {
                 if (FestivalPage.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
                 {
@@ -95,14 +113,21 @@ namespace Festivity
             return false;
         }
 
+        /// <summary>
+        /// This method gets a list of tickets associated with the current Festival.
+        /// </summary>
+        /// <returns>\
+        /// Returns a List<Ticket> containing all tickets that match the FestivalID
+        /// </returns>
         private List<Ticket> GetTickets()
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
             List<Ticket> resultList = new List<Ticket>();
 
-            foreach(Ticket t in tickets.Tickets)
+            foreach (Ticket t in tickets.Tickets)
             {
-                if (t.FestivalID == this.FestivalID) {
+                if (t.FestivalID == this.FestivalID)
+                {
                     resultList.Add(t);
                 }
             }
@@ -110,6 +135,9 @@ namespace Festivity
         }
     }
 
+    /// <summary>
+    /// JSONFestivalList class to add JSON List functionality to the Festival class
+    /// </summary>
     internal class JSONFestivalList
     {
         [JsonProperty("festivals")]
