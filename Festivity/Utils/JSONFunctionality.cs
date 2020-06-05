@@ -111,13 +111,24 @@ namespace Festivity
             return transactions;
         }
 
-
+        /// <summary>
+        /// Writes the given JSONTransactionList to the Transaction database
+        /// </summary>
+        /// <param name="transactions">
+        /// The JSONTransactionList that needs to be written to the Transaction database
+        /// </param>
         public static void WriteTransactions(JSONTransactionList transactions)
         {
             string json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
             File.WriteAllText(PathTransaction, json);
         }
 
+        /// <summary>
+        /// Generates a new UserID based on the amount of users in the User database
+        /// </summary>
+        /// <returns>
+        /// Returns a new UserID
+        /// </returns>
         public static int GenerateUserID()
         {
             JSONUserList userList = GetUserList();
