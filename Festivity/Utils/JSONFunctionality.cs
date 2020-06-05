@@ -3,6 +3,9 @@ using System.IO;
 
 namespace Festivity
 {
+    /// <summary>
+    /// Static class containing the functionality for reading from and writing to our JSON files.
+    /// </summary>
     internal class JSONFunctionality
     {
         private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"FestivalsDatabase.json");
@@ -10,30 +13,60 @@ namespace Festivity
         private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TicketDatabase.json");
         private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TransactionDatabase.json");
 
+        /// <summary>
+        /// Gets the festivals from our Festival database
+        /// </summary>
+        /// <returns>
+        /// Returns a JSONFestivalList containing all Festivals in the Festival database
+        /// </returns>
         public static JSONFestivalList GetFestivals()
         {
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
             return Festivals;
         }
 
+        /// <summary>
+        /// Writes the given JSONFestivalList to the Festival database
+        /// </summary>
+        /// <param name="festivals">
+        /// The JSONFestivalList that needs to be written to the Festival database
+        /// </param>
         public static void WriteFestivals(JSONFestivalList festivals)
         {
             string jsonfestival = JsonConvert.SerializeObject(festivals, Formatting.Indented);
             File.WriteAllText(PathFestival, jsonfestival);
         }
 
+        /// <summary>
+        /// Gets the users from our User database
+        /// </summary>
+        /// <returns>
+        /// Returns a JSONUserList containing all users in the User database
+        /// </returns>
         public static JSONUserList GetUserList()
         {
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
             return users;
         }
 
+        /// <summary>
+        /// Writes the given JSONUserList to the User database
+        /// </summary>
+        /// <param name="users">
+        /// The JSONUserList that needs to be written to the User database
+        /// </param>
         public static void WriteToUserList(JSONUserList users)
         {
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(PathUser, json);
         }
 
+        /// <summary>
+        /// Writes the given UserModel to the User database
+        /// </summary>
+        /// <param name="user">
+        /// The UserModel that needs to be written to the User database
+        /// </param>
         public static void WriteUser(UserModel user)
         {
             JSONUserList users = GetUserList();
@@ -42,24 +75,42 @@ namespace Festivity
         }
 
 
-
+        /// <summary>
+        /// Gets the tickets from our Ticket database
+        /// </summary>
+        /// <returns>
+        /// Returns a JSONTicketList containing all tickets in the Ticket Database
+        /// </returns>
         public static JSONTicketList GetTickets()
         {
             JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PathTicket));
             return tickets;
         }
 
+        /// <summary>
+        /// Writes the given JSONTicketList to the Ticket database
+        /// </summary>
+        /// <param name="tickets">
+        /// The JSONTicketList that needs to be written to the Ticket database
+        /// </param>
         public static void WriteTickets(JSONTicketList tickets)
         {
             string json = JsonConvert.SerializeObject(tickets, Formatting.Indented);
             File.WriteAllText(PathTicket, json);
         }
 
+        /// <summary>
+        /// Gets the transactions from our Transaction database
+        /// </summary>
+        /// <returns>
+        /// Returns a JSONTransactionList containing all transactions in the Transaction Database
+        /// </returns>
         public static JSONTransactionList GetTransactions()
         {
             JSONTransactionList transactions = JsonConvert.DeserializeObject<JSONTransactionList>(File.ReadAllText(PathTransaction));
             return transactions;
         }
+
 
         public static void WriteTransactions(JSONTransactionList transactions)
         {
