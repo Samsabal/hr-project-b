@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace Festivity
 {
@@ -8,111 +7,21 @@ namespace Festivity
     {
         public static int option;
 
-        public static void Draw(List<MenuOption> consoleOptions, object[] objects = null)
+        public static void Draw(List<MenuOption> consoleOptions)
         {
             Console.CursorVisible = false;
-            /// 1. Add your option as string in consoleOptions argument.
-            /// 2. (optional) Add a second array that contains objects to display dynamic names of options in objects argument.
-            /// 3. Add your extra "option" as a new case inside the switch statement with the correct function.
-            if (objects == null)
-            {
-                {
-                    for (int i = 0; i < consoleOptions.Count; i++)
-                    {
-                        if (option == i)
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
-                        }
-                        Console.WriteLine("{0}", consoleOptions[i].Name);
-                        if (option == i)
-                        {
-                            Console.ResetColor();
-                        }
-                    }
-                }
-            }
-            else if (objects[0].GetType() == typeof(Festival))
-            {
-                for (int i = 0; i < objects.Length; i++)
-                {
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                    }
-                    Festival tempfestival = (Festival)objects[i];
 
-                    Console.WriteLine("Select festival: {0}", tempfestival.FestivalName);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
-                }
-
-                for (int i = objects.Length; i < consoleOptions.Count; i++)
-                {
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                    }
-                    Console.WriteLine("{0}", consoleOptions[i]);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
-                }
-            }
-            else if (objects[0].GetType() == typeof(Ticket))
+            for (int i = 0; i < consoleOptions.Count; i++)
             {
-                for (int i = 0; i < TicketBuy.GetTicketListLength(); i++)
+                if (option == i)
                 {
-                    ConsoleHelperFunctions.ClearCurrentConsoleLine();
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                    }
-                    Ticket tempticket = (Ticket)objects[i];
-
-                    Console.WriteLine("Buy Ticket: {0}", tempticket.TicketName);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
                 }
-
-                for (int i = TicketBuy.GetTicketListLength(); i < consoleOptions.Count; i++)
+                Console.WriteLine("{0}", consoleOptions[i].Name);
+                if (option == i)
                 {
-                    ConsoleHelperFunctions.ClearCurrentConsoleLine();
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                    }
-                    Console.WriteLine("{0}", consoleOptions[i]);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
-                }
-                ConsoleHelperFunctions.ClearCurrentConsoleLine();
-            }
-            else
-            {
-                for (int i = 0; i < consoleOptions.Count; i++)
-                {
-                    if (option == i)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                    }
-                    Console.WriteLine("{0}", consoleOptions[i]);
-                    if (option == i)
-                    {
-                        Console.ResetColor();
-                    }
+                    Console.ResetColor();
                 }
             }
 
