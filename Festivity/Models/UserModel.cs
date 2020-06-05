@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Festivity
@@ -34,8 +35,11 @@ namespace Festivity
 
         [JsonProperty("companyIBAN")]
         public string CompanyIBAN { get; set; }
+        [JsonProperty("birthDate", Required = Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.RegularExpression(@"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$")]
+        public DateTime BirthDate { get; set; }
 
-        public Date birthDate = new Date();
 
         [JsonProperty("newsLetter")]
         public int NewsLetter { get; set; }
