@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Festivity.Transaction
 {
-    class DrawTransaction
+    class Writer
     {
-        public static void Overview(int index, int amount)
+        public static void Overview(Ticket selectedTicket, int amount)
         {
             Console.Clear();
-            Ticket selectedTicket = CurrentTicketListBuilder.GetSelectedTicket(index);
-
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Transaction Information");
             Console.WriteLine("----------------------------------------------------------------------");
