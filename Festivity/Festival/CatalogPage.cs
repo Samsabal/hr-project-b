@@ -133,9 +133,9 @@ namespace Festivity
             Console.Write($"City: {festival.FestivalLocation.City}");
             Console.SetCursorPosition(66 - 7 - PricesToString(MinMaxPrice(festival.FestivalID)).Length, Console.CursorTop);
             Console.Write($"Price: {PricesToString(MinMaxPrice(festival.FestivalID))}\n");
-            Console.Write($"Status: {festival.CheckStatus()}");
+            Console.Write($"Status: {festival.CheckStatusCatalog()}");
             Console.SetCursorPosition(50, Console.CursorTop);
-            Console.Write($"Date: {festival.FestivalDate} \n");
+            Console.Write($"Date: {festival.FestivalDate.ToShortDateString()} \n");
         }
         /// <summary>
         /// This method takes a string and returns a shortened version if it is over 50 characters long.

@@ -43,35 +43,70 @@ namespace Festivity
         [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
-        public string CheckStatus()
+        public string CheckStatusCatalog()
         {
-            if (this == null || this.FestivalID == -1)
+            if (this.FestivalEndTime < DateTime.Now)
             {
-                return "";
+                return "This festival has ended";
             }
-            else if (this.FestivalStatus == "Festival aborted")
+
+            if (TicketsLeft())
             {
-                return "Festival aborted";
-            }
-            else if (this.FestivalStatus == "Festival changed")
-            {
-                return "Festival changed";
+                return "Tickets available";
             }
             else
-            { 
-                if (this.FestivalEndTime < DateTime.Now)
+            {
+                return "No tickets available";
+            }
+        }
+
+        public string CheckStatusTicketTable()
+        {
+            if (FestivalStatus == null) {
+                if (FestivalEndTime < DateTime.Now)
                 {
                     return "This festival has ended";
                 }
-                else if (DateTime.Now < this.FestivalEndTime && this.FestivalStartingTime < DateTime.Now)
+                else if (FestivalStartingTime < DateTime.Now && FestivalEndTime < DateTime.Now)
                 {
                     return "This festival is ongoing";
                 }
                 else
                 {
-                    return "Tickets available";
+                    return "This festival is upcoming";
                 }
             }
+            else
+            {
+                return FestivalStatus;
+            }
+        }
+        
+
+        private bool TicketsLeft()
+        {
+            foreach(Ticket t in this.GetTickets())
+            {
+                if (FestivalPage.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private List<Ticket> GetTickets()
+        {
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            List<Ticket> resultList = new List<Ticket>();
+
+            foreach(Ticket t in tickets.Tickets)
+            {
+                if (t.FestivalID == this.FestivalID) {
+                    resultList.Add(t);
+                }
+            }
+            return resultList;
         }
     }
 
