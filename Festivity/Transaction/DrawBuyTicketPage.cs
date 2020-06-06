@@ -11,7 +11,7 @@ namespace Festivity.Transaction
         {
             currentFestivalId = CatalogPage.selectedFestival;
 
-            CurrentTicketListBuilder.SetCurrentTicketList(currentFestivalId);
+            TicketListBuilder.Set(currentFestivalId);
 
             MenuFunction.option = 0;
 
@@ -21,7 +21,7 @@ namespace Festivity.Transaction
                 string line = "----------------------------------------------------------------------";
 
                 // Displays the Tickets for the current Festival
-                foreach (var ticket in CurrentTicketListBuilder.GetCurrentTicketList())
+                foreach (var ticket in TicketListBuilder.Get())
                 {
                     Console.WriteLine(ticket.TicketName);
                     Console.WriteLine("Description: " + ticket.TicketDescription);
@@ -32,7 +32,7 @@ namespace Festivity.Transaction
 
                 menuOptionsList.Add("Return to Festival Page");
                 menuOptionsList.Add("Exit to Main Menu");
-                MenuFunction.Menu(menuOptionsList.ToArray(), CurrentTicketListBuilder.GetCurrentTicketList().ToArray());
+                MenuFunction.Menu(menuOptionsList.ToArray(), TicketListBuilder.Get().ToArray());
             }
         }
     }

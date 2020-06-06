@@ -65,7 +65,7 @@ namespace Festivity
             }
             else if (objects[0].GetType() == typeof(Ticket))
             {
-                for (int i = 0; i < Transaction.CurrentTicketListBuilder.GetTicketListLength(); i++)
+                for (int i = 0; i < Transaction.TicketListBuilder.GetLength(); i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -82,7 +82,7 @@ namespace Festivity
                     }
                 }
 
-                for (int i = Transaction.CurrentTicketListBuilder.GetTicketListLength(); i < consoleOptions.Length; i++)
+                for (int i = Transaction.TicketListBuilder.GetLength(); i < consoleOptions.Length; i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)

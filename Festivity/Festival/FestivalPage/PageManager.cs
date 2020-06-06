@@ -20,7 +20,7 @@ namespace Festivity.Festival
 
                         Writer.Festival(festival); // Writes the current Festival
 
-                        Transaction.CurrentTicketListBuilder.SetCurrentTicketList(festivalId);
+                        Transaction.TicketListBuilder.Set(festivalId);
 
                         Writer.Tickets(); // Writes the corresponding Tickets from the current Festival
                     }

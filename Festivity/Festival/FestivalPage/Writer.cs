@@ -25,7 +25,7 @@ namespace Festivity.Festival
             List<MenuOption> newMenuOptions = new List<MenuOption>();
 
             // Displays the Tickets for the current Festival
-            foreach (var ticket in Transaction.CurrentTicketListBuilder.GetCurrentTicketList())
+            foreach (var ticket in Transaction.TicketListBuilder.Get())
             {
                 int ticketId = ticket.TicketID;
                 int maxTickets = ticket.MaxTickets;
