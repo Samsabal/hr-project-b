@@ -43,6 +43,13 @@ namespace Festivity
         [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
+
+        public bool IsRefundable()
+        {
+            return (DateTime.Now.AddDays(FestivalCancelTime * 7) < FestivalDate);
+        }
+
+
         /// <summary>
         /// This method gives a string representing the current availability of tickets of the Festival.
         /// </summary>

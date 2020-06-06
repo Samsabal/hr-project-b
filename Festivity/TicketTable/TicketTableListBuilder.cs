@@ -30,6 +30,7 @@ namespace Festivity
                             tempList.Add(festival.FestivalName);
                             tempList.Add(Convert.ToString(festival.FestivalDate.Day + "/" + festival.FestivalDate.Month + "/" + festival.FestivalDate.Year));
                             tempList.Add(festival.CheckStatusTicketTable());
+                            tempList.Add(festival.IsRefundable().ToString());
                         }
                     }
                     foreach (var ticket in tickets.Tickets)
