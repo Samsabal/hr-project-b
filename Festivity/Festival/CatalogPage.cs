@@ -120,7 +120,7 @@ namespace Festivity
                     DrawFestival(festivalArray[i]);
                 }
             }
-            Console.WriteLine("X===================================================================X\n");
+            Console.WriteLine("X===================================================================X");
         }
 
         /// <summary>
