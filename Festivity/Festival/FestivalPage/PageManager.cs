@@ -10,7 +10,7 @@ namespace Festivity.Festival
             {
                 if (festival.FestivalID == festivalId)
                 {
-                    MenuFunction.option = 0;
+                    Menu.OptionReset();
                     while (true)
                     {
                         Console.WriteLine("======================================================================");

@@ -36,7 +36,7 @@ namespace Festivity.Festival
                 Console.WriteLine("----------------------------------------------------------------------");
 
                 newMenuOptions.Add(new MenuOption("Buy Ticket:" + ticket.TicketName, () => {
-                    Menu.option = 0;
+                    Menu.OptionReset();
                     Console.Clear();
                     Transaction.DisplayManager.Initiate(ticket.TicketID);
                 }));
@@ -47,7 +47,7 @@ namespace Festivity.Festival
                 CatalogPage.CatalogMain();
             }));
             newMenuOptions.Add(new MenuOption("Exit to Main Menu:", () => {
-                Menu.option = 0;
+                Menu.OptionReset();
                 Console.Clear();
                 Program.Main();
             }));
