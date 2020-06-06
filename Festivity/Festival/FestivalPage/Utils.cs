@@ -1,6 +1,6 @@
 ﻿namespace Festivity.Festival
 {
-    class Utils
+    internal class Utils
     {
         public static int TicketsLeft(int ticketId, int maxTickets)
         {

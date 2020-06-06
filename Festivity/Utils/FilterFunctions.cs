@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Festivity.Utils
 {
-    class FilterFunctions
+    internal class FilterFunctions
     {
-
         /// <summary>
-        /// Takes a Festival[] and a string and returns all Festivals where the festival name contains the search text.
+        /// Takes a Festival[] and a string and returns all Festivals where the festival name
+        /// contains the search text.
         /// </summary>
-        /// <param name="festivalArray">
-        /// Festival array to be searched in.
-        /// </param>
-        /// <param name="searchText">
-        /// string that needs to be searched for
-        /// </param>
+        /// <param name="festivalArray"> Festival array to be searched in. </param>
+        /// <param name="searchText"> string that needs to be searched for </param>
         /// <returns>
         /// Returns a Festival[] containing all the festivals where the name contains the search text.
         /// </returns>
@@ -35,16 +29,14 @@ namespace Festivity.Utils
         }
 
         /// <summary>
-        /// Takes a Festival[] and a string and returns all Festivals where the festival location contains the search text.
+        /// Takes a Festival[] and a string and returns all Festivals where the festival location
+        /// contains the search text.
         /// </summary>
-        /// <param name="festivalArray">
-        /// Festival array to be searched in.
-        /// </param>
-        /// <param name="searchText">
-        /// string that needs to be searched for
-        /// </param>
+        /// <param name="festivalArray"> Festival array to be searched in. </param>
+        /// <param name="searchText"> string that needs to be searched for </param>
         /// <returns>
-        /// Returns a Festival[] containing all the festivals where the festival location contains the search text.
+        /// Returns a Festival[] containing all the festivals where the festival location contains
+        /// the search text.
         /// </returns>
         public static FestivalModel[] FilterLocation(FestivalModel[] festivalArray, string searchText)
         {
@@ -62,16 +54,14 @@ namespace Festivity.Utils
         }
 
         /// <summary>
-        /// Takes a Festival[] and a string and returns all Festivals where the festival genre contains the search text.
+        /// Takes a Festival[] and a string and returns all Festivals where the festival genre
+        /// contains the search text.
         /// </summary>
-        /// <param name="festivalArray">
-        /// Festival array to be searched in.
-        /// </param>
-        /// <param name="searchText">
-        /// string that needs to be searched for
-        /// </param>
+        /// <param name="festivalArray"> Festival array to be searched in. </param>
+        /// <param name="searchText"> string that needs to be searched for </param>
         /// <returns>
-        /// Returns a Festival[] containing all the festivals where the festival genre contains the search text.
+        /// Returns a Festival[] containing all the festivals where the festival genre contains the
+        /// search text.
         /// </returns>
         public static FestivalModel[] FilterGenre(FestivalModel[] festivalArray, string searchText)
         {

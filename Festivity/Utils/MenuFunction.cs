@@ -12,8 +12,10 @@ namespace Festivity
         {
             Console.CursorVisible = false;
             /// 1. Add your option as string in consoleOptions argument.
-            /// 2. (optional) Add a second array that contains objects to display dynamic names of options in objects argument.
-            /// 3. Add your extra "option" as a new case inside the switch statement with the correct function.
+            /// 2. (optional) Add a second array that contains objects to display dynamic names of
+            /// options in objects argument.
+            /// 3. Add your extra "option" as a new case inside the switch statement with the
+            /// correct function.
             if (objects == null)
             {
                 {
@@ -190,6 +192,7 @@ namespace Festivity
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
+
                     case "Sort by price":
                         CatalogPage.festivalArray = SortingFunctions.SortPrice(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
@@ -203,6 +206,7 @@ namespace Festivity
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
+
                     case "Filter by festival name":
                         string namesearch = Console.ReadLine();
                         CatalogPage.festivalArray = FilterFunctions.FilterName(CatalogPage.festivalArray, namesearch);
@@ -442,6 +446,7 @@ namespace Festivity
                         Console.Clear();
                         TicketTableManager.Initiate();
                         break;
+
                     case "Refund Ticket":
                         RefundTicket.InitiateRefund();
                         break;
@@ -473,7 +478,7 @@ namespace Festivity
                         }
                         else if (consoleOptions[option].StartsWith("Select festival"))
                         {
-                            FestivalModel tempfestival = (FestivalModel) objects[option];
+                            FestivalModel tempfestival = (FestivalModel)objects[option];
                             Console.Clear();
                             CatalogPage.selectedFestival = tempfestival.FestivalID;
                             Festival.PageManager.Display(tempfestival.FestivalID);

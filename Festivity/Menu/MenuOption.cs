@@ -3,6 +3,7 @@
     public class MenuOption
     {
         public delegate void MenuAction();
+
         private readonly MenuAction action;
 
         public string Name { get; }
@@ -12,6 +13,7 @@
             Name = menuName;
             this.action = action;
         }
+
         public void Select()
         {
             action();

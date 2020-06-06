@@ -2,7 +2,7 @@
 
 namespace Festivity
 {
-    class ErrorMessage
+    internal class ErrorMessage
     {
         public static void WriteLine(string errorMessage)
         {

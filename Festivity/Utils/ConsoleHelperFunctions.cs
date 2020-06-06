@@ -2,14 +2,10 @@
 
 namespace Festivity
 {
-    /// <summary>
-    /// Class containing functions for extended functionality of the console.
-    /// </summary>
+    /// <summary> Class containing functions for extended functionality of the console. </summary>
     internal class ConsoleHelperFunctions
     {
-        /// <summary>
-        /// Fills the current line in the console with whitespace.
-        /// </summary>
+        /// <summary> Fills the current line in the console with whitespace. </summary>
         public static void ClearCurrentConsoleLine()
         {
             Console.CursorVisible = false;
@@ -20,9 +16,7 @@ namespace Festivity
             Console.CursorVisible = true;
         }
 
-        /// <summary>
-        /// Fills all lines in the console with whitespace.
-        /// </summary>
+        /// <summary> Fills all lines in the console with whitespace. </summary>
         public static void ClearCurrentConsole()
         {
             for (int i = 0; i < Console.WindowHeight; i++)

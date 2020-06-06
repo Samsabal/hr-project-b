@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 
 namespace Festivity
@@ -58,7 +56,6 @@ namespace Festivity
             Thread.Sleep(3000);
             ConsoleHelperFunctions.ClearCurrentConsole();
             return false;
-
         }
     }
 }
