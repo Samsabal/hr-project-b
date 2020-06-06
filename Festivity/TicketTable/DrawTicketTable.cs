@@ -6,9 +6,7 @@ namespace Festivity
 {
     internal class DrawTicketTable
     {
-        /// <summary>
-        /// Source: https://github.com/douglasg14b/BetterConsoleTables
-        /// </summary>
+        /// <summary> Source: https://github.com/douglasg14b/BetterConsoleTables </summary>
 
         private static List<List<string>> TicketList;
         private static Table ticketTable;
@@ -27,7 +25,7 @@ namespace Festivity
                                        $"{TicketList[i][8]}", $"{TicketList[i][2]}", $"{TicketList[i][3]}");
                 }
                 ticketTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
-            } 
+            }
         }
 
         public static void Menu()
@@ -42,10 +40,9 @@ namespace Festivity
 
         public static void Draw()
         {
-              CreateTable();
-              Console.Write(ticketTable.ToString());
-              Console.WriteLine();
-
+            CreateTable();
+            Console.Write(ticketTable.ToString());
+            Console.WriteLine();
         }
 
         public static void DrawRefund()
@@ -57,7 +54,5 @@ namespace Festivity
         {
             TicketList = ticketList;
         }
-
-
     }
 }

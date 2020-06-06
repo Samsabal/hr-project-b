@@ -166,12 +166,12 @@ namespace Festivity
                 else if (currentRegisterSelection == "Festival Date")
                 {
                     Console.Clear();
-                    
+
                     Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
                     do { festivalDateDay = InputLoop("Fill in the day: "); }
-                    while (!RegexUtils.IsValidFestivalDay(festivalDateDay));
+                    while (!RegexUtils.IsValidDay(festivalDateDay));
                     do { festivalDateMonth = InputLoop("Fill in the month: "); }
-                    while (!RegexUtils.IsValidFestivalMonth(festivalDateMonth));
+                    while (!RegexUtils.IsValidMonth(festivalDateMonth));
                     do { festivalDateYear = InputLoop("Fill in the year: "); }
                     while (!RegexUtils.IsValidFestivalYear(festivalDateYear));
                     festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
@@ -258,7 +258,7 @@ namespace Festivity
                     Console.Clear();
                     do { festivalAmountVariousTickets = InputLoop("Fill in the amount of various tickets as a number: "); }
                     while (!RegexUtils.NumberCheck(festivalAmountVariousTickets, 1, 20));
-                    
+
                     int variousTickets = int.Parse(festivalAmountVariousTickets);
 
                     ticketList = new List<Ticket>();
@@ -280,10 +280,8 @@ namespace Festivity
                         do { festivalMaxTickets = InputLoop("Fill in the maximum amount of available tikets of this ticket type: "); }
                         while (!RegexUtils.IsValidMaxTickets(festivalMaxTickets));
 
-
                         do { festivalMaxTicketsPerPerson = InputLoop("Fill in the maximum amount of tickets a single person may buy: "); }
                         while (!RegexUtils.IsValidMaxTicketsPerPerson(festivalMaxTicketsPerPerson));
-                        
 
                         // This is a format to create the new ticket
                         Ticket ticket = new Ticket
@@ -298,7 +296,6 @@ namespace Festivity
                         };
 
                         ticketList.Add(ticket);
-                        
                     };
                     currentRegisterSelection = "Main";
                 }
@@ -321,7 +318,7 @@ namespace Festivity
                     }
                     // Checks if there is any value unassigned to prevent other parts from crashing upon retrieving the data from the databases.
                     else if (festivalName == null || festivalDescription == null || festivalLocationCountry == null || festivalLocationCity == null ||
-                        festivalLocationStreet == null || festivalLocationHouseNumber == null || festivalLocationZipCode == null || festivalDateDay == null|| festivalDateMonth == null || festivalDateYear == null ||
+                        festivalLocationStreet == null || festivalLocationHouseNumber == null || festivalLocationZipCode == null || festivalDateDay == null || festivalDateMonth == null || festivalDateYear == null ||
                         festivalStartingTime == null || festivalEndTime == null || festivalGenre == null || festivalAgeRestriction == null || cancelTime == null)
                     {
                         Console.WriteLine("Before you can save the festival to our database you must assign a value to every option but you do not have to register the tickets again");
@@ -334,7 +331,6 @@ namespace Festivity
                         {
                             // Adds a new ticket to the database
                             tickets.Tickets.Add((Ticket)Ticket);
-
                         }
                         JSONFunctionality.WriteTickets(tickets);
 
@@ -345,7 +341,7 @@ namespace Festivity
                             int.Parse(festivalStartingTime.Substring(3, 2)), 0);
                         DateTime FestivalEndTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, int.Parse(festivalEndTime.Substring(0, 2)),
                             int.Parse(festivalEndTime.Substring(3, 2)), 0);
-                        if ( FestivalEndTime < FestivalStartingTime)
+                        if (FestivalEndTime < FestivalStartingTime)
                         {
                             FestivalEndTime.AddDays(1);
                         }
@@ -372,7 +368,6 @@ namespace Festivity
                             FestivalAgeRestriction = int.Parse(festivalAgeRestriction),
                             FestivalCancelTime = int.Parse(cancelTime),
                             FestivalOrganiserID = LoggedInAccount.GetID()
-
                         };
                         // Adds a new festival to the database
                         festivals.Festivals.Add(festival);

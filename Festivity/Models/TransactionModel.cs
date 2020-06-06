@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class Transaction
+    internal class TransactionModel
     {
         [JsonProperty("transactionID")]
         public int TransactionID { get; set; }
@@ -27,6 +27,6 @@ namespace Festivity
     internal class JSONTransactionList
     {
         [JsonProperty("transactions")]
-        public List<Transaction> Transactions { get; set; }
+        public List<TransactionModel> Transactions { get; set; }
     }
 }
