@@ -6,7 +6,7 @@ namespace Festivity
     /// <summary>
     /// Static class containing the functionality for reading from and writing to our JSON files.
     /// </summary>
-    internal class JSONFunctionality
+    internal static class JSONFunctionality
     {
         private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"FestivalsDatabase.json");
         private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
