@@ -5,6 +5,7 @@ namespace Festivity.Transaction
     internal class ObjectSaver
     {
         private static readonly JSONTransactionList transactionList = JSONFunctionality.GetTransactions();
+
         public static void WriteToDatabase(Ticket ticket)
         {
             DateTime now = DateTime.Now;

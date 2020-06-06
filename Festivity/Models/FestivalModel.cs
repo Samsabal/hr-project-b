@@ -43,18 +43,17 @@ namespace Festivity
         [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
-
         public bool IsRefundable()
         {
             return (DateTime.Now.AddDays(FestivalCancelTime * 7) < FestivalDate);
         }
 
-
         /// <summary>
         /// This method gives a string representing the current availability of tickets of the Festival.
         /// </summary>
         /// <returns>
-        /// Returns a string containing "Tickets available" or "No tickets available" if the festival hasn't happened yet, and returns "This festival has ended" if it has ended.
+        /// Returns a string containing "Tickets available" or "No tickets available" if the
+        /// festival hasn't happened yet, and returns "This festival has ended" if it has ended.
         /// </returns>
         public string CheckAvailability()
         {
@@ -73,13 +72,10 @@ namespace Festivity
             }
         }
 
-        /// <summary>
-        /// This method takes a festivalID and checks all the associated tickets for the lowest and highest price.
-        /// </summary>
-        /// <param name="festivalId">A festivalID to check prices for</param>
-        /// <returns>
-        /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
-        /// </returns>
+        /// <summary> This method takes a festivalID and checks all the associated tickets for the
+        /// lowest and highest price. </summary> <param name="festivalId">A festivalID to check
+        /// prices for</param> <returns> A Tuple<double,double> with the first item being the lowest
+        /// found price and the second item being the highest found price </returns>
         private static Tuple<double, double> MinMaxPrice(int festivalId)
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
@@ -106,10 +102,12 @@ namespace Festivity
         }
 
         /// <summary>
-        /// This method gives a string representing the current status of the Festival to be displayed on the TicketTable.
+        /// This method gives a string representing the current status of the Festival to be
+        /// displayed on the TicketTable.
         /// </summary>
         /// <returns>
-        /// Returns a string containing the date status of the Festival if no FestivalStatus has been set, otherwise returns FestivalStatus.
+        /// Returns a string containing the date status of the Festival if no FestivalStatus has
+        /// been set, otherwise returns FestivalStatus.
         /// </returns>
         public string CheckStatusTicketTable()
         {
@@ -134,12 +132,8 @@ namespace Festivity
             }
         }
 
-        /// <summary>
-        /// This method checks if the Festival has any tickets available for sale.
-        /// </summary>
-        /// <returns>
-        /// Returns true if there are tickets available, returns false if there aren't
-        /// </returns>
+        /// <summary> This method checks if the Festival has any tickets available for sale. </summary>
+        /// <returns> Returns true if there are tickets available, returns false if there aren't </returns>
         private bool TicketsLeft()
         {
             foreach (Ticket t in this.GetTickets())
@@ -152,12 +146,9 @@ namespace Festivity
             return false;
         }
 
-        /// <summary>
-        /// This method gets a list of tickets associated with the current Festival.
-        /// </summary>
-        /// <returns>\
-        /// Returns a List<Ticket> containing all tickets that match the FestivalID
-        /// </returns>
+        /// <summary> This method gets a list of tickets associated with the current Festival.
+        /// </summary> <returns>\ Returns a List<Ticket> containing all tickets that match the
+        /// FestivalID </returns>
         private List<Ticket> GetTickets()
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
@@ -173,13 +164,10 @@ namespace Festivity
             return resultList;
         }
 
-        /// <summary>
-        /// This method takes a festivalID and checks all the associated tickets for the lowest and highest price.
-        /// </summary>
-        /// <param name="festivalId">A festivalID to check prices for</param>
-        /// <returns>
-        /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
-        /// </returns>
+        /// <summary> This method takes a festivalID and checks all the associated tickets for the
+        /// lowest and highest price. </summary> <param name="festivalId">A festivalID to check
+        /// prices for</param> <returns> A Tuple<double,double> with the first item being the lowest
+        /// found price and the second item being the highest found price </returns>
         private Tuple<double, double> MinMaxPrice()
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
@@ -208,9 +196,7 @@ namespace Festivity
         /// <summary>
         /// This method returns a string with the lowest and highest priced ticket for the Festival.
         /// </summary>
-        /// <returns>
-        /// A string depending on the prices of tickets for the Festival
-        /// </returns>
+        /// <returns> A string depending on the prices of tickets for the Festival </returns>
         public string PricesToString()
         {
             if (MinMaxPrice().Item1 == -1)
@@ -230,9 +216,10 @@ namespace Festivity
         /// <summary>
         /// This method returns a shortened version of the FestivalDescription if it is longer than "maxLength".
         /// </summary>
-        /// <param name="maxLength">The length you want to shorten the FestivalDescription to</param>
+        /// <param name="maxLength"> The length you want to shorten the FestivalDescription to </param>
         /// <returns>
-        /// A shortened version of FestivalDescription if it is over maxLength characters, otherwise returns the entire string.
+        /// A shortened version of FestivalDescription if it is over maxLength characters, otherwise
+        /// returns the entire string.
         /// </returns>
         public string SetDescriptionLength(int maxLength)
         {
@@ -247,9 +234,7 @@ namespace Festivity
         }
     }
 
-    /// <summary>
-    /// JSONFestivalList class to add JSON List functionality to the Festival class
-    /// </summary>
+    /// <summary> JSONFestivalList class to add JSON List functionality to the Festival class </summary>
     internal class JSONFestivalList
     {
         [JsonProperty("festivals")]

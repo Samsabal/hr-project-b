@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 
 namespace Festivity
@@ -10,6 +8,7 @@ namespace Festivity
     {
         //private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
         private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
+
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
         private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
@@ -26,7 +25,7 @@ namespace Festivity
                 Console.WriteLine($"    {LoggedInAccount.User.userAddress.ZipCode} {LoggedInAccount.User.userAddress.City}");
                 Console.WriteLine($"    {LoggedInAccount.User.Email}");
                 Console.WriteLine();
-                if(LoggedInAccount.User.AccountType == 1)
+                if (LoggedInAccount.User.AccountType == 1)
                 {
                     Console.WriteLine($"    Total amount earned: {AmountEarned()} Euro's");
                 }
@@ -322,14 +321,13 @@ namespace Festivity
             List<Ticket> ticketList = new List<Ticket>();
             double amountEarned = 0.0;
 
-
             foreach (var festival in festivals.Festivals)
             {
                 if (LoggedInAccount.GetID() == festival.FestivalOrganiserID)
                 {
                     foreach (var ticket in tickets.Tickets)
                     {
-                        if(festival.FestivalID == ticket.FestivalID)
+                        if (festival.FestivalID == ticket.FestivalID)
                         {
                             ticketList.Add(ticket);
                         }

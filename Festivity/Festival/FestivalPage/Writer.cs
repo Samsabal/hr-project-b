@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Festival
 {
-    class Writer
+    internal class Writer
     {
         public static void Festival(FestivalModel festival)
         {
@@ -35,7 +34,8 @@ namespace Festivity.Festival
                 Console.WriteLine("There are " + ticket.MaxTickets + " in total of which there are " + Utils.TicketsLeft(ticketId, maxTickets) + " left.");
                 Console.WriteLine("----------------------------------------------------------------------");
 
-                newMenuOptions.Add(new MenuOption("Buy Ticket:" + ticket.TicketName, () => {
+                newMenuOptions.Add(new MenuOption("Buy Ticket:" + ticket.TicketName, () =>
+                {
                     if (LoggedInAccount.IsLoggedIn())
                     {
                         Menu.OptionReset();
@@ -49,12 +49,14 @@ namespace Festivity.Festival
                     }
                 }));
             }
-            newMenuOptions.Add(new MenuOption("Return to Catalog:", () => {
+            newMenuOptions.Add(new MenuOption("Return to Catalog:", () =>
+            {
                 Console.Clear();
                 CatalogPage.currentCatalogNavigation = "main";
                 CatalogPage.CatalogMain();
             }));
-            newMenuOptions.Add(new MenuOption("Exit to Main Menu:", () => {
+            newMenuOptions.Add(new MenuOption("Exit to Main Menu:", () =>
+            {
                 Menu.OptionReset();
                 Console.Clear();
                 Program.Main();
@@ -76,6 +78,5 @@ namespace Festivity.Festival
                 }
             }
         }
-
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Festivity
+﻿namespace Festivity
 {
-    class TicketTableManager
+    internal class TicketTableManager
     {
         public static void Initiate()
         {

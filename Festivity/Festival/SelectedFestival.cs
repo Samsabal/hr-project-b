@@ -1,6 +1,6 @@
 ﻿namespace Festivity
 {
-    class SelectedFestival
+    internal class SelectedFestival
     {
         public static FestivalModel festival { get; set; }
     }
