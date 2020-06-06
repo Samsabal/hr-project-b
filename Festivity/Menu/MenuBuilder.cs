@@ -136,7 +136,7 @@ namespace Festivity
                     {
                         Console.Clear();
                         SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        FestivalPage.ShowFestivalPage(CatalogPage.festivalArray[i].FestivalID);
+                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
                     }));
                 }
             }
@@ -148,7 +148,7 @@ namespace Festivity
                     {
                         Console.Clear();
                         SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        FestivalPage.ShowFestivalPage(CatalogPage.festivalArray[i].FestivalID);
+                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
                     }));
                 }
             }

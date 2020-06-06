@@ -19,9 +19,9 @@ namespace Festivity.Utils
         /// <returns>
         /// Returns a Festival[] containing all the festivals where the name contains the search text.
         /// </returns>
-        public static Festival[] FilterName(Festival[] festivalArray, string searchText)
+        public static FestivalModel[] FilterName(FestivalModel[] festivalArray, string searchText)
         {
-            List<Festival> resultList = new List<Festival>();
+            List<FestivalModel> resultList = new List<FestivalModel>();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
@@ -46,9 +46,9 @@ namespace Festivity.Utils
         /// <returns>
         /// Returns a Festival[] containing all the festivals where the festival location contains the search text.
         /// </returns>
-        public static Festival[] FilterLocation(Festival[] festivalArray, string searchText)
+        public static FestivalModel[] FilterLocation(FestivalModel[] festivalArray, string searchText)
         {
-            List<Festival> resultList = new List<Festival>();
+            List<FestivalModel> resultList = new List<FestivalModel>();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
@@ -73,9 +73,9 @@ namespace Festivity.Utils
         /// <returns>
         /// Returns a Festival[] containing all the festivals where the festival genre contains the search text.
         /// </returns>
-        public static Festival[] FilterGenre(Festival[] festivalArray, string searchText)
+        public static FestivalModel[] FilterGenre(FestivalModel[] festivalArray, string searchText)
         {
-            List<Festival> resultList = new List<Festival>();
+            List<FestivalModel> resultList = new List<FestivalModel>();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {

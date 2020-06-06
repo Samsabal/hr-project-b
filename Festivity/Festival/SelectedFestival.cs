@@ -2,6 +2,6 @@
 {
     class SelectedFestival
     {
-        public static Festival festival { get; set; }
+        public static FestivalModel festival { get; set; }
     }
 }
