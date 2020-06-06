@@ -28,7 +28,7 @@ namespace Festivity
                         if (festival.FestivalID == transaction.FestivalID)
                         {
                             tempList.Add(festival.FestivalName);
-                            tempList.Add(Convert.ToString(festival.FestivalDate.Day + "/" + festival.FestivalDate.Month + "/" + festival.FestivalDate.Year));
+                            tempList.Add(festival.FestivalDate.ToShortDateString());
                             tempList.Add(festival.CheckStatusTicketTable());
                             tempList.Add(festival.IsRefundable().ToString());
                         }
