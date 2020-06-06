@@ -28,12 +28,11 @@ namespace Festivity
                 DrawCatalog();
                 if (currentCatalogNavigation == "main")
                 {
-                    DrawMenuMain();
+                    Menu.Draw(MenuBuilder.CatalogMain());
                 }
                 else
                 {
-                    MenuFunction.Menu(new string[] { "Sort by name", "Sort by date", "Sort by price", "Sort by availability", "Filter by festival name",
-                        "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
+                   Menu.Draw(MenuBuilder.CatalogFilter());
                 }
             }
         }
@@ -49,39 +48,6 @@ namespace Festivity
 
             currentCatalogNavigation = "main";
             currentPage = 0;
-        }
-
-        /// <summary>
-        /// This method checks the amount of festivals on the current page and draws the right amount of menu options.
-        /// </summary>
-        private static void DrawMenuMain()
-        {
-            int lastpage = festivalArray.Length / 5;
-            List<string> menuOptionsList = new List<string>();
-            List<Festival> currentFestivalList = new List<Festival>();
-            if (currentPage == lastpage)
-            {
-                for (int i = 0; i < festivalArray.Length % 5; i++)
-                {
-                    menuOptionsList.Add("Select festival:" + festivalArray[currentPage * 5 + i]);
-                    currentFestivalList.Add(festivalArray[currentPage * 5 + i]);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    menuOptionsList.Add("Select festival:" + festivalArray[currentPage * 5 + i]);
-                    currentFestivalList.Add(festivalArray[currentPage * 5 + i]);
-                }
-            }
-
-            menuOptionsList.Add("Next page");
-            menuOptionsList.Add("Previous page");
-            menuOptionsList.Add("Filter festivals");
-            menuOptionsList.Add("Exit to Main Menu");
-
-            MenuFunction.Menu(menuOptionsList.ToArray(), currentFestivalList.ToArray());
         }
 
         /// <summary>
