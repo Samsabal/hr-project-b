@@ -14,7 +14,7 @@ namespace Festivity
                 new MenuOption("Register", () =>
                 {
                     Console.Clear();
-                    UserRegisterPage.CreateUser();
+                    AccountRegistration.Manager.InitateUserRegistration();
                 }),
                 new MenuOption("Login", () =>
                 {
