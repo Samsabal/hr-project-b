@@ -21,7 +21,15 @@
             "festivalID": 1,
             "ticketID": 1,
             "buyerID": 2,
-            "ticketAmount": 1,
+            "ticketAmount": 10000,
+            "orderDate": "19-05-2020 2:10:50 PM"
+        },
+        {
+            "transactionID": 4,
+            "festivalID": 2,
+            "ticketID": 3,
+            "buyerID": 2,
+            "ticketAmount": 10000,
             "orderDate": "19-05-2020 2:10:50 PM"
         }
     ]

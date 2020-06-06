@@ -62,7 +62,7 @@ namespace Festivity
         {
             foreach (var festival in festivals.Festivals)
             {
-                currentFestivalId = CatalogPage.selectedFestival;
+                currentFestivalId = SelectedFestival.festival.FestivalID;
 
                 if (currentFestivalId == festival.FestivalID)
                 {
@@ -134,7 +134,7 @@ namespace Festivity
             Console.WriteLine("Ordered Succesfully!");
             Thread.Sleep(2000);
             Console.Clear();
-            FestivalPage.ShowFestivalPage(CatalogPage.selectedFestival);
+            FestivalPage.ShowFestivalPage(SelectedFestival.festival.FestivalID);
         }
 
         private static Ticket GetSelectedTicket(int option)
@@ -150,7 +150,7 @@ namespace Festivity
             Transaction transaction = new Transaction
             {
                 TransactionID = TransactionID(transactions),
-                FestivalID = (int)CatalogPage.selectedFestival,
+                FestivalID = SelectedFestival.festival.FestivalID,
                 TicketID = ticket.TicketID,
                 BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID, 
                 TicketAmount = ticketAmount,
