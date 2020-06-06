@@ -3,9 +3,9 @@
         {
             "festivalId": 1,
             "festivalName": "Robin's Festival",
-            "festivalDate": "2023-07-29T00:00:00",
-            "festivalStartingTime": "2023-07-29T00:15:00",
-            "festivalEndTime": "2023-07-29T00:23:00",
+            "festivalDate": "2019-07-29T00:00:00",
+            "festivalStartingTime": "2019-07-29T00:15:00",
+            "festivalEndTime": "2019-07-29T00:23:00",
             "festivalLocation": {
                 "country": "Nederland",
                 "city": "Rotterdam",
@@ -68,7 +68,7 @@
           "streetName": "123adresstraat",
           "streetNumber": "25"
         },
-        "festivalDescription": "Kelvin's Festival",
+        "festivalDescription": "Kelvin's Festival met extra lange description want dat test lekkerder",
         "festivalAgeRestriction": 23,
         "festivalGenre": "Drum & Bass",
         "festivalOrganiserID": 3

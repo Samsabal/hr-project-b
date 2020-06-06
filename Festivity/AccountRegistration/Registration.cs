@@ -60,10 +60,10 @@ namespace Festivity.AccountRegistration
             if (userAccountType == 2) // Visitor
             {
                 do { userDateDay = Utils.InputLoop("Day of birth: "); }
-                while (!RegexUtils.IsValidUserDay(userDateDay));
+                while (!RegexUtils.IsValidDay(userDateDay));
 
                 do { userDateMonth = Utils.InputLoop("Month of birth: "); }
-                while (!RegexUtils.IsValidUserMonth(userDateMonth));
+                while (!RegexUtils.IsValidMonth(userDateMonth));
 
                 do { userDateYear = Utils.InputLoop("Year of birth: "); }
                 while (!RegexUtils.IsValidUserYear(userDateYear));

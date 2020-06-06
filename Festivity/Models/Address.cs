@@ -2,7 +2,9 @@
 
 namespace Festivity
 {
-    // Address class for location functionality
+    /// <summary>
+    /// Address class used for location functionality
+    /// </summary>
     public class Address
     {
         [JsonProperty("country")]
@@ -20,11 +22,5 @@ namespace Festivity
         [JsonProperty("streetNumber")]
         public string StreetNumber { get; set; }
 
-        // Converts the address object into a readable string
-        public override string ToString()
-        {
-            string result = StreetName + " " + StreetNumber + ", " + ZipCode + " " + City + ", " + Country;
-            return result;
-        }
     }
 }

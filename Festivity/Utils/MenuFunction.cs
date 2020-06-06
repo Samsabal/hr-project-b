@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festivity.Utils;
+using System;
 using System.Threading;
 
 namespace Festivity
@@ -177,48 +178,55 @@ namespace Festivity
                         break;
 
                     case "Sort by name": // "Sort by name" option on catalog page filter/sort screen
-                        CatalogPage.festivalArray = CatalogPageFilter.SortName(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = SortingFunctions.SortName(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Sort by date":
-                        CatalogPage.festivalArray = CatalogPageFilter.SortDate(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = SortingFunctions.SortDate(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Sort by price":
-                        CatalogPage.festivalArray = CatalogPageFilter.SortPrice(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = SortingFunctions.SortPrice(CatalogPage.festivalArray);
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
+                        break;
+
+                    case "Sort by availability":
+                        CatalogPage.festivalArray = SortingFunctions.SortAvailability(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
                     case "Filter by festival name":
                         string namesearch = Console.ReadLine();
-                        CatalogPage.festivalArray = CatalogPageFilter.FilterName(CatalogPage.festivalArray, namesearch);
+                        CatalogPage.festivalArray = FilterFunctions.FilterName(CatalogPage.festivalArray, namesearch);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Filter by genre":
-                        CatalogPage.festivalArray = CatalogPageFilter.FilterGenre(CatalogPage.festivalArray, Console.ReadLine());
+                        CatalogPage.festivalArray = FilterFunctions.FilterGenre(CatalogPage.festivalArray, Console.ReadLine());
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Filter by location (City/Street)":
-                        CatalogPage.festivalArray = CatalogPageFilter.FilterLocation(CatalogPage.festivalArray, Console.ReadLine());
+                        CatalogPage.festivalArray = FilterFunctions.FilterLocation(CatalogPage.festivalArray, Console.ReadLine());
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Clear filters":
-                        CatalogPageFilter.ClearFilters();
+                        CatalogPage.festivalArray = JSONFunctionality.GetFestivals().Festivals.ToArray();
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
@@ -360,7 +368,7 @@ namespace Festivity
 
                     case "Return to Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(CatalogPage.selectedFestival);
+                        FestivalPage.ShowFestivalPage(SelectedFestival.festival.FestivalID);
                         break;
 
                     case "Login to your Account":
@@ -468,7 +476,7 @@ namespace Festivity
                         {
                             Festival tempfestival = (Festival) objects[option];
                             Console.Clear();
-                            CatalogPage.selectedFestival = tempfestival.FestivalID;
+                            SelectedFestival.festival = tempfestival;
                             FestivalPage.ShowFestivalPage(tempfestival.FestivalID);
                         }
                         break;
