@@ -44,6 +44,7 @@ namespace Festivity
             JSONFestivalList festivals = JSONFunctionality.GetFestivals();
             festivalArray = festivals.Festivals.ToArray();
             festivalArray = CatalogPageFilter.SortDate(festivalArray);
+            festivalArray = CatalogPageFilter.SortAvailability(festivalArray);
 
             currentCatalogNavigation = "main";
             currentPage = 0;
