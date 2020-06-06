@@ -386,22 +386,22 @@ namespace Festivity
 
                     case "My Account":
                         Console.Clear();
-                        UserAccountPage.AccountPage();
+                        AccountPage.Manager.DrawPage();
                         break;
 
                     case "Change user information":
                         Console.Clear();
-                        UserAccountPage.AccountChangeInfo();
+                        AccountPage.Manager.InitateInfoChange();
                         break;
 
                     case "Preference for e-mails":
                         Console.Clear();
-                        UserAccountPage.AccountEmailPrefference();
+                        Account.ChangeEmailPreference.Initate();
                         break;
 
                     case "Change password":
                         Console.Clear();
-                        UserAccountPage.ChangePassword();
+                        Account.ChangePassword.Initiate();
                         break;
 
                     case "Techno":
