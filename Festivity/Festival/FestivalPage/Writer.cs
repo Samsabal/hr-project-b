@@ -22,7 +22,7 @@ namespace Festivity.Festival
 
         public static void Tickets()
         {
-            List<string> menuOptionsList = new List<string>();
+            List<MenuOption> newMenuOptions = new List<MenuOption>();
 
             // Displays the Tickets for the current Festival
             foreach (var ticket in Transaction.CurrentTicketListBuilder.GetCurrentTicketList())
@@ -34,15 +34,28 @@ namespace Festivity.Festival
                 Console.WriteLine("Price: " + ticket.TicketPrice + " euros");
                 Console.WriteLine("There are " + ticket.MaxTickets + " in total of which there are " + Utils.TicketsLeft(ticketId, maxTickets) + " left.");
                 Console.WriteLine("----------------------------------------------------------------------");
-                menuOptionsList.Add("Buy Ticket:" + ticket.TicketID);
-            }
 
-            menuOptionsList.Add("Return to Catalog");
-            menuOptionsList.Add("Exit to Main Menu");
+                newMenuOptions.Add(new MenuOption("Buy Ticket:" + ticket.TicketName, () => {
+                    Menu.option = 0;
+                    Console.Clear();
+                    Transaction.DisplayManager.Initiate(ticket.TicketID);
+                }));
+            }
+            newMenuOptions.Add(new MenuOption("Return to Catalog:", () => {
+                Console.Clear();
+                CatalogPage.currentCatalogNavigation = "main";
+                CatalogPage.CatalogMain();
+            }));
+            newMenuOptions.Add(new MenuOption("Exit to Main Menu:", () => {
+                Menu.option = 0;
+                Console.Clear();
+                Program.Main();
+            }));
+
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             ConsoleHelperFunctions.ClearCurrentConsoleLine();
             Console.WriteLine("======================================================================");
-            MenuFunction.Menu(menuOptionsList.ToArray(), Transaction.CurrentTicketListBuilder.GetCurrentTicketList().ToArray());
+            Menu.Draw(newMenuOptions);
         }
 
         public static void FestivalOrganiser(FestivalModel festival)
