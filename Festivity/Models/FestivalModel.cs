@@ -43,6 +43,11 @@ namespace Festivity
         [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
+        public bool IsRefundable()
+        {
+            return (DateTime.Now.AddDays(FestivalCancelTime * 7) < FestivalDate);
+        }
+
         public string CheckStatus()
         {
             if (this == null || this.FestivalID == -1)

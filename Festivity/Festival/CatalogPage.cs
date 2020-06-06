@@ -162,7 +162,7 @@ namespace Festivity
         /// <returns>
         /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
         /// </returns>
-        private static Tuple<double,double> MinMaxPrice(int festivalId)
+        private static Tuple<double, double> MinMaxPrice(int festivalId)
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
             Ticket[] ticketArray = tickets.Tickets.ToArray();
@@ -184,7 +184,7 @@ namespace Festivity
                     maxPrice = t.TicketPrice;
                 }
             }
-            return new Tuple<double, double>(minPrice,maxPrice);
+            return new Tuple<double, double>(minPrice, maxPrice);
         }
         /// <summary>
         /// This method takes a Tuple<double,double> and returns a string formatted version for display on the catalog screen
