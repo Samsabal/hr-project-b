@@ -20,7 +20,7 @@ namespace Festivity.AccountPage
                 Console.WriteLine();
                 if (LoggedInAccount.User.AccountType == 1)
                 {
-                    Console.WriteLine($"    Total amount earned: {Utils.AmountEarned()} Euro's");
+                    Console.WriteLine($"    Total amount earned: {Utils.AmountEarned()} Euro");
                 }
                 Console.WriteLine();
                 MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
