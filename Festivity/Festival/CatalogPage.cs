@@ -120,6 +120,7 @@ namespace Festivity
             }
             Console.WriteLine("==================================================================");
         }
+
         /// <summary>
         /// This method takes a festival and draws it in the desired format for the festival catalog.
         /// </summary>
@@ -129,84 +130,13 @@ namespace Festivity
             Console.Write($"Name: {festival.FestivalName}");
             Console.SetCursorPosition(48, Console.CursorTop);
             Console.Write($"Genre: {festival.FestivalGenre}\n");
-            Console.WriteLine($"Description: {ShortenFestivalDescription(festival.FestivalDescription)}");
+            Console.WriteLine($"Description: {festival.ShortenDescription(50)}");
             Console.Write($"City: {festival.FestivalLocation.City}");
-            Console.SetCursorPosition(66 - 7 - PricesToString(MinMaxPrice(festival.FestivalID)).Length, Console.CursorTop);
-            Console.Write($"Price: {PricesToString(MinMaxPrice(festival.FestivalID))}\n");
+            Console.SetCursorPosition(66 - 7 - festival.PricesToString().Length, Console.CursorTop);
+            Console.Write($"Price: {festival.PricesToString()}\n");
             Console.Write($"Status: {festival.CheckAvailability()}");
             Console.SetCursorPosition(50, Console.CursorTop);
             Console.Write($"Date: {festival.FestivalDate.ToShortDateString()} \n");
-        }
-        /// <summary>
-        /// This method takes a string and returns a shortened version if it is over 50 characters long.
-        /// </summary>
-        /// <param name="description">A festival description string.</param>
-        /// <returns>
-        /// A shortened version of the input string if it is over 50 characters, otherwise returns the entire string.
-        /// </returns>
-        private static string ShortenFestivalDescription(string description)
-        {
-            if (description.Length > 50)
-            {
-                return description.Substring(0, 50) + "...";
-            }
-            else
-            {
-                return description;
-            }
-        }
-        /// <summary>
-        /// This method takes a festivalID and checks all the associated tickets for the lowest and highest price.
-        /// </summary>
-        /// <param name="festivalId">A festivalID to check prices for</param>
-        /// <returns>
-        /// A Tuple<double,double> with the first item being the lowest found price and the second item being the highest found price
-        /// </returns>
-        private static Tuple<double,double> MinMaxPrice(int festivalId)
-        {
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            Ticket[] ticketArray = tickets.Tickets.ToArray();
-            double minPrice = -1;
-            double maxPrice = -1;
-            foreach (Ticket t in ticketArray)
-            {
-                if ((t.FestivalID == festivalId) && (minPrice == -1))
-                {
-                    minPrice = t.TicketPrice;
-                    maxPrice = t.TicketPrice;
-                }
-                else if ((t.FestivalID == festivalId) && (t.TicketPrice < minPrice))
-                {
-                    minPrice = t.TicketPrice;
-                }
-                else if ((t.FestivalID == festivalId) && (t.TicketPrice > maxPrice))
-                {
-                    maxPrice = t.TicketPrice;
-                }
-            }
-            return new Tuple<double, double>(minPrice,maxPrice);
-        }
-        /// <summary>
-        /// This method takes a Tuple<double,double> and returns a string formatted version for display on the catalog screen
-        /// </summary>
-        /// <param name="minMax">A Tuple<double,double> containing the lowest and highest price of a festival</param>
-        /// <returns>
-        /// A string depending on the amount of different values found in minMax
-        /// </returns>
-        private static string PricesToString(Tuple<double, double> minMax)
-        {
-            if (minMax.Item1 == -1)
-            {
-                return "Price not found";
-            }
-            else if (minMax.Item1 == minMax.Item2)
-            {
-                return $"\u20AC{minMax.Item1}";
-            }
-            else
-            {
-                return $"\u20AC{minMax.Item1} - \u20AC{minMax.Item2}";
-            }
         }
     }
 }

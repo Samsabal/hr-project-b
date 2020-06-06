@@ -49,7 +49,7 @@ namespace Festivity
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i+1].Item2)
+                    if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i + 1].Item2)
                     {
                         Tuple<Festival, double> temp = festivalArrayWithPrices[i];
                         festivalArrayWithPrices[i] = festivalArrayWithPrices[i + 1];
@@ -58,7 +58,7 @@ namespace Festivity
                 }
             }
             Festival[] resultArray = new Festival[festivalArrayWithPrices.Length];
-            for(int i = 0; i < festivalArrayWithPrices.Length; i++)
+            for (int i = 0; i < festivalArrayWithPrices.Length; i++)
             {
                 resultArray[i] = festivalArrayWithPrices[i].Item1;
             }
@@ -75,10 +75,10 @@ namespace Festivity
         /// <returns>
         /// Returns a Tuple<festival, double>[] containing the input Festivals with their lowest ticket prices.
         /// </returns>
-        public static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
+        private static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
         {
             Tuple<Festival, double>[] festivalsWithPrices = new Tuple<Festival, double>[festivalArray.Length];
-            
+
             Ticket[] ticketArray = JSONFunctionality.GetTickets().Tickets.ToArray();
 
             for (int i = 0; i < festivalArray.Length; i++)
