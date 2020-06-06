@@ -72,7 +72,7 @@ namespace Festivity
             
             for (int i = 0; i < ticketList.Count; i ++)
             {
-                TransactionIDList.Add(ticketList[i][6]);
+                TransactionIDList.Add(ticketList[i][7]);
             }
         }
     }
