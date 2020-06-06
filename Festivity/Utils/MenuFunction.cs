@@ -142,7 +142,8 @@ namespace Festivity
                 {
                     case "Register": // "Register" option home screen
                         Console.Clear();
-                        UserRegisterPage.CreateUser();
+                        AccountRegistration.Manager.InitateUserRegistration();
+                        //UserRegisterPage.CreateUser();
                         break;
 
                     case "Login": // "Login" option home screen
@@ -258,21 +259,21 @@ namespace Festivity
                     case "I am an Organisator":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.SetAccountType(1);
+                        AccountRegistration.Registration.SetAccountType(1);
                         break;
 
                     case "I am a Visitor":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.SetAccountType(2);
+                        AccountRegistration.Registration.SetAccountType(2);
                         break;
 
                     case "Yes, I want to recieve newsletters":
-                        UserRegisterPage.SetNewsLetter(1);
+                        AccountRegistration.Registration.SetNewsLetter(1);
                         break;
 
                     case "No, I don't want to recieve newsletters":
-                        UserRegisterPage.SetNewsLetter(2);
+                        AccountRegistration.Registration.SetNewsLetter(2);
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
