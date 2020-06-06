@@ -367,7 +367,7 @@ namespace Festivity
 
                     case "Return to Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(CatalogPage.selectedFestival);
+                        FestivalPage.ShowFestivalPage(SelectedFestival.festival.FestivalID);
                         break;
 
                     case "Login to your Account":
@@ -475,7 +475,7 @@ namespace Festivity
                         {
                             Festival tempfestival = (Festival) objects[option];
                             Console.Clear();
-                            CatalogPage.selectedFestival = tempfestival.FestivalID;
+                            SelectedFestival.festival = tempfestival;
                             FestivalPage.ShowFestivalPage(tempfestival.FestivalID);
                         }
                         break;
