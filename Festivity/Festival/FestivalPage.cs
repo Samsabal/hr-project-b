@@ -17,6 +17,33 @@ namespace Festivity
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor);
         }
+        public static bool AgeCheck(int festivalId) //Checks if the user is old enough to use the program
+        {
+            foreach (var festival in festivals.Festivals)
+            {
+                if (festival.FestivalID == festivalId)
+                {
+                    foreach (var user in users.Users)
+                    {
+                        if (LoggedInAccount.GetID() == user.AccountID)
+                        {
+                            int userAgeYear = festival.FestivalDate.Year - user.BirthDate.Year;
+                            int userAgeMonth = festival.FestivalDate.Month - user.BirthDate.Month;
+                            int userAgeDay = festival.FestivalDate.Day - user.BirthDate.Day;
+                            if (userAgeYear * 365 + userAgeMonth * 30 + userAgeDay > festival.FestivalAgeRestriction * 365)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
 
         public static int TicketsLeft(int ticketId, int maxTickets)
         {
