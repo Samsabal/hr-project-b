@@ -43,10 +43,10 @@ namespace Festivity.Transaction
                 {
                     return true;
                 }
-                Error.Write("Invalid input, please try again");
+                ErrorMessage.WriteLine("Invalid input, please try again");
                 return false;
             }
-            Error.Write("Invalid input, please try again");
+            ErrorMessage.WriteLine("Invalid input, please try again");
             return false;
         }
 
@@ -54,7 +54,7 @@ namespace Festivity.Transaction
         {
             if (input != ConsoleKey.Y && input != ConsoleKey.N)
             {
-                Error.Write("Wrong input, please press 'y' or 'n'");
+                ErrorMessage.WriteLine("Wrong input, please press 'y' or 'n'");
                 return true;
             }
             else
