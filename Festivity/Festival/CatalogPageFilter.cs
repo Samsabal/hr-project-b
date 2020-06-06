@@ -125,6 +125,39 @@ namespace Festivity
             return festivalArray;
         }
 
+        public static Festival[] SortAvailability(Festival[] festivalArray)
+        {
+            for (int j = festivalArray.Length - 1; j > 0; j--)
+            {
+                for (int i = 0; i < j; i++)
+                {
+                    if (AvailabilityAsInt(festivalArray[i].CheckAvailability()) > AvailabilityAsInt(festivalArray[i + 1].CheckAvailability()))
+                    {
+                        Festival temp = festivalArray[i];
+                        festivalArray[i] = festivalArray[i + 1];
+                        festivalArray[i + 1] = temp;
+                    }
+                }
+            }
+            return festivalArray;
+        }
+
+        private static int AvailabilityAsInt(string AvailabilityString)
+        {
+            if (AvailabilityString == "Tickets available")
+            {
+                return 0;
+            }
+            else if (AvailabilityString == "No tickets available")
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+
         /// <summary>
         /// Takes a Festival[] and a string and returns all Festivals where the festival name contains the search text.
         /// </summary>

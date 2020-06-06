@@ -194,6 +194,13 @@ namespace Festivity
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
+
+                    case "Sort by availability":
+                        CatalogPage.festivalArray = CatalogPageFilter.SortAvailability(CatalogPage.festivalArray);
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
+                        break;
                     case "Filter by festival name":
                         string namesearch = Console.ReadLine();
                         CatalogPage.festivalArray = CatalogPageFilter.FilterName(CatalogPage.festivalArray, namesearch);

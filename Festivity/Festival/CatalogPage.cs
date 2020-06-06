@@ -31,7 +31,7 @@ namespace Festivity
                 }
                 else
                 {
-                    MenuFunction.Menu(new string[] { "Sort by name", "Sort by date", "Sort by price", "Filter by festival name",
+                    MenuFunction.Menu(new string[] { "Sort by name", "Sort by date", "Sort by price", "Sort by availability", "Filter by festival name",
                         "Filter by genre", "Filter by location (City/Street)", "Clear filters", "Return to catalog" });
                 }
             }
@@ -133,7 +133,7 @@ namespace Festivity
             Console.Write($"City: {festival.FestivalLocation.City}");
             Console.SetCursorPosition(66 - 7 - PricesToString(MinMaxPrice(festival.FestivalID)).Length, Console.CursorTop);
             Console.Write($"Price: {PricesToString(MinMaxPrice(festival.FestivalID))}\n");
-            Console.Write($"Status: {festival.CheckStatusCatalog()}");
+            Console.Write($"Status: {festival.CheckAvailability()}");
             Console.SetCursorPosition(50, Console.CursorTop);
             Console.Write($"Date: {festival.FestivalDate.ToShortDateString()} \n");
         }

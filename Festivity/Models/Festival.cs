@@ -43,7 +43,7 @@ namespace Festivity
         [JsonProperty("festivalOrganiserID")]
         public int FestivalOrganiserID { get; set; }
 
-        public string CheckStatusCatalog()
+        public string CheckAvailability()
         {
             if (this.FestivalEndTime < DateTime.Now)
             {
