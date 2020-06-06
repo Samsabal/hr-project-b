@@ -331,11 +331,13 @@ namespace Festivity
         /// Returns true if password conforms to regex.
         /// </returns>
         public static bool IsValidPassword(string password)
+        /// <summary>
         /// string must be between 8 and 15 characters long.
         /// string must contain at least one number.
         /// string must contain at least one uppercase letter.
         /// string must contain at least one lowercase letter.
         /// String must contain at least one symbol.
+        /// </summary>
         {
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpperChar = new Regex(@"[A-Z]+");
