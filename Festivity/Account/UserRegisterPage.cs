@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 
 namespace Festivity
@@ -15,9 +16,9 @@ namespace Festivity
         private static string companyPhoneNumber = null;
         private static string companyName = null;
         private static string companyIBAN = null;
-        private static string userDateDay = "0";
-        private static string userDateMonth = "0";
-        private static string userDateYear = "0";
+        private static string userDateDay = "1";
+        private static string userDateMonth = "1";
+        private static string userDateYear = "1990";
         private static string visitorPhoneNumber;
         private static string country;
         private static string city;
@@ -95,6 +96,8 @@ namespace Festivity
             Thread.Sleep(1000);
             Console.Clear();
 
+            DateTime birthDate = new DateTime(int.Parse(userDateYear), int.Parse(userDateMonth), int.Parse(userDateDay));
+
             UserModel user = new UserModel //Creates a new user object
             {
                 AccountType = userAccountType,
@@ -114,11 +117,7 @@ namespace Festivity
                         StreetName = streetName,
                         StreetNumber = streetNumber
                         },
-                birthDate = {
-                        Day = int.Parse(userDateDay),
-                        Month = int.Parse(userDateMonth),
-                        Year = int.Parse(userDateYear)
-                    },
+                BirthDate = birthDate,
                 NewsLetter = newsLetter,
                 PhoneNumber = visitorPhoneNumber
             };
