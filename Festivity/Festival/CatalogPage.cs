@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festivity.Utils;
+using System;
 using System.Collections.Generic;
 
 namespace Festivity
@@ -43,8 +44,8 @@ namespace Festivity
         {
             JSONFestivalList festivals = JSONFunctionality.GetFestivals();
             festivalArray = festivals.Festivals.ToArray();
-            festivalArray = CatalogPageFilter.SortDate(festivalArray);
-            festivalArray = CatalogPageFilter.SortAvailability(festivalArray);
+            festivalArray = SortingFunctions.SortDate(festivalArray);
+            festivalArray = SortingFunctions.SortAvailability(festivalArray);
 
             currentCatalogNavigation = "main";
             currentPage = 0;
@@ -95,11 +96,11 @@ namespace Festivity
                 {
                     if (i == currentPage * 5)
                     {
-                        Console.WriteLine("==================================================================");
+                        Console.WriteLine("X===================================================================X");
                     }
                     else
                     {
-                        Console.WriteLine("------------------------------------------------------------------");
+                        Console.WriteLine("|-------------------------------------------------------------------|");
                     }
                     DrawFestival(festivalArray[i]);
                 }
@@ -110,16 +111,16 @@ namespace Festivity
                 {
                     if (i == currentPage * 5)
                     {
-                        Console.WriteLine("==================================================================");
+                        Console.WriteLine("X===================================================================X");
                     }
                     else
                     {
-                        Console.WriteLine("------------------------------------------------------------------");
+                        Console.WriteLine("|-------------------------------------------------------------------|");
                     }
                     DrawFestival(festivalArray[i]);
                 }
             }
-            Console.WriteLine("==================================================================");
+            Console.WriteLine("X===================================================================X\n");
         }
 
         /// <summary>
@@ -128,16 +129,16 @@ namespace Festivity
         /// <param name="festival">A Festival object</param>
         private static void DrawFestival(Festival festival)
         {
-            Console.Write($"Name: {festival.FestivalName}");
-            Console.SetCursorPosition(48, Console.CursorTop);
-            Console.Write($"Genre: {festival.FestivalGenre}\n");
-            Console.WriteLine($"Description: {festival.ShortenDescription(50)}");
-            Console.Write($"City: {festival.FestivalLocation.City}");
-            Console.SetCursorPosition(66 - 7 - festival.PricesToString().Length, Console.CursorTop);
-            Console.Write($"Price: {festival.PricesToString()}\n");
-            Console.Write($"Status: {festival.CheckAvailability()}");
-            Console.SetCursorPosition(50, Console.CursorTop);
-            Console.Write($"Date: {festival.FestivalDate.ToShortDateString()} \n");
+            Console.Write($"| Name: {festival.FestivalName}");
+            Console.SetCursorPosition(49, Console.CursorTop);
+            Console.Write($"Genre: {festival.FestivalGenre} |\n");
+            Console.WriteLine($"| Description: {festival.SetDescriptionLength(52)} |");
+            Console.Write($"| City: {festival.FestivalLocation.City}");
+            Console.SetCursorPosition(60 - festival.PricesToString().Length, Console.CursorTop);
+            Console.Write($"Price: {festival.PricesToString()} |\n");
+            Console.Write($"| Status: {festival.CheckAvailability()}");
+            Console.SetCursorPosition(51, Console.CursorTop);
+            Console.Write($"Date: {festival.FestivalDate.ToShortDateString()} |\n");
         }
     }
 }

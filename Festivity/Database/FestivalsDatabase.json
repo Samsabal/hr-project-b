@@ -68,7 +68,7 @@
           "streetName": "123adresstraat",
           "streetNumber": "25"
         },
-        "festivalDescription": "Kelvin's Festival",
+        "festivalDescription": "Kelvin's Festival met extra lange description want dat test lekkerder",
         "festivalAgeRestriction": 23,
         "festivalGenre": "Drum & Bass",
         "festivalOrganiserID": 3

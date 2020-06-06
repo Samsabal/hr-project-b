@@ -234,7 +234,7 @@ namespace Festivity
         /// <returns>
         /// A shortened version of FestivalDescription if it is over maxLength characters, otherwise returns the entire string.
         /// </returns>
-        public string ShortenDescription(int maxLength)
+        public string SetDescriptionLength(int maxLength)
         {
             if (FestivalDescription.Length > maxLength)
             {
@@ -242,7 +242,7 @@ namespace Festivity
             }
             else
             {
-                return FestivalDescription;
+                return FestivalDescription.PadRight(maxLength);
             }
         }
     }
