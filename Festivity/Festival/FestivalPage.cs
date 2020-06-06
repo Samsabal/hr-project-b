@@ -17,6 +17,7 @@ namespace Festivity
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor);
         }
+        
         public static bool AgeCheck(int festivalId) //Checks if the user is old enough to use the program
         {
             foreach (var festival in festivals.Festivals)

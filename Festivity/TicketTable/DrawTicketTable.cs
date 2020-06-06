@@ -22,9 +22,9 @@ namespace Festivity
 
                 for (int i = 0; i < TicketList.Count; i++)
                 {
-                    ticketTable.AddRow($"{TicketList[i][6]}", $"{TicketList[i][0]}", $"{TicketList[i][1]}",
-                                       $"{TicketList[i][3]}", $"{TicketList[i][4]}", $"{TicketList[i][5]}",
-                                       $"{TicketList[i][7]}", $"{TicketList[i][2]}", "NULL");
+                    ticketTable.AddRow($"{TicketList[i][7]}", $"{TicketList[i][0]}", $"{TicketList[i][1]}",
+                                       $"{TicketList[i][4]}", $"{TicketList[i][5]}", $"{TicketList[i][6]}",
+                                       $"{TicketList[i][8]}", $"{TicketList[i][2]}", $"{TicketList[i][3]}");
                 }
                 ticketTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
             } 
