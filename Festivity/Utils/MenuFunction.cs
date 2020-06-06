@@ -285,66 +285,6 @@ namespace Festivity
                         CatalogPage.CatalogMain();
                         break;
 
-                    case "Festival Name":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Festival Name";
-                        break;
-
-                    case "Festival Date":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Festival Date";
-                        break;
-
-                    case "Starting Time":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Starting Time";
-                        break;
-
-                    case "End Time":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "End Time";
-                        break;
-
-                    case "Festival Adress":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Festival Adress";
-                        break;
-
-                    case "Festival Description":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Festival Description";
-                        break;
-
-                    case "Age restriction":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Age Restriction";
-                        break;
-
-                    case "Festival Genre":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Festival Genre";
-                        break;
-
-                    case "Tickets":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Tickets";
-                        break;
-
-                    case "Save Festival":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Save Festival";
-                        break;
-
-                    case "Cancel Time":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Cancel Time";
-                        break;
-
-                    case "Cancel Festival Registration":
-                        Console.Clear();
-                        FestivalRegister.currentRegisterSelection = "Cancel Festival Registration";
-                        break;
-
                     case "Order Tickets":
                         Console.Clear();
                         if (LoggedInAccount.IsLoggedIn())
@@ -402,31 +342,6 @@ namespace Festivity
                     case "Change password":
                         Console.Clear();
                         UserAccountPage.ChangePassword();
-                        break;
-
-                    case "Techno":
-                        FestivalRegister.festivalGenre = "Techno";
-                        FestivalRegister.currentRegisterSelection = "Main";
-                        break;
-
-                    case "Drum & Bass":
-                        FestivalRegister.festivalGenre = "Drum & Bass";
-                        FestivalRegister.currentRegisterSelection = "Main";
-                        break;
-
-                    case "Pop":
-                        FestivalRegister.festivalGenre = "Pop";
-                        FestivalRegister.currentRegisterSelection = "Main";
-                        break;
-
-                    case "Rock":
-                        FestivalRegister.festivalGenre = "Rock";
-                        FestivalRegister.currentRegisterSelection = "Main";
-                        break;
-
-                    case "Hip-Hop":
-                        FestivalRegister.festivalGenre = "Hip-Hop";
-                        FestivalRegister.currentRegisterSelection = "Main";
                         break;
 
                     case "My Tickets":

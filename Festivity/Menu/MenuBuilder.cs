@@ -121,5 +121,115 @@ namespace Festivity
 
             return newMenuOptions;
         }
+
+        public static List<MenuOption> FestivalRegisterMenu()
+        {
+            // Create List of menu options
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+            {
+                new MenuOption("Festival Name", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Festival Name";
+                }),
+                new MenuOption("Festival Date", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Festival Date";
+                }),
+                new MenuOption("Starting Time", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Starting Time";
+                }),
+                new MenuOption("End Time", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "End Time";
+                }),
+                new MenuOption("Festival Adress", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Festival Adress";
+                }),
+                new MenuOption("Festival Description", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Festival Description";
+                }),
+                new MenuOption("Age Restriction", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Age Restriction";
+                }),
+                new MenuOption("Festival Genre", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Festival Genre";
+                }),
+                new MenuOption("Cancel Time", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Cancel Time";
+                }),
+                new MenuOption("Tickets", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Tickets";
+                }),
+                new MenuOption("Save Festival", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Save Festival";
+                }),
+                new MenuOption("Cancel Festival Registration", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.currentRegisterSelection = "Cancel Festival Registration";
+                })
+            };
+
+            return newMenuOptions;
+        }
+
+        public static List<MenuOption> GenreMenu()
+        {
+            // Create List of menu options
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+            {
+                new MenuOption("Techno", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.festivalGenre = "Techno";
+                    FestivalRegister.currentRegisterSelection = "Main";
+                }),
+                new MenuOption("Drum & Bass", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.festivalGenre = "Drum & Bass";
+                    FestivalRegister.currentRegisterSelection = "Main";
+                }),
+                new MenuOption("Pop", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.festivalGenre = "Pop";
+                    FestivalRegister.currentRegisterSelection = "Main";
+                }),
+                new MenuOption("Rock", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.festivalGenre = "Rock";
+                    FestivalRegister.currentRegisterSelection = "Main";
+                }),
+                new MenuOption("Hip-Hop", () =>
+                {
+                    Console.Clear();
+                    FestivalRegister.festivalGenre = "Hip-Hop";
+                    FestivalRegister.currentRegisterSelection = "Main";
+                }),
+            };
+
+            return newMenuOptions;
+        }
     }
 }
