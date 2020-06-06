@@ -7,16 +7,16 @@ namespace Festivity
     internal class CatalogPageFilter
     {
         // Receives a Festival array and sorts it in alphabetical order by name
-        public static Festival[] SortName(Festival[] festivalArray)
+        public static FestivalModel[] SortName(FestivalModel[] festivalArray)
         {
-            festivalArray = Festival.FestivalRemovePadding(festivalArray);
+            festivalArray = FestivalModel.FestivalRemovePadding(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
                     if (festivalArray[i].FestivalName.CompareTo(festivalArray[i + 1].FestivalName) > 0 && festivalArray[i].FestivalID != -1)
                     {
-                        Festival temp = festivalArray[i];
+                        FestivalModel temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }
@@ -25,23 +25,23 @@ namespace Festivity
             return festivalArray;
         }
 
-        public static Festival[] SortPrice(Festival[] festivalArray)
+        public static FestivalModel[] SortPrice(FestivalModel[] festivalArray)
         {
-            festivalArray = Festival.FestivalRemovePadding(festivalArray);
-            Tuple<Festival, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
+            festivalArray = FestivalModel.FestivalRemovePadding(festivalArray);
+            Tuple<FestivalModel, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
                     if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i+1].Item2)
                     {
-                        Tuple<Festival, double> temp = festivalArrayWithPrices[i];
+                        Tuple<FestivalModel, double> temp = festivalArrayWithPrices[i];
                         festivalArrayWithPrices[i] = festivalArrayWithPrices[i + 1];
                         festivalArrayWithPrices[i + 1] = temp;
                     }
                 }
             }
-            Festival[] resultArray = new Festival[festivalArrayWithPrices.Length];
+            FestivalModel[] resultArray = new FestivalModel[festivalArrayWithPrices.Length];
             for(int i = 0; i < festivalArrayWithPrices.Length; i++)
             {
                 resultArray[i] = festivalArrayWithPrices[i].Item1;
@@ -50,9 +50,9 @@ namespace Festivity
             return resultArray;
         }
 
-        public static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
+        public static Tuple<FestivalModel, double>[] GetMinPrices(FestivalModel[] festivalArray)
         {
-            Tuple<Festival, double>[] festivalsWithPrices = new Tuple<Festival, double>[festivalArray.Length];
+            Tuple<FestivalModel, double>[] festivalsWithPrices = new Tuple<FestivalModel, double>[festivalArray.Length];
             
             JSONTicketList tickets = JSONFunctionality.GetTickets();
             Ticket[] ticketArray = tickets.Tickets.ToArray();
@@ -71,22 +71,22 @@ namespace Festivity
                         }
                     }
                 }
-                festivalsWithPrices[i] = new Tuple<Festival, double>(festivalArray[i], minPrice);
+                festivalsWithPrices[i] = new Tuple<FestivalModel, double>(festivalArray[i], minPrice);
             }
             return festivalsWithPrices;
         }
 
         // Receives a Festival array and sorts it in ascending order by date
-        public static Festival[] SortDate(Festival[] festivalArray)
+        public static FestivalModel[] SortDate(FestivalModel[] festivalArray)
         {
-            festivalArray = Festival.FestivalRemovePadding(festivalArray);
+            festivalArray = FestivalModel.FestivalRemovePadding(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
                     if (festivalArray[i].FestivalDate > festivalArray[i + 1].FestivalDate)
                     {
-                        Festival temp = festivalArray[i];
+                        FestivalModel temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }
@@ -95,9 +95,9 @@ namespace Festivity
             return festivalArray;
         }
 
-        public static Festival[] FilterName(Festival[] festivalArray, string searchText)
+        public static FestivalModel[] FilterName(FestivalModel[] festivalArray, string searchText)
         {
-            Festival[] resultArray = new Festival[festivalArray.Length];
+            FestivalModel[] resultArray = new FestivalModel[festivalArray.Length];
             int count = 0;
 
             for (int i = 0; i < festivalArray.Length; i++)
@@ -111,9 +111,9 @@ namespace Festivity
             return resultArray;
         }
 
-        public static Festival[] FilterLocation(Festival[] festivalArray, string searchText)
+        public static FestivalModel[] FilterLocation(FestivalModel[] festivalArray, string searchText)
         {
-            Festival[] resultArray = new Festival[festivalArray.Length];
+            FestivalModel[] resultArray = new FestivalModel[festivalArray.Length];
             int count = 0;
 
             for (int i = 0; i < festivalArray.Length; i++)
@@ -128,9 +128,9 @@ namespace Festivity
             return resultArray;
         }
 
-        public static Festival[] FilterGenre(Festival[] festivalArray, string searchText)
+        public static FestivalModel[] FilterGenre(FestivalModel[] festivalArray, string searchText)
         {
-            Festival[] resultArray = new Festival[festivalArray.Length];
+            FestivalModel[] resultArray = new FestivalModel[festivalArray.Length];
             int count = 0;
 
             for (int i = 0; i < festivalArray.Length; i++)

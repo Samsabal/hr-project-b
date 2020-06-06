@@ -314,7 +314,7 @@ namespace Festivity
                         JSONFunctionality.WriteTickets(tickets);
 
                         // A format for creating a new festival
-                        Festival festival = new Festival
+                        FestivalModel festival = new FestivalModel
                         {
                             FestivalID = festivalID,
                             FestivalName = festivalName,

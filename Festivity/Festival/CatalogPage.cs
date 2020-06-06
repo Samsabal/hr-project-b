@@ -10,7 +10,7 @@ namespace Festivity
     public class CatalogPage
     {
         public static int currentPage { get; set; }
-        public static Festival[] festivalArray { get; set; }
+        public static FestivalModel[] festivalArray { get; set; }
         public static string currentCatalogNavigation { get; set; }
         public static int selectedFestival;
 
@@ -56,7 +56,7 @@ namespace Festivity
         {
             int lastpage = festivalArray.Length / 5;
             List<string> menuOptionsList = new List<string>();
-            List<Festival> currentFestivalList = new List<Festival>();
+            List<FestivalModel> currentFestivalList = new List<FestivalModel>();
             if (currentPage == lastpage)
             {
                 for (int i = 0; i < festivalArray.Length % 5; i++)
@@ -124,7 +124,7 @@ namespace Festivity
         /// This method takes a festival and draws it in the desired format for the festival catalog.
         /// </summary>
         /// <param name="festival">A Festival object</param>
-        private static void DrawFestival(Festival festival)
+        private static void DrawFestival(FestivalModel festival)
         {
             Console.Write($"Name: {festival.FestivalName}");
             Console.SetCursorPosition(48, Console.CursorTop);

@@ -31,7 +31,7 @@ namespace Festivity
                     }
                 }
             }
-            else if (objects[0].GetType() == typeof(Festival))
+            else if (objects[0].GetType() == typeof(FestivalModel))
             {
                 for (int i = 0; i < objects.Length; i++)
                 {
@@ -40,7 +40,7 @@ namespace Festivity
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
-                    Festival tempfestival = (Festival)objects[i];
+                    FestivalModel tempfestival = (FestivalModel)objects[i];
 
                     Console.WriteLine("Select festival: {0}", tempfestival.FestivalName);
                     if (option == i)
@@ -171,7 +171,7 @@ namespace Festivity
                     // !!!! TEMPORARY OPTION !!!!
                     case "Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(1);
+                        Festival.PageManager.Display(1);
                         Thread.Sleep(1000);
                         break;
 
@@ -359,7 +359,7 @@ namespace Festivity
 
                     case "Return to Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(CatalogPage.selectedFestival);
+                        Festival.PageManager.Display(CatalogPage.selectedFestival);
                         break;
 
                     case "Login to your Account":
@@ -465,10 +465,10 @@ namespace Festivity
                         }
                         else if (consoleOptions[option].StartsWith("Select festival"))
                         {
-                            Festival tempfestival = (Festival) objects[option];
+                            FestivalModel tempfestival = (FestivalModel) objects[option];
                             Console.Clear();
                             CatalogPage.selectedFestival = tempfestival.FestivalID;
-                            FestivalPage.ShowFestivalPage(tempfestival.FestivalID);
+                            Festival.PageManager.Display(tempfestival.FestivalID);
                         }
                         break;
                 }

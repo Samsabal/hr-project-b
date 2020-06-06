@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    public class Festival
+    public class FestivalModel
     {
         [JsonProperty("festivalId")]
         public int FestivalID { get; set; }
@@ -86,7 +86,7 @@ namespace Festivity
             }
         }
 
-        public static Festival[] FestivalRemovePadding(Festival[] festivals)
+        public static FestivalModel[] FestivalRemovePadding(FestivalModel[] festivals)
         {
             int count = 0;
             for (int i = 0; i < festivals.Length; i++)
@@ -97,7 +97,7 @@ namespace Festivity
                 }
             }
 
-            Festival[] resultArray = new Festival[count];
+            FestivalModel[] resultArray = new FestivalModel[count];
             for (int i = 0; i < count; i++)
             {
                 resultArray[i] = festivals[i];
@@ -110,6 +110,6 @@ namespace Festivity
     internal class JSONFestivalList
     {
         [JsonProperty("festivals")]
-        public List<Festival> Festivals { get; set; }
+        public List<FestivalModel> Festivals { get; set; }
     }
 }
