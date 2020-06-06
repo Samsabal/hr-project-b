@@ -1,15 +1,22 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Festivity
+namespace Festivity.Utils
 {
-    internal class CatalogPageFilter
+    class SortingFunctions
     {
-        // Receives a Festival array and sorts it in alphabetical order by name
+        /// <summary>
+        /// Sorts a given Festival[] alphabetically by the names of the festivals.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be sorted.
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] sorted alphabetically by festivalname
+        /// </returns>
         public static FestivalModel[] SortName(FestivalModel[] festivalArray)
         {
-            festivalArray = FestivalModel.FestivalRemovePadding(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
@@ -25,15 +32,23 @@ namespace Festivity
             return festivalArray;
         }
 
+        /// <summary>
+        /// Sorts a given Festival[] lowest to highest according to the lowest ticket prices of the festivals.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be sorted.
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] sorted by the lowest prices.
+        /// </returns>
         public static FestivalModel[] SortPrice(FestivalModel[] festivalArray)
         {
-            festivalArray = FestivalModel.FestivalRemovePadding(festivalArray);
             Tuple<FestivalModel, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
-                    if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i+1].Item2)
+                    if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i + 1].Item2)
                     {
                         Tuple<FestivalModel, double> temp = festivalArrayWithPrices[i];
                         festivalArrayWithPrices[i] = festivalArrayWithPrices[i + 1];
@@ -50,13 +65,20 @@ namespace Festivity
             return resultArray;
         }
 
-        public static Tuple<FestivalModel, double>[] GetMinPrices(FestivalModel[] festivalArray)
+        /// <summary>
+        /// Takes a Festival[] and returns a Tuple<Festival, double>[] containing the same festivals buy with their minimum ticket prices.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival[] that you want to get the minimum prices for.
+        /// </param>
+        /// <returns>
+        /// Returns a Tuple<festival, double>[] containing the input Festivals with their lowest ticket prices.
+        /// </returns>
+        private static Tuple<FestivalModel, double>[] GetMinPrices(FestivalModel[] festivalArray)
         {
             Tuple<FestivalModel, double>[] festivalsWithPrices = new Tuple<FestivalModel, double>[festivalArray.Length];
-            
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            Ticket[] ticketArray = tickets.Tickets.ToArray();
 
+            Ticket[] ticketArray = JSONFunctionality.GetTickets().Tickets.ToArray();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
@@ -75,11 +97,18 @@ namespace Festivity
             }
             return festivalsWithPrices;
         }
-        
-        // Receives a Festival array and sorts it in ascending order by date
+
+        /// <summary>
+        /// Sorts a given Festival[] from earliest to latest by the dates of the festivals.
+        /// </summary>
+        /// <param name="festivalArray">
+        /// Festival array to be sorted.
+        /// </param>
+        /// <returns>
+        /// Returns a Festival[] sorted by FestivalDate
+        /// </returns>
         public static FestivalModel[] SortDate(FestivalModel[] festivalArray)
         {
-            festivalArray = FestivalModel.FestivalRemovePadding(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
@@ -95,60 +124,37 @@ namespace Festivity
             return festivalArray;
         }
 
-        public static FestivalModel[] FilterName(FestivalModel[] festivalArray, string searchText)
+        public static FestivalModel[] SortAvailability(FestivalModel[] festivalArray)
         {
-            FestivalModel[] resultArray = new FestivalModel[festivalArray.Length];
-            int count = 0;
-
-            for (int i = 0; i < festivalArray.Length; i++)
+            for (int j = festivalArray.Length - 1; j > 0; j--)
             {
-                if (festivalArray[i].FestivalName.ToLower().Contains(searchText.ToLower()))
+                for (int i = 0; i < j; i++)
                 {
-                    resultArray[count] = festivalArray[i];
-                    count++;
+                    if (AvailabilityAsInt(festivalArray[i].CheckAvailability()) > AvailabilityAsInt(festivalArray[i + 1].CheckAvailability()))
+                    {
+                        FestivalModel temp = festivalArray[i];
+                        festivalArray[i] = festivalArray[i + 1];
+                        festivalArray[i + 1] = temp;
+                    }
                 }
             }
-            return resultArray;
+            return festivalArray;
         }
 
-        public static FestivalModel[] FilterLocation(FestivalModel[] festivalArray, string searchText)
+        private static int AvailabilityAsInt(string AvailabilityString)
         {
-            FestivalModel[] resultArray = new FestivalModel[festivalArray.Length];
-            int count = 0;
-
-            for (int i = 0; i < festivalArray.Length; i++)
+            if (AvailabilityString == "Tickets available")
             {
-                if (festivalArray[i].FestivalLocation.City.ToLower().Contains(searchText.ToLower())
-                    || festivalArray[i].FestivalLocation.StreetName.ToLower().Contains(searchText.ToLower()))
-                {
-                    resultArray[count] = festivalArray[i];
-                    count++;
-                }
+                return 0;
             }
-            return resultArray;
-        }
-
-        public static FestivalModel[] FilterGenre(FestivalModel[] festivalArray, string searchText)
-        {
-            FestivalModel[] resultArray = new FestivalModel[festivalArray.Length];
-            int count = 0;
-
-            for (int i = 0; i < festivalArray.Length; i++)
+            else if (AvailabilityString == "No tickets available")
             {
-                if (festivalArray[i].FestivalGenre.ToLower().Contains(searchText.ToLower()))
-                {
-                    resultArray[count] = festivalArray[i];
-                    count++;
-                }
+                return 1;
             }
-            return resultArray;
-        }
-
-        public static void ClearFilters()
-        {
-            string PATH_FESTIVAL = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", @"FestivalsDatabase.json");
-            JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PATH_FESTIVAL));
-            CatalogPage.festivalArray = Festivals.Festivals.ToArray();
+            else
+            {
+                return 2;
+            }
         }
     }
 }

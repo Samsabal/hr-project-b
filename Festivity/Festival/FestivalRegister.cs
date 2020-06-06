@@ -159,9 +159,9 @@ namespace Festivity
                     
                     Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
                     do { festivalDateDay = InputLoop("Fill in the day: "); }
-                    while (!RegexUtils.IsValidFestivalDay(festivalDateDay));
+                    while (!RegexUtils.IsValidDay(festivalDateDay));
                     do { festivalDateMonth = InputLoop("Fill in the month: "); }
-                    while (!RegexUtils.IsValidFestivalMonth(festivalDateMonth));
+                    while (!RegexUtils.IsValidMonth(festivalDateMonth));
                     do { festivalDateYear = InputLoop("Fill in the year: "); }
                     while (!RegexUtils.IsValidFestivalYear(festivalDateYear));
                     festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
