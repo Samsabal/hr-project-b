@@ -5,6 +5,9 @@ using System.Threading;
 
 namespace Festivity
 {
+    /// <summary>
+    /// This class is used to register a festival.
+    /// </summary>
     internal class FestivalRegister
     {
         // Variables that manage the functionality of the registration.
@@ -43,7 +46,11 @@ namespace Festivity
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
 
-        // This function that is used to apply regex.
+        /// <summary>
+        /// This function is used to apply regex.
+        /// </summary>
+        /// <param name="printString"></param>
+        /// <returns>userInput</returns>
         private static string InputLoop(string printString)
         {
             string userInput;
@@ -52,7 +59,9 @@ namespace Festivity
             return userInput;
         }
 
-        // This function gives an error message that there hasn't been a ticket registered yet.
+        /// <summary>
+        /// This function gives an error message that there hasn't been a ticket registered yet.
+        /// </summary>
         private static void TicketsRegisteredErrorMessage()
         {
             Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
@@ -60,7 +69,9 @@ namespace Festivity
             currentRegisterSelection = "Main";
         }
 
-        // This is a function to reset all variables upon leaving the festival registration
+        /// <summary>
+        /// This is a function to reset all variables upon leaving the festival registration.
+        /// </summary>
         private static void ResetFestivalAndTicketRegistration()
         {
 
@@ -94,7 +105,11 @@ namespace Festivity
             festivalMaxTicketsPerPerson = null;
         }
 
-        // This is a function to retrieve the latest registered festivalid and create the next festivalid
+        /// <summary>
+        /// This is a function to retrieve the latest registered festivalid and create the next festivalid.
+        /// </summary>
+        /// <param name="festivals"></param>
+        /// <returns>festivalID</returns>
         private static int SetFestivalId(JSONFestivalList festivals)
         {
             int festivalId;
@@ -111,7 +126,11 @@ namespace Festivity
             return festivalId;
         }
 
-        // This is a function to retrieve the latest registered ticketid and create the next ticketid
+        /// <summary>
+        /// This is a function to retrieve the latest registered ticketid and create the next ticketid.
+        /// </summary>
+        /// <param name="tickets"></param>
+        /// <returns></returns>
         private static int SetTicketID(JSONTicketList tickets)
         {
             int ticketId;
@@ -127,8 +146,10 @@ namespace Festivity
 
             return ticketId;
         }
-        
-        // This is a function to show the festivalregistration and let the user allow inputs.
+
+        /// <summary>
+        /// This is a function to show the festivalregistration and let the user allow inputs.
+        /// </summary>
         public static void ShowFestivalRegister()
         {
             int festivalID = SetFestivalId(festivals);
@@ -238,7 +259,7 @@ namespace Festivity
                 else if (currentRegisterSelection == "Festival Genre")
                 {
                     Console.Clear();
-                    Menu.option = 0;
+                    Menu.OptionReset();
                     Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
                     Menu.Draw(MenuBuilder.GenreMenu());
                 }
@@ -348,7 +369,7 @@ namespace Festivity
 
                         // This is a format for creating a new festival.
 
-                        Festival festival = new Festival
+                        FestivalModel festival = new FestivalModel
                         {
                             FestivalID = festivalID,
                             FestivalName = festivalName,
@@ -376,7 +397,7 @@ namespace Festivity
                         ResetFestivalAndTicketRegistration();
                         activeScreen = false;
                         currentRegisterSelection = null;
-                        Menu.option = 0;
+                        Menu.OptionReset();
                     }
                 }
                 else if (currentRegisterSelection == "Cancel Festival Registration")
@@ -386,7 +407,7 @@ namespace Festivity
                     // Returns you to the main menu
                     activeScreen = false;
                     currentRegisterSelection = null;
-                    Menu.option = 0;
+                    Menu.OptionReset();
                 }
             }
         }
