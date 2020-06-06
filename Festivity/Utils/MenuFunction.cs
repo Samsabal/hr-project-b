@@ -349,7 +349,7 @@ namespace Festivity
                         Console.Clear();
                         if (LoggedInAccount.IsLoggedIn())
                         {
-                            Transaction.DrawBuyTicketPage.Draw();
+                            // Transaction.DrawBuyTicketPage.Draw();
                         }
                         else
                         {
@@ -454,7 +454,6 @@ namespace Festivity
 
                     case "Cancel Order":
                         Console.Clear();
-                        Transaction.DrawBuyTicketPage.Draw();
                         break;
 
                     default:
