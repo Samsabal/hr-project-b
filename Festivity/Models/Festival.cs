@@ -12,16 +12,15 @@ namespace Festivity
         [JsonProperty("festivalName")]
         public string FestivalName { get; set; }
 
-        [JsonProperty("dateTimeField", Required = Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
+        [JsonProperty("festivalDate")]
         [System.ComponentModel.DataAnnotations.RegularExpression(@"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$")]
         public DateTime FestivalDate { get; set; }
 
         [JsonProperty("festivalStartingTime")]
-        public string FestivalStartingTime { get; set; }
+        public DateTime FestivalStartingTime { get; set; }
 
         [JsonProperty("festivalEndTime")]
-        public string FestivalEndTime { get; set; }
+        public DateTime FestivalEndTime { get; set; }
 
         [JsonProperty("festivalLocation")]
         public Address FestivalLocation { get; set; }
@@ -64,26 +63,14 @@ namespace Festivity
                 return "Festival changed";
             }
             else
-            {
-                int currentTime = int.Parse(DateTime.UtcNow.Hour.ToString() + DateTime.UtcNow.Minute.ToString());
-                if (this.FestivalDate < DateTime.Today)
+            { 
+                if (this.FestivalEndTime < DateTime.Now)
                 {
                     return "This festival has ended";
                 }
-                else if (this.FestivalDate == DateTime.Today)
+                else if (DateTime.Now < this.FestivalEndTime && this.FestivalStartingTime < DateTime.Now)
                 {
-                    if (int.Parse(this.FestivalEndTime) < currentTime)
-                    {
-                        return "This festival has ended";
-                    }
-                    else if (currentTime < int.Parse(this.FestivalStartingTime))
-                    {
-                        return "Tickets available";
-                    }
-                    else
-                    {
-                        return "Ongoing";
-                    }
+                    return "This festival is ongoing";
                 }
                 else
                 {
