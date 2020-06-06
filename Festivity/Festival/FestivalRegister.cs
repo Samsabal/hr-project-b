@@ -310,7 +310,6 @@ namespace Festivity
                         JSONFunctionality.WriteTickets(tickets);
 
                         // A format for creating a new festival
-
                         DateTime FestivalDate = new DateTime(int.Parse(festivalDateYear), int.Parse(festivalDateMonth), int.Parse(festivalDateDay));
                         DateTime FestivalStartingTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, int.Parse(festivalStartingTime.Substring(0, 2)),
                             int.Parse(festivalStartingTime.Substring(3, 2)), 0);
@@ -321,7 +320,7 @@ namespace Festivity
                             FestivalEndTime.AddDays(1);
                         }
 
-                        Festival festival = new Festival
+                        FestivalModel festival = new FestivalModel
                         {
                             FestivalID = festivalID,
                             FestivalName = festivalName,

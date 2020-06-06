@@ -30,7 +30,7 @@ namespace Festivity
             {
                 if (item.TransactionID != int.Parse(userInput))
                 {
-                    Transaction transaction = new Transaction
+                    TransactionModel transaction = new TransactionModel
                     {
                         TransactionID = item.TransactionID,
                         FestivalID = item.FestivalID,

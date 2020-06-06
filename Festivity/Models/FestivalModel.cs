@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    public class Festival
+    public class FestivalModel
     {
         [JsonProperty("festivalId")]
         public int FestivalID { get; set; }
@@ -144,7 +144,7 @@ namespace Festivity
         {
             foreach (Ticket t in this.GetTickets())
             {
-                if (FestivalPage.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
+                if (Festival.Utils.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
                 {
                     return true;
                 }
@@ -253,6 +253,6 @@ namespace Festivity
     internal class JSONFestivalList
     {
         [JsonProperty("festivals")]
-        public List<Festival> Festivals { get; set; }
+        public List<FestivalModel> Festivals { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Festivity
     public class CatalogPage
     {
         public static int currentPage { get; set; }
-        public static Festival[] festivalArray { get; set; }
+        public static FestivalModel[] festivalArray { get; set; }
         public static string currentCatalogNavigation { get; set; }
         public static int selectedFestival;
 
@@ -93,7 +93,7 @@ namespace Festivity
         /// This method takes a festival and draws it in the desired format for the festival catalog.
         /// </summary>
         /// <param name="festival">A Festival object</param>
-        private static void DrawFestival(Festival festival)
+        private static void DrawFestival(FestivalModel festival)
         {
             Console.Write($"| Name: {festival.FestivalName}");
             Console.SetCursorPosition(49, Console.CursorTop);

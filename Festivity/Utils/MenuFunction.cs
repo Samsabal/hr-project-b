@@ -32,7 +32,7 @@ namespace Festivity
                     }
                 }
             }
-            else if (objects[0].GetType() == typeof(Festival))
+            else if (objects[0].GetType() == typeof(FestivalModel))
             {
                 for (int i = 0; i < objects.Length; i++)
                 {
@@ -41,7 +41,7 @@ namespace Festivity
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
-                    Festival tempfestival = (Festival)objects[i];
+                    FestivalModel tempfestival = (FestivalModel)objects[i];
 
                     Console.WriteLine("Select festival: {0}", tempfestival.FestivalName);
                     if (option == i)
@@ -66,7 +66,7 @@ namespace Festivity
             }
             else if (objects[0].GetType() == typeof(Ticket))
             {
-                for (int i = 0; i < TicketBuy.GetTicketListLength(); i++)
+                for (int i = 0; i < Transaction.TicketListBuilder.GetLength(); i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -83,7 +83,7 @@ namespace Festivity
                     }
                 }
 
-                for (int i = TicketBuy.GetTicketListLength(); i < consoleOptions.Length; i++)
+                for (int i = Transaction.TicketListBuilder.GetLength(); i < consoleOptions.Length; i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -173,7 +173,7 @@ namespace Festivity
                     // !!!! TEMPORARY OPTION !!!!
                     case "Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(1);
+                        Festival.PageManager.Display(1);
                         Thread.Sleep(1000);
                         break;
 
@@ -358,7 +358,7 @@ namespace Festivity
                         Console.Clear();
                         if (LoggedInAccount.IsLoggedIn())
                         {
-                            TicketBuy.TicketShow();
+                            // Transaction.DrawBuyTicketPage.Draw();
                         }
                         else
                         {
@@ -368,7 +368,7 @@ namespace Festivity
 
                     case "Return to Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(SelectedFestival.festival.FestivalID);
+                        Festival.PageManager.Display(CatalogPage.selectedFestival);
                         break;
 
                     case "Login to your Account":
@@ -448,36 +448,35 @@ namespace Festivity
 
                     case "iDEAL":
                         Console.Clear();
-                        TicketBuy.ShowTicketBuy();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Paypal":
                         Console.Clear();
-                        TicketBuy.ShowTicketBuy();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Creditcard":
                         Console.Clear();
-                        TicketBuy.ShowTicketBuy();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Cancel Order":
                         Console.Clear();
-                        TicketBuy.TicketShow();
                         break;
 
                     default:
                         if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
                             Console.Clear();
-                            TicketBuy.TicketConfirmation(option);
+                            Transaction.DisplayManager.Initiate(option);
                         }
                         else if (consoleOptions[option].StartsWith("Select festival"))
                         {
-                            Festival tempfestival = (Festival) objects[option];
+                            FestivalModel tempfestival = (FestivalModel) objects[option];
                             Console.Clear();
-                            SelectedFestival.festival = tempfestival;
-                            FestivalPage.ShowFestivalPage(tempfestival.FestivalID);
+                            CatalogPage.selectedFestival = tempfestival.FestivalID;
+                            Festival.PageManager.Display(tempfestival.FestivalID);
                         }
                         break;
                 }

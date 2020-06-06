@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class Menu
     {
-        public static int option;
+        private static int Option { get; set; }
 
         public static void Draw(List<MenuOption> consoleOptions)
         {
@@ -13,13 +13,13 @@ namespace Festivity
 
             for (int i = 0; i < consoleOptions.Count; i++)
             {
-                if (option == i)
+                if (Option == i)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                 }
                 Console.WriteLine("{0}", consoleOptions[i].Name);
-                if (option == i)
+                if (Option == i)
                 {
                     Console.ResetColor();
                 }
@@ -29,17 +29,17 @@ namespace Festivity
             // When DownArrow key is pressed go down.
             if (KeyPressed.Key == ConsoleKey.DownArrow)
             {
-                if (option != consoleOptions.Count - 1)
+                if (Option != consoleOptions.Count - 1)
                 {
-                    option++;
+                    Option++;
                 }
             }
             // When UpArrow key is pressed go up.
             else if (KeyPressed.Key == ConsoleKey.UpArrow)
             {
-                if (option != 0)
+                if (Option != 0)
                 {
-                    option--;
+                    Option--;
                 }
             }
 
@@ -47,9 +47,14 @@ namespace Festivity
             if (KeyPressed.Key == ConsoleKey.Enter)
             {
                 Console.CursorVisible = true;
-                consoleOptions[option].Select();
+                consoleOptions[Option].Select();
             }
             Console.SetCursorPosition(0, 0);
+        }
+
+        public static int OptionReset()
+        {
+            return Option = 0;
         }
     }
 }
