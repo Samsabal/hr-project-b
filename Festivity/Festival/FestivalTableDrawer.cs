@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Festival
 {
@@ -8,9 +6,12 @@ namespace Festivity.Festival
     {
         public static void Draw()
         {
-            string Table = FestivalTableBuilder.ConvertToString(FestivalTableBuilder.BuildTableList());
-            Console.WriteLine(Table);
-            Console.ReadKey();
+            while (true)
+            {
+                string Table = FestivalTableBuilder.ConvertToString(FestivalTableBuilder.BuildTableList());
+                Console.WriteLine(Table);
+                Menu.Draw(MenuBuilder.SelectFestival());
+            }
         }
     }
 }

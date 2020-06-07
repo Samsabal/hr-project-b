@@ -267,17 +267,40 @@ namespace Festivity
             return newMenuOptions;
         }
 
+        public static List<MenuOption> SelectFestival()
+        {
+            List<MenuOption> newMenuOptions = new List<MenuOption>();
+            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+           
+            foreach (FestivalModel festival in festivals.Festivals)
+            {
+                if (LoggedInAccount.GetID() == festival.FestivalOrganiserID)
+                {
+                    newMenuOptions.Add(new MenuOption($"Edit festival: {festival.FestivalName}", () =>
+                    {
+                        Console.Clear();
+                        while (true)
+                        {
+                            Menu.Draw(ChangeFestival(festival));
+                        }
+                    }));
+                }
+            }
+            return newMenuOptions;
+        }
+
         public static List<MenuOption> ChangeFestival(FestivalModel festival)
         {
+            int currentValueStartingPoint = 30;
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption($"Festival name: {festival.FestivalName}", () =>
+                new MenuOption($"Festival name:".PadRight(currentValueStartingPoint) + $"{festival.FestivalName}", () =>
                 {
                     Console.Clear();
                     do { festival.FestivalName = FestivalRegister.InputLoop("Fill in the name of the festival: "); }
                     while (!RegexUtils.IsValidName(festival.FestivalName));
                 }),
-                new MenuOption($"Festival date: {festival.FestivalDate.ToShortDateString()}", () =>
+                new MenuOption($"Festival date:".PadRight(currentValueStartingPoint) + $"{festival.FestivalDate.ToShortDateString()}", () =>
                 {
                     string tempDay;
                     string tempMonth;
@@ -292,31 +315,31 @@ namespace Festivity
                     while (!RegexUtils.IsValidFestivalYear(tempYear));
                     festival.FestivalDate = new DateTime(int.Parse(tempYear), int.Parse(tempMonth), int.Parse(tempDay));
                 }),
-                new MenuOption($"Starting time: {festival.FestivalStartingTime.ToShortTimeString()}", () =>
+                new MenuOption($"Starting time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime.ToShortTimeString()}", () =>
                 {
                     //TODO
                 }),
-                new MenuOption($"End time {festival.FestivalStartingTime.ToShortTimeString()}", () =>
+                new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime.ToShortTimeString()}", () =>
                 {
                     //TODO
                 }),
-                new MenuOption($"Festival address: {festival.FestivalLocation}", () =>
+                new MenuOption($"Festival address:".PadRight(currentValueStartingPoint) + $"{festival.FestivalLocation}", () =>
                 {
                     //TODO
                 }),
-                new MenuOption($"Festival description: {festival.SetDescriptionLength(50)}", () =>
+                new MenuOption($"Festival description:".PadRight(currentValueStartingPoint) + $"{festival.SetDescriptionLength(50)}", () =>
                 {
                     //TODO
                 }),
-                new MenuOption($"Age restriction: {festival.FestivalAgeRestriction}", () =>
+                new MenuOption($"Age restriction:".PadRight(currentValueStartingPoint) + $"{festival.FestivalAgeRestriction}", () =>
                 {
                     //TODO
                 }),
-                new MenuOption($"Festival genre {festival.FestivalGenre}", () =>
+                new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
                 {
                     //TODO
                 }),
-                new MenuOption($"Cancel time: {festival.FestivalCancelTime}", () =>
+                new MenuOption($"Cancel time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
                 {
                     //TODO
                 }),
