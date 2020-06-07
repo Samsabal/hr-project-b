@@ -13,16 +13,21 @@ namespace Festivity.Festival
                     Menu.OptionReset();
                     while (true)
                     {
-                        Console.WriteLine("======================================================================");
-                        Console.WriteLine(festival.FestivalName);
+                        Writer.FestivalName(festival);
 
                         Writer.FestivalOrganiser(festival);
 
-                        Writer.Festival(festival); // Writes the current Festival
+                        Writer.FestivalAge(festival);
+
+                        Utils.DescriptionParts();
+
+                        Writer.Festival(festival);
 
                         Transaction.TicketListBuilder.Set(festivalId);
 
-                        Writer.Tickets(); // Writes the corresponding Tickets from the current Festival
+                        Writer.Tickets();
+
+                        Menu.Draw(MenuBuilder.FestivalPage());
                     }
                 }
             }
