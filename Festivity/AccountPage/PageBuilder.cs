@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Festivity.AccountPage
+﻿namespace Festivity.AccountPage
 {
-    class PageBuilder
+    internal class PageBuilder
     {
         public static void ChangeInfo(int userSelection)
         {
@@ -55,21 +51,19 @@ namespace Festivity.AccountPage
                         do { LoggedInAccount.User.CompanyName = Utils.InputLoop("Input new company name: "); }
                         while (!RegexUtils.IsValidAddressName(LoggedInAccount.User.CompanyName));
                         break;
-
                     }
                     if (LoggedInAccount.User.AccountType == 2) // Visitor
                     {
                         do { LoggedInAccount.User.PhoneNumber = Utils.InputLoop("Input new phone number: "); }
                         while (!RegexUtils.IsValidAddressName(LoggedInAccount.User.PhoneNumber));
                         break;
-
                     }
                     break;
+
                 case 9:
                     do { LoggedInAccount.User.CompanyPhoneNumber = Utils.InputLoop("Input new company phone number: "); }
                     while (!RegexUtils.IsValidAddressName(LoggedInAccount.User.CompanyPhoneNumber));
                     break;
-
             }
             LoggedInAccount.UpdateDatabase();
         }

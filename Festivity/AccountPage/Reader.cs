@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Festivity.AccountPage
+﻿namespace Festivity.AccountPage
 {
-    class Reader
+    internal class Reader
     {
         public static int AccountOption()
         {

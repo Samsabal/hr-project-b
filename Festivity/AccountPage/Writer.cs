@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.AccountPage
 {
-    class Writer
+    internal class Writer
     {
         public static void AccountPage()
         {

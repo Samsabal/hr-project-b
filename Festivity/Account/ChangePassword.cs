@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity.Account
 {
-    class ChangePassword
+    internal class ChangePassword
     {
         private static string Password;
 
@@ -37,10 +35,9 @@ namespace Festivity.Account
             return userInput == LoggedInAccount.User.Password;
         }
 
-
         private static string AskUserForPasswordWithValidation()
         {
-            do { Password = Utils.General.InputLoop (""); } 
+            do { Password = Utils.General.InputLoop(""); }
             while (!RegexUtils.IsValidPassword(Password));
             return Password;
         }
@@ -54,7 +51,7 @@ namespace Festivity.Account
 
         private static bool PasswordsDoNotMatch(string p1, string p2)
         {
-            if(p1 != p2)
+            if (p1 != p2)
             {
                 Console.Write("Passwords do not match, please try again:");
                 return true;
