@@ -14,7 +14,7 @@ namespace Festivity.Account
             {
                 Console.Write("Input new password: ");
                 string FirstPassword = AskUserForPasswordWithValidation();
-                Console.Write("Input new password again: ");
+                Console.WriteLine("Input new password again.");
                 string SecondPassword = AskForSameUserPassword(FirstPassword);
                 LoggedInAccount.User.Password = SecondPassword;
                 Console.WriteLine("Password successfully changed");
@@ -37,14 +37,14 @@ namespace Festivity.Account
 
         private static string AskUserForPasswordWithValidation()
         {
-            do { Password = Utils.General.InputLoop(""); }
+            do { Password = Utils.General.InputLoop("Password: "); }
             while (!RegexUtils.IsValidPassword(Password));
             return Password;
         }
 
         private static string AskForSameUserPassword(string p1)
         {
-            do { Password = Utils.General.InputLoop(""); }
+            do { Password = Utils.General.InputLoop("Password: "); }
             while (PasswordsDoNotMatch(p1, Password));
             return Password;
         }
