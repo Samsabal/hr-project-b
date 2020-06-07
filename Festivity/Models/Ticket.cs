@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class Ticket
+    public class Ticket
     {
         [JsonProperty("festivalId")]
         public int FestivalID { get; set; }
