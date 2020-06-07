@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Utils
 {
-    class SortingFunctions
+    internal class SortingFunctions
     {
-        /// <summary>
-        /// Sorts a given Festival[] alphabetically by the names of the festivals.
-        /// </summary>
-        /// <param name="festivalArray">
-        /// Festival array to be sorted.
-        /// </param>
-        /// <returns>
-        /// Returns a Festival[] sorted alphabetically by festivalname
-        /// </returns>
-        public static Festival[] SortName(Festival[] festivalArray)
+        /// <summary> Sorts a given Festival[] alphabetically by the names of the festivals. </summary>
+        /// <param name="festivalArray"> Festival array to be sorted. </param>
+        /// <returns> Returns a Festival[] sorted alphabetically by festivalname </returns>
+        public static FestivalModel[] SortName(FestivalModel[] festivalArray)
         {
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
@@ -23,7 +15,7 @@ namespace Festivity.Utils
                 {
                     if (festivalArray[i].FestivalName.CompareTo(festivalArray[i + 1].FestivalName) > 0 && festivalArray[i].FestivalID != -1)
                     {
-                        Festival temp = festivalArray[i];
+                        FestivalModel temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }
@@ -35,28 +27,24 @@ namespace Festivity.Utils
         /// <summary>
         /// Sorts a given Festival[] lowest to highest according to the lowest ticket prices of the festivals.
         /// </summary>
-        /// <param name="festivalArray">
-        /// Festival array to be sorted.
-        /// </param>
-        /// <returns>
-        /// Returns a Festival[] sorted by the lowest prices.
-        /// </returns>
-        public static Festival[] SortPrice(Festival[] festivalArray)
+        /// <param name="festivalArray"> Festival array to be sorted. </param>
+        /// <returns> Returns a Festival[] sorted by the lowest prices. </returns>
+        public static FestivalModel[] SortPrice(FestivalModel[] festivalArray)
         {
-            Tuple<Festival, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
+            Tuple<FestivalModel, double>[] festivalArrayWithPrices = GetMinPrices(festivalArray);
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
                 for (int i = 0; i < j; i++)
                 {
                     if (festivalArrayWithPrices[i].Item2 >= festivalArrayWithPrices[i + 1].Item2)
                     {
-                        Tuple<Festival, double> temp = festivalArrayWithPrices[i];
+                        Tuple<FestivalModel, double> temp = festivalArrayWithPrices[i];
                         festivalArrayWithPrices[i] = festivalArrayWithPrices[i + 1];
                         festivalArrayWithPrices[i + 1] = temp;
                     }
                 }
             }
-            Festival[] resultArray = new Festival[festivalArrayWithPrices.Length];
+            FestivalModel[] resultArray = new FestivalModel[festivalArrayWithPrices.Length];
             for (int i = 0; i < festivalArrayWithPrices.Length; i++)
             {
                 resultArray[i] = festivalArrayWithPrices[i].Item1;
@@ -65,18 +53,14 @@ namespace Festivity.Utils
             return resultArray;
         }
 
-        /// <summary>
-        /// Takes a Festival[] and returns a Tuple<Festival, double>[] containing the same festivals buy with their minimum ticket prices.
-        /// </summary>
-        /// <param name="festivalArray">
-        /// Festival[] that you want to get the minimum prices for.
-        /// </param>
-        /// <returns>
-        /// Returns a Tuple<festival, double>[] containing the input Festivals with their lowest ticket prices.
-        /// </returns>
-        private static Tuple<Festival, double>[] GetMinPrices(Festival[] festivalArray)
+        /// <summary> Takes a Festival[] and returns a Tuple<Festival, double>[] containing the same
+        /// festivals buy with their minimum ticket prices. </summary> <param name="festivalArray">
+        /// Festival[] that you want to get the minimum prices for. </param> <returns> Returns a
+        /// Tuple<festival, double>[] containing the input Festivals with their lowest ticket
+        /// prices. </returns>
+        private static Tuple<FestivalModel, double>[] GetMinPrices(FestivalModel[] festivalArray)
         {
-            Tuple<Festival, double>[] festivalsWithPrices = new Tuple<Festival, double>[festivalArray.Length];
+            Tuple<FestivalModel, double>[] festivalsWithPrices = new Tuple<FestivalModel, double>[festivalArray.Length];
 
             Ticket[] ticketArray = JSONFunctionality.GetTickets().Tickets.ToArray();
 
@@ -93,21 +77,15 @@ namespace Festivity.Utils
                         }
                     }
                 }
-                festivalsWithPrices[i] = new Tuple<Festival, double>(festivalArray[i], minPrice);
+                festivalsWithPrices[i] = new Tuple<FestivalModel, double>(festivalArray[i], minPrice);
             }
             return festivalsWithPrices;
         }
 
-        /// <summary>
-        /// Sorts a given Festival[] from earliest to latest by the dates of the festivals.
-        /// </summary>
-        /// <param name="festivalArray">
-        /// Festival array to be sorted.
-        /// </param>
-        /// <returns>
-        /// Returns a Festival[] sorted by FestivalDate
-        /// </returns>
-        public static Festival[] SortDate(Festival[] festivalArray)
+        /// <summary> Sorts a given Festival[] from earliest to latest by the dates of the festivals. </summary>
+        /// <param name="festivalArray"> Festival array to be sorted. </param>
+        /// <returns> Returns a Festival[] sorted by FestivalDate </returns>
+        public static FestivalModel[] SortDate(FestivalModel[] festivalArray)
         {
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
@@ -115,7 +93,7 @@ namespace Festivity.Utils
                 {
                     if (festivalArray[i].FestivalDate > festivalArray[i + 1].FestivalDate)
                     {
-                        Festival temp = festivalArray[i];
+                        FestivalModel temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }
@@ -124,7 +102,7 @@ namespace Festivity.Utils
             return festivalArray;
         }
 
-        public static Festival[] SortAvailability(Festival[] festivalArray)
+        public static FestivalModel[] SortAvailability(FestivalModel[] festivalArray)
         {
             for (int j = festivalArray.Length - 1; j > 0; j--)
             {
@@ -132,7 +110,7 @@ namespace Festivity.Utils
                 {
                     if (AvailabilityAsInt(festivalArray[i].CheckAvailability()) > AvailabilityAsInt(festivalArray[i + 1].CheckAvailability()))
                     {
-                        Festival temp = festivalArray[i];
+                        FestivalModel temp = festivalArray[i];
                         festivalArray[i] = festivalArray[i + 1];
                         festivalArray[i + 1] = temp;
                     }

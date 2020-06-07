@@ -13,21 +13,15 @@ namespace Festivity
         private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TicketDatabase.json");
         private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TransactionDatabase.json");
 
-        /// <summary>
-        /// Gets the festivals from our Festival database
-        /// </summary>
-        /// <returns>
-        /// Returns a JSONFestivalList containing all Festivals in the Festival database
-        /// </returns>
+        /// <summary> Gets the festivals from our Festival database </summary>
+        /// <returns> Returns a JSONFestivalList containing all Festivals in the Festival database </returns>
         public static JSONFestivalList GetFestivals()
         {
             JSONFestivalList Festivals = JsonConvert.DeserializeObject<JSONFestivalList>(File.ReadAllText(PathFestival));
             return Festivals;
         }
 
-        /// <summary>
-        /// Writes the given JSONFestivalList to the Festival database
-        /// </summary>
+        /// <summary> Writes the given JSONFestivalList to the Festival database </summary>
         /// <param name="festivals">
         /// The JSONFestivalList that needs to be written to the Festival database
         /// </param>
@@ -37,36 +31,24 @@ namespace Festivity
             File.WriteAllText(PathFestival, jsonfestival);
         }
 
-        /// <summary>
-        /// Gets the users from our User database
-        /// </summary>
-        /// <returns>
-        /// Returns a JSONUserList containing all users in the User database
-        /// </returns>
+        /// <summary> Gets the users from our User database </summary>
+        /// <returns> Returns a JSONUserList containing all users in the User database </returns>
         public static JSONUserList GetUserList()
         {
             JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
             return users;
         }
 
-        /// <summary>
-        /// Writes the given JSONUserList to the User database
-        /// </summary>
-        /// <param name="users">
-        /// The JSONUserList that needs to be written to the User database
-        /// </param>
+        /// <summary> Writes the given JSONUserList to the User database </summary>
+        /// <param name="users"> The JSONUserList that needs to be written to the User database </param>
         public static void WriteToUserList(JSONUserList users)
         {
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(PathUser, json);
         }
 
-        /// <summary>
-        /// Writes the given UserModel to the User database
-        /// </summary>
-        /// <param name="user">
-        /// The UserModel that needs to be written to the User database
-        /// </param>
+        /// <summary> Writes the given UserModel to the User database </summary>
+        /// <param name="user"> The UserModel that needs to be written to the User database </param>
         public static void WriteUser(UserModel user)
         {
             JSONUserList users = GetUserList();
@@ -74,34 +56,23 @@ namespace Festivity
             WriteToUserList(users);
         }
 
-
-        /// <summary>
-        /// Gets the tickets from our Ticket database
-        /// </summary>
-        /// <returns>
-        /// Returns a JSONTicketList containing all tickets in the Ticket Database
-        /// </returns>
+        /// <summary> Gets the tickets from our Ticket database </summary>
+        /// <returns> Returns a JSONTicketList containing all tickets in the Ticket Database </returns>
         public static JSONTicketList GetTickets()
         {
             JSONTicketList tickets = JsonConvert.DeserializeObject<JSONTicketList>(File.ReadAllText(PathTicket));
             return tickets;
         }
 
-        /// <summary>
-        /// Writes the given JSONTicketList to the Ticket database
-        /// </summary>
-        /// <param name="tickets">
-        /// The JSONTicketList that needs to be written to the Ticket database
-        /// </param>
+        /// <summary> Writes the given JSONTicketList to the Ticket database </summary>
+        /// <param name="tickets"> The JSONTicketList that needs to be written to the Ticket database </param>
         public static void WriteTickets(JSONTicketList tickets)
         {
             string json = JsonConvert.SerializeObject(tickets, Formatting.Indented);
             File.WriteAllText(PathTicket, json);
         }
 
-        /// <summary>
-        /// Gets the transactions from our Transaction database
-        /// </summary>
+        /// <summary> Gets the transactions from our Transaction database </summary>
         /// <returns>
         /// Returns a JSONTransactionList containing all transactions in the Transaction Database
         /// </returns>
@@ -111,9 +82,7 @@ namespace Festivity
             return transactions;
         }
 
-        /// <summary>
-        /// Writes the given JSONTransactionList to the Transaction database
-        /// </summary>
+        /// <summary> Writes the given JSONTransactionList to the Transaction database </summary>
         /// <param name="transactions">
         /// The JSONTransactionList that needs to be written to the Transaction database
         /// </param>
@@ -123,12 +92,8 @@ namespace Festivity
             File.WriteAllText(PathTransaction, json);
         }
 
-        /// <summary>
-        /// Generates a new UserID based on the amount of users in the User database
-        /// </summary>
-        /// <returns>
-        /// Returns a new UserID
-        /// </returns>
+        /// <summary> Generates a new UserID based on the amount of users in the User database </summary>
+        /// <returns> Returns a new UserID </returns>
         public static int GenerateUserID()
         {
             JSONUserList userList = GetUserList();

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class RefundTicket
+    internal class RefundTicket
     {
         private static string userInput;
         private static List<string> TransactionIDList = new List<string>();
         private static List<string> TransactionIsRefundable = new List<string>();
-
 
         public static void InitiateRefund()
         {
@@ -20,8 +18,9 @@ namespace Festivity
             do
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
-                DrawTicketTable.Draw(); 
-                userInput = AccountRegistration.Utils.InputLoop("\nInput Transaction ID of the order you want to refund: "); }
+                DrawTicketTable.Draw();
+                userInput = AccountRegistration.Utils.InputLoop("\nInput Transaction ID of the order you want to refund: ");
+            }
             while (!IsValidTransactionID(userInput));
 
             NewTransactionsList.Transactions.Clear();
@@ -30,7 +29,7 @@ namespace Festivity
             {
                 if (item.TransactionID != int.Parse(userInput))
                 {
-                    Transaction transaction = new Transaction
+                    TransactionModel transaction = new TransactionModel
                     {
                         TransactionID = item.TransactionID,
                         FestivalID = item.FestivalID,
@@ -55,7 +54,7 @@ namespace Festivity
                 {
                     if (TransactionIDList[i] == result.ToString())
                     {
-                        if(TransactionIsRefundable[i].ToLower() == "true")
+                        if (TransactionIsRefundable[i].ToLower() == "true")
                         {
                             TransactionIDList.RemoveAt(i);
                             return true;
@@ -66,7 +65,6 @@ namespace Festivity
                             Thread.Sleep(2000);
                             return false;
                         }
-
                     }
                 }
                 Console.WriteLine("Transaction ID does not exist, please try again");
@@ -80,8 +78,7 @@ namespace Festivity
 
         public static void SetTicketIDs(List<List<string>> ticketList)
         {
-            
-            for (int i = 0; i < ticketList.Count; i ++)
+            for (int i = 0; i < ticketList.Count; i++)
             {
                 TransactionIDList.Add(ticketList[i][7]);
                 TransactionIsRefundable.Add(ticketList[i][3]);

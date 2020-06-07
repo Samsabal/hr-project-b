@@ -2,9 +2,7 @@
 
 namespace Festivity
 {
-    /// <summary>
-    /// Address class used for location functionality
-    /// </summary>
+    /// <summary> Address class used for location functionality </summary>
     public class Address
     {
         [JsonProperty("country")]
@@ -21,6 +19,5 @@ namespace Festivity
 
         [JsonProperty("streetNumber")]
         public string StreetNumber { get; set; }
-
     }
 }

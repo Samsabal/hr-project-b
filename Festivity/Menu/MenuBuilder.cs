@@ -62,7 +62,7 @@ namespace Festivity
                     Console.WriteLine("Successfully logged out!");
                     Thread.Sleep(1000);
                     Console.Clear();
-                    Menu.option = 0;
+                    Menu.OptionReset();
                     LoggedInAccount.LogOut();
                     Program.Main(); //new string[] { }
                 }),
@@ -88,7 +88,7 @@ namespace Festivity
                 new MenuOption("Register Festivals", () =>
                 {
                     Console.Clear();
-                    Menu.option = 0;
+                    Menu.OptionReset();
                     FestivalRegister.activeScreen = true;
                     FestivalRegister.currentRegisterSelection = "Main";
                     FestivalRegister.ShowFestivalRegister();
@@ -110,7 +110,7 @@ namespace Festivity
                     Console.WriteLine("Successfully logged out!");
                     Thread.Sleep(1000);
                     Console.Clear();
-                    Menu.option = 0;
+                    Menu.OptionReset();
                     LoggedInAccount.LogOut();
                     Program.Main(); //new string[] { }
                 }),
@@ -136,7 +136,7 @@ namespace Festivity
                     {
                         Console.Clear();
                         SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        FestivalPage.ShowFestivalPage(CatalogPage.festivalArray[i].FestivalID);
+                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
                     }));
                 }
             }
@@ -148,7 +148,7 @@ namespace Festivity
                     {
                         Console.Clear();
                         SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        FestivalPage.ShowFestivalPage(CatalogPage.festivalArray[i].FestivalID);
+                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
                     }));
                 }
             }

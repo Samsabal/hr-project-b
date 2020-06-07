@@ -1,17 +1,16 @@
 ﻿using Festivity.Utils;
 using System;
-using System.Collections.Generic;
 
 namespace Festivity
 {
     /// <summary>
-    /// The main class for the festival catalog.
-    /// Contains all methods for drawing information on the catalog screen.
+    /// The main class for the festival catalog. Contains all methods for drawing information on the
+    /// catalog screen.
     /// </summary>
     public class CatalogPage
     {
         public static int currentPage { get; set; }
-        public static Festival[] festivalArray { get; set; }
+        public static FestivalModel[] festivalArray { get; set; }
         public static string currentCatalogNavigation { get; set; }
         public static int selectedFestival;
 
@@ -32,13 +31,12 @@ namespace Festivity
                 }
                 else
                 {
-                   Menu.Draw(MenuBuilder.CatalogFilter());
+                    Menu.Draw(MenuBuilder.CatalogFilter());
                 }
             }
         }
-        /// <summary>
-        /// This method handles the initial setup of the Catalog screen variables.
-        /// </summary>
+
+        /// <summary> This method handles the initial setup of the Catalog screen variables. </summary>
         private static void CatalogSetup()
         {
             JSONFestivalList festivals = JSONFunctionality.GetFestivals();
@@ -51,7 +49,8 @@ namespace Festivity
         }
 
         /// <summary>
-        /// This method checks the amount of festivals on the current page and draws them with dividing lines in between.
+        /// This method checks the amount of festivals on the current page and draws them with
+        /// dividing lines in between.
         /// </summary>
         private static void DrawCatalog()
         {
@@ -92,8 +91,8 @@ namespace Festivity
         /// <summary>
         /// This method takes a festival and draws it in the desired format for the festival catalog.
         /// </summary>
-        /// <param name="festival">A Festival object</param>
-        private static void DrawFestival(Festival festival)
+        /// <param name="festival"> A Festival object </param>
+        private static void DrawFestival(FestivalModel festival)
         {
             Console.Write($"| Name: {festival.FestivalName}");
             Console.SetCursorPosition(49, Console.CursorTop);
