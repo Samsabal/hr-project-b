@@ -151,7 +151,7 @@ namespace Festivity
 
                     case "Login": // "Login" option home screen
                         Console.Clear();
-                        LoginManager.InitiateLoginPage();
+                        AccountLogin.LoginManager.InitiateLoginPage();
                         //UserLoginPage.LoginPage();
                         break;
 
@@ -368,7 +368,7 @@ namespace Festivity
                         }
                         else
                         {
-                            LoginManager.InitateLogin(true);
+                            AccountLogin.LoginManager.InitateLogin(true);
                         }
                         break;
 
@@ -379,14 +379,14 @@ namespace Festivity
 
                     case "Login to your Account":
                         Console.Clear();
-                        LoginManager.InitateLogin(false);
+                        AccountLogin.LoginManager.InitateLogin(false);
                         //UserLoginPage.userLoginChoice = 1;
                         //UserLoginPage.UserLogin();
                         break;
 
                     case "Forgot password":
                         Console.Clear();
-                        LoginManager.InitateForgotPassword();
+                        AccountLogin.LoginManager.InitateForgotPassword();
                         //UserLoginPage.userLoginChoice = 2;
                         //UserLoginPage.ForgotPassword();
                         break;

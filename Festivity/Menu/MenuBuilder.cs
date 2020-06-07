@@ -20,7 +20,7 @@ namespace Festivity
                 new MenuOption("Login", () =>
                 {
                     Console.Clear();
-                    UserLoginPage.LoginPage();
+                    AccountLogin.LoginManager.InitiateLoginPage();
                 }),
                 new MenuOption("Festivals", () =>
                 {
