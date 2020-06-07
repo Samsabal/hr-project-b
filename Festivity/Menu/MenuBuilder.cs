@@ -99,15 +99,6 @@ namespace Festivity
                     Console.Clear();
                     UserAccountPage.AccountPage();
                 }),
-                new MenuOption("My festivals", () =>
-                {
-                    // TODO
-                    Console.Clear();
-                    JSONFestivalList test = JSONFunctionality.GetFestivals();
-                    while(true){
-                        Menu.Draw(ChangeFestival(test.Festivals.ToArray()[0]));
-                    }
-                }),
                 new MenuOption("My Tickets", () =>
                 {
                     Console.Clear();
