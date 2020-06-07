@@ -1,3 +1,4 @@
+using Festivity.Account;
 ﻿using Festivity.Utils;
 using System;
 using System.Threading;
@@ -150,7 +151,8 @@ namespace Festivity
 
                     case "Login": // "Login" option home screen
                         Console.Clear();
-                        UserLoginPage.LoginPage();
+                        AccountLogin.LoginManager.InitiateLoginPage();
+                        //UserLoginPage.LoginPage();
                         break;
 
                     case "Festivals": // "Festival catalog" option home screen
@@ -366,7 +368,7 @@ namespace Festivity
                         }
                         else
                         {
-                            UserLoginPage.UserLogin(1);
+                            AccountLogin.LoginManager.InitateLogin(true);
                         }
                         break;
 
@@ -377,14 +379,16 @@ namespace Festivity
 
                     case "Login to your Account":
                         Console.Clear();
-                        UserLoginPage.userLoginChoice = 1;
-                        UserLoginPage.UserLogin();
+                        AccountLogin.LoginManager.InitateLogin(false);
+                        //UserLoginPage.userLoginChoice = 1;
+                        //UserLoginPage.UserLogin();
                         break;
 
                     case "Forgot password":
                         Console.Clear();
-                        UserLoginPage.userLoginChoice = 2;
-                        UserLoginPage.ForgotPassword();
+                        AccountLogin.LoginManager.InitateForgotPassword();
+                        //UserLoginPage.userLoginChoice = 2;
+                        //UserLoginPage.ForgotPassword();
                         break;
 
                     case "Logout":

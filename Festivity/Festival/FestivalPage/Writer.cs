@@ -45,7 +45,7 @@ namespace Festivity.Festival
                     else
                     {
                         Console.Clear();
-                        UserLoginPage.UserLogin(1);
+                        AccountLogin.LoginManager.InitateLogin(true);
                     }
                 }));
             }

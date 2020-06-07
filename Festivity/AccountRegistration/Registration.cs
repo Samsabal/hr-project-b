@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festivity.Account;
+using System;
 using System.Threading;
 
 namespace Festivity.AccountRegistration
