@@ -6,6 +6,7 @@ namespace Festivity.AccountRegistration
 {
     internal class Registration
     {
+        private static bool newsLetterIsSet = false;
         private static int userAccountType;
         private static bool newsLetter;
         private static string firstName;
@@ -137,7 +138,7 @@ namespace Festivity.AccountRegistration
         private static void UserNewsletterInput()
         {
             MenuFunction.option = 0;
-            while (true)
+            while (!newsLetterIsSet)
             {
                 Console.WriteLine("Do you want to recieve a newsletter? \n");
                 MenuFunction.Menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve newsletters" });
@@ -152,6 +153,7 @@ namespace Festivity.AccountRegistration
         public static void SetNewsLetter(bool userChoice)
         {
             newsLetter = userChoice;
+            newsLetterIsSet = true;
         }
     }
 }
