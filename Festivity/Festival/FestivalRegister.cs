@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Dynamic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace Festivity
@@ -45,7 +41,7 @@ namespace Festivity
 
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
-        
+
         // This function is used to apply regex
         public static string InputLoop(string printString)
         {
@@ -58,37 +54,36 @@ namespace Festivity
         // This is a function to reset all variables upon leaving the festival registration
         public static void ResetFestivalAndTicketRegistration()
         {
+            // Festival vairables
 
-        // Festival vairables
+            festivalName = null;
+            festivalDescription = null;
+            festivalDateDay = null;
+            festivalDateMonth = null;
+            festivalDateYear = null;
+            festivalStartingTime = null;
+            festivalEndTime = null;
+            festivalLocationCountry = null;
+            festivalLocationCity = null;
+            festivalLocationStreet = null;
+            festivalLocationZipCode = null;
+            festivalLocationHouseNumber = null;
+            festivalGenre = null;
+            festivalAgeRestriction = null;
+            festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
+            festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
+            cancelTime = null;
 
-        festivalName = null;
-        festivalDescription = null;
-        festivalDateDay = null;
-        festivalDateMonth = null;
-        festivalDateYear = null;
-        festivalStartingTime = null;
-        festivalEndTime = null;
-        festivalLocationCountry = null;
-        festivalLocationCity = null;
-        festivalLocationStreet = null;
-        festivalLocationZipCode = null;
-        festivalLocationHouseNumber = null;
-        festivalGenre = null;
-        festivalAgeRestriction = null;
-        festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
-        festivalAdress = "\nCountry: " + festivalLocationCountry + "\nCity: " + festivalLocationCity + "\nStreet: " + festivalLocationStreet + "\nHousenumber: " + festivalLocationHouseNumber + "\nZipcode: " + festivalLocationZipCode;
-        cancelTime = null;
+            // Ticket vairables
 
-        // Ticket vairables
+            festivalTicketName = null;
+            festivalTicketDescription = null;
+            festivalTicketPrice = null;
+            festivalMaxTickets = null;
+            festivalMaxTicketsPerPerson = null;
 
-        festivalTicketName = null;
-        festivalTicketDescription = null;
-        festivalTicketPrice = null;
-        festivalMaxTickets = null;
-        festivalMaxTicketsPerPerson = null;
-
-        // Removes all tickets from the ticketList if the ticketlist contains a ticket
-        ticketList.Clear();
+            // Removes all tickets from the ticketList if the ticketlist contains a ticket
+            ticketList.Clear();
         }
 
         // This is a function to retrieve the latest registered festivalid and create the next festivalid
@@ -124,11 +119,9 @@ namespace Festivity
 
             return ticketId;
         }
-        
+
         public static void ShowFestivalRegister()
         {
-        
-
             int festivalID = FestivalId(festivals);
 
             // Makes sure the console keeps refreshing, allowing input
@@ -160,12 +153,12 @@ namespace Festivity
                 else if (currentRegisterSelection == "Festival Date")
                 {
                     Console.Clear();
-                    
+
                     Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
                     do { festivalDateDay = InputLoop("Fill in the day: "); }
-                    while (!RegexUtils.IsValidFestivalDay(festivalDateDay));
+                    while (!RegexUtils.IsValidDay(festivalDateDay));
                     do { festivalDateMonth = InputLoop("Fill in the month: "); }
-                    while (!RegexUtils.IsValidFestivalMonth(festivalDateMonth));
+                    while (!RegexUtils.IsValidMonth(festivalDateMonth));
                     do { festivalDateYear = InputLoop("Fill in the year: "); }
                     while (!RegexUtils.IsValidFestivalYear(festivalDateYear));
                     festivalDate = festivalDateDay + ":" + festivalDateMonth + ":" + festivalDateYear;
@@ -237,14 +230,16 @@ namespace Festivity
                     Console.Clear();
                     do { festivalAmountVariousTickets = InputLoop("Fill in the amount of various tickets as a number: "); }
                     while (!RegexUtils.NumberCheck(festivalAmountVariousTickets, 1, 20));
-                    
+
                     int variousTickets = int.Parse(festivalAmountVariousTickets);
 
                     ticketList = new List<Ticket>();
-                    // this for loop loops the amount of times the organiser filled in for various amounts of tickets
+                    // this for loop loops the amount of times the organiser filled in for various
+                    // amounts of tickets
                     for (int i = 0; i < variousTickets; i++)
                     {
-                        // This variable connected to the ticketid function is placed inside the loop to give every ticket a new ticketid
+                        // This variable connected to the ticketid function is placed inside the
+                        // loop to give every ticket a new ticketid
                         ticketID = TicketID(tickets);
 
                         do { festivalTicketName = InputLoop($"Fill in the ticket name of ticket {(i + 1)} : "); }
@@ -259,10 +254,8 @@ namespace Festivity
                         do { festivalMaxTickets = InputLoop("Fill in the maximum amount of available tikets of this ticket type: "); }
                         while (!RegexUtils.IsValidMaxTickets(festivalMaxTickets));
 
-
                         do { festivalMaxTicketsPerPerson = InputLoop("Fill in the maximum amount of tickets a single person may buy: "); }
                         while (!RegexUtils.IsValidMaxTicketsPerPerson(festivalMaxTicketsPerPerson));
-                        
 
                         // This is a format to create the new ticket
                         Ticket ticket = new Ticket
@@ -277,7 +270,6 @@ namespace Festivity
                         };
 
                         ticketList.Add(ticket);
-                        
                     };
                     currentRegisterSelection = "Main";
                 }
@@ -285,9 +277,8 @@ namespace Festivity
                 {
                     Console.Clear();
 
-                    // Checks if there are tickets registered.
-                    // If not it will not save the festival.
-                    
+                    // Checks if there are tickets registered. If not it will not save the festival.
+
                     if (ticketList == null)
                     {
                         Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
@@ -295,7 +286,7 @@ namespace Festivity
                         currentRegisterSelection = "Main";
                     }
                     else if (festivalName == null || festivalDescription == null || festivalLocationCountry == null || festivalLocationCity == null ||
-                        festivalLocationStreet == null || festivalLocationHouseNumber == null || festivalLocationZipCode == null || festivalDateDay == null|| festivalDateMonth == null || festivalDateYear == null ||
+                        festivalLocationStreet == null || festivalLocationHouseNumber == null || festivalLocationZipCode == null || festivalDateDay == null || festivalDateMonth == null || festivalDateYear == null ||
                         festivalStartingTime == null || festivalEndTime == null || festivalGenre == null || festivalAgeRestriction == null || cancelTime == null)
                     {
                         // Checks if every field is filled in so the application does not crash
@@ -309,12 +300,21 @@ namespace Festivity
                         {
                             // Adds a new ticket to the database
                             tickets.Tickets.Add((Ticket)Ticket);
-
                         }
                         JSONFunctionality.WriteTickets(tickets);
 
                         // A format for creating a new festival
-                        Festival festival = new Festival
+                        DateTime FestivalDate = new DateTime(int.Parse(festivalDateYear), int.Parse(festivalDateMonth), int.Parse(festivalDateDay));
+                        DateTime FestivalStartingTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, int.Parse(festivalStartingTime.Substring(0, 2)),
+                            int.Parse(festivalStartingTime.Substring(3, 2)), 0);
+                        DateTime FestivalEndTime = new DateTime(FestivalDate.Year, FestivalDate.Month, FestivalDate.Day, int.Parse(festivalEndTime.Substring(0, 2)),
+                            int.Parse(festivalEndTime.Substring(3, 2)), 0);
+                        if (FestivalEndTime < FestivalStartingTime)
+                        {
+                            FestivalEndTime.AddDays(1);
+                        }
+
+                        FestivalModel festival = new FestivalModel
                         {
                             FestivalID = festivalID,
                             FestivalName = festivalName,
@@ -327,19 +327,13 @@ namespace Festivity
                                 StreetName = festivalLocationStreet,
                                 StreetNumber = festivalLocationHouseNumber
                             },
-                            FestivalDate = new Date
-                            {
-                                Day = int.Parse(festivalDateDay),
-                                Month = int.Parse(festivalDateMonth),
-                                Year = int.Parse(festivalDateYear)
-                            },
-                            FestivalStartingTime = festivalStartingTime,
-                            FestivalEndTime = festivalEndTime,
+                            FestivalDate = FestivalDate,
+                            FestivalStartingTime = FestivalStartingTime,
+                            FestivalEndTime = FestivalEndTime,
                             FestivalGenre = festivalGenre,
                             FestivalAgeRestriction = int.Parse(festivalAgeRestriction),
                             FestivalCancelTime = int.Parse(cancelTime),
                             FestivalOrganiserID = LoggedInAccount.GetID()
-
                         };
                         // Adds a new festival to the database
                         festivals.Festivals.Add(festival);

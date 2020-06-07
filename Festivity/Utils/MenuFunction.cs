@@ -1,4 +1,5 @@
-﻿using Festivity.Account;
+using Festivity.Account;
+﻿using Festivity.Utils;
 using System;
 using System.Threading;
 
@@ -12,8 +13,10 @@ namespace Festivity
         {
             Console.CursorVisible = false;
             /// 1. Add your option as string in consoleOptions argument.
-            /// 2. (optional) Add a second array that contains objects to display dynamic names of options in objects argument.
-            /// 3. Add your extra "option" as a new case inside the switch statement with the correct function.
+            /// 2. (optional) Add a second array that contains objects to display dynamic names of
+            /// options in objects argument.
+            /// 3. Add your extra "option" as a new case inside the switch statement with the
+            /// correct function.
             if (objects == null)
             {
                 {
@@ -32,16 +35,16 @@ namespace Festivity
                     }
                 }
             }
-            else if (objects[0].GetType() == typeof(Festival))
+            else if (objects[0].GetType() == typeof(FestivalModel))
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < objects.Length; i++)
                 {
                     if (option == i)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
-                    Festival tempfestival = (Festival)objects[i];
+                    FestivalModel tempfestival = (FestivalModel)objects[i];
 
                     Console.WriteLine("Select festival: {0}", tempfestival.FestivalName);
                     if (option == i)
@@ -50,7 +53,7 @@ namespace Festivity
                     }
                 }
 
-                for (int i = 5; i < consoleOptions.Length; i++)
+                for (int i = objects.Length; i < consoleOptions.Length; i++)
                 {
                     if (option == i)
                     {
@@ -66,7 +69,7 @@ namespace Festivity
             }
             else if (objects[0].GetType() == typeof(Ticket))
             {
-                for (int i = 0; i < TicketBuy.GetTicketListLength(); i++)
+                for (int i = 0; i < Transaction.TicketListBuilder.GetLength(); i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -83,7 +86,7 @@ namespace Festivity
                     }
                 }
 
-                for (int i = TicketBuy.GetTicketListLength(); i < consoleOptions.Length; i++)
+                for (int i = Transaction.TicketListBuilder.GetLength(); i < consoleOptions.Length; i++)
                 {
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
@@ -142,7 +145,8 @@ namespace Festivity
                 {
                     case "Register": // "Register" option home screen
                         Console.Clear();
-                        UserRegisterPage.CreateUser();
+                        AccountRegistration.Manager.InitateUserRegistration();
+                        //UserRegisterPage.CreateUser();
                         break;
 
                     case "Login": // "Login" option home screen
@@ -173,53 +177,62 @@ namespace Festivity
                     // !!!! TEMPORARY OPTION !!!!
                     case "Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(1);
+                        Festival.PageManager.Display(1);
                         Thread.Sleep(1000);
                         break;
 
                     case "Sort by name": // "Sort by name" option on catalog page filter/sort screen
-                        CatalogPage.festivalArray = CatalogPageFilter.SortName(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = SortingFunctions.SortName(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Sort by date":
-                        CatalogPage.festivalArray = CatalogPageFilter.SortDate(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = SortingFunctions.SortDate(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
+
                     case "Sort by price":
-                        CatalogPage.festivalArray = CatalogPageFilter.SortPrice(CatalogPage.festivalArray);
+                        CatalogPage.festivalArray = SortingFunctions.SortPrice(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
+
+                    case "Sort by availability":
+                        CatalogPage.festivalArray = SortingFunctions.SortAvailability(CatalogPage.festivalArray);
+                        CatalogPage.currentCatalogNavigation = "main";
+                        CatalogPage.currentPage = 0;
+                        ConsoleHelperFunctions.ClearCurrentConsole();
+                        break;
+
                     case "Filter by festival name":
                         string namesearch = Console.ReadLine();
-                        CatalogPage.festivalArray = CatalogPageFilter.FilterName(CatalogPage.festivalArray, namesearch);
+                        CatalogPage.festivalArray = FilterFunctions.FilterName(CatalogPage.festivalArray, namesearch);
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Filter by genre":
-                        CatalogPage.festivalArray = CatalogPageFilter.FilterGenre(CatalogPage.festivalArray, Console.ReadLine());
+                        CatalogPage.festivalArray = FilterFunctions.FilterGenre(CatalogPage.festivalArray, Console.ReadLine());
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Filter by location (City/Street)":
-                        CatalogPage.festivalArray = CatalogPageFilter.FilterLocation(CatalogPage.festivalArray, Console.ReadLine());
+                        CatalogPage.festivalArray = FilterFunctions.FilterLocation(CatalogPage.festivalArray, Console.ReadLine());
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         break;
 
                     case "Clear filters":
-                        CatalogPageFilter.ClearFilters();
+                        CatalogPage.festivalArray = JSONFunctionality.GetFestivals().Festivals.ToArray();
                         CatalogPage.currentCatalogNavigation = "main";
                         CatalogPage.currentPage = 0;
                         ConsoleHelperFunctions.ClearCurrentConsole();
@@ -234,6 +247,7 @@ namespace Festivity
                     case "Next page": // "Next page" option on catalog page screen
                         if (CatalogPage.currentPage * 5 + 5 < CatalogPage.festivalArray.Length)
                         {
+                            option = 0;
                             ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage++;
                         }
@@ -242,6 +256,7 @@ namespace Festivity
                     case "Previous page": // "Previous page" option on catalog page screen
                         if (CatalogPage.currentPage > 0)
                         {
+                            option = 0;
                             ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage--;
                         }
@@ -250,82 +265,27 @@ namespace Festivity
                     case "I am an Organisator":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.SetAccountType(1);
+                        AccountRegistration.Registration.SetAccountType(1);
                         break;
 
                     case "I am a Visitor":
                         //Console.Clear();
                         //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        UserRegisterPage.SetAccountType(2);
+                        AccountRegistration.Registration.SetAccountType(2);
                         break;
 
                     case "Yes, I want to recieve newsletters":
-                        UserRegisterPage.SetNewsLetter(1);
+                        AccountRegistration.Registration.SetNewsLetter(1);
                         break;
 
                     case "No, I don't want to recieve newsletters":
-                        UserRegisterPage.SetNewsLetter(2);
+                        AccountRegistration.Registration.SetNewsLetter(2);
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
                         option = 0;
                         Console.Clear();
                         Program.Main(); //new string[] { }
-                        break;
-
-                    case "festival1": // First festival option in the catalog screen
-                        Festival festival1 = (Festival)objects[0];
-                        if (festival1.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival1.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival1.FestivalID);
-                        }
-                        break;
-
-                    case "festival2": // Second festival option in the catalog screen
-                        Festival festival2 = (Festival)objects[1];
-                        if (festival2.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival2.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival2.FestivalID);
-                        }
-                        break;
-
-                    case "festival3": // Third festival option in the catalog screen
-                        Festival festival3 = (Festival)objects[2];
-                        if (festival3.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival3.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival3.FestivalID);
-                        }
-                        break;
-
-                    case "festival4": // Fourth festival option in the catalog screen
-                        Festival festival4 = (Festival)objects[3];
-                        if (festival4.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival4.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival4.FestivalID);
-                        }
-                        break;
-
-                    case "festival5": // Fifth festival option in the catalog screen
-                        Festival festival5 = (Festival)objects[4];
-                        if (festival5.FestivalID != -1)
-                        {
-                            Console.Clear();
-                            CatalogPage.activeScreen = false;
-                            CatalogPage.selectedFestival = festival5.FestivalID;
-                            FestivalPage.ShowFestivalPage(festival5.FestivalID);
-                        }
                         break;
 
                     case "Filter festivals": // Filter festivals option on the main CatalogPage screen
@@ -402,17 +362,19 @@ namespace Festivity
 
                     case "Order Tickets":
                         Console.Clear();
-                        CatalogPage.activeScreen = false;
-                        if (LoggedInAccount.User.AccountID == 0)
+                        if (LoggedInAccount.IsLoggedIn())
+                        {
+                            // Transaction.DrawBuyTicketPage.Draw();
+                        }
+                        else
                         {
                             LoginManager.InitateLogin(true);
                         }
-                        TicketBuy.TicketShow();
                         break;
 
                     case "Return to Festival Page":
                         Console.Clear();
-                        FestivalPage.ShowFestivalPage(CatalogPage.selectedFestival);
+                        Festival.PageManager.Display(CatalogPage.selectedFestival);
                         break;
 
                     case "Login to your Account":
@@ -488,35 +450,42 @@ namespace Festivity
                         Console.Clear();
                         TicketTableManager.Initiate();
                         break;
+
                     case "Refund Ticket":
                         RefundTicket.InitiateRefund();
                         break;
 
                     case "iDEAL":
                         Console.Clear();
-                        TicketBuy.ShowTicketBuy();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Paypal":
                         Console.Clear();
-                        TicketBuy.ShowTicketBuy();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Creditcard":
                         Console.Clear();
-                        TicketBuy.ShowTicketBuy();
+                        Transaction.DisplayManager.Complete();
                         break;
 
                     case "Cancel Order":
                         Console.Clear();
-                        TicketBuy.TicketShow();
                         break;
 
                     default:
                         if (consoleOptions[option].StartsWith("Buy Ticket"))
                         {
                             Console.Clear();
-                            TicketBuy.TicketConfirmation(option);
+                            Transaction.DisplayManager.Initiate(option);
+                        }
+                        else if (consoleOptions[option].StartsWith("Select festival"))
+                        {
+                            FestivalModel tempfestival = (FestivalModel)objects[option];
+                            Console.Clear();
+                            CatalogPage.selectedFestival = tempfestival.FestivalID;
+                            Festival.PageManager.Display(tempfestival.FestivalID);
                         }
                         break;
                 }

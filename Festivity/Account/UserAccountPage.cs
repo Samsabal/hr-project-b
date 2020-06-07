@@ -1,15 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 
 namespace Festivity
 {
     internal class UserAccountPage
     {
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
-        private static readonly JSONUserList users = JsonConvert.DeserializeObject<JSONUserList>(File.ReadAllText(PathUser));
+        //private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
+        private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
+
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
         private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
@@ -19,7 +18,6 @@ namespace Festivity
             MenuFunction.option = 0;
             while (true)
             {
-                Console.WriteLine();
                 Console.WriteLine("Your account Information: ");
                 Console.WriteLine();
                 Console.WriteLine($"    {LoggedInAccount.User.FirstName} {LoggedInAccount.User.LastName}");
@@ -27,7 +25,7 @@ namespace Festivity
                 Console.WriteLine($"    {LoggedInAccount.User.userAddress.ZipCode} {LoggedInAccount.User.userAddress.City}");
                 Console.WriteLine($"    {LoggedInAccount.User.Email}");
                 Console.WriteLine();
-                if(LoggedInAccount.User.AccountType == 1)
+                if (LoggedInAccount.User.AccountType == 1)
                 {
                     Console.WriteLine($"    Total amount earned: {AmountEarned()} Euro's");
                 }
@@ -38,7 +36,7 @@ namespace Festivity
 
         public static void AccountChangeInfo()
         {
-            foreach (var user in users.Users)
+            foreach (var user in userList.Users)
             {
                 if (LoggedInAccount.GetID() == user.AccountID)
                 {
@@ -59,8 +57,6 @@ namespace Festivity
                         Console.WriteLine($"8.  Company name:           {user.CompanyName}");
                         Console.WriteLine($"9.  Company phonenumber:    {user.CompanyPhoneNumber}\n");
                         Console.WriteLine("");
-                        Console.WriteLine("Transaction information");
-                        Console.WriteLine("You have made {ticketMoney} from tickets.");
                     }
                     if (LoggedInAccount.User.AccountType == 2) // Festival goer
                     {
@@ -325,14 +321,13 @@ namespace Festivity
             List<Ticket> ticketList = new List<Ticket>();
             double amountEarned = 0.0;
 
-
             foreach (var festival in festivals.Festivals)
             {
                 if (LoggedInAccount.GetID() == festival.FestivalOrganiserID)
                 {
                     foreach (var ticket in tickets.Tickets)
                     {
-                        if(festival.FestivalID == ticket.FestivalID)
+                        if (festival.FestivalID == ticket.FestivalID)
                         {
                             ticketList.Add(ticket);
                         }

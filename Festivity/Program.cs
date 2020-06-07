@@ -14,17 +14,17 @@ namespace Festivity
                 Console.SetWindowSize(150, 36);
                 if (!LoggedInAccount.IsLoggedIn())
                 {
-                    MenuFunction.Menu(new string[] { "Register", "Login", "Festivals", "Exit" });
+                    Menu.Draw(MenuBuilder.MainMenu());
                 }
                 if (LoggedInAccount.IsLoggedIn())
                 {
                     if (LoggedInAccount.User.AccountType == 2)
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "My Account", "My Tickets", "Logout", "Exit" });
+                        Menu.Draw(MenuBuilder.MainMenuUser());
                     }
                     if (LoggedInAccount.User.AccountType == 1)
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "Register festival", "My Account", "My Tickets", "Logout", "Exit" });
+                        Menu.Draw(MenuBuilder.MainMenuOrganiser());
                     }
                 }
             }
