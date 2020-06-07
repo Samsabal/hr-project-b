@@ -49,7 +49,7 @@ namespace Festivity
                 new MenuOption("My Account", () =>
                 {
                     Console.Clear();
-                    UserAccountPage.AccountPage();
+                    AccountPage.Manager.DrawPage();
                 }),
                 new MenuOption("My Tickets", () =>
                 {
@@ -97,7 +97,7 @@ namespace Festivity
                 new MenuOption("My Account", () =>
                 {
                     Console.Clear();
-                    UserAccountPage.AccountPage();
+                    AccountPage.Manager.DrawPage();
                 }),
                 new MenuOption("My Tickets", () =>
                 {

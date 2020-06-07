@@ -273,11 +273,11 @@ namespace Festivity
                         break;
 
                     case "Yes, I want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(1);
+                        AccountRegistration.Registration.SetNewsLetter(true);
                         break;
 
                     case "No, I don't want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(2);
+                        AccountRegistration.Registration.SetNewsLetter(false);
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
@@ -399,22 +399,22 @@ namespace Festivity
 
                     case "My Account":
                         Console.Clear();
-                        UserAccountPage.AccountPage();
+                        AccountPage.Manager.DrawPage();
                         break;
 
                     case "Change user information":
                         Console.Clear();
-                        UserAccountPage.AccountChangeInfo();
+                        AccountPage.Manager.InitateInfoChange();
                         break;
 
                     case "Preference for e-mails":
                         Console.Clear();
-                        UserAccountPage.AccountEmailPrefference();
+                        Account.ChangeEmailPreference.Initate();
                         break;
 
                     case "Change password":
                         Console.Clear();
-                        UserAccountPage.ChangePassword();
+                        Account.ChangePassword.Initiate();
                         break;
 
                     case "Techno":
