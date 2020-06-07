@@ -156,6 +156,7 @@ namespace Festivity
             {
                 if (CatalogPage.currentPage * 5 + 5 < CatalogPage.festivalArray.Length)
                 {
+                    option = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.currentPage++;
                 }
