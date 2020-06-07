@@ -1,7 +1,6 @@
 {
   "users": [
     {
-      "birthDate": "1990-01-01T00:00:00",
       "userAddress": {
         "country": "Adminland",
         "city": "Admincity",
@@ -19,11 +18,11 @@
       "companyPhoneNumber": null,
       "companyName": null,
       "companyIBAN": null,
-      "newsLetter": 1,
+      "birthDate": "1990-01-01T00:00:00",
+      "newsLetter": true,
       "phoneNumber": "91283129831"
     },
     {
-      "birthDate": "1990-01-01T00:00:00",
       "userAddress": {
         "country": "Netherlands",
         "city": "Goes",
@@ -41,11 +40,11 @@
       "companyPhoneNumber": null,
       "companyName": null,
       "companyIBAN": null,
-      "newsLetter": 1,
+      "birthDate": "1990-01-01T00:00:00",
+      "newsLetter": true,
       "phoneNumber": "123123123"
     },
     {
-      "birthDate": "1990-01-01T00:00:00",
       "userAddress": {
         "country": "Netherlands",
         "city": "Rotterdam",
@@ -63,11 +62,11 @@
       "companyPhoneNumber": "0636221537",
       "companyName": "Festivity",
       "companyIBAN": "NL27ABNA0123456789",
-      "newsLetter": 0,
+      "birthDate": "1990-01-01T00:00:00",
+      "newsLetter": false,
       "phoneNumber": null
     },
     {
-      "birthDate": "1990-01-01T00:00:00",
       "userAddress": {
         "country": "Netherlands",
         "city": "Rotterdam",
@@ -85,11 +84,11 @@
       "companyPhoneNumber": "0636221537",
       "companyName": "Test",
       "companyIBAN": "NL99TEST0123456789",
-      "newsLetter": 0,
+      "birthDate": "1990-01-01T00:00:00",
+      "newsLetter": false,
       "phoneNumber": null
     },
     {
-      "birthDate": "1990-01-01T00:00:00",
       "userAddress": {
         "country": "Rotterdam",
         "city": "Rotterdam",
@@ -107,7 +106,8 @@
       "companyPhoneNumber": "0636221537",
       "companyName": "test2",
       "companyIBAN": "NL99TEST0123456789",
-      "newsLetter": 0,
+      "birthDate": "1990-01-01T00:00:00",
+      "newsLetter": false,
       "phoneNumber": null
     }
   ]
