@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity.Account
 {
-    class ChangeEmailPreference
+    internal class ChangeEmailPreference
     {
         public static void Initate()
         {
@@ -15,7 +13,6 @@ namespace Festivity.Account
             if (userInput.ToLower() == "y")
             {
                 UserAccepstPreferenceChange();
-
             }
             else if (userInput.ToLower() != "n")
             {
@@ -25,8 +22,7 @@ namespace Festivity.Account
             LoggedInAccount.UpdateDatabase();
         }
 
-
-        public static void UserAccepstPreferenceChange()
+        private static void UserAccepstPreferenceChange()
         {
             Console.Clear();
             LoggedInAccount.User.NewsLetter = !LoggedInAccount.User.NewsLetter;
@@ -35,7 +31,7 @@ namespace Festivity.Account
             Console.Clear();
         }
 
-        public static void UserDeclinesPreferenceChange()
+        private static void UserDeclinesPreferenceChange()
         {
             Console.Clear();
             Console.WriteLine("Invalid input, please try again.");
