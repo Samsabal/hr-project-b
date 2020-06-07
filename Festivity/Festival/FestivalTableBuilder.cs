@@ -32,8 +32,7 @@ namespace Festivity.Festival
 
         public static string ConvertToString(List<List<string>> festivalTableList)
         {
-            Table festivalTable = new Table();
-            festivalTable = new Table("ID", 
+            Table festivalTable = new Table("ID", 
                                       "Festival name", 
                                       "Festival date", 
                                       "City", 
