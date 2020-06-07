@@ -99,6 +99,15 @@ namespace Festivity
                     Console.Clear();
                     UserAccountPage.AccountPage();
                 }),
+                new MenuOption("My festivals", () =>
+                {
+                    // TODO
+                    Console.Clear();
+                    JSONFestivalList test = JSONFunctionality.GetFestivals();
+                    while(true){
+                        Menu.Draw(ChangeFestival(test.Festivals.ToArray()[0]));
+                    }
+                }),
                 new MenuOption("My Tickets", () =>
                 {
                     Console.Clear();
@@ -249,6 +258,75 @@ namespace Festivity
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CatalogMain();
                 })
+            };
+            return newMenuOptions;
+        }
+
+        public static List<MenuOption> ChangeFestival(FestivalModel festival)
+        {
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+            {
+                new MenuOption($"Festival name: {festival.FestivalName}", () =>
+                {
+                    Console.Clear();
+                    do { festival.FestivalName = FestivalRegister.InputLoop("Fill in the name of the festival: "); }
+                    while (!RegexUtils.IsValidName(festival.FestivalName));
+                }),
+                new MenuOption($"Festival date: {festival.FestivalDate.ToShortDateString()}", () =>
+                {
+                    string tempDay;
+                    string tempMonth;
+                    string tempYear;
+                    Console.Clear();
+                    Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
+                    do { tempDay = FestivalRegister.InputLoop("Fill in the day: "); }
+                    while (!RegexUtils.IsValidDay(tempDay));
+                    do { tempMonth = FestivalRegister.InputLoop("Fill in the month: "); }
+                    while (!RegexUtils.IsValidMonth(tempMonth));
+                    do { tempYear = FestivalRegister.InputLoop("Fill in the year: "); }
+                    while (!RegexUtils.IsValidFestivalYear(tempYear));
+                    festival.FestivalDate = new DateTime(int.Parse(tempYear), int.Parse(tempMonth), int.Parse(tempDay));
+                }),
+                new MenuOption($"Starting time: {festival.FestivalStartingTime.ToShortTimeString()}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption($"End time {festival.FestivalStartingTime.ToShortTimeString()}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption($"Festival address: {festival.FestivalLocation}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption($"Festival description: {festival.SetDescriptionLength(50)}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption($"Age restriction: {festival.FestivalAgeRestriction}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption($"Festival genre {festival.FestivalGenre}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption($"Cancel time: {festival.FestivalCancelTime}", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption("Tickets", () =>
+                {
+                    //TODO
+                }),               
+                new MenuOption("Save festival", () =>
+                {
+                    //TODO
+                }),
+                new MenuOption("Cancel festival modification", () =>
+                {
+                    //TODO
+                }),
             };
             return newMenuOptions;
         }
