@@ -25,6 +25,37 @@ namespace Festivity
 
         [JsonProperty("maxTicketsPerPerson")]
         public int MaxTicketsPerPerson { get; set; }
+
+        public void EditName()
+        {
+            do { TicketName = FestivalRegister.InputLoop("Fill in the new ticket name: "); }
+            while (!RegexUtils.IsValidName(TicketName));
+        }
+
+        public void EditDescription()
+        {
+            do { TicketDescription = FestivalRegister.InputLoop("Fill in the new ticket description: "); }
+            while (!RegexUtils.IsValidDescription(TicketDescription));
+        }
+
+        public void EditPrice()
+        {
+            do { TicketPrice = double.Parse(FestivalRegister.InputLoop("Fill in the new ticket price: ")); }
+            while (!RegexUtils.IsValidPrice(TicketPrice.ToString()));
+        }
+
+        public void EditMaxTickets()
+        {
+            do { MaxTickets = int.Parse(FestivalRegister.InputLoop("Fill in the maximum amount of available tikets of this ticket type: ")); }
+            while (!RegexUtils.IsValidMaxTickets(MaxTickets.ToString()));
+        }
+
+        public void EditMaxTicketsPerPerson()
+        {
+            do { MaxTicketsPerPerson = int.Parse(FestivalRegister.InputLoop("Fill in the maximum amount of tickets a single person may buy: ")); }
+            while (!RegexUtils.IsValidMaxTicketsPerPerson(MaxTicketsPerPerson.ToString()));
+        }
+
     }
 
     internal class JSONTicketList
