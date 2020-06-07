@@ -14,16 +14,19 @@ namespace Festivity
             {
                 new MenuOption("Register", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     AccountRegistration.Manager.InitateUserRegistration();
                 }),
                 new MenuOption("Login", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     AccountLogin.LoginManager.InitiateLoginPage();
                 }),
                 new MenuOption("Festivals", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     CatalogPage.CatalogMain();
                 }),
@@ -43,16 +46,19 @@ namespace Festivity
             {
                 new MenuOption("Festivals", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     CatalogPage.CatalogMain();
                 }),
                 new MenuOption("My Account", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     AccountPage.Manager.DrawPage();
                 }),
                 new MenuOption("My Tickets", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     TicketTableManager.Initiate();
                 }),
@@ -82,6 +88,7 @@ namespace Festivity
             {
                 new MenuOption("Festivals", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     CatalogPage.CatalogMain();
                 }),
@@ -96,11 +103,13 @@ namespace Festivity
                 }),
                 new MenuOption("My Account", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     AccountPage.Manager.DrawPage();
                 }),
                 new MenuOption("My Tickets", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     TicketTableManager.Initiate();
                 }),
@@ -134,6 +143,7 @@ namespace Festivity
                 {
                     newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.festivalArray[i + CatalogPage.currentPage * 5].FestivalName}", () =>
                     {
+                        Menu.OptionReset();
                         Console.Clear();
                         SelectedFestival.festival = CatalogPage.festivalArray[i];
                         Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
@@ -146,6 +156,7 @@ namespace Festivity
                 {
                     newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.festivalArray[i].FestivalName}", () =>
                     {
+                        Menu.OptionReset();
                         Console.Clear();
                         SelectedFestival.festival = CatalogPage.festivalArray[i];
                         Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
@@ -156,7 +167,7 @@ namespace Festivity
             {
                 if (CatalogPage.currentPage * 5 + 5 < CatalogPage.festivalArray.Length)
                 {
-                    option = 0;
+                    Menu.OptionReset();
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.currentPage++;
                 }
@@ -165,17 +176,20 @@ namespace Festivity
             {
                 if (CatalogPage.currentPage > 0)
                 {
+                    Menu.OptionReset();
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.currentPage--;
                 }
             }));
             newMenuOptions.Add(new MenuOption("Filter festivals", () =>
             {
+                Menu.OptionReset();
                 CatalogPage.currentCatalogNavigation = "filter";
                 Console.Clear();
             }));
             newMenuOptions.Add(new MenuOption("Exit to main menu", () =>
             {
+                Menu.OptionReset();
                 Console.Clear();
                 Program.Main();
             }));
@@ -189,6 +203,7 @@ namespace Festivity
             {
                 new MenuOption("Sort by name", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = SortingFunctions.SortName(CatalogPage.festivalArray);
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -196,6 +211,7 @@ namespace Festivity
                 }),
                 new MenuOption("Sort by date", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = SortingFunctions.SortDate(CatalogPage.festivalArray);
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -203,6 +219,7 @@ namespace Festivity
                 }),
                 new MenuOption("Sort by price", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = SortingFunctions.SortPrice(CatalogPage.festivalArray);
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -210,6 +227,7 @@ namespace Festivity
                 }),
                 new MenuOption("Sort by availability", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = SortingFunctions.SortAvailability(CatalogPage.festivalArray);
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -217,6 +235,7 @@ namespace Festivity
                 }),
                 new MenuOption("Filter by name", () =>
                 {
+                    Menu.OptionReset();
                     string namesearch = Console.ReadLine();
                     CatalogPage.festivalArray = FilterFunctions.FilterName(CatalogPage.festivalArray, namesearch);
                     CatalogPage.currentCatalogNavigation = "main";
@@ -225,6 +244,7 @@ namespace Festivity
                 }),
                 new MenuOption("Filter by genre", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = FilterFunctions.FilterGenre(CatalogPage.festivalArray, Console.ReadLine());
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -232,6 +252,7 @@ namespace Festivity
                 }),
                 new MenuOption("Filter by loctaion", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = FilterFunctions.FilterLocation(CatalogPage.festivalArray, Console.ReadLine());
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -239,6 +260,7 @@ namespace Festivity
                 }),
                 new MenuOption("Clear by filters", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.festivalArray = JSONFunctionality.GetFestivals().Festivals.ToArray();
                     CatalogPage.currentCatalogNavigation = "main";
                     CatalogPage.currentPage = 0;
@@ -246,6 +268,7 @@ namespace Festivity
                 }),
                 new MenuOption("Return to catalog", () =>
                 {
+                    Menu.OptionReset();
                     CatalogPage.currentCatalogNavigation = "main";
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CatalogMain();
