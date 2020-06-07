@@ -5,76 +5,54 @@ namespace Festivity.Festival
 {
     internal class Writer
     {
-        public static void Festival(FestivalModel festival)
+        public static void FestivalName(FestivalModel festival) // Displays the name of the current festival
         {
-            Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine("You need to be at least " + festival.FestivalAgeRestriction + " years old in order to enter.");
-            Console.WriteLine(festival.FestivalDescription);
-            Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine("Starts at " + festival.FestivalStartingTime + " and ends on " + festival.FestivalEndTime + ".");
-            Console.WriteLine("Takes place on: " + festival.FestivalDate.Day + "-" + festival.FestivalDate.Month + "-" + festival.FestivalDate.Year);
-            Console.WriteLine();
-            Console.WriteLine(festival.FestivalLocation.StreetName + " " + festival.FestivalLocation.StreetNumber + ", " + festival.FestivalLocation.ZipCode);
-            Console.WriteLine(festival.FestivalLocation.City + ", " + festival.FestivalLocation.Country);
-            Console.WriteLine("======================================================================");
+            Console.WriteLine($"X=============================================================================X");
+            Console.WriteLine($"| {festival.FestivalName}".PadRight(77) + " |");
         }
 
-        public static void Tickets()
+        public static void FestivalAge(FestivalModel festival) // Display how old you have to be to enter the festival
         {
-            List<MenuOption> newMenuOptions = new List<MenuOption>();
+            Console.WriteLine($"|-----------------------------------------------------------------------------|");
+            Console.WriteLine($"| You need to be at least {festival.FestivalAgeRestriction} years old in order to enter.".PadRight(77) + " |");
+        }
 
-            // Displays the Tickets for the current Festival
+        public static void Festival(FestivalModel festival) // Displays information about the current festival
+        {
+            Console.WriteLine($"|-----------------------------------------------------------------------------|");
+            Console.WriteLine($"| Starts at {festival.FestivalStartingTime} and ends on {festival.FestivalEndTime}.".PadRight(77) + " |");
+            Console.WriteLine($"| Takes place on: {festival.FestivalDate.Day}-{festival.FestivalDate.Month}-{festival.FestivalDate.Year}".PadRight(77) + " |");
+            Console.WriteLine($"| ".PadRight(77) + " |");
+            Console.WriteLine($"| {festival.FestivalLocation.StreetName} {festival.FestivalLocation.StreetNumber}, {festival.FestivalLocation.ZipCode}".PadRight(77) + " |");
+            Console.WriteLine($"| {festival.FestivalLocation.City}, {festival.FestivalLocation.Country}".PadRight(77) + " |");
+            Console.WriteLine($"|=============================================================================|");
+        }
+
+        public static void Tickets() // Displays the Tickets for the current Festival
+        {
             foreach (var ticket in Transaction.TicketListBuilder.Get())
             {
                 int ticketId = ticket.TicketID;
                 int maxTickets = ticket.MaxTickets;
-                Console.WriteLine(ticket.TicketName);
-                Console.WriteLine("Description: " + ticket.TicketDescription);
-                Console.WriteLine("Price: " + ticket.TicketPrice + " euros");
-                Console.WriteLine("There are " + ticket.MaxTickets + " in total of which there are " + Utils.TicketsLeft(ticketId, maxTickets) + " left.");
-                Console.WriteLine("----------------------------------------------------------------------");
-
-                newMenuOptions.Add(new MenuOption("Buy Ticket:" + ticket.TicketName, () =>
-                {
-                    if (LoggedInAccount.IsLoggedIn())
-                    {
-                        Menu.OptionReset();
-                        Console.Clear();
-                        Transaction.DisplayManager.Initiate(ticket.TicketID);
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        AccountLogin.LoginManager.InitateLogin(true);
-                    }
-                }));
+                Console.WriteLine($"| {ticket.TicketName}".PadRight(77) + " |");
+                Console.WriteLine($"| Description: {ticket.TicketDescription}".PadRight(77) + " |");
+                Console.WriteLine($"| Price: This ticket cost {ticket.TicketPrice} euros.".PadRight(77) + " |");
+                Console.WriteLine($"| There are {ticket.MaxTickets} in total of which there are {Utils.TicketsLeft(ticketId, maxTickets)} left.".PadRight(77) + " |");
+                Console.WriteLine($"|-----------------------------------------------------------------------------|");
             }
-            newMenuOptions.Add(new MenuOption("Return to Catalog:", () =>
-            {
-                Console.Clear();
-                CatalogPage.currentCatalogNavigation = "main";
-                CatalogPage.CatalogMain();
-            }));
-            newMenuOptions.Add(new MenuOption("Exit to Main Menu:", () =>
-            {
-                Menu.OptionReset();
-                Console.Clear();
-                Program.Main();
-            }));
 
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-            ConsoleHelperFunctions.ClearCurrentConsoleLine();
-            Console.WriteLine("======================================================================");
-            Menu.Draw(newMenuOptions);
+            Utils.ClearConsoleLine();
+            Console.WriteLine($"X=============================================================================X");
         }
 
-        public static void FestivalOrganiser(FestivalModel festival)
+        public static void FestivalOrganiser(FestivalModel festival) // Displays the name of the organiser of the festival
         {
             foreach (var user in JSONFunctionality.GetUserList().Users)
             {
                 if (festival.FestivalOrganiserID == user.AccountID)
                 {
-                    Console.WriteLine("Organised by: " + user.CompanyName);
+                    Console.WriteLine($"| Organised by: {user.CompanyName}".PadRight(77) + " |");
                 }
             }
         }
