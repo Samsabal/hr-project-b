@@ -274,6 +274,8 @@ namespace Festivity
                         CurrentRegisterSelection = null;
                         Menu.OptionReset();
                         break;
+                    default:
+                        break;
                 }
             }
         }
