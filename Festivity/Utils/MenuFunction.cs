@@ -269,11 +269,11 @@ namespace Festivity
                         break;
 
                     case "Yes, I want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(1);
+                        AccountRegistration.Registration.SetNewsLetter(true);
                         break;
 
                     case "No, I don't want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(2);
+                        AccountRegistration.Registration.SetNewsLetter(false);
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen

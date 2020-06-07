@@ -42,7 +42,7 @@ namespace Festivity
 
 
         [JsonProperty("newsLetter")]
-        public int NewsLetter { get; set; }
+        public bool NewsLetter { get; set; }
 
         [JsonProperty("phoneNumber")]
         public string PhoneNumber { get; set; }
