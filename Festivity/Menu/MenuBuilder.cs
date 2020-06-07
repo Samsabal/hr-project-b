@@ -89,8 +89,8 @@ namespace Festivity
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    FestivalRegister.activeScreen = true;
-                    FestivalRegister.currentRegisterSelection = "Main";
+                    FestivalRegister.ActiveScreen = true;
+                    FestivalRegister.CurrentRegisterSelection = "Main";
                     FestivalRegister.ShowFestivalRegister();
                     Thread.Sleep(1000);
                 }),
@@ -261,62 +261,62 @@ namespace Festivity
                 new MenuOption("Festival Name", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Festival Name";
+                    FestivalRegister.CurrentRegisterSelection = "Festival Name";
                 }),
                 new MenuOption("Festival Date", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Festival Date";
+                    FestivalRegister.CurrentRegisterSelection = "Festival Date";
                 }),
                 new MenuOption("Starting Time", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Starting Time";
+                    FestivalRegister.CurrentRegisterSelection = "Starting Time";
                 }),
                 new MenuOption("End Time", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "End Time";
+                    FestivalRegister.CurrentRegisterSelection = "End Time";
                 }),
                 new MenuOption("Festival Adress", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Festival Adress";
+                    FestivalRegister.CurrentRegisterSelection = "Festival Adress";
                 }),
                 new MenuOption("Festival Description", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Festival Description";
+                    FestivalRegister.CurrentRegisterSelection = "Festival Description";
                 }),
                 new MenuOption("Age Restriction", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Age Restriction";
+                    FestivalRegister.CurrentRegisterSelection = "Age Restriction";
                 }),
                 new MenuOption("Festival Genre", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Festival Genre";
+                    FestivalRegister.CurrentRegisterSelection = "Festival Genre";
                 }),
                 new MenuOption("Cancel Time", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Cancel Time";
+                    FestivalRegister.CurrentRegisterSelection = "Cancel Time";
                 }),
                 new MenuOption("Tickets", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Tickets";
+                    FestivalRegister.CurrentRegisterSelection = "Tickets";
                 }),
                 new MenuOption("Save Festival", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Save Festival";
+                    FestivalRegister.CurrentRegisterSelection = "Save Festival";
                 }),
                 new MenuOption("Cancel Festival Registration", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.currentRegisterSelection = "Cancel Festival Registration";
+                    FestivalRegister.CurrentRegisterSelection = "Cancel Festival Registration";
                 })
             };
 
@@ -331,32 +331,32 @@ namespace Festivity
                 new MenuOption("Techno", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.festivalGenre = "Techno";
-                    FestivalRegister.currentRegisterSelection = "Main";
+                    FestivalRegister.SetFestivalGenre("Techno");
+                    FestivalRegister.CurrentRegisterSelection = "Main";
                 }),
                 new MenuOption("Drum & Bass", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.festivalGenre = "Drum & Bass";
-                    FestivalRegister.currentRegisterSelection = "Main";
+                    FestivalRegister.SetFestivalGenre("Drum & Bass");
+                    FestivalRegister.CurrentRegisterSelection = "Main";
                 }),
                 new MenuOption("Pop", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.festivalGenre = "Pop";
-                    FestivalRegister.currentRegisterSelection = "Main";
+                    FestivalRegister.SetFestivalGenre("Pop");
+                    FestivalRegister.CurrentRegisterSelection = "Main";
                 }),
                 new MenuOption("Rock", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.festivalGenre = "Rock";
-                    FestivalRegister.currentRegisterSelection = "Main";
+                    FestivalRegister.SetFestivalGenre("Rock");
+                    FestivalRegister.CurrentRegisterSelection = "Main";
                 }),
                 new MenuOption("Hip-Hop", () =>
                 {
                     Console.Clear();
-                    FestivalRegister.festivalGenre = "Hip-Hop";
-                    FestivalRegister.currentRegisterSelection = "Main";
+                    FestivalRegister.SetFestivalGenre("Hip-Hop");
+                    FestivalRegister.CurrentRegisterSelection = "Main";
                 }),
             };
 

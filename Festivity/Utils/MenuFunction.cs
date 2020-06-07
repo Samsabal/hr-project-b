@@ -162,8 +162,8 @@ namespace Festivity
                     case "Register festival": // "Register festival" option home screen
                         Console.Clear();
                         option = 0;
-                        FestivalRegister.activeScreen = true;
-                        FestivalRegister.currentRegisterSelection = "Main";
+                        FestivalRegister.ActiveScreen = true;
+                        FestivalRegister.CurrentRegisterSelection = "Main";
                         FestivalRegister.ShowFestivalRegister();
                         Thread.Sleep(1000);
                         break;
