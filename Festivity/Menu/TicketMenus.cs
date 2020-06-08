@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class TicketMenus : MenuBuilder
+    internal class TicketMenus : MenuBuilder
     {
         public static List<MenuOption> SelectTicket(FestivalModel festival)
         {
@@ -32,7 +31,6 @@ namespace Festivity
 
         public static List<MenuOption> ChangeTicket(Ticket ticket)
         {
-
             int currentValueStartingPoint = 30;
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
@@ -70,7 +68,6 @@ namespace Festivity
             };
 
             return newMenuOptions;
-
         }
     }
 }

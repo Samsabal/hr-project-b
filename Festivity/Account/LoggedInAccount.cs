@@ -50,6 +50,7 @@
                 if (GetID() == userList.Users[i].AccountID)
                 {
                     userList.Users[i] = User;
+                    break;
                 }
             }
             JSONFunctionality.WriteToUserList(userList);

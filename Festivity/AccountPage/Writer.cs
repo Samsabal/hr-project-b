@@ -21,7 +21,7 @@ namespace Festivity.AccountPage
                     Console.WriteLine($"    Total amount earned: {Utils.AmountEarned()} Euro");
                 }
                 Console.WriteLine();
-                MenuFunction.Menu(new string[] { "Change user information", "Change password", "Preference for e-mails", "Exit to Main Menu" });
+                Menu.Draw(AccountPageMenu.Build());
             }
         }
 

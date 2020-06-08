@@ -27,21 +27,21 @@
             }
             UserModifier.InputNewsLetter(user);
             UserModifier.InputUserAdress(user);
-            ShowUserRegister(user);
+            ShowUserRegister(user, true);
         }
 
-        public static void ShowUserRegister(UserModel user)
+        public static void ShowUserRegister(UserModel user, bool newUser)
         {
             while (true)
             {
                 if (user.AccountType == 1)
                 {
-                    Menu.Draw(UserRegisterMenu.UserOrganisatorRegisterMenuBuilder(user));
+                    Menu.Draw(UserRegisterMenu.UserRegisterMenuBuilder(user, newUser));
                 }
 
                 if (user.AccountType == 2)
                 {
-                    Menu.Draw(UserRegisterMenu.UserVisitorRegisterMenuBuilder(user));
+                    Menu.Draw(UserRegisterMenu.UserRegisterMenuBuilder(user, newUser));
                 }
             }
         }

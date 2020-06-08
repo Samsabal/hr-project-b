@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    class FestivalMenus : MenuBuilder
+    internal class FestivalMenus : MenuBuilder
     {
         public static List<MenuOption> SelectFestival()
         {
@@ -107,7 +107,5 @@ namespace Festivity
             };
             return newMenuOptions;
         }
-
-
     }
 }
