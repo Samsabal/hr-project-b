@@ -15,8 +15,7 @@ namespace Festivity
             {
                 if (Option == i)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                 }
                 Console.WriteLine("{0}", consoleOptions[i].Name);
                 if (Option == i)

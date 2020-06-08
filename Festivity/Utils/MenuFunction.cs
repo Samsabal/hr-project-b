@@ -24,8 +24,7 @@ namespace Festivity
                     {
                         if (option == i)
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            Console.ForegroundColor = ConsoleColor.Red;
                         }
                         Console.WriteLine("{0}", consoleOptions[i]);
                         if (option == i)
@@ -41,8 +40,7 @@ namespace Festivity
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     FestivalModel tempfestival = (FestivalModel)objects[i];
 
@@ -57,8 +55,7 @@ namespace Festivity
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
@@ -74,8 +71,7 @@ namespace Festivity
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Ticket tempticket = (Ticket)objects[i];
 
@@ -91,8 +87,7 @@ namespace Festivity
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
@@ -108,8 +103,7 @@ namespace Festivity
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
