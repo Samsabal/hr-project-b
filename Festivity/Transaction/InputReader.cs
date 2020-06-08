@@ -1,4 +1,5 @@
 ﻿using System;
+using Festivity.Utils;
 
 namespace Festivity.Transaction
 {
@@ -8,7 +9,7 @@ namespace Festivity.Transaction
         {
             string userInput;
             Console.WriteLine("How many tickets would you like to buy? ");
-            do { userInput = InputLoopString(); }
+            do { userInput = General.InputLoopString(); }
             while (!NumberCheck(userInput, 1, 10));
             return Int32.Parse(userInput);
         }
@@ -28,8 +29,8 @@ namespace Festivity.Transaction
         {
             ConsoleKey input;
             Console.WriteLine("Confirm Order? [y/n]");
-            do { input = InputLoopKey(); }
-            while (YesOrNoCheck(input));
+            do { input = General.InputLoopKey(); }
+            while (General.YesOrNoCheck(input));
 
             Console.Clear();
             return input == ConsoleKey.Y;
@@ -50,31 +51,6 @@ namespace Festivity.Transaction
             return false;
         }
 
-        private static bool YesOrNoCheck(ConsoleKey input)
-        {
-            if (input != ConsoleKey.Y && input != ConsoleKey.N)
-            {
-                ErrorMessage.WriteLine("Wrong input, please press 'y' or 'n'");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
-        private static string InputLoopString()
-        {
-            string userInput;
-            userInput = Console.ReadLine();
-            return userInput;
-        }
-
-        private static ConsoleKey InputLoopKey()
-        {
-            ConsoleKey userInput;
-            userInput = Console.ReadKey(true).Key;
-            return userInput;
-        }
     }
 }
