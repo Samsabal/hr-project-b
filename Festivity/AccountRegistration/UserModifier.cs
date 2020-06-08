@@ -1,12 +1,9 @@
-﻿using System;
-using Festivity.Transaction;
-using Festivity.Utils;
-using System.Collections.Generic;
-using System.Text;
+﻿using Festivity.Utils;
+using System;
 
 namespace Festivity
 {
-    class UserModifier
+    internal class UserModifier
     {
         public static void InputFirstName(UserModel user)
         {
@@ -25,23 +22,11 @@ namespace Festivity
             do { user.Email = General.InputLoop("Email: "); }
             while (!RegexUtils.IsValidEmail(user.Email) || UserRegisterHandler.CheckIfEmailExists(user.Email));
         }
+
         public static void InputPassword(UserModel user)
         {
             do { user.Password = General.InputLoop("Password: "); }
             while (!RegexUtils.IsValidPassword(user.Password));
-        }
-
-        public static void InputAccountType(UserModel user)
-        {
-            string input;
-            do { input = General.InputLoop("Are you a visitor? ('yes' or 'no'): "); }
-            while (!RegexUtils.IsValidYesOrNo(input));
-
-            if (UserRegisterHandler.IsInputYes(input))
-            {
-                user.AccountType = 2;
-            }
-            else { user.AccountType = 1; }
         }
 
         public static void InputCompanyContactperson(UserModel user)
@@ -83,7 +68,6 @@ namespace Festivity
             do { userYear = General.InputLoop("Year of birth: "); }
             while (!RegexUtils.IsValidUserYear(userYear));
             user.BirthDate = new DateTime(int.Parse(userYear), int.Parse(userMonth), int.Parse(userDay));
-
         }
 
         public static void InputVisitorPhonenumber(UserModel user)
@@ -91,20 +75,34 @@ namespace Festivity
             do { user.PhoneNumber = General.InputLoop("Phone number: "); }
             while (!RegexUtils.IsValidPhoneNumber(user.PhoneNumber));
         }
-        
+
         public static void InputCompanyPhoneNumber(UserModel user)
         {
             do { user.CompanyPhoneNumber = General.InputLoop("Phone number: "); }
             while (!RegexUtils.IsValidPhoneNumber(user.CompanyPhoneNumber));
         }
 
+        public static void InputAccountType(UserModel user)
+        {
+            string input;
+
+            do { input = General.InputLoop("Are you a visitor? ('yes' or 'no'): "); }
+            while (!RegexUtils.IsValidYesOrNo(input));
+
+            if (UserRegisterHandler.IsInputYes(input))
+            {
+                user.AccountType = 2;
+            }
+            else { user.AccountType = 1; }
+        }
+
         public static void InputNewsLetter(UserModel user)
         {
-            if (UserRegisterHandler.YesOrNoNewsLetter())
-            {
-                user.NewsLetter = true;
-            }
-            user.NewsLetter = false;
+            string input;
+            do { input = General.InputLoop("Do you want to recieve our newsletter? ('yes' or 'no'): "); }
+            while (!RegexUtils.IsValidYesOrNo(input));
+
+            user.NewsLetter = UserRegisterHandler.IsInputYes(input);
         }
 
         public static void InputUserAdress(UserModel user)
