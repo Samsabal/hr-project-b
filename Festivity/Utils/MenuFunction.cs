@@ -137,12 +137,6 @@ namespace Festivity
                 Console.CursorVisible = true;
                 switch (consoleOptions[option])
                 {
-                    case "Register": // "Register" option home screen
-                        Console.Clear();
-                        AccountRegistration.Manager.InitateUserRegistration();
-                        //UserRegisterPage.CreateUser();
-                        break;
-
                     case "Login": // "Login" option home screen
                         Console.Clear();
                         AccountLogin.LoginManager.InitiateLoginPage();
@@ -237,26 +231,6 @@ namespace Festivity
                             ConsoleHelperFunctions.ClearCurrentConsole();
                             CatalogPage.currentPage--;
                         }
-                        break;
-
-                    case "I am an Organisator":
-                        //Console.Clear();
-                        //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        AccountRegistration.Registration.SetAccountType(1);
-                        break;
-
-                    case "I am a Visitor":
-                        //Console.Clear();
-                        //Console.WriteLine("\nAre you an Organisator or Visitor? ");
-                        AccountRegistration.Registration.SetAccountType(2);
-                        break;
-
-                    case "Yes, I want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(true);
-                        break;
-
-                    case "No, I don't want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(false);
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen

@@ -1,4 +1,5 @@
 ﻿using Festivity.AccountLogin;
+using Festivity.AccountRegistration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +16,9 @@ namespace Festivity
                 new MenuOption("Register", () =>
                 {
                     Console.Clear();
-                    AccountRegistration.Manager.InitateUserRegistration();
+                    Menu.OptionReset();
+                    UserModel user = new UserModel(){AccountID = JSONFunctionality.GenerateUserID()};
+                    UserRegisterHandler.InitiateUserRegister(user);
                 }),
                 new MenuOption("Login", () =>
                 {
