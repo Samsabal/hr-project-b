@@ -16,12 +16,14 @@ namespace Festivity
                 {
                     Menu.OptionReset();
                     Console.Clear();
+                    new PathString("Register").Draw();
                     AccountRegistration.Manager.InitateUserRegistration();
                 }),
                 new MenuOption(UIElements.StringInMiddle(". Log In ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
+
                     AccountLogin.LoginManager.InitiateLoginPage();
                 }),
                 new MenuOption(UIElements.StringInMiddle(". Festivals ."), () =>
