@@ -36,7 +36,7 @@ namespace Festivity
                     new MenuOption("Address: ".PadRight(currentValueStartingPoint) + $"{user.userAddress.ToString()}", () =>
                     {
                         Console.Clear();
-                        UserModifier.InputPassword(user);
+                        UserModifier.InputUserAdress(user);
                     }),
                     new MenuOption("Contactperson: ".PadRight(currentValueStartingPoint) + $"{user.ContactPerson}", () =>
                     {
@@ -109,7 +109,7 @@ namespace Festivity
                     new MenuOption("Address: ".PadRight(currentValueStartingPoint) + $"{user.userAddress.ToString()}", () =>
                     {
                         Console.Clear();
-                        UserModifier.InputPassword(user);
+                        UserModifier.InputUserAdress(user);
                     }),
                     new MenuOption("Birthday: ".PadRight(currentValueStartingPoint) + $"{user.BirthDate.ToShortDateString()}", () =>
                     {
