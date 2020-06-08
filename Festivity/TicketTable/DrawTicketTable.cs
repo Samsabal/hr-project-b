@@ -1,6 +1,7 @@
 ﻿using BetterConsoleTables;
 using System;
 using System.Collections.Generic;
+using Festivity.Utils;
 
 namespace Festivity
 {
@@ -15,13 +16,13 @@ namespace Festivity
         {
             if (TicketList.Count > 0)
             {
-                ticketTable = new Table("ID", "Festival name", "Festival date", "Ticket Name", "Price",
-                              "Bought", "Amount", "Festival Status", "Refundable");
+                ticketTable = new Table("ID", "Name", "Festival Date", "Ticket Name", "Price",
+                              "Bought", "Amount", "Status", "Refundable");
 
                 for (int i = 0; i < TicketList.Count; i++)
                 {
-                    ticketTable.AddRow($"{TicketList[i][7]}", $"{TicketList[i][0]}", $"{TicketList[i][1]}",
-                                       $"{TicketList[i][4]}", $"{TicketList[i][5]}", $"{TicketList[i][6]}",
+                    ticketTable.AddRow($"{TicketList[i][7]}", $"{General.SetStringLength(TicketList[i][0], 8)}", $"{TicketList[i][1]}",
+                                       $"{General.SetStringLength(TicketList[i][4], 13)}", $"{TicketList[i][5]}", $"{General.SetStringLength(TicketList[i][6], 13)}",
                                        $"{TicketList[i][8]}", $"{TicketList[i][2]}", $"{TicketList[i][3]}");
                 }
                 ticketTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
