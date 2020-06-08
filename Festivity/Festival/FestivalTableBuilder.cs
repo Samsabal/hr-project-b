@@ -1,7 +1,5 @@
 ﻿using BetterConsoleTables;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Festival
 {
@@ -32,15 +30,17 @@ namespace Festivity.Festival
 
         public static string ConvertToString(List<List<string>> festivalTableList)
         {
-            Table festivalTable = new Table("ID", 
-                                      "Festival name", 
-                                      "Festival date", 
-                                      "City", 
+            Table festivalTable = new Table("ID",
+                                      "Festival name",
+                                      "Festival date",
+                                      "City",
                                       "Ticket amount");
 
-            for (int i = 0; i < festivalTableList.Count; i++){
-            festivalTable.AddRow($"{festivalTableList[i][0]}", $"{festivalTableList[i][1]}", $"{festivalTableList[i][2]}",
-                                 $"{festivalTableList[i][3]}", $"{festivalTableList[i][4]}");}
+            for (int i = 0; i < festivalTableList.Count; i++)
+            {
+                festivalTable.AddRow($"{festivalTableList[i][0]}", $"{festivalTableList[i][1]}", $"{festivalTableList[i][2]}",
+                                     $"{festivalTableList[i][3]}", $"{festivalTableList[i][4]}");
+            }
 
             festivalTable.Config = TableConfiguration.Markdown(); //Ticket Table Themes (See Link)-(Markdown, Unicode, MySqlSimple, MySql, Markdown)
             return festivalTable.ToString();

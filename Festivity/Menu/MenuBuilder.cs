@@ -1,12 +1,14 @@
 ﻿using Festivity.Utils;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
     internal class MenuBuilder
     {
+        private static bool Loop;
         public static List<MenuOption> MainMenu()
         {
             // Create List of menu options
@@ -337,9 +339,9 @@ namespace Festivity
                 new MenuOption("Tickets", () =>
                 {
                     Console.Clear();
-                    while(true){
-                    Menu.Draw(SelectTicket(festival));
-                    }
+                    Loop = true;
+                    do { Menu.Draw(SelectTicket(festival)); }
+                    while(Loop);
                 }),
                 new MenuOption("Save festival", () =>
                 {
@@ -361,12 +363,19 @@ namespace Festivity
                 newMenuOptions.Add(new MenuOption($"Edit ticket: {ticket.TicketName}", () =>
                 {
                     Console.Clear();
-                    while (true)
-                    {
-                        Menu.Draw(ChangeTicket(ticket));
-                    }
+                    Loop = true;
+                    do { Menu.Draw(ChangeTicket(ticket)); }
+                    while (Loop);
+                    Loop = true;
                 }));
             }
+            newMenuOptions.Add(new MenuOption($"Return to {festival.FestivalName}", () =>
+            {
+                Console.Clear();
+                ChangeFestival(festival);
+                Loop = false;
+            }
+                ));
             return newMenuOptions;
         }
 
@@ -399,8 +408,16 @@ namespace Festivity
                 new MenuOption("Save changes", () =>
                 {
                     JSONFunctionality.UpdateTicket(ticket);
+                    Console.Clear();
+                    Loop = false;
+                }),
+                new MenuOption("Return to tickets", () =>
+                {
+                    Console.Clear();
+                    Loop = false;
                 }),
             };
             return newMenuOptions;
         }
-}}
+    }
+}
