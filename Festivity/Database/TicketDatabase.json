@@ -3,7 +3,7 @@
     {
       "festivalId": 1,
       "ticketId": 1,
-      "ticketName": "Normal Ticket",
+      "ticketName": "Testticket",
       "ticketDescription": "This is a normal ticket.",
       "ticketPrice": 35.0,
       "maxTickets": 5000,

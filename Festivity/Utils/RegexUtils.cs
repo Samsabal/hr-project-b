@@ -47,12 +47,34 @@ namespace Festivity
             }
         }
 
+        static private bool RegexCheckNoError(string input, Regex regex)
+        {
+            if (!regex.IsMatch(input))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         /// <summary> Checks if string conforms to a name structure </summary>
         /// <param name="name"> Name to check </param>
         /// <returns> Returns true if name conforms to regex. </returns>
         public static bool IsValidName(string name)
         {
             return RegexCheck(name, new Regex(@"^[A-Za-z,.' -]{2,33}$"));
+        }
+
+        public static bool IsValidYesOrNo(string name)
+        {
+            return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]|[N-n][O-o]$"));
+        }
+
+        public static bool EqualsYesRegex(string input)
+        {
+            return RegexCheckNoError(input, new Regex(@"^[Y-y][E-e][S-s]$"));
         }
 
         /// <summary> Checks if string conforms to an IBAN structure </summary>

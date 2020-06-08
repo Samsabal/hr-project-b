@@ -31,7 +31,7 @@ namespace Festivity
             Modifier.ModifyFestivalDescription(festival);
             Modifier.ModifyFestivalAgeRestriction(festival);
             Modifier.InputCancelTime(festival);
-            MenuBuilder.savedTicketList = Modifier.InputFestivalTickets(MenuBuilder.savedTicketList);
+            FestivalRegisterMenu.savedTicketList = Modifier.InputFestivalTickets(FestivalRegisterMenu.savedTicketList);
             Modifier.InputGenre(festival);
         }
 
@@ -43,7 +43,7 @@ namespace Festivity
             // Makes sure the console keeps refreshing, allowing input.
             while (true)
             {
-                Menu.Draw(MenuBuilder.FestivalRegisterMenu(festival));
+                Menu.Draw(FestivalRegisterMenu.FestivalRegisterMenuBuilder(festival));
             }
         }
 

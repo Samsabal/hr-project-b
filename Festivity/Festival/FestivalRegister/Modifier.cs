@@ -14,7 +14,7 @@ namespace Festivity.FestivalRegister
         public static void InputCancelTime(FestivalModel festival)
         {
             string tempCancelTime;
-            do { tempCancelTime = InputLoop("Fill in the amount of days before the start of the festival a customer is allowed to cancel their order: "); }
+            do { tempCancelTime = InputLoop("Fill in the amount of weeks before the start of the festival a customer is allowed to cancel their order: "); }
             while (!RegexUtils.IsValidCancelTime(tempCancelTime));
             festival.FestivalCancelTime = int.Parse(tempCancelTime);
         }
@@ -100,10 +100,10 @@ namespace Festivity.FestivalRegister
         public static void InputGenre(FestivalModel festival)
         {
             Menu.OptionReset();
+            Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
             while (true)
             {
-                Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
-                Menu.Draw(MenuBuilder.GenreMenu(festival));
+                Menu.Draw(FestivalGenreMenu.GenreMenuBuilder(festival));
             }
         }
 

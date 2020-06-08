@@ -19,7 +19,7 @@ namespace Festivity
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
                 DrawTicketTable.Draw();
-                userInput = AccountRegistration.Utils.InputLoop("\nInput Transaction ID of the order you want to refund: ");
+                userInput = Utils.General.InputLoop("\nInput Transaction ID of the order you want to refund: ");
             }
             while (!IsValidTransactionID(userInput));
 
