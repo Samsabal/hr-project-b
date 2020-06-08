@@ -41,6 +41,7 @@ namespace Festivity
                 new MenuOption("My Festivals", () =>
                 {
                     Console.Clear();
+                    Menu.OptionReset();
                     Festival.FestivalTableDrawer.Draw();
                 }),
                 new MenuOption("Logout", () =>
