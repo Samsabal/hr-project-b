@@ -158,13 +158,6 @@ namespace Festivity
                         Environment.Exit(0);
                         Console.Clear();
                         break;
-                    // !!!! TEMPORARY OPTION !!!!
-                    case "Festival Page":
-                        Console.Clear();
-                        Festival.PageManager.Display(1);
-                        Thread.Sleep(1000);
-                        break;
-
                     case "Sort by name": // "Sort by name" option on catalog page filter/sort screen
                         CatalogPage.festivalArray = SortingFunctions.SortName(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
@@ -294,11 +287,6 @@ namespace Festivity
                         {
                             AccountLogin.LoginManager.InitiateLogin(true);
                         }
-                        break;
-
-                    case "Return to Festival Page":
-                        Console.Clear();
-                        Festival.PageManager.Display(CatalogPage.selectedFestival);
                         break;
 
                     case "Login to your Account":
