@@ -20,7 +20,7 @@ namespace Festivity.Festival
         public static void Festival(FestivalModel festival) // Displays information about the current festival
         {
             Console.WriteLine($"|-----------------------------------------------------------------------------|");
-            Console.WriteLine($"| Starts at {festival.FestivalStartingTime} and ends on {festival.FestivalEndTime}.".PadRight(77) + " |");
+            Console.WriteLine($"| Starts at {festival.FestivalStartingTime.Hour}:{festival.FestivalStartingTime.Minute} and ends on {festival.FestivalEndTime.Hour}:{festival.FestivalEndTime.Minute}.".PadRight(77) + " |");
             Console.WriteLine($"| Takes place on: {festival.FestivalDate.Day}-{festival.FestivalDate.Month}-{festival.FestivalDate.Year}".PadRight(77) + " |");
             Console.WriteLine($"| ".PadRight(77) + " |");
             Console.WriteLine($"| {festival.FestivalLocation.StreetName} {festival.FestivalLocation.StreetNumber}, {festival.FestivalLocation.ZipCode}".PadRight(77) + " |");
@@ -35,8 +35,8 @@ namespace Festivity.Festival
                 int ticketId = ticket.TicketID;
                 int maxTickets = ticket.MaxTickets;
                 Console.WriteLine($"| {ticket.TicketName}".PadRight(77) + " |");
-                Console.WriteLine($"| Description: {ticket.TicketDescription}".PadRight(77) + " |");
-                Console.WriteLine($"| Price: This ticket cost {ticket.TicketPrice} euros.".PadRight(77) + " |");
+                Utils.TicketDescription(ticketId);
+                Console.WriteLine($"| This ticket cost {ticket.TicketPrice} euros.".PadRight(77) + " |");
                 Console.WriteLine($"| There are {ticket.MaxTickets} in total of which there are {Utils.TicketsLeft(ticketId, maxTickets)} left.".PadRight(77) + " |");
                 Console.WriteLine($"|-----------------------------------------------------------------------------|");
             }
