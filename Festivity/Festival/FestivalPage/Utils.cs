@@ -1,8 +1,10 @@
-﻿namespace Festivity.Festival
+﻿using System;
+
+namespace Festivity.Festival
 {
     internal class Utils
     {
-        public static int TicketsLeft(int ticketId, int maxTickets)
+        public static int TicketsLeft(int ticketId, int maxTickets) // Checks how many tickets there are left
         {
             foreach (var ticket in JSONFunctionality.GetTickets().Tickets)
             {
@@ -21,7 +23,7 @@
             return maxTickets;
         }
 
-        public static bool AgeCheck(int festivalId) //Checks if the user is old enough to use the program
+        public static bool AgeCheck(int festivalId) // Checks if the user is old enough to use the program
         {
             foreach (var festival in JSONFunctionality.GetFestivals().Festivals)
             {
@@ -47,6 +49,35 @@
                 }
             }
             return false;
+        }
+
+        public static void ClearConsoleLine() // Removes the last line in the ticket table for a cleaner look
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+        }
+
+        public static void DescriptionParts() // Splits up the description in parts that fit in the festival page and displays them
+        {
+            int DescriptionLength = SelectedFestival.festival.FestivalDescription.Length;
+            int LineCount = 0;
+
+            while (DescriptionLength > 75 * LineCount)
+            {
+                if (DescriptionLength - 75 * LineCount > 75)
+                {
+                    Console.WriteLine("| " + SelectedFestival.festival.FestivalDescription.Substring(75 * LineCount, 75) + " |");
+                    LineCount += 1;
+                }
+                else
+                {
+                    Console.WriteLine($"| {SelectedFestival.festival.FestivalDescription.Substring(75 * LineCount)}".PadRight(78) + "|");
+                    LineCount += 1;
+                }
+            }
+
         }
     }
 }
