@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Festivity.Utils;
-
-namespace Festivity
+﻿namespace Festivity
 {
-    class UserRegisterHandler
+    internal class UserRegisterHandler
     {
         private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
 
@@ -20,7 +15,7 @@ namespace Festivity
             if (user.AccountType == 1)
             {
                 UserModifier.InputCompanyContactperson(user);
-                UserModifier.InputCompanyPhonenumber(user);
+                UserModifier.InputCompanyPhoneNumber(user);
                 UserModifier.InputCompanyName(user);
                 UserModifier.InputIBAN(user);
             }
@@ -30,7 +25,7 @@ namespace Festivity
                 UserModifier.InputBirthday(user);
                 UserModifier.InputVisitorPhonenumber(user);
             }
-
+            UserModifier.InputNewsLetter(user);
             UserModifier.InputUserAdress(user);
             ShowUserRegister(user);
         }
@@ -48,8 +43,6 @@ namespace Festivity
                 {
                     Menu.Draw(UserRegisterMenu.UserVisitorRegisterMenuBuilder(user));
                 }
-
-
             }
         }
 
@@ -67,27 +60,6 @@ namespace Festivity
                 }
             }
             return exists;
-        }
-
-        public static bool YesOrNoAccountType()
-        {
-            ConsoleKey input;
-            Console.WriteLine("Are you a Visitor? [y/n]");
-            do { input = General.InputLoopKey(); }
-            while (General.YesOrNoCheck(input));
-            return input == ConsoleKey.Y;
-        }
-
-        public static bool YesOrNoNewsLetter()
-        {
-            ConsoleKey input;
-            Console.WriteLine("Do you want to recieve our newsletter? [y/n]");
-            do { input = General.InputLoopKey(); }
-            while (General.YesOrNoCheck(input));
-
-            Console.Clear();
-            return input == ConsoleKey.Y;
-
         }
 
         public static bool IsInputYes(string input)
