@@ -15,9 +15,7 @@ namespace Festivity
                 if (!LoggedInAccount.IsLoggedIn())
                 {
                     UI.DrawMainMenu();
-                    //UIElements.PrintUI();
                     Menu.Draw(MenuBuilder.MainMenu());
-                    //UIElements.GoddelijkeDunneLijn();
                 }
                 if (LoggedInAccount.IsLoggedIn())
                 {

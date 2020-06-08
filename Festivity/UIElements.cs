@@ -86,9 +86,7 @@ namespace Festivity
             Console.WriteLine("              |_|  \\___||___/\\__|_| \\_/ |_|\\__|\\__, |");
             Console.WriteLine("                                                __/ |");
             Console.WriteLine("                                               |___/ ");
-            Console.WriteLine();
             PathLine();
-            Console.WriteLine();
         }
     }
 }
