@@ -31,6 +31,7 @@ namespace Festivity
             Console.Clear();
             Write("There are no festivals registered in your name\n\nyou will be returned to the main menu in a couple of seconds");
             Thread.Sleep(5000);
+            Menu.OptionReset();
         }
     }
 }

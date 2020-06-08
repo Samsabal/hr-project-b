@@ -22,11 +22,13 @@ namespace Festivity
                 }),
                 new MenuOption("Login", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     LoginManager.InitiateLogin();
                 }),
                 new MenuOption("Festivals", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     CatalogPage.CatalogMain();
                 }),
