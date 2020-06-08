@@ -31,38 +31,6 @@
       "buyerID": 3,
       "ticketAmount": 2,
       "orderDate": "05-06-2020 4:50:35 PM"
-    },
-    {
-      "transactionID": 5,
-      "festivalID": 0,
-      "ticketID": 2,
-      "buyerID": 3,
-      "ticketAmount": 10,
-      "orderDate": "08/06/2020 14:16:02"
-    },
-    {
-      "transactionID": 6,
-      "festivalID": 0,
-      "ticketID": 2,
-      "buyerID": 3,
-      "ticketAmount": 10,
-      "orderDate": "08/06/2020 14:16:16"
-    },
-    {
-      "transactionID": 7,
-      "festivalID": 0,
-      "ticketID": 2,
-      "buyerID": 3,
-      "ticketAmount": 10,
-      "orderDate": "08/06/2020 14:16:19"
-    },
-    {
-      "transactionID": 8,
-      "festivalID": 0,
-      "ticketID": 2,
-      "buyerID": 3,
-      "ticketAmount": 10,
-      "orderDate": "08/06/2020 14:16:21"
     }
   ]
 }
