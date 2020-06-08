@@ -23,6 +23,7 @@ namespace Festivity
                     Console.ResetColor();
                 }
             }
+            UIElements.GoddelijkeDunneLijn();
 
             var KeyPressed = Console.ReadKey();
             // When DownArrow key is pressed go down.

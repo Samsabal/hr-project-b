@@ -12,25 +12,25 @@ namespace Festivity
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Register", () =>
+                new MenuOption(UIElements.StringInMiddle(". Register ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountRegistration.Manager.InitateUserRegistration();
                 }),
-                new MenuOption("Login", () =>
+                new MenuOption(UIElements.StringInMiddle(". Log In ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountLogin.LoginManager.InitiateLoginPage();
                 }),
-                new MenuOption("Festivals", () =>
+                new MenuOption(UIElements.StringInMiddle(". Festivals ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     CatalogPage.CatalogMain();
                 }),
-                new MenuOption("Exit", () =>
+                new MenuOption(UIElements.StringInMiddle(". Exit ."), () =>
                 {
                     Environment.Exit(0);
                 })
