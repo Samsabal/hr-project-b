@@ -2,15 +2,6 @@
 {
     internal class LoginManager
     {
-        public static void InitiateLoginPage()
-        {
-            MenuFunction.option = 0;
-            while (true)
-            {
-                MenuFunction.Menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
-            }
-        }
-
         public static void InitiateLogin(bool ticketLogin = false)
         {
             LoginAccount.Initiate(ticketLogin);
