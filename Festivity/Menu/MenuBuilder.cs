@@ -145,8 +145,8 @@ namespace Festivity
                     {
                         Menu.OptionReset();
                         Console.Clear();
-                        SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
+                        SelectedFestival.festival = CatalogPage.festivalArray[Menu.Option + CatalogPage.currentPage * 5];
+                        Festival.PageManager.Display(SelectedFestival.festival.FestivalID);
                     }));
                 }
             }
@@ -156,10 +156,9 @@ namespace Festivity
                 {
                     newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.festivalArray[i].FestivalName}", () =>
                     {
-                        Menu.OptionReset();
                         Console.Clear();
-                        SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
+                        SelectedFestival.festival = CatalogPage.festivalArray[Menu.Option + CatalogPage.currentPage * 5];
+                        Festival.PageManager.Display(SelectedFestival.festival.FestivalID);
                     }));
                 }
             }
