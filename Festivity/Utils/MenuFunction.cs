@@ -285,20 +285,20 @@ namespace Festivity
                         }
                         else
                         {
-                            AccountLogin.LoginManager.InitateLogin(true);
+                            AccountLogin.LoginManager.InitiateLogin(true);
                         }
                         break;
 
                     case "Login to your Account":
                         Console.Clear();
-                        AccountLogin.LoginManager.InitateLogin(false);
+                        AccountLogin.LoginManager.InitiateLogin(false);
                         //UserLoginPage.userLoginChoice = 1;
                         //UserLoginPage.UserLogin();
                         break;
 
                     case "Forgot password":
                         Console.Clear();
-                        AccountLogin.LoginManager.InitateForgotPassword();
+                        AccountLogin.LoginManager.InitiateForgotPassword();
                         //UserLoginPage.userLoginChoice = 2;
                         //UserLoginPage.ForgotPassword();
                         break;

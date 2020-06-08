@@ -15,8 +15,8 @@ namespace Festivity
         {
             if (TicketList.Count > 0)
             {
-                ticketTable = new Table("ID", "Festival name", "Festival date", "Ticket type", "Price",
-                              "Bought", "Amount", "Festival Status", "Refunable");
+                ticketTable = new Table("ID", "Festival name", "Festival date", "Ticket Name", "Price",
+                              "Bought", "Amount", "Festival Status", "Refundable");
 
                 for (int i = 0; i < TicketList.Count; i++)
                 {
