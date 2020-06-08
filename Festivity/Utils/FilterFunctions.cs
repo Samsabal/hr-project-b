@@ -24,6 +24,11 @@ namespace Festivity.Utils
                     resultList.Add(festivalArray[i]);
                 }
             }
+            if (resultList.Count == 0)
+            {
+                ErrorMessage.NoFilterMatchesError();
+                return CatalogPage.festivalArray;
+            }
 
             return resultList.ToArray();
         }
@@ -50,6 +55,12 @@ namespace Festivity.Utils
                     resultList.Add(festivalArray[i]);
                 }
             }
+            if (resultList.Count == 0)
+            {
+                ErrorMessage.NoFilterMatchesError();
+                return CatalogPage.festivalArray;
+            }
+
             return resultList.ToArray();
         }
 
@@ -74,6 +85,12 @@ namespace Festivity.Utils
                     resultList.Add(festivalArray[i]);
                 }
             }
+            if (resultList.Count == 0)
+            {
+                ErrorMessage.NoFilterMatchesError();
+                return CatalogPage.festivalArray;
+            }
+
             return resultList.ToArray();
         }
     }
