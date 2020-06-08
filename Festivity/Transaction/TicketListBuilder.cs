@@ -19,6 +19,18 @@ namespace Festivity.Transaction
             }
         }
 
+        public static Ticket GetSelectedTicket(int ticketIndex)
+        {
+            foreach (var ticket in Get())
+            {
+                if (ticket.TicketID == ticketIndex)
+                {
+                    return ticket;
+                }
+            }
+            return Get()[0];
+        }
+
         public static List<Ticket> Get()
         {
             return TicketList;

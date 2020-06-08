@@ -12,13 +12,13 @@ namespace Festivity.Transaction
         {
             indexTicket = option;
             TicketAmount = InputReader.TicketAmount();
-            Writer.Overview(TicketListBuilder.Get()[indexTicket], TicketAmount);
+            Writer.Overview(TicketListBuilder.GetSelectedTicket(indexTicket), TicketAmount);
             if (InputReader.ConfirmTransaction()) { InputReader.PaymentOption(); }
         }
 
         public static void Complete()
         {
-            ObjectSaver.WriteToDatabase(TicketListBuilder.Get()[indexTicket]);
+            ObjectSaver.WriteToDatabase(TicketListBuilder.GetSelectedTicket(indexTicket));
             Console.WriteLine("Ordered Succesfully!");
             Thread.Sleep(2000);
             Console.Clear();
