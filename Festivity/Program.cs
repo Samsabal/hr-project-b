@@ -11,7 +11,7 @@ namespace Festivity
             while (true)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
-                Console.SetWindowSize(150, 36);
+
                 if (!LoggedInAccount.IsLoggedIn())
                 {
                     UI.DrawMainMenu();
