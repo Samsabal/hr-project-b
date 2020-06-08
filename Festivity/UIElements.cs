@@ -61,7 +61,6 @@ namespace Festivity
 
         public void Draw()
         {
-            Line();
             PathLine();
         }
 

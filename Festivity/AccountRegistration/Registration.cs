@@ -30,7 +30,7 @@ namespace Festivity.AccountRegistration
 
         public static void CreateUser()
         {
-            UI.DrawMainMenu();
+            UI.Draw();
             do { firstName = Utils.InputLoop("First name: "); }
             while (!RegexUtils.IsValidName(firstName));
 
