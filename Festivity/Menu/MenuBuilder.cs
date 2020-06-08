@@ -15,11 +15,13 @@ namespace Festivity
                 new MenuOption("Register", () =>
                 {
                     Console.Clear();
+                    new PathString("Register").Draw();
                     AccountRegistration.Manager.InitateUserRegistration();
                 }),
                 new MenuOption("Login", () =>
-                {
+                {              
                     Console.Clear();
+
                     AccountLogin.LoginManager.InitiateLoginPage();
                 }),
                 new MenuOption("Festivals", () =>

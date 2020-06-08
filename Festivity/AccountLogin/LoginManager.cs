@@ -7,6 +7,7 @@
             MenuFunction.option = 0;
             while (true)
             {
+                new Utils.PathString("Login").Draw();
                 MenuFunction.Menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
             }
         }

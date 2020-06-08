@@ -10,12 +10,6 @@ namespace Festivity.Utils
         private string PathTwo;
         private string Size;
 
-        //public PathString()
-        //{
-        //    Size = "One";
-            
-        //}
-
         public PathString(string p1)
         {
             PathOne = p1;
@@ -34,14 +28,11 @@ namespace Festivity.Utils
             DrawDikkeLine();
             switch (Size)
             {
-                //case "One":                 
-                //    Console.WriteLine($"                Home                 ");
-                //    break;
                 case "Two":
-                    Console.WriteLine($"          Home > {PathOne}          ");
+                    Console.WriteLine($"--------------------------< Home:{PathOne} >--------------------------");
                     break;
                 case "Three":
-                    Console.WriteLine($"     Home > {PathOne} > {PathTwo}   ");
+                    Console.WriteLine($"Home > {PathOne} > {PathTwo}");
                     break;
                 default:
                     ErrorMessage.WriteLine("Draw Error");
@@ -49,10 +40,11 @@ namespace Festivity.Utils
             }
             DrawDikkeLine();
         }
-
         private void  DrawDikkeLine()
         {
             Console.WriteLine($"                                    ");
         }
     }
 }
+
+

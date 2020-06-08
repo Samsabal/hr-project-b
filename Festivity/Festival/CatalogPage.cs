@@ -24,9 +24,11 @@ namespace Festivity
             while (true)
             {
                 Console.SetCursorPosition(0, 0);
+                
                 DrawCatalog();
                 if (currentCatalogNavigation == "main")
                 {
+                    new PathString("Catalog").Draw();
                     Menu.Draw(MenuBuilder.CatalogMain());
                 }
                 else
