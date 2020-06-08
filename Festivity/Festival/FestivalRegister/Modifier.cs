@@ -79,7 +79,7 @@ namespace Festivity.FestivalRegister
             while (!RegexUtils.IsValidTimeFormat(tempStartingTime));
 
             festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year,
-                  /*Woosh i am a helicopter*/            festival.FestivalDate.Month,
+                  /*Woosh I am a helicopter!*/            festival.FestivalDate.Month,
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempStartingTime.Substring(0, 2)),
                                                          int.Parse(tempStartingTime.Substring(3, 2)), 0);
@@ -91,7 +91,7 @@ namespace Festivity.FestivalRegister
             do { tempEndTime = InputLoop("Fill in the expected end time(hh:mm): "); }
             while (!RegexUtils.IsValidTimeFormat(tempEndTime));
             festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year,
-                  /*Woosh i am a helicopter too*/        festival.FestivalDate.Month,
+                  /*Woosh I am a helicopter too!*/        festival.FestivalDate.Month,
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempEndTime.Substring(0, 2)),
                                                          int.Parse(tempEndTime.Substring(3, 2)), 0);
