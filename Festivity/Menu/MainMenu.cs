@@ -20,7 +20,9 @@ namespace Festivity
                 new MenuOption("Login", () =>
                 {
                     Console.Clear();
-                    LoginManager.InitiateLogin();
+                    Loop = true;
+                    do {Menu.Draw(LoginMenu.LoginBuilder()); }
+                    while (Loop);
                 }),
                 new MenuOption("Festivals", () =>
                 {
