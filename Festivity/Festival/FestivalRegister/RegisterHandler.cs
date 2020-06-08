@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Festivity.FestivalRegister;
+using System;
 using System.Threading;
 
 namespace Festivity
@@ -17,8 +18,26 @@ namespace Festivity
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
 
         /// <summary>
-        /// This is a function to show the festivalregistration and let the user allow inputs.
+        /// This function initiate the festival register
         /// </summary>
+        /// <param name="festival"></param>
+        public static void InitiateFestivalRegister(FestivalModel festival)
+        {
+            Modifier.InputFestivalName(festival);
+            Modifier.InputFestivalDate(festival);
+            Modifier.InputStartingTime(festival);
+            Modifier.InputEndTime(festival);
+            Modifier.InputFestivalAdress(festival);
+            Modifier.ModifyFestivalDescription(festival);
+            Modifier.ModifyFestivalAgeRestriction(festival);
+            Modifier.InputCancelTime(festival);
+            MenuBuilder.savedTicketList = Modifier.InputFestivalTickets(MenuBuilder.savedTicketList);
+            Modifier.InputGenre(festival);
+        }
+
+        /// <summary>
+        /// This is a function to show the festivalregistration and let the user allow inputs.
+        /// </summary
         public static void ShowFestivalRegister(FestivalModel festival)
         {
             // Makes sure the console keeps refreshing, allowing input.
@@ -26,16 +45,6 @@ namespace Festivity
             {
                 Menu.Draw(MenuBuilder.FestivalRegisterMenu(festival));
             }
-        }
-
-        /// <summary>
-        /// This function gives an error message that there hasn't been a ticket registered yet.
-        /// </summary>
-        public static void TicketsRegisteredErrorMessage()
-        {
-            Console.WriteLine("Before you can save the festival to our database you must create atleast one ticket!");
-            Thread.Sleep(5000);
-            CurrentRegisterSelection = "Main";
         }
 
         /// <summary>

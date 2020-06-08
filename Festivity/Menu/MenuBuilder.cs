@@ -8,7 +8,7 @@ namespace Festivity
 {
     internal class MenuBuilder
     {
-        private static List<Ticket> savedTicketList = new List<Ticket>();
+        public static List<Ticket> savedTicketList = new List<Ticket>();
         public static List<MenuOption> MainMenu()
         {
             // Create List of menu options
@@ -93,7 +93,7 @@ namespace Festivity
                     Menu.OptionReset();
                     FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()) };
                     RegisterHandler.ActiveScreen = true;
-                    RegisterHandler.ShowFestivalRegister(festival);
+                    RegisterHandler.InitiateFestivalRegister(festival);
                 }),
                 new MenuOption("My Account", () =>
                 {

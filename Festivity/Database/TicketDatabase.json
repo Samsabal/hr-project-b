@@ -80,42 +80,6 @@
       "ticketPrice": 200.0,
       "maxTickets": 1945,
       "maxTicketsPerPerson": 10
-    },
-    {
-      "festivalId": 1,
-      "ticketId": 10,
-      "ticketName": "testticketeen",
-      "ticketDescription": "test1",
-      "ticketPrice": 125.0,
-      "maxTickets": 2000,
-      "maxTicketsPerPerson": 10
-    },
-    {
-      "festivalId": 1,
-      "ticketId": 10,
-      "ticketName": "testtickettwee",
-      "ticketDescription": "ticket twee",
-      "ticketPrice": 250.0,
-      "maxTickets": 100,
-      "maxTicketsPerPerson": 5
-    },
-    {
-      "festivalId": 1,
-      "ticketId": 11,
-      "ticketName": "testticket",
-      "ticketDescription": "testtesttest",
-      "ticketPrice": 166.0,
-      "maxTickets": 100,
-      "maxTicketsPerPerson": 5
-    },
-    {
-      "festivalId": 1,
-      "ticketId": 12,
-      "ticketName": "TestTicketeen",
-      "ticketDescription": "testticket1",
-      "ticketPrice": 255.0,
-      "maxTickets": 100,
-      "maxTicketsPerPerson": 4
     }
   ]
 }

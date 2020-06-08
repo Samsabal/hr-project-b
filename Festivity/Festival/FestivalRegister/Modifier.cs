@@ -45,14 +45,14 @@ namespace Festivity.FestivalRegister
         public static void ModifyFestivalAgeRestriction(FestivalModel festival)
         {
             string tempAge;
-            do { tempAge = InputLoop("Fill in the Age restriction: "); }
+            do { tempAge = InputLoop("Fill in the age restriction as a number(if there is no age restriction please fill in 0): "); }
             while (!RegexUtils.IsValidAge(tempAge));
             festival.FestivalAgeRestriction = int.Parse(tempAge);
         }
 
         public static void ModifyFestivalDescription(FestivalModel festival)
         {
-            do { festival.FestivalDescription = InputLoop("Fill in the age restriction as a number(if there is no age restriction please fill in 0)"); }
+            do { festival.FestivalDescription = InputLoop("Fill in the festival description: "); }
             while (!RegexUtils.IsValidDescription(festival.FestivalDescription));    
         }
         
@@ -79,7 +79,7 @@ namespace Festivity.FestivalRegister
             while (!RegexUtils.IsValidTimeFormat(tempStartingTime));
 
             festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year,
-                                                         festival.FestivalDate.Month,
+                  /*Woosh i am a helicopter*/            festival.FestivalDate.Month,
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempStartingTime.Substring(0, 2)),
                                                          int.Parse(tempStartingTime.Substring(3, 2)), 0);
@@ -91,7 +91,7 @@ namespace Festivity.FestivalRegister
             do { tempEndTime = InputLoop("Fill in the expected end time(hh:mm): "); }
             while (!RegexUtils.IsValidTimeFormat(tempEndTime));
             festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year,
-                                                         festival.FestivalDate.Month,
+                  /*Woosh i am a helicopter too*/        festival.FestivalDate.Month,
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempEndTime.Substring(0, 2)),
                                                          int.Parse(tempEndTime.Substring(3, 2)), 0);
