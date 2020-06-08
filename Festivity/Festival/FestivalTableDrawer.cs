@@ -6,12 +6,14 @@ namespace Festivity.Festival
     {
         public static void Draw()
         {
-            while (true)
+            MenuBuilder.Loop = true;
+            do
             {
                 string Table = FestivalTableBuilder.ConvertToString(FestivalTableBuilder.BuildTableList());
                 Console.WriteLine(Table);
                 Menu.Draw(MenuBuilder.SelectFestival());
-            }
+            } while (MenuBuilder.Loop);
+            MenuBuilder.Loop = true;
         }
     }
 }

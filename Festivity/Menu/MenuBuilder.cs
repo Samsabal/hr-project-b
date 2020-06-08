@@ -1,4 +1,5 @@
-﻿using Festivity.Utils;
+﻿using Festivity.FestivalRegister;
+using Festivity.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,8 @@ namespace Festivity
 {
     internal class MenuBuilder
     {
-        private static bool Loop;
+        public static bool Loop;
+        public static List<Ticket> savedTicketList = new List<Ticket>();
         public static List<MenuOption> MainMenu()
         {
             // Create List of menu options
@@ -98,10 +100,9 @@ namespace Festivity
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    FestivalRegister.activeScreen = true;
-                    FestivalRegister.currentRegisterSelection = "Main";
-                    FestivalRegister.ShowFestivalRegister();
-                    Thread.Sleep(1000);
+                    FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()) };
+                    RegisterHandler.ActiveScreen = true;
+                    RegisterHandler.InitiateFestivalRegister(festival);
                 }),
                 new MenuOption("My Account", () =>
                 {
@@ -128,7 +129,7 @@ namespace Festivity
                     Console.Clear();
                     Menu.OptionReset();
                     LoggedInAccount.LogOut();
-                    Program.Main(); //new string[] { }
+                    Program.Main();
                 }),
                 new MenuOption("Exit", () =>
                 {
@@ -152,8 +153,8 @@ namespace Festivity
                     {
                         Menu.OptionReset();
                         Console.Clear();
-                        SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
+                        SelectedFestival.festival = CatalogPage.festivalArray[Menu.Option + CatalogPage.currentPage * 5];
+                        Festival.PageManager.Display(SelectedFestival.festival.FestivalID);
                     }));
                 }
             }
@@ -163,10 +164,9 @@ namespace Festivity
                 {
                     newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.festivalArray[i].FestivalName}", () =>
                     {
-                        Menu.OptionReset();
                         Console.Clear();
-                        SelectedFestival.festival = CatalogPage.festivalArray[i];
-                        Festival.PageManager.Display(CatalogPage.festivalArray[i].FestivalID);
+                        SelectedFestival.festival = CatalogPage.festivalArray[Menu.Option + CatalogPage.currentPage * 5];
+                        Festival.PageManager.Display(SelectedFestival.festival.FestivalID);
                     }));
                 }
             }
@@ -296,13 +296,17 @@ namespace Festivity
                     newMenuOptions.Add(new MenuOption($"Edit festival: {festival.FestivalName}", () =>
                     {
                         Console.Clear();
-                        while (true)
-                        {
-                            Menu.Draw(ChangeFestival(festival));
-                        }
+                        do { Menu.Draw(ChangeFestival(festival)); }
+                        while (Loop);
+                        Loop = true;
                     }));
                 }
             }
+            newMenuOptions.Add(new MenuOption("Return to main menu: ", () =>
+            {
+                Console.Clear();
+                Loop = false;
+            }));
             return newMenuOptions;
         }
 
@@ -314,51 +318,47 @@ namespace Festivity
                 new MenuOption($"Festival name:".PadRight(currentValueStartingPoint) + $"{festival.FestivalName}", () =>
                 {
                     Console.Clear();
-                    do { festival.FestivalName = FestivalRegister.InputLoop("Fill in the name of the festival: "); }
-                    while (!RegexUtils.IsValidName(festival.FestivalName));
+                    Modifier.InputFestivalName(festival);
                 }),
                 new MenuOption($"Festival date:".PadRight(currentValueStartingPoint) + $"{festival.FestivalDate.ToShortDateString()}", () =>
                 {
-                    string tempDay;
-                    string tempMonth;
-                    string tempYear;
                     Console.Clear();
-                    Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
-                    do { tempDay = FestivalRegister.InputLoop("Fill in the day: "); }
-                    while (!RegexUtils.IsValidDay(tempDay));
-                    do { tempMonth = FestivalRegister.InputLoop("Fill in the month: "); }
-                    while (!RegexUtils.IsValidMonth(tempMonth));
-                    do { tempYear = FestivalRegister.InputLoop("Fill in the year: "); }
-                    while (!RegexUtils.IsValidFestivalYear(tempYear));
-                    festival.FestivalDate = new DateTime(int.Parse(tempYear), int.Parse(tempMonth), int.Parse(tempDay));
+                    Modifier.InputFestivalDate(festival);
                 }),
                 new MenuOption($"Starting time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime.ToShortTimeString()}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.InputStartingTime(festival);
                 }),
                 new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime.ToShortTimeString()}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.InputEndTime(festival);
                 }),
                 new MenuOption($"Festival address:".PadRight(currentValueStartingPoint) + $"{festival.FestivalLocation}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.InputFestivalAdress(festival);
                 }),
                 new MenuOption($"Festival description:".PadRight(currentValueStartingPoint) + $"{festival.SetDescriptionLength(50)}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.ModifyFestivalDescription(festival);
                 }),
                 new MenuOption($"Age restriction:".PadRight(currentValueStartingPoint) + $"{festival.FestivalAgeRestriction}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.ModifyFestivalAgeRestriction(festival);
                 }),
                 new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.InputGenre(festival);
                 }),
                 new MenuOption($"Cancel time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Modifier.InputCancelTime(festival);
                 }),
                 new MenuOption("Tickets", () =>
                 {
@@ -366,14 +366,17 @@ namespace Festivity
                     Loop = true;
                     do { Menu.Draw(SelectTicket(festival)); }
                     while(Loop);
+                    Loop = true;
                 }),
                 new MenuOption("Save festival", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    JSONFunctionality.UpdateFestival(festival);
                 }),
                 new MenuOption("Cancel festival modification", () =>
                 {
-                    //TODO
+                    Console.Clear();
+                    Loop = false;
                 }),
             };
             return newMenuOptions;
@@ -445,6 +448,132 @@ namespace Festivity
             return newMenuOptions;
 
         }
+        public static List<MenuOption> FestivalRegisterMenu(FestivalModel festival)
+        {
+            int currentValueStartingPoint = 30;
+
+            JSONFestivalList festivalList = JSONFunctionality.GetFestivals();
+            JSONTicketList ticketList = JSONFunctionality.GetTickets();
+
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+                {
+                    new MenuOption("Festival Name:".PadRight(currentValueStartingPoint) + $"{festival.FestivalName}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputFestivalName(festival);
+                    }),
+                    new MenuOption("Festival Date:".PadRight(currentValueStartingPoint) + $"{festival.FestivalDate.ToShortDateString()}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputFestivalDate(festival);
+                    }),
+                    new MenuOption("Starting Time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputStartingTime(festival);
+                    }),
+                    new MenuOption("End Time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalEndTime}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputEndTime(festival);
+                        if (festival.FestivalEndTime < festival.FestivalStartingTime)
+                            {
+                                festival.FestivalEndTime.AddDays(1);
+                            }
+                    }),
+                    new MenuOption("Festival Adress: ".PadRight(currentValueStartingPoint) + $"{festival.FestivalLocation}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputFestivalAdress(festival);
+                    }),
+                    new MenuOption("Festival Description".PadRight(currentValueStartingPoint) + $"{festival.FestivalDescription}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.ModifyFestivalDescription(festival);
+                    }),
+                    new MenuOption("Age Restriction".PadRight(currentValueStartingPoint) + $"{festival.FestivalAgeRestriction}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.ModifyFestivalAgeRestriction(festival);
+                    }),
+                    new MenuOption("Festival Genre".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputGenre(festival);
+                    }),
+                    new MenuOption("Cancel Time".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
+                    {
+                        Console.Clear();
+                        Modifier.InputCancelTime(festival);
+                    }),
+                    new MenuOption("Tickets".PadRight(currentValueStartingPoint), () =>
+                    {
+                        Console.Clear();
+                        savedTicketList = Modifier.InputFestivalTickets(savedTicketList);
+                    }),
+                    new MenuOption("Save Festival", () =>
+                    {
+                        Console.Clear();
+                        foreach (Ticket ticket in savedTicketList)
+                        {
+                            ticketList.Tickets.Add(ticket);
+                        }
+                        JSONFunctionality.WriteTickets(ticketList);
+
+                        festivalList.Festivals.Add(festival);
+                        JSONFunctionality.WriteFestivals(festivalList);
+                        Program.Main();
+                        Menu.OptionReset();
+                    }),
+                    new MenuOption("Cancel Festival Registration", () =>
+                    {
+                        Console.Clear();
+                        Program.Main();
+                        Menu.OptionReset();
+                    })
+                };
+
+            return newMenuOptions;
+        }
+
+        public static List<MenuOption> GenreMenu(FestivalModel festival)
+        {
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+            {
+                new MenuOption("Techno", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Techno");
+                    RegisterHandler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Drum & Bass", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Drum & Bass");
+                    RegisterHandler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Pop", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Pop");
+                    RegisterHandler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Rock", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Rock");
+                    RegisterHandler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Hip-Hop", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Hip-Hop");
+                    RegisterHandler.ShowFestivalRegister(festival);
+                }),
+            };
+            return newMenuOptions;
+        }
+
         public static List<MenuOption> FestivalPage()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
