@@ -13,17 +13,17 @@ namespace Festivity
 
                 if (!LoggedInAccount.IsLoggedIn())
                 {
-                    Menu.Draw(MenuBuilder.MainMenu());
+                    Menu.Draw(MainMenu.MainMenuBuilder());
                 }
                 if (LoggedInAccount.IsLoggedIn())
                 {
                     if (LoggedInAccount.User.AccountType == 2)
                     {
-                        Menu.Draw(MenuBuilder.MainMenuUser());
+                        Menu.Draw(MainMenuUser.MainMenuUserBuilder());
                     }
                     if (LoggedInAccount.User.AccountType == 1)
                     {
-                        Menu.Draw(MenuBuilder.MainMenuOrganiser());
+                        Menu.Draw(MainMenuOrganiser.MainMenuOrganiserBuilder());
                     }
                 }
             }
