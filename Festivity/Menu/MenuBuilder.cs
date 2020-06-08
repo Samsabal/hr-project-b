@@ -423,7 +423,7 @@ namespace Festivity
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         Menu.OptionReset();
                         Console.Clear();
-                        AccountLogin.LoginManager.InitateLogin(true);
+                        AccountLogin.LoginManager.InitiateLogin(true);
                     }
                 }));
             }
