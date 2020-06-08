@@ -14,7 +14,7 @@ namespace Festivity.Transaction
             TransactionModel transaction = new TransactionModel
             {
                 TransactionID = GetTransactionID(),
-                FestivalID = (int)CatalogPage.selectedFestival,
+                FestivalID = SelectedFestival.festival.FestivalID,
                 TicketID = ticket.TicketID,
                 BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID,
                 TicketAmount = DisplayManager.GetTicketAmount(),

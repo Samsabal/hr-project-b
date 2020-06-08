@@ -32,11 +32,11 @@ namespace Festivity.AccountPage
 
             foreach (var transaction in transactions.Transactions)
             {
-                foreach (var organisatorTicket in ticketList)
+                foreach (var organiserTicket in ticketList)
                 {
-                    if (organisatorTicket.TicketID == transaction.TicketID)
+                    if (organiserTicket.TicketID == transaction.TicketID)
                     {
-                        amountEarned += organisatorTicket.TicketPrice * transaction.TicketAmount;
+                        amountEarned += organiserTicket.TicketPrice * transaction.TicketAmount;
                     }
                 }
             }

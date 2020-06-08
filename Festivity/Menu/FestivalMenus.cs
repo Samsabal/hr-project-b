@@ -17,6 +17,7 @@ namespace Festivity
                 {
                     newMenuOptions.Add(new MenuOption($"Edit festival: {festival.FestivalName}", () =>
                     {
+                        Menu.OptionReset();
                         Console.Clear();
                         do { Menu.Draw(ChangeFestival(festival)); }
                         while (Loop);
@@ -54,6 +55,7 @@ namespace Festivity
                 }),
                 new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalEndTime.ToShortTimeString()}", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     Modifier.InputEndTime(festival);
                 }),
@@ -95,12 +97,15 @@ namespace Festivity
                 }),
                 new MenuOption("Save festival", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     JSONFunctionality.UpdateFestival(festival);
                     festival.FestivalStatus = "Changed";
+                    Loop = false;
                 }),
                 new MenuOption("Cancel festival modification", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     Loop = false;
                 }),

@@ -12,6 +12,7 @@ namespace Festivity
             {
                 newMenuOptions.Add(new MenuOption($"Edit ticket: {ticket.TicketName}", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     Loop = true;
                     do { Menu.Draw(ChangeTicket(ticket)); }
@@ -21,6 +22,7 @@ namespace Festivity
             }
             newMenuOptions.Add(new MenuOption($"Return to {festival.FestivalName}", () =>
             {
+                Menu.OptionReset();
                 Console.Clear();
                 FestivalMenus.ChangeFestival(festival);
                 Loop = false;
@@ -56,12 +58,14 @@ namespace Festivity
                 }),
                 new MenuOption("Save changes", () =>
                 {
+                    Menu.OptionReset();
                     JSONFunctionality.UpdateTicket(ticket);
                     Console.Clear();
                     Loop = false;
                 }),
                 new MenuOption("Return to tickets", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
                     Loop = false;
                 }),
