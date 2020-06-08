@@ -55,7 +55,14 @@ namespace Festivity
         private static void DrawCatalog()
         {
             int lastpage = festivalArray.Length / 5;
-            if (currentPage == lastpage)
+            if (festivalArray.Length == 0)
+            {
+                Console.WriteLine("X===================================================================X");
+                Console.WriteLine("|                                                                   |");
+                Console.WriteLine("|           Sorry, there are no festivals available :(              |");
+                Console.WriteLine("|                                                                   |");
+            }
+            else if (currentPage == lastpage)
             {
                 for (int i = currentPage * 5; i < festivalArray.Length; i++)
                 {
