@@ -28,7 +28,6 @@ namespace Festivity
                 DrawCatalog();
                 if (currentCatalogNavigation == "main")
                 {
-                    new PathString("Catalog").Draw();
                     Menu.Draw(MenuBuilder.CatalogMain());
                 }
                 else

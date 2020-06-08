@@ -2,12 +2,13 @@
 {
     internal class LoginManager
     {
+        private static UIElements UI = new UIElements("Login");
         public static void InitiateLoginPage()
         {
             MenuFunction.option = 0;
             while (true)
             {
-                new Utils.PathString("Login").Draw();
+                UI.DrawMainMenu();
                 MenuFunction.Menu(new string[] { "Login to your Account", "Forgot password", "Exit to Main Menu" });
             }
         }

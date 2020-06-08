@@ -7,32 +7,31 @@ namespace Festivity
 {
     internal class MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public static List<MenuOption> MainMenu()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption(UIElements.StringInMiddle(". Register ."), () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Register ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    new PathString("Register").Draw();
                     AccountRegistration.Manager.InitateUserRegistration();
                 }),
-                new MenuOption(UIElements.StringInMiddle(". Log In ."), () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Log In ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
-
                     AccountLogin.LoginManager.InitiateLoginPage();
                 }),
-                new MenuOption(UIElements.StringInMiddle(". Festivals ."), () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Festivals ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     CatalogPage.CatalogMain();
                 }),
-                new MenuOption(UIElements.StringInMiddle(". Exit ."), () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Exit ."), () =>
                 {
                     Environment.Exit(0);
                 })

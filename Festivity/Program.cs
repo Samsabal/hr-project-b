@@ -4,19 +4,18 @@ namespace Festivity
 {
     internal class Program
     {
+        private static UIElements UI = new UIElements();
         public static void Main()
         {
-            //string[] args
             Console.Clear();
             while (true)
             {
-                //=====================================================================
-                //
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
                 Console.SetWindowSize(150, 36);
                 if (!LoggedInAccount.IsLoggedIn())
                 {
-                    UIElements.PrintUI();
+                    UI.DrawMainMenu();
+                    //UIElements.PrintUI();
                     Menu.Draw(MenuBuilder.MainMenu());
                     //UIElements.GoddelijkeDunneLijn();
                 }

@@ -24,7 +24,7 @@ namespace Festivity
                 {
                     return true;
                 }
-                Console.WriteLine("Invalid input, please  try again");
+                ErrorMessage.WriteLine("Invalid input, please  try again");
                 return false;
             }
             return false;
@@ -38,7 +38,7 @@ namespace Festivity
         {
             if (!regex.IsMatch(input))
             {
-                Console.WriteLine("Invalid Input, please try again");
+                ErrorMessage.WriteLine("Invalid input, please  try again");
                 return false;
             }
             else
@@ -214,12 +214,12 @@ namespace Festivity
 
             if (!hasLowerChar.IsMatch(password) || !hasUpperChar.IsMatch(password) || !hasMiniMaxChars.IsMatch(password) || !hasSymbols.IsMatch(password) || !hasNumber.IsMatch(password))
             {
-                Console.WriteLine("Password should contain the following rules: ");
-                Console.WriteLine(" - Must be between 8 and 15 characters long. ");
-                Console.WriteLine(" - Must contain at least one number. . ");
-                Console.WriteLine(" - Must contain at least one uppercase letter. ");
-                Console.WriteLine(" - Must contain at least one lowercase letter. ");
-                Console.WriteLine(" - Must contain at least one symbol. \n");
+                ErrorMessage.WriteLine("Password should contain the following rules: ");
+                ErrorMessage.WriteLine(" - Must be between 8 and 15 characters long. ");
+                ErrorMessage.WriteLine(" - Must contain at least one number. . ");
+                ErrorMessage.WriteLine(" - Must contain at least one uppercase letter. ");
+                ErrorMessage.WriteLine(" - Must contain at least one lowercase letter. ");
+                ErrorMessage.WriteLine(" - Must contain at least one symbol. ");
                 return false;
             }
             else

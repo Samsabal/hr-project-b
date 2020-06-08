@@ -24,7 +24,6 @@ namespace Festivity.AccountRegistration
         {
             string userInput;
             Console.Write(printString); userInput = Console.ReadLine();
-            Console.Clear();
             return userInput;
         }
     }

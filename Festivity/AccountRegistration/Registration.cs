@@ -6,6 +6,7 @@ namespace Festivity.AccountRegistration
 {
     internal class Registration
     {
+        private static UIElements UI = new UIElements("Register");
         private static bool newsLetterIsSet = false;
         private static int userAccountType;
         private static bool newsLetter;
@@ -29,6 +30,7 @@ namespace Festivity.AccountRegistration
 
         public static void CreateUser()
         {
+            UI.DrawMainMenu();
             do { firstName = Utils.InputLoop("First name: "); }
             while (!RegexUtils.IsValidName(firstName));
 
