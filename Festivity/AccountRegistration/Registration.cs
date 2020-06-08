@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Festivity.Account;
+using System;
 using System.Threading;
 
 namespace Festivity.AccountRegistration
 {
     internal class Registration
     {
+        private static bool newsLetterIsSet = false;
         private static int userAccountType;
-        private static int newsLetter;
+        private static bool newsLetter;
         private static string firstName;
         private static string lastName;
         private static string email;
@@ -136,7 +138,7 @@ namespace Festivity.AccountRegistration
         private static void UserNewsletterInput()
         {
             MenuFunction.option = 0;
-            while (newsLetter == 0)
+            while (!newsLetterIsSet)
             {
                 Console.WriteLine("Do you want to recieve a newsletter? \n");
                 MenuFunction.Menu(new string[] { $"Yes, I want to recieve newsletters", "No, I don't want to recieve newsletters" });
@@ -148,9 +150,10 @@ namespace Festivity.AccountRegistration
             userAccountType = userType;
         }
 
-        public static void SetNewsLetter(int userChoice)
+        public static void SetNewsLetter(bool userChoice)
         {
             newsLetter = userChoice;
+            newsLetterIsSet = true;
         }
     }
 }

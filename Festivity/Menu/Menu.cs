@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class Menu
     {
-        private static int Option { get; set; }
+        public static int Option { get; set; }
 
         public static void Draw(List<MenuOption> consoleOptions)
         {
@@ -15,8 +15,7 @@ namespace Festivity
             {
                 if (Option == i)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                 }
                 Console.WriteLine("{0}", consoleOptions[i].Name);
                 if (Option == i)

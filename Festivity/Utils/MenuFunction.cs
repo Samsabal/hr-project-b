@@ -1,3 +1,4 @@
+using Festivity.Account;
 ﻿using Festivity.Utils;
 using System;
 using System.Threading;
@@ -23,8 +24,7 @@ namespace Festivity
                     {
                         if (option == i)
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            Console.ForegroundColor = ConsoleColor.Red;
                         }
                         Console.WriteLine("{0}", consoleOptions[i]);
                         if (option == i)
@@ -40,8 +40,7 @@ namespace Festivity
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     FestivalModel tempfestival = (FestivalModel)objects[i];
 
@@ -56,8 +55,7 @@ namespace Festivity
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
@@ -73,8 +71,7 @@ namespace Festivity
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Ticket tempticket = (Ticket)objects[i];
 
@@ -90,8 +87,7 @@ namespace Festivity
                     ConsoleHelperFunctions.ClearCurrentConsoleLine();
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
@@ -107,8 +103,7 @@ namespace Festivity
                 {
                     if (option == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
                     Console.WriteLine("{0}", consoleOptions[i]);
                     if (option == i)
@@ -150,7 +145,8 @@ namespace Festivity
 
                     case "Login": // "Login" option home screen
                         Console.Clear();
-                        UserLoginPage.LoginPage();
+                        AccountLogin.LoginManager.InitiateLoginPage();
+                        //UserLoginPage.LoginPage();
                         break;
 
                     case "Festivals": // "Festival catalog" option home screen
@@ -162,13 +158,6 @@ namespace Festivity
                         Environment.Exit(0);
                         Console.Clear();
                         break;
-                    // !!!! TEMPORARY OPTION !!!!
-                    case "Festival Page":
-                        Console.Clear();
-                        Festival.PageManager.Display(1);
-                        Thread.Sleep(1000);
-                        break;
-
                     case "Sort by name": // "Sort by name" option on catalog page filter/sort screen
                         CatalogPage.festivalArray = SortingFunctions.SortName(CatalogPage.festivalArray);
                         CatalogPage.currentCatalogNavigation = "main";
@@ -263,11 +252,11 @@ namespace Festivity
                         break;
 
                     case "Yes, I want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(1);
+                        AccountRegistration.Registration.SetNewsLetter(true);
                         break;
 
                     case "No, I don't want to recieve newsletters":
-                        AccountRegistration.Registration.SetNewsLetter(2);
+                        AccountRegistration.Registration.SetNewsLetter(false);
                         break;
 
                     case "Exit to Main Menu": // "Exit to Main Menu" option on any relevant screen
@@ -296,25 +285,22 @@ namespace Festivity
                         }
                         else
                         {
-                            UserLoginPage.UserLogin(1);
+                            AccountLogin.LoginManager.InitateLogin(true);
                         }
-                        break;
-
-                    case "Return to Festival Page":
-                        Console.Clear();
-                        Festival.PageManager.Display(CatalogPage.selectedFestival);
                         break;
 
                     case "Login to your Account":
                         Console.Clear();
-                        UserLoginPage.userLoginChoice = 1;
-                        UserLoginPage.UserLogin();
+                        AccountLogin.LoginManager.InitateLogin(false);
+                        //UserLoginPage.userLoginChoice = 1;
+                        //UserLoginPage.UserLogin();
                         break;
 
                     case "Forgot password":
                         Console.Clear();
-                        UserLoginPage.userLoginChoice = 2;
-                        UserLoginPage.ForgotPassword();
+                        AccountLogin.LoginManager.InitateForgotPassword();
+                        //UserLoginPage.userLoginChoice = 2;
+                        //UserLoginPage.ForgotPassword();
                         break;
 
                     case "Logout":
@@ -329,22 +315,22 @@ namespace Festivity
 
                     case "My Account":
                         Console.Clear();
-                        UserAccountPage.AccountPage();
+                        AccountPage.Manager.DrawPage();
                         break;
 
                     case "Change user information":
                         Console.Clear();
-                        UserAccountPage.AccountChangeInfo();
+                        AccountPage.Manager.InitateInfoChange();
                         break;
 
                     case "Preference for e-mails":
                         Console.Clear();
-                        UserAccountPage.AccountEmailPrefference();
+                        Account.ChangeEmailPreference.Initate();
                         break;
 
                     case "Change password":
                         Console.Clear();
-                        UserAccountPage.ChangePassword();
+                        Account.ChangePassword.Initiate();
                         break;
 
                     case "My Tickets":
