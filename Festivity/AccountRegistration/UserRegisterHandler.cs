@@ -36,7 +36,7 @@
             {
                 if (user.AccountType == 1)
                 {
-                    Menu.Draw(UserRegisterMenu.UserOrganisatorRegisterMenuBuilder(user));
+                    Menu.Draw(UserRegisterMenu.UserOrganiserRegisterMenuBuilder(user));
                 }
 
                 if (user.AccountType == 2)
