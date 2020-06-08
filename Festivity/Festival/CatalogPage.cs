@@ -12,7 +12,6 @@ namespace Festivity
         public static int currentPage { get; set; }
         public static FestivalModel[] festivalArray { get; set; }
         public static string currentCatalogNavigation { get; set; }
-        public static int selectedFestival;
 
         /// <summary>
         /// The main method of the Catalog class, should be used when trying to go to the Catalog screen.

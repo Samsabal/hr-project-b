@@ -341,13 +341,6 @@ namespace Festivity
                             Console.Clear();
                             Transaction.DisplayManager.Initiate(option);
                         }
-                        else if (consoleOptions[option].StartsWith("Select festival"))
-                        {
-                            FestivalModel tempfestival = (FestivalModel)objects[option];
-                            Console.Clear();
-                            CatalogPage.selectedFestival = tempfestival.FestivalID;
-                            Festival.PageManager.Display(tempfestival.FestivalID);
-                        }
                         break;
                 }
             }
