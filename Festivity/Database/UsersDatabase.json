@@ -109,6 +109,160 @@
       "birthDate": "1990-01-01T00:00:00",
       "newsLetter": false,
       "phoneNumber": null
+    },
+    {
+      "userAddress": {
+        "country": "Goes",
+        "city": "geso",
+        "zipCode": "3434lk",
+        "streetName": "asdfad",
+        "streetNumber": "45"
+      },
+      "accountType": 2,
+      "accountID": 6,
+      "firstName": "TestingRegister",
+      "lastName": "asdasd",
+      "email": "aasda@gmail.com",
+      "password": "Admin10!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "birthDate": "1999-12-12T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": "0612121212"
+    },
+    {
+      "userAddress": {
+        "country": "Asdas",
+        "city": "asdads",
+        "zipCode": "3434jk",
+        "streetName": "asdasd",
+        "streetNumber": "56"
+      },
+      "accountType": 2,
+      "accountID": 7,
+      "firstName": "Jaden",
+      "lastName": "asdasd",
+      "email": "asdads@gmail.com",
+      "password": "Admin10!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "birthDate": "1999-12-12T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": "0612121212"
+    },
+    {
+      "userAddress": {
+        "country": "aopsd",
+        "city": "asdasd",
+        "zipCode": "3434kd",
+        "streetName": "asdasd",
+        "streetNumber": "34"
+      },
+      "accountType": 2,
+      "accountID": 8,
+      "firstName": "TestingRegister",
+      "lastName": "asdasda",
+      "email": "aasd@gtmi.com",
+      "password": "asdasd10A!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "birthDate": "1999-12-12T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": "0612121212"
+    },
+    {
+      "userAddress": {
+        "country": "Goee",
+        "city": "paaa",
+        "zipCode": "1231ok",
+        "streetName": "pokpok",
+        "streetNumber": "12"
+      },
+      "accountType": 2,
+      "accountID": 9,
+      "firstName": "Testing",
+      "lastName": "asd",
+      "email": "Pokapsod@gmail.com",
+      "password": "Admin10!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "birthDate": "1999-12-13T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": "0612312311"
+    },
+    {
+      "userAddress": {
+        "country": "Goes",
+        "city": "ges",
+        "zipCode": "3434jk",
+        "streetName": "adasd",
+        "streetNumber": "23"
+      },
+      "accountType": 2,
+      "accountID": 10,
+      "firstName": "TestingAgain",
+      "lastName": "asda",
+      "email": "Asdoaspodkaposkd@gmail.com",
+      "password": "Admin10!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "birthDate": "1999-12-13T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": "0612121212"
+    },
+    {
+      "userAddress": {
+        "country": "nmasda",
+        "city": "dasd",
+        "zipCode": "3434jk",
+        "streetName": "asdasdas",
+        "streetNumber": "34"
+      },
+      "accountType": 1,
+      "accountID": 11,
+      "firstName": "Enny",
+      "lastName": "asdasd",
+      "email": "aaa@gmail.com",
+      "password": "Admin10!",
+      "companyContactperson": "Jaden",
+      "companyPhoneNumber": "0612121212",
+      "companyName": "Amazon",
+      "companyIBAN": "NL22RABO1212121212",
+      "birthDate": "0001-01-01T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": null
+    },
+    {
+      "userAddress": {
+        "country": "asdas",
+        "city": "dasdas",
+        "zipCode": "3434kj",
+        "streetName": "poep",
+        "streetNumber": "34"
+      },
+      "accountType": 2,
+      "accountID": 12,
+      "firstName": "asdasd",
+      "lastName": "asdasd",
+      "email": "aaaaaa@gmail.com",
+      "password": "Admin10!",
+      "companyContactperson": null,
+      "companyPhoneNumber": null,
+      "companyName": null,
+      "companyIBAN": null,
+      "birthDate": "1999-12-13T00:00:00",
+      "newsLetter": false,
+      "phoneNumber": "0612121212"
     }
   ]
 }

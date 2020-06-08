@@ -30,7 +30,7 @@ namespace Festivity
                     }
                 }));
             }
-            newMenuOptions.Add(new MenuOption("Return to Catalog: ", () =>
+            newMenuOptions.Add(new MenuOption("Return to Catalog", () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
                 Menu.OptionReset();
@@ -38,7 +38,7 @@ namespace Festivity
                 CatalogPage.currentCatalogNavigation = "main";
                 CatalogPage.CatalogMain();
             }));
-            newMenuOptions.Add(new MenuOption("Exit to Main Menu: ", () =>
+            newMenuOptions.Add(new MenuOption("Exit to Main Menu", () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
                 Menu.OptionReset();
