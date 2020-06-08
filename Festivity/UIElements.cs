@@ -27,12 +27,6 @@ namespace Festivity
             Size = "Three";
         }
 
-        // Draw Line
-        // Draw Page - External
-        // Draw Path
-        // Draw Menu
-        // Draw Line - External
-
         public void Line()
         {
             Console.WriteLine("--------------------------------------------------------------------");
@@ -62,6 +56,12 @@ namespace Festivity
         public void Draw()
         {
             PathLine();
+        }
+
+        public void Pom(string message)
+        {
+            Console.WriteLine();
+            Console.WriteLine(LineStringInMiddleWith($"[ {message} ]"));
         }
 
         public string SpaceStringInMiddle(string middle)
