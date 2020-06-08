@@ -46,7 +46,7 @@
                     break;
 
                 case 8:
-                    if (LoggedInAccount.User.AccountType == 1) // Organisator
+                    if (LoggedInAccount.User.AccountType == 1) // Organiser
                     {
                         do { LoggedInAccount.User.CompanyName = Utils.InputLoop("Input new company name: "); }
                         while (!RegexUtils.IsValidAddressName(LoggedInAccount.User.CompanyName));
