@@ -330,7 +330,7 @@ namespace Festivity
                     Console.Clear();
                     Modifier.InputStartingTime(festival);
                 }),
-                new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime.ToShortTimeString()}", () =>
+                new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalEndTime.ToShortTimeString()}", () =>
                 {
                     Console.Clear();
                     Modifier.InputEndTime(festival);
@@ -353,7 +353,10 @@ namespace Festivity
                 new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
                 {
                     Console.Clear();
-                    Modifier.InputGenre(festival);
+                    Loop = true;
+                    do {Menu.Draw(GenreMenuModify(festival)); }
+                    while(Loop);
+                    Loop = true;
                 }),
                 new MenuOption($"Cancel time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
                 {
@@ -372,6 +375,7 @@ namespace Festivity
                 {
                     Console.Clear();
                     JSONFunctionality.UpdateFestival(festival);
+                    festival.FestivalStatus = "Changed";
                 }),
                 new MenuOption("Cancel festival modification", () =>
                 {
@@ -569,6 +573,44 @@ namespace Festivity
                     Console.Clear();
                     Modifier.SetFestivalGenre(festival, "Hip-Hop");
                     RegisterHandler.ShowFestivalRegister(festival);
+                }),
+            };
+            return newMenuOptions;
+        }
+
+        public static List<MenuOption> GenreMenuModify(FestivalModel festival)
+        {
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+            {
+                new MenuOption("Techno", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Techno");
+                    Loop = false;
+                }),
+                new MenuOption("Drum & Bass", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Drum & Bass");
+                    Loop = false;
+                }),
+                new MenuOption("Pop", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Pop");
+                    Loop = false;
+                }),
+                new MenuOption("Rock", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Rock");
+                    Loop = false;
+                }),
+                new MenuOption("Hip-Hop", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Hip-Hop");
+                    Loop = false;
                 }),
             };
             return newMenuOptions;

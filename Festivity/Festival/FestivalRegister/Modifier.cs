@@ -100,11 +100,13 @@ namespace Festivity.FestivalRegister
         public static void InputGenre(FestivalModel festival)
         {
             Menu.OptionReset();
-            while (true)
+            MenuBuilder.Loop = true;
+            do
             {
                 Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
                 Menu.Draw(MenuBuilder.GenreMenu(festival));
-            }
+            } while (MenuBuilder.Loop);
+            MenuBuilder.Loop = true;
         }
 
         public static List<Ticket> InputFestivalTickets(List<Ticket> savedTicketList)
