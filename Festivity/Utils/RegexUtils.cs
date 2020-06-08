@@ -238,7 +238,7 @@ namespace Festivity
             {
                 Console.WriteLine("Password should contain the following rules: ");
                 Console.WriteLine(" - Must be between 8 and 15 characters long. ");
-                Console.WriteLine(" - Must contain at least one number. . ");
+                Console.WriteLine(" - Must contain at least one number. ");
                 Console.WriteLine(" - Must contain at least one uppercase letter. ");
                 Console.WriteLine(" - Must contain at least one lowercase letter. ");
                 Console.WriteLine(" - Must contain at least one symbol. \n");
