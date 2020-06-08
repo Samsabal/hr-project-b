@@ -22,7 +22,7 @@ namespace Festivity.Transaction
             Console.WriteLine("Ordered Succesfully!");
             Thread.Sleep(2000);
             Console.Clear();
-            Festival.PageManager.Display(CatalogPage.selectedFestival);
+            Festival.PageManager.Display(SelectedFestival.festival.FestivalID);
         }
 
         public static int GetTicketAmount()
