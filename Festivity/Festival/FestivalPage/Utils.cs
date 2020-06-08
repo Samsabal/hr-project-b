@@ -79,5 +79,31 @@ namespace Festivity.Festival
             }
 
         }
+
+        public static void TicketDescription(int ticketId) // Splits up the description in parts that fit in the festival page and displays them
+        {
+            foreach (var ticket in Transaction.TicketListBuilder.Get())
+            {
+                if (ticketId == ticket.TicketID)
+                {
+                    int DescriptionLength = ticket.TicketDescription.Length;
+                    int LineCount = 0;
+
+                    while (DescriptionLength > 75 * LineCount)
+                    {
+                        if (DescriptionLength - 75 * LineCount > 75)
+                        {
+                            Console.WriteLine("| " + ticket.TicketDescription.Substring(75 * LineCount, 75) + " |");
+                            LineCount += 1;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"| {ticket.TicketDescription.Substring(75 * LineCount)}".PadRight(78) + "|");
+                            LineCount += 1;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
