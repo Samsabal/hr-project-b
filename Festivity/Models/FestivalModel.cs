@@ -149,7 +149,7 @@ namespace Festivity
         /// <summary> This method gets a list of tickets associated with the current Festival.
         /// </summary> <returns>\ Returns a List<Ticket> containing all tickets that match the
         /// FestivalID </returns>
-        private List<Ticket> GetTickets()
+        public List<Ticket> GetTickets()
         {
             JSONTicketList tickets = JSONFunctionality.GetTickets();
             List<Ticket> resultList = new List<Ticket>();

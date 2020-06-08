@@ -50,7 +50,7 @@ namespace Festivity.FestivalRegister
             return int.Parse(festivalAmountVariousTickets);
         }
 
-        private static string InputLoop(string printString)
+        public static string InputLoop(string printString)
         {
             string userInput;
             Console.Write(printString); userInput = Console.ReadLine();

@@ -19,5 +19,10 @@ namespace Festivity
 
         [JsonProperty("streetNumber")]
         public string StreetNumber { get; set; }
+
+        public override string ToString()
+        {
+            return $"{StreetName} {StreetNumber}, {ZipCode} {City}, {Country}";
+        }
     }
 }

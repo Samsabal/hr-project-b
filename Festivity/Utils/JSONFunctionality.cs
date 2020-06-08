@@ -109,5 +109,33 @@ namespace Festivity
             };
             return accountID;
         }
+
+        public static void UpdateTicket(Ticket ticket)
+        {
+            JSONTicketList tickets = GetTickets();
+            for (int i = 0; i < tickets.Tickets.Count; i++)
+            {
+                if (tickets.Tickets[i].TicketID == ticket.TicketID)
+                {
+                    tickets.Tickets[i] = ticket;
+                    break;
+                }
+            }
+            WriteTickets(tickets);
+        }
+
+        public static void UpdateFestival(FestivalModel festival)
+        {
+            JSONFestivalList festivals = GetFestivals();
+            for (int i = 0; i < festivals.Festivals.Count; i++)
+            {
+                if (festivals.Festivals[i].FestivalID == festival.FestivalID)
+                {
+                    festivals.Festivals[i] = festival;
+                    break;
+                }
+            }
+            WriteFestivals(festivals);
+        }
     }
 }

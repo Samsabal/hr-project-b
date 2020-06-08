@@ -38,6 +38,11 @@ namespace Festivity
                     Console.Clear();
                     TicketTableManager.Initiate();
                 }),
+                new MenuOption("My Festivals", () =>
+                {
+                    Console.Clear();
+                    Festival.FestivalTableDrawer.Draw();
+                }),
                 new MenuOption("Logout", () =>
                 {
                     Console.Clear();

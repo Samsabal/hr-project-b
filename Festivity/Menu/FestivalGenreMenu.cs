@@ -45,5 +45,43 @@ namespace Festivity
 
             return newMenuOptions;
         }
+
+        public static List<MenuOption> GenreMenuModify(FestivalModel festival)
+        {
+            List<MenuOption> newMenuOptions = new List<MenuOption>
+            {
+                new MenuOption("Techno", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Techno");
+                    Loop = false;
+                }),
+                new MenuOption("Drum & Bass", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Drum & Bass");
+                    Loop = false;
+                }),
+                new MenuOption("Pop", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Pop");
+                    Loop = false;
+                }),
+                new MenuOption("Rock", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Rock");
+                    Loop = false;
+                }),
+                new MenuOption("Hip-Hop", () =>
+                {
+                    Console.Clear();
+                    Modifier.SetFestivalGenre(festival, "Hip-Hop");
+                    Loop = false;
+                }),
+            };
+            return newMenuOptions;
+        }
     }
 }
