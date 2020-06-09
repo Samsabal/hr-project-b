@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class LoginMenu
+    internal class LoginMenu
     {
         public static List<MenuOption> LoginBuilder()
         {
@@ -27,7 +26,7 @@ namespace Festivity
                     Menu.OptionReset();
                     Console.Clear();
                     MenuBuilder.Loop = false;
-                }) 
+                })
             };
             return newMenuOptions;
         }

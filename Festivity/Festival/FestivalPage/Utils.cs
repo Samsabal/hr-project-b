@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Transactions;
 
 namespace Festivity.Festival
 {
@@ -82,7 +81,6 @@ namespace Festivity.Festival
                     LineCount += 1;
                 }
             }
-
         }
 
         public static void TicketDescription(int ticketId) // Splits up the description in parts that fit in the festival page and displays them

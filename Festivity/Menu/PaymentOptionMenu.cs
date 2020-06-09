@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Festivity
 {
-    class PaymentOptionMenu : MenuBuilder
+    internal class PaymentOptionMenu : MenuBuilder
     {
         public List<MenuOption> Build()
         {

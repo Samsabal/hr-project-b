@@ -66,7 +66,9 @@ namespace Festivity
         }
 
         /// <summary> Writes the given JSONTicketList to the Ticket database </summary>
-        /// <param name="tickets"> The JSONTicketList that needs to be written to the Ticket database </param>
+        /// <param name="tickets">
+        /// The JSONTicketList that needs to be written to the Ticket database
+        /// </param>
         public static void WriteTickets(JSONTicketList tickets)
         {
             string json = JsonConvert.SerializeObject(tickets, Formatting.Indented);

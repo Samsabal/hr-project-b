@@ -1,7 +1,7 @@
 ﻿using BetterConsoleTables;
+using Festivity.Utils;
 using System;
 using System.Collections.Generic;
-using Festivity.Utils;
 
 namespace Festivity
 {
@@ -30,7 +30,7 @@ namespace Festivity
         }
 
         public static void DrawTicketTablePage()
-        {       
+        {
             while (TicketTableListBuilder.Build())
             {
                 DrawTable();

@@ -82,7 +82,9 @@ namespace Festivity.Utils
             return festivalsWithPrices;
         }
 
-        /// <summary> Sorts a given Festival[] from earliest to latest by the dates of the festivals. </summary>
+        /// <summary>
+        /// Sorts a given Festival[] from earliest to latest by the dates of the festivals.
+        /// </summary>
         /// <param name="festivalArray"> Festival array to be sorted. </param>
         /// <returns> Returns a Festival[] sorted by FestivalDate </returns>
         public static FestivalModel[] SortDate(FestivalModel[] festivalArray)

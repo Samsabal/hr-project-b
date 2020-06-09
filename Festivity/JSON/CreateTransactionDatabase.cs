@@ -2,7 +2,7 @@
 
 namespace Festivity.JSON
 {
-    class CreateTransactionDatabase
+    internal class CreateTransactionDatabase
     {
         public static string Check()
         {
