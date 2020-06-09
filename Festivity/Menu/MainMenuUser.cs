@@ -6,7 +6,7 @@ namespace Festivity
 {
     internal class MainMenuUser : MenuBuilder
     {
-        public static List<MenuOption> MainMenuUserBuilder()
+        public List<MenuOption> MainMenuUserBuilder()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>

@@ -13,7 +13,7 @@ namespace Festivity.Festival
                 {
                     string Table = FestivalTableBuilder.ConvertToString(FestivalTableBuilder.BuildTableList());
                     Console.WriteLine(Table);
-                    Menu.Draw(FestivalMenus.SelectFestival());
+                    Menu.Draw(new FestivalMenus().SelectFestival());
                 } while (MenuBuilder.Loop);
                 MenuBuilder.Loop = true;
             }

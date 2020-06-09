@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class TicketMenus : MenuBuilder
     {
-        public static List<MenuOption> SelectTicket(FestivalModel festival)
+        public List<MenuOption> SelectTicket(FestivalModel festival)
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
             foreach (Ticket ticket in festival.GetTickets())
@@ -24,14 +24,14 @@ namespace Festivity
             {
                 Menu.OptionReset();
                 Console.Clear();
-                FestivalMenus.ChangeFestival(festival);
+                new FestivalMenus().ChangeFestival(festival);
                 Loop = false;
             }
                 ));
             return newMenuOptions;
         }
 
-        public static List<MenuOption> ChangeTicket(Ticket ticket)
+        public List<MenuOption> ChangeTicket(Ticket ticket)
         {
             int currentValueStartingPoint = 30;
             List<MenuOption> newMenuOptions = new List<MenuOption>

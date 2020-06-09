@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class MainMenu : MenuBuilder
     {
-        public static List<MenuOption> MainMenuBuilder()
+        public List<MenuOption> MainMenuBuilder()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
@@ -22,7 +22,7 @@ namespace Festivity
                     Menu.OptionReset();
                     Console.Clear();
                     Loop = true;
-                    do {Menu.Draw(LoginMenu.LoginBuilder()); }
+                    do {Menu.Draw(new LoginMenu().LoginBuilder()); }
                     while (Loop);
                 }),
                 new MenuOption("Festivals", () =>

@@ -26,11 +26,11 @@ namespace Festivity
                 DrawCatalog();
                 if (currentCatalogNavigation == "main")
                 {
-                    Menu.Draw(CatalogMainMenu.CatalogMainMenuBuilder());
+                    Menu.Draw(new CatalogMainMenu().CatalogMainMenuBuilder());
                 }
                 else
                 {
-                    Menu.Draw(CatalogFilterMenu.CatalogFilterMenuBuilder());
+                    Menu.Draw(new CatalogFilterMenu().CatalogFilterMenuBuilder());
                 }
             }
         }

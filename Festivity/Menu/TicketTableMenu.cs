@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class TicketTableMenu : MenuBuilder
     {
-        public static List<MenuOption> GenreMenuBuilder()
+        public List<MenuOption> GenreMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
