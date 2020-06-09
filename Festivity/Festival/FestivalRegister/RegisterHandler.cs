@@ -1,26 +1,22 @@
 ﻿using Festivity.FestivalRegister;
-using System;
-using System.Threading;
 
 namespace Festivity
 {
-    /// <summary>
-    /// This class is used to register a festival.
-    /// </summary>
+    /// <summary> This class is used to register a festival. </summary>
     internal class RegisterHandler
     {
         // Variables that manage the functionality of the registration.
         public static bool ActiveScreen { private get; set; }
+
         public static string CurrentRegisterSelection { private get; set; }
 
         // Database arrays.
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
 
-        /// <summary>
-        /// This function initiate the festival register
-        /// </summary>
-        /// <param name="festival"></param>
+        /// <summary> This function initiate the festival register </summary>
+        /// <param name="festival"> </param>
         public static void InitiateFestivalRegister(FestivalModel festival)
         {
             Modifier.InputFestivalName(festival);
@@ -35,9 +31,8 @@ namespace Festivity
             Modifier.InputGenre(festival);
         }
 
-        /// <summary>
-        /// This is a function to show the festivalregistration and let the user allow inputs.
-        /// </summary
+        /// <summary> This is a function to show the festivalregistration and let the user allow
+        /// inputs. </summary
         public static void ShowFestivalRegister(FestivalModel festival)
         {
             // Makes sure the console keeps refreshing, allowing input.
@@ -50,8 +45,8 @@ namespace Festivity
         /// <summary>
         /// This is a function to retrieve the latest registered festivalid and create the next festivalid.
         /// </summary>
-        /// <param name="festivals"></param>
-        /// <returns>festivalID</returns>
+        /// <param name="festivals"> </param>
+        /// <returns> festivalID </returns>
         public static int SetFestivalId(JSONFestivalList festivals)
         {
             int festivalId;
@@ -71,8 +66,8 @@ namespace Festivity
         /// <summary>
         /// This is a function to retrieve the latest registered ticketid and create the next ticketid.
         /// </summary>
-        /// <param name="tickets"></param>
-        /// <returns></returns>
+        /// <param name="tickets"> </param>
+        /// <returns> </returns>
         public static int SetTicketID(JSONTicketList tickets)
         {
             int ticketId;

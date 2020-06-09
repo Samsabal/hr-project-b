@@ -2,7 +2,7 @@
 
 namespace Festivity.JSON
 {
-    class CreateTicketDatabase
+    internal class CreateTicketDatabase
     {
         public static string Check()
         {

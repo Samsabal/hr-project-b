@@ -1,11 +1,10 @@
 ﻿using Festivity.FestivalRegister;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class FestivalRegisterMenu : MenuBuilder
+    internal class FestivalRegisterMenu : MenuBuilder
     {
         public static List<Ticket> savedTicketList = new List<Ticket>();
 

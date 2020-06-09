@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class FestivalPageMenu : MenuBuilder
+    internal class FestivalPageMenu : MenuBuilder
     {
         public static List<MenuOption> FestivalPageMenuBuilder()
         {

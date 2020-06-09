@@ -2,11 +2,10 @@
 
 namespace Festivity.Festival
 {
-    class FestivalTableDrawer
+    internal class FestivalTableDrawer
     {
         public static void Draw()
         {
-
             if (LoggedInAccount.hasFestivals())
             {
                 MenuBuilder.Loop = true;

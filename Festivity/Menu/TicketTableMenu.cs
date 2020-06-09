@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    class TicketTableMenu : MenuBuilder
+    internal class TicketTableMenu : MenuBuilder
     {
         public static List<MenuOption> GenreMenuBuilder()
         {

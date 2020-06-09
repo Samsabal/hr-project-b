@@ -18,7 +18,7 @@ namespace Festivity.FestivalRegister
             while (!RegexUtils.IsValidCancelTime(tempCancelTime));
             festival.FestivalCancelTime = int.Parse(tempCancelTime);
         }
-        
+
         public static void InputFestivalAdress(FestivalModel festival)
         {
             Address address = new Address();
@@ -53,9 +53,9 @@ namespace Festivity.FestivalRegister
         public static void ModifyFestivalDescription(FestivalModel festival)
         {
             do { festival.FestivalDescription = InputLoop("Fill in the festival description: "); }
-            while (!RegexUtils.IsValidDescription(festival.FestivalDescription));    
+            while (!RegexUtils.IsValidDescription(festival.FestivalDescription));
         }
-        
+
         public static void InputFestivalDate(FestivalModel festival)
         {
             string festivalDay;
@@ -95,10 +95,10 @@ namespace Festivity.FestivalRegister
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempEndTime.Substring(0, 2)),
                                                          int.Parse(tempEndTime.Substring(3, 2)), 0);
-                        if (festival.FestivalEndTime < festival.FestivalStartingTime)
-                        {
-                            festival.FestivalEndTime = festival.FestivalEndTime.AddDays(1);
-                        }
+            if (festival.FestivalEndTime < festival.FestivalStartingTime)
+            {
+                festival.FestivalEndTime = festival.FestivalEndTime.AddDays(1);
+            }
         }
 
         public static void InputGenre(FestivalModel festival)
@@ -154,9 +154,9 @@ namespace Festivity.FestivalRegister
 
         public static void ModifyUpdateDateByTime(FestivalModel festival)
         {
-            if(festival.FestivalStartingTime.Date != festival.FestivalDate.Date)
+            if (festival.FestivalStartingTime.Date != festival.FestivalDate.Date)
             {
-                festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalStartingTime.Hour, festival.FestivalStartingTime.Minute, festival.FestivalStartingTime.Second );
+                festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalStartingTime.Hour, festival.FestivalStartingTime.Minute, festival.FestivalStartingTime.Second);
                 festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalEndTime.Hour, festival.FestivalEndTime.Minute, festival.FestivalEndTime.Second);
                 if (festival.FestivalEndTime < festival.FestivalStartingTime)
                 {

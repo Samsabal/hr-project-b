@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.AccountPage
 {
-    class Utils
+    internal class Utils
     {
         private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
         private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
@@ -14,7 +13,6 @@ namespace Festivity.AccountPage
         {
             List<Ticket> ticketList = new List<Ticket>();
             double amountEarned = 0.0;
-
 
             foreach (var festival in festivals.Festivals)
             {
@@ -54,11 +52,12 @@ namespace Festivity.AccountPage
         {
             return RegexUtils.NumberCheck(userInput, 1, max);
         }
+
         public static int GetOptionAmount()
-        // Returns 8 if logged in user is a Visitor, if not it returns 9. For the amount of Account Changing options.
+        // Returns 8 if logged in user is a Visitor, if not it returns 9. For the amount of Account
+        // Changing options.
         {
             return LoggedInAccount.User.AccountType == 2 ? 8 : 9;
         }
-
     }
 }
