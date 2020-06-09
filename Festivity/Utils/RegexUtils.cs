@@ -27,6 +27,8 @@ namespace Festivity
                 Console.WriteLine("Invalid input, please  try again");
                 return false;
             }
+            MakesUserQuitIfCalled(value);
+            Console.WriteLine("Invalid input, please  try again");
             return false;
         }
 
@@ -38,6 +40,7 @@ namespace Festivity
         {
             if (!regex.IsMatch(input))
             {
+                MakesUserQuitIfCalled(input);
                 Console.WriteLine("Invalid Input, please try again");
                 return false;
             }
@@ -51,6 +54,7 @@ namespace Festivity
         {
             if (!regex.IsMatch(input))
             {
+                MakesUserQuitIfCalled(input);
                 return false;
             }
             else
@@ -64,7 +68,7 @@ namespace Festivity
         /// <returns> Returns true if name conforms to regex. </returns>
         public static bool IsValidName(string name)
         {
-            return RegexCheck(name, new Regex(@"^[A-Za-z,.' -]{2,33}$"));
+            return RegexCheck(name, new Regex(@"^[A-Za-z,.' ]{2,33}$"));
         }
 
         public static bool IsValidYesOrNo(string name)
@@ -236,6 +240,7 @@ namespace Festivity
 
             if (!hasLowerChar.IsMatch(password) || !hasUpperChar.IsMatch(password) || !hasMiniMaxChars.IsMatch(password) || !hasSymbols.IsMatch(password) || !hasNumber.IsMatch(password))
             {
+                MakesUserQuitIfCalled(password);
                 Console.WriteLine("Password should contain the following rules: ");
                 Console.WriteLine(" - Must be between 8 and 15 characters long. ");
                 Console.WriteLine(" - Must contain at least one number. ");
@@ -247,6 +252,14 @@ namespace Festivity
             else
             {
                 return true;
+            }
+        }
+
+        private static void MakesUserQuitIfCalled(string input)
+        {
+            if (new Regex(@"^(\-[Q-q][U-u][I-i][T-t])|(\-[Q-q])$").IsMatch(input)) //Matches -q / -Quit (Match is not case sensitive)
+            {
+                Program.Main();
             }
         }
     }
