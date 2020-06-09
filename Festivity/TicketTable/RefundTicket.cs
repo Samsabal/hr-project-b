@@ -18,7 +18,7 @@ namespace Festivity
             do
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
-                DrawTicketTable.Draw();
+                DrawTicketTable.DrawTable();
                 userInput = Utils.General.InputLoop("\nInput Transaction ID of the order you want to refund: ");
             }
             while (!IsValidTransactionID(userInput));
@@ -42,8 +42,9 @@ namespace Festivity
                 }
             }
             JSONFunctionality.WriteTransactions(NewTransactionsList);
-            Console.WriteLine("Ticket Succesfully refunded");
+            Console.WriteLine("Transaction Succesfully refunded");
             Thread.Sleep(2000);
+            ConsoleHelperFunctions.ClearCurrentConsole();
         }
 
         private static bool IsValidTransactionID(string value)
