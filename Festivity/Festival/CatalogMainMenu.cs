@@ -13,24 +13,26 @@ namespace Festivity
 
             if (CatalogPage.CurrentPage == lastpage)
             {
-                for (int i = 0; i < CatalogPage.FestivalArray.Length % 5; i++)
+                FestivalModel[] smallArray = CatalogPage.FestivalArray[(CatalogPage.CurrentPage * 5)..(CatalogPage.CurrentPage * 5 + CatalogPage.FestivalArray.Length % 5)];
+                foreach (FestivalModel f in smallArray)
                 {
-                    newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i + CatalogPage.CurrentPage * 5].FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption($"Select festival: {f.FestivalName}", () =>
                     {
                         Console.Clear();
-                        SelectedFestival.Festival = CatalogPage.FestivalArray[i + 5 * CatalogPage.CurrentPage];
+                        SelectedFestival.Festival = f;
                         FestivalPage.Handler.Display(SelectedFestival.Festival.FestivalID);
                     }));
                 }
             }
             else
             {
-                for (int i = 0; i < 5; i++)
+                FestivalModel[] smallArray = CatalogPage.FestivalArray[(CatalogPage.CurrentPage * 5)..(CatalogPage.CurrentPage * 5 + 5)];
+                foreach (FestivalModel f in smallArray)
                 {
-                    newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i].FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption($"Select festival: {f.FestivalName}", () =>
                     {
                         Console.Clear();
-                        SelectedFestival.Festival = CatalogPage.FestivalArray[i + 5 * CatalogPage.CurrentPage];
+                        SelectedFestival.Festival = f;
                         FestivalPage.Handler.Display(SelectedFestival.Festival.FestivalID);
                     }));
                 }
