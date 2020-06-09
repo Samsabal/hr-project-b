@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class FestivalRegisterMenu : MenuBuilder
+    internal class FestivalRegisterMenu
     {
         public static List<TicketModel> savedTicketList = new List<TicketModel>();
 
@@ -79,13 +79,11 @@ namespace Festivity
 
                         festivalList.Festivals.Add(festival);
                         JSONFunctions.WriteFestivals(festivalList);
-                        Menu.OptionReset();
                         Program.Main();
                     }),
                     new MenuOption("Cancel Festival Registration", () =>
                     {
                         Console.Clear();
-                        Menu.OptionReset();
                         Program.Main();
                     })
                 };

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class FestivalMenus : MenuBuilder
+    internal class FestivalMenus
     {
         public List<MenuOption> SelectFestival()
         {
@@ -18,18 +18,16 @@ namespace Festivity
                 {
                     newMenuOptions.Add(new MenuOption($"Edit festival: {festival.FestivalName}", () =>
                     {
-                        Menu.OptionReset();
                         Console.Clear();
                         do { Menu.Draw(ChangeFestival(festival)); }
-                        while (Loop);
-                        Loop = true;
+                        while (Menu.Loop);
                     }));
                 }
             }
             newMenuOptions.Add(new MenuOption("Return to main menu", () =>
             {
                 Console.Clear();
-                Loop = false;
+                Program.Main();
             }));
             return newMenuOptions;
         }
@@ -56,7 +54,6 @@ namespace Festivity
                 }),
                 new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalEndTime.ToShortTimeString()}", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
                     FestivalReader.InputEndTime(festival);
                 }),
@@ -78,10 +75,8 @@ namespace Festivity
                 new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
                 {
                     Console.Clear();
-                    Loop = true;
                     do {Menu.Draw(FestivalGenreMenu.GenreMenuModify(festival)); }
-                    while(Loop);
-                    Loop = true;
+                    while(Menu.Loop);
                 }),
                 new MenuOption($"Cancel time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
                 {
@@ -91,25 +86,19 @@ namespace Festivity
                 new MenuOption("Tickets", () =>
                 {
                     Console.Clear();
-                    Menu.OptionReset();
-                    Loop = true;
                     do { Menu.Draw(new TicketMenus().SelectTicket(festival)); }
-                    while(Loop);
-                    Loop = true;
+                    while(Menu.Loop);
                 }),
                 new MenuOption("\nSave changes", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
                     JSONFunctions.UpdateFestival(festival);
                     festival.FestivalStatus = "Changed";
-                    Loop = false;
                 }),
                 new MenuOption("Cancel", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
-                    Loop = false;
+                    Program.Main();
                 }),
             };
             return newMenuOptions;

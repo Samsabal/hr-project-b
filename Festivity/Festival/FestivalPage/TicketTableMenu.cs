@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class TicketTableMenu : MenuBuilder
+    internal class TicketTableMenu
     {
         public List<MenuOption> GenreMenuBuilder()
         {
@@ -12,12 +12,10 @@ namespace Festivity
                 new MenuOption( "Exit to Main Menu", () =>
                 {
                     Console.Clear();
-                    Menu.OptionReset();
                     Program.Main();
                 }),
                 new MenuOption("Refund Ticket", () =>
                 {
-                    Menu.OptionReset();
                     TicketTable.Refund.InitiateRefund();
                 })
             };

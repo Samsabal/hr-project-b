@@ -19,7 +19,7 @@ namespace Festivity.Festival
         public static void CatalogMain()
         {
             CatalogSetup();
-            while (true)
+            do
             {
                 Console.SetCursorPosition(0, 0);
                 DrawCatalog();
@@ -32,6 +32,7 @@ namespace Festivity.Festival
                     Menu.Draw(new CatalogFilterMenu().CatalogFilterMenuBuilder());
                 }
             }
+            while (Menu.Loop);
         }
 
         /// <summary> This method handles the initial setup of the Catalog screen variables. </summary>

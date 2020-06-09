@@ -1,11 +1,10 @@
-﻿using Festivity.FestivalPage;
-using Festivity.Festival;
+﻿using Festivity.Festival;
 using System;
 using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class CatalogMainMenu : MenuBuilder
+    internal class CatalogMainMenu
     {
         public List<MenuOption> CatalogMainMenuBuilder()
         {
@@ -19,8 +18,7 @@ namespace Festivity
                     newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i + CatalogPage.CurrentPage * 5].FestivalName}", () =>
                     {
                         Console.Clear();
-                        SelectedFestival.Festival = CatalogPage.FestivalArray[Menu.Option + 5 * CatalogPage.CurrentPage];
-                        Menu.OptionReset();
+                        SelectedFestival.Festival = CatalogPage.FestivalArray[i + 5 * CatalogPage.CurrentPage];
                         FestivalPage.Handler.Display(SelectedFestival.Festival.FestivalID);
                     }));
                 }
@@ -32,8 +30,7 @@ namespace Festivity
                     newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i].FestivalName}", () =>
                     {
                         Console.Clear();
-                        SelectedFestival.Festival = CatalogPage.FestivalArray[Menu.Option + 5 * CatalogPage.CurrentPage];
-                        Menu.OptionReset();
+                        SelectedFestival.Festival = CatalogPage.FestivalArray[i + 5 * CatalogPage.CurrentPage];
                         FestivalPage.Handler.Display(SelectedFestival.Festival.FestivalID);
                     }));
                 }
@@ -42,7 +39,6 @@ namespace Festivity
             {
                 if (CatalogPage.CurrentPage * 5 + 5 < CatalogPage.FestivalArray.Length)
                 {
-                    Menu.OptionReset();
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CurrentPage++;
                 }
@@ -51,20 +47,17 @@ namespace Festivity
             {
                 if (CatalogPage.CurrentPage > 0)
                 {
-                    Menu.OptionReset();
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CurrentPage--;
                 }
             }));
             newMenuOptions.Add(new MenuOption("Filter festivals", () =>
             {
-                Menu.OptionReset();
                 CatalogPage.CurrentCatalogNavigation = "filter";
                 Console.Clear();
             }));
             newMenuOptions.Add(new MenuOption("Exit to main menu", () =>
             {
-                Menu.OptionReset();
                 Console.Clear();
                 Program.Main();
             }));

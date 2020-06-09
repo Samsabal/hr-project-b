@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class FestivalGenreMenu : MenuBuilder
+    internal class FestivalGenreMenu
     {
         public List<MenuOption> GenreMenuBuilder(FestivalModel festival)
         {
@@ -53,31 +53,26 @@ namespace Festivity
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Techno");
-                    Loop = false;
                 }),
                 new MenuOption("Drum & Bass", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Drum & Bass");
-                    Loop = false;
                 }),
                 new MenuOption("Pop", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Pop");
-                    Loop = false;
                 }),
                 new MenuOption("Rock", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Rock");
-                    Loop = false;
                 }),
                 new MenuOption("Hip-Hop", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");
-                    Loop = false;
                 }),
             };
             return newMenuOptions;

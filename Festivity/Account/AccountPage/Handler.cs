@@ -11,7 +11,6 @@ namespace Festivity.AccountPage
 
         public static void InitateInfoChange()
         {
-            Menu.OptionReset();
             AccountRegistration.Handler.ShowUserRegister(LoggedInModel.User, false);
         }
     }

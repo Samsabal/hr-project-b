@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class CatalogFilterMenu : MenuBuilder
+    internal class CatalogFilterMenu
     {
         public List<MenuOption> CatalogFilterMenuBuilder()
         {
@@ -13,7 +13,6 @@ namespace Festivity
             {
                 new MenuOption("Sort by name", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortName(CatalogPage.FestivalArray);
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -21,7 +20,6 @@ namespace Festivity
                 }),
                 new MenuOption("Sort by date", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortDate(CatalogPage.FestivalArray);
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -29,7 +27,6 @@ namespace Festivity
                 }),
                 new MenuOption("Sort by price", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortPrice(CatalogPage.FestivalArray);
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -37,7 +34,6 @@ namespace Festivity
                 }),
                 new MenuOption("Sort by availability", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortAvailability(CatalogPage.FestivalArray);
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -45,7 +41,6 @@ namespace Festivity
                 }),
                 new MenuOption("Filter by name", () =>
                 {
-                    Menu.OptionReset();
                     string namesearch = Console.ReadLine();
                     CatalogPage.FestivalArray = FilterFunctions.FilterName(CatalogPage.FestivalArray, namesearch);
                     CatalogPage.CurrentCatalogNavigation = "main";
@@ -54,7 +49,6 @@ namespace Festivity
                 }),
                 new MenuOption("Filter by genre", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = FilterFunctions.FilterGenre(CatalogPage.FestivalArray, Console.ReadLine());
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -62,7 +56,6 @@ namespace Festivity
                 }),
                 new MenuOption("Filter by loctaion", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = FilterFunctions.FilterLocation(CatalogPage.FestivalArray, Console.ReadLine());
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -70,7 +63,6 @@ namespace Festivity
                 }),
                 new MenuOption("Clear by filters", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.FestivalArray = JSONFunctions.GetFestivals().Festivals.ToArray();
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
@@ -78,7 +70,6 @@ namespace Festivity
                 }),
                 new MenuOption("Return to catalog", () =>
                 {
-                    Menu.OptionReset();
                     CatalogPage.CurrentCatalogNavigation = "main";
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CatalogMain();

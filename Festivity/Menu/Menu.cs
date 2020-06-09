@@ -7,6 +7,8 @@ namespace Festivity
     {
         public static int Option { get; set; }
 
+        public static bool Loop;
+
         public static void Draw(List<MenuOption> consoleOptions)
         {
             Console.CursorVisible = false;
@@ -49,11 +51,6 @@ namespace Festivity
                 consoleOptions[Option].Select();
             }
             Console.SetCursorPosition(0, 0);
-        }
-
-        public static int OptionReset()
-        {
-            return Option = 0;
         }
     }
 }
