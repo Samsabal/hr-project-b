@@ -1,7 +1,7 @@
-﻿namespace Festivity
+﻿namespace Festivity.Festival
 {
     internal class SelectedFestival
     {
-        public static FestivalModel festival { get; set; }
+        public static FestivalModel Festival { get; set; }
     }
 }

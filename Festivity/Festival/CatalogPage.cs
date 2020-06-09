@@ -1,7 +1,7 @@
 ﻿using Festivity.Utils;
 using System;
 
-namespace Festivity
+namespace Festivity.Festival
 {
     /// <summary>
     /// The main class for the festival catalog. Contains all methods for drawing information on the
@@ -9,9 +9,9 @@ namespace Festivity
     /// </summary>
     public class CatalogPage
     {
-        public static int currentPage { get; set; }
-        public static FestivalModel[] festivalArray { get; set; }
-        public static string currentCatalogNavigation { get; set; }
+        public static int CurrentPage { get; set; }
+        public static FestivalModel[] FestivalArray { get; set; }
+        public static string CurrentCatalogNavigation { get; set; }
 
         /// <summary>
         /// The main method of the Catalog class, should be used when trying to go to the Catalog screen.
@@ -19,12 +19,11 @@ namespace Festivity
         public static void CatalogMain()
         {
             CatalogSetup();
-            // Makes sure the console keeps refreshing, allowing input
             while (true)
             {
                 Console.SetCursorPosition(0, 0);
                 DrawCatalog();
-                if (currentCatalogNavigation == "main")
+                if (CurrentCatalogNavigation == "main")
                 {
                     Menu.Draw(CatalogMainMenu.CatalogMainMenuBuilder());
                 }
@@ -38,13 +37,13 @@ namespace Festivity
         /// <summary> This method handles the initial setup of the Catalog screen variables. </summary>
         private static void CatalogSetup()
         {
-            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
-            festivalArray = festivals.Festivals.ToArray();
-            festivalArray = SortingFunctions.SortDate(festivalArray);
-            festivalArray = SortingFunctions.SortAvailability(festivalArray);
+            JSONFestivalList festivals = JSONFunctions.GetFestivals();
+            FestivalArray = festivals.Festivals.ToArray();
+            FestivalArray = SortingFunctions.SortDate(FestivalArray);
+            FestivalArray = SortingFunctions.SortAvailability(FestivalArray);
 
-            currentCatalogNavigation = "main";
-            currentPage = 0;
+            CurrentCatalogNavigation = "main";
+            CurrentPage = 0;
         }
 
         /// <summary>
@@ -53,19 +52,19 @@ namespace Festivity
         /// </summary>
         private static void DrawCatalog()
         {
-            int lastpage = festivalArray.Length / 5;
-            if (festivalArray.Length == 0)
+            int lastpage = FestivalArray.Length / 5;
+            if (FestivalArray.Length == 0)
             {
                 Console.WriteLine("X===================================================================X");
                 Console.WriteLine("|                                                                   |");
                 Console.WriteLine("|           Sorry, there are no festivals available :(              |");
                 Console.WriteLine("|                                                                   |");
             }
-            else if (currentPage == lastpage)
+            else if (CurrentPage == lastpage)
             {
-                for (int i = currentPage * 5; i < festivalArray.Length; i++)
+                for (int i = CurrentPage * 5; i < FestivalArray.Length; i++)
                 {
-                    if (i == currentPage * 5)
+                    if (i == CurrentPage * 5)
                     {
                         Console.WriteLine("X===================================================================X");
                     }
@@ -73,14 +72,14 @@ namespace Festivity
                     {
                         Console.WriteLine("|-------------------------------------------------------------------|");
                     }
-                    DrawFestival(festivalArray[i]);
+                    DrawFestival(FestivalArray[i]);
                 }
             }
             else
             {
-                for (int i = currentPage * 5; i < currentPage * 5 + 5; i++)
+                for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
                 {
-                    if (i == currentPage * 5)
+                    if (i == CurrentPage * 5)
                     {
                         Console.WriteLine("X===================================================================X");
                     }
@@ -88,7 +87,7 @@ namespace Festivity
                     {
                         Console.WriteLine("|-------------------------------------------------------------------|");
                     }
-                    DrawFestival(festivalArray[i]);
+                    DrawFestival(FestivalArray[i]);
                 }
             }
             Console.WriteLine("X===================================================================X");

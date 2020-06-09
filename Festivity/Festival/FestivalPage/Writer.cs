@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Festivity.Festival
+namespace Festivity.FestivalPage
 {
     internal class Writer
     {
@@ -36,20 +36,20 @@ namespace Festivity.Festival
                 int ticketId = ticket.TicketID;
                 int maxTickets = ticket.MaxTickets;
                 Console.WriteLine($"| {ticket.TicketName}".PadRight(77) + " |");
-                Utils.TicketDescription(ticketId);
+                Builder.TicketDescription(ticketId);
                 Console.WriteLine($"| This ticket cost {ticket.TicketPrice} euros.".PadRight(77) + " |");
-                Console.WriteLine($"| There are {ticket.MaxTickets} tickets in total of which there are {Utils.TicketsLeft(ticketId, maxTickets)} left.".PadRight(77) + " |");
+                Console.WriteLine($"| There are {ticket.MaxTickets} tickets in total of which there are {Builder.TicketsLeft(ticketId, maxTickets)} left.".PadRight(77) + " |");
                 Console.WriteLine($"|-----------------------------------------------------------------------------|");
             }
 
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Utils.ClearConsoleLine();
+            ConsoleHelperFunctions.ClearCurrentConsoleLine();
             Console.WriteLine($"X=============================================================================X");
         }
 
         public static void FestivalOrganiser(FestivalModel festival) // Displays the name of the organiser of the festival
         {
-            foreach (var user in JSONFunctionality.GetUserList().Users)
+            foreach (var user in JSONFunctions.GetUserList().Users)
             {
                 if (festival.FestivalOrganiserID == user.AccountID)
                 {

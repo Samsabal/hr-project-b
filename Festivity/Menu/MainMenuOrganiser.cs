@@ -15,33 +15,33 @@ namespace Festivity
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    CatalogPage.CatalogMain();
+                    Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Register Festivals", () =>
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()), FestivalOrganiserID = LoggedInAccount.GetID() };
-                    RegisterHandler.ActiveScreen = true;
-                    RegisterHandler.InitiateFestivalRegister(festival);
+                    FestivalModel festival = new FestivalModel { FestivalID = FestivalRegister.Handler.SetFestivalId(JSONFunctions.GetFestivals()), FestivalOrganiserID = Account.LoggedInModel.GetID() };
+                    FestivalRegister.Handler.ActiveScreen = true;
+                    FestivalRegister.Handler.InitiateFestivalRegister(festival);
                 }),
                 new MenuOption("My Account", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    AccountPage.Manager.DrawPage();
+                    AccountPage.Handler.DrawPage();
                 }),
                 new MenuOption("My Tickets", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    TicketTableManager.Initiate();
+                    TicketTable.Handler.Initiate();
                 }),
                 new MenuOption("My Festivals", () =>
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    Festival.FestivalTableDrawer.Draw();
+                    FestivalTable.Drawer.Draw();
                 }),
                 new MenuOption("Logout", () =>
                 {
@@ -50,7 +50,7 @@ namespace Festivity
                     Thread.Sleep(1000);
                     Console.Clear();
                     Menu.OptionReset();
-                    LoggedInAccount.LogOut();
+                    Account.LoggedInModel.LogOut();
                     Program.Main();
                 }),
                 new MenuOption("Exit", () =>

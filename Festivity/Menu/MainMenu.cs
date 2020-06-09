@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class MainMenu : MenuBuilder
     {
-        public static List<MenuOption> MainMenuBuilder()
+        public List<MenuOption> MainMenuBuilder()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
@@ -14,8 +14,8 @@ namespace Festivity
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    UserModel user = new UserModel(){AccountID = JSONFunctionality.GenerateUserID()};
-                    UserRegisterHandler.InitiateUserRegister(user);
+                    UserModel user = new UserModel(){AccountID = JSONFunctions.GenerateUserID()};
+                    AccountRegistration.Handler.InitiateUserRegister(user);
                 }),
                 new MenuOption("Login", () =>
                 {
@@ -29,7 +29,7 @@ namespace Festivity
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    CatalogPage.CatalogMain();
+                    Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Exit", () =>
                 {

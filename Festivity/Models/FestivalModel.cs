@@ -23,7 +23,7 @@ namespace Festivity
         public DateTime FestivalEndTime { get; set; }
 
         [JsonProperty("festivalLocation")]
-        public Address FestivalLocation { get; set; }
+        public AddressModel FestivalLocation { get; set; }
 
         [JsonProperty("festivalDescription")]
         public string FestivalDescription { get; set; }
@@ -78,11 +78,11 @@ namespace Festivity
         /// found price and the second item being the highest found price </returns>
         private static Tuple<double, double> MinMaxPrice(int festivalId)
         {
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            Ticket[] ticketArray = tickets.Tickets.ToArray();
+            JSONTicketList tickets = JSONFunctions.GetTickets();
+            TicketModel[] ticketArray = tickets.Tickets.ToArray();
             double minPrice = -1;
             double maxPrice = -1;
-            foreach (Ticket t in ticketArray)
+            foreach (TicketModel t in ticketArray)
             {
                 if ((t.FestivalID == festivalId) && (minPrice == -1))
                 {
@@ -136,9 +136,9 @@ namespace Festivity
         /// <returns> Returns true if there are tickets available, returns false if there aren't </returns>
         private bool TicketsLeft()
         {
-            foreach (Ticket t in this.GetTickets())
+            foreach (TicketModel t in this.GetTickets())
             {
-                if (Festival.Utils.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
+                if (FestivalPage.Builder.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
                 {
                     return true;
                 }
@@ -149,12 +149,12 @@ namespace Festivity
         /// <summary> This method gets a list of tickets associated with the current Festival.
         /// </summary> <returns>\ Returns a List<Ticket> containing all tickets that match the
         /// FestivalID </returns>
-        public List<Ticket> GetTickets()
+        public List<TicketModel> GetTickets()
         {
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            List<Ticket> resultList = new List<Ticket>();
+            JSONTicketList tickets = JSONFunctions.GetTickets();
+            List<TicketModel> resultList = new List<TicketModel>();
 
-            foreach (Ticket t in tickets.Tickets)
+            foreach (TicketModel t in tickets.Tickets)
             {
                 if (t.FestivalID == this.FestivalID)
                 {
@@ -170,11 +170,11 @@ namespace Festivity
         /// found price and the second item being the highest found price </returns>
         private Tuple<double, double> MinMaxPrice()
         {
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            Ticket[] ticketArray = tickets.Tickets.ToArray();
+            JSONTicketList tickets = JSONFunctions.GetTickets();
+            TicketModel[] ticketArray = tickets.Tickets.ToArray();
             double minPrice = -1;
             double maxPrice = -1;
-            foreach (Ticket t in ticketArray)
+            foreach (TicketModel t in ticketArray)
             {
                 if ((t.FestivalID == FestivalID) && (minPrice == -1))
                 {
