@@ -109,8 +109,9 @@ namespace Festivity.FestivalRegister
 
         public static List<Ticket> InputFestivalTickets(List<Ticket> savedTicketList)
         {
+            int alreadySavedTicketsCount = savedTicketList.Count;
             int variousTickets = TicketModifier.InputTicketAmount();
-            for (int i = 0; i < variousTickets; i++)
+            for (int i = savedTicketList.Count; i < alreadySavedTicketsCount + variousTickets; i++)
             {
                 Ticket ticket = new Ticket
                 {
