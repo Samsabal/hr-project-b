@@ -54,5 +54,19 @@
             }
             JSONFunctionality.WriteToUserList(userList);
         }
+
+        public static bool hasFestivals()
+        {
+            JSONFestivalList festivalList = JSONFunctionality.GetFestivals();
+
+            foreach (FestivalModel f in festivalList.Festivals)
+            {
+                if (f.FestivalOrganiserID == User.AccountID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

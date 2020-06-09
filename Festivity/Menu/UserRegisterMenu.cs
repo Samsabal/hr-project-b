@@ -6,9 +6,10 @@ namespace Festivity
 {
     class UserRegisterMenu : MenuBuilder
     {
-        public static List<MenuOption> UserOrganisatorRegisterMenuBuilder(UserModel user)
+        public static List<MenuOption> UserOrganiserRegisterMenuBuilder(UserModel user)
         {
             int currentValueStartingPoint = 30;
+            ConsoleHelperFunctions.ClearCurrentConsole();
 
             List<MenuOption> newMenuOptions = new List<MenuOption>
                 {
@@ -35,7 +36,7 @@ namespace Festivity
                     new MenuOption("Address: ".PadRight(currentValueStartingPoint) + $"{user.userAddress.ToString()}", () =>
                     {
                         Console.Clear();
-                        UserModifier.InputPassword(user);
+                        UserModifier.InputUserAdress(user);
                     }),
                     new MenuOption("Contactperson: ".PadRight(currentValueStartingPoint) + $"{user.ContactPerson}", () =>
                     {
@@ -57,6 +58,11 @@ namespace Festivity
                         Console.Clear();
                         UserModifier.InputIBAN(user);
                     }),
+                    new MenuOption("Newsletter Preference: ".PadRight(currentValueStartingPoint) + $"{(user.NewsLetter == true ? "Yes" : "No")}", () =>
+                    {
+                        Console.Clear();
+                        UserModifier.InputNewsLetter(user);
+                    }),
                     new MenuOption("Save User", () =>
                     {
                         ConsoleHelperFunctions.ClearCurrentConsole();
@@ -76,6 +82,7 @@ namespace Festivity
         public static List<MenuOption> UserVisitorRegisterMenuBuilder(UserModel user)
         {
             int currentValueStartingPoint = 30;
+            ConsoleHelperFunctions.ClearCurrentConsole();
 
             List<MenuOption> newMenuOptions = new List<MenuOption>
                 {
@@ -102,7 +109,7 @@ namespace Festivity
                     new MenuOption("Address: ".PadRight(currentValueStartingPoint) + $"{user.userAddress.ToString()}", () =>
                     {
                         Console.Clear();
-                        UserModifier.InputPassword(user);
+                        UserModifier.InputUserAdress(user);
                     }),
                     new MenuOption("Birthday: ".PadRight(currentValueStartingPoint) + $"{user.BirthDate.ToShortDateString()}", () =>
                     {
@@ -113,6 +120,11 @@ namespace Festivity
                     {
                         Console.Clear();
                         UserModifier.InputVisitorPhonenumber(user);
+                    }),
+                    new MenuOption("Newsletter Preference: ".PadRight(currentValueStartingPoint) + $"{(user.NewsLetter == true ? "Yes" : "No")}", () =>
+                    {
+                        Console.Clear();
+                        UserModifier.InputNewsLetter(user);
                     }),
                     new MenuOption("Save User", () =>
                     {
