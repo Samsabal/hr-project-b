@@ -6,25 +6,24 @@ namespace Festivity
     {
         public static void Main()
         {
-            //string[] args
             Console.Clear();
             while (true)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
-                Console.SetWindowSize(150, 36);
+
                 if (!LoggedInAccount.IsLoggedIn())
                 {
-                    MenuFunction.Menu(new string[] { "Register", "Login", "Festivals", "Exit" });
+                    Menu.Draw(MainMenu.MainMenuBuilder());
                 }
                 if (LoggedInAccount.IsLoggedIn())
                 {
                     if (LoggedInAccount.User.AccountType == 2)
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "My Account", "My Tickets", "Logout", "Exit" });
+                        Menu.Draw(MainMenuUser.MainMenuUserBuilder());
                     }
                     if (LoggedInAccount.User.AccountType == 1)
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "Register festival", "My Account", "My Tickets", "Logout", "Exit" });
+                        Menu.Draw(MainMenuOrganiser.MainMenuOrganiserBuilder());
                     }
                 }
             }

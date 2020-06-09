@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class User // base class (parent)
+    internal class UserModel // base class (parent)
     {
         [JsonProperty("accountType")]
         public int AccountType { get; set; }
@@ -35,10 +36,13 @@ namespace Festivity
         [JsonProperty("companyIBAN")]
         public string CompanyIBAN { get; set; }
 
-        public Date birthDate = new Date();
+        [JsonProperty("birthDate", Required = Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.RegularExpression(@"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$")]
+        public DateTime BirthDate { get; set; }
 
         [JsonProperty("newsLetter")]
-        public int NewsLetter { get; set; }
+        public bool NewsLetter { get; set; }
 
         [JsonProperty("phoneNumber")]
         public string PhoneNumber { get; set; }
@@ -49,6 +53,6 @@ namespace Festivity
     internal class JSONUserList
     {
         [JsonProperty("users")]
-        public List<User> Users { get; set; } // Change this to change back to userOrganisator/Visitor
+        public List<UserModel> Users { get; set; } // Change this to change back to userOrganisator/Visitor
     }
 }

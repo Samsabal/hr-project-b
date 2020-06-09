@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Festivity.FestivalRegister;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class Ticket
+    public class Ticket
     {
         [JsonProperty("festivalId")]
         public int FestivalID { get; set; }
@@ -25,6 +26,37 @@ namespace Festivity
 
         [JsonProperty("maxTicketsPerPerson")]
         public int MaxTicketsPerPerson { get; set; }
+
+        public void EditName()
+        {
+            do { TicketName = TicketModifier.InputLoop("Fill in the new ticket name: "); }
+            while (!RegexUtils.IsValidName(TicketName));
+        }
+
+        public void EditDescription()
+        {
+            do { TicketDescription = TicketModifier.InputLoop("Fill in the new ticket description: "); }
+            while (!RegexUtils.IsValidDescription(TicketDescription));
+        }
+
+        public void EditPrice()
+        {
+            do { TicketPrice = double.Parse(TicketModifier.InputLoop("Fill in the new ticket price: ")); }
+            while (!RegexUtils.IsValidPrice(TicketPrice.ToString()));
+        }
+
+        public void EditMaxTickets()
+        {
+            do { MaxTickets = int.Parse(TicketModifier.InputLoop("Fill in the maximum amount of available tikets of this ticket type: ")); }
+            while (!RegexUtils.IsValidMaxTickets(MaxTickets.ToString()));
+        }
+
+        public void EditMaxTicketsPerPerson()
+        {
+            do { MaxTicketsPerPerson = int.Parse(TicketModifier.InputLoop("Fill in the maximum amount of tickets a single person may buy: ")); }
+            while (!RegexUtils.IsValidMaxTicketsPerPerson(MaxTicketsPerPerson.ToString()));
+        }
+
     }
 
     internal class JSONTicketList

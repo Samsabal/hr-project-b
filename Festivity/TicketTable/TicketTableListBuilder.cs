@@ -1,20 +1,20 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 
 namespace Festivity
 {
     internal static class TicketTableListBuilder
     {
-        private static readonly JSONFestivalList festivals = JSONFunctionality.GetFestivals();
-        private static readonly JSONTicketList tickets = JSONFunctionality.GetTickets();
-        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
+        private static List<List<string>> ticketList = new List<List<string>>();
 
         public static bool Build()
         {
-            List<List<string>> ticketList = new List<List<string>>();
+            JSONFestivalList festivals = JSONFunctionality.GetFestivals();
+            JSONTransactionList transactions = JSONFunctionality.GetTransactions();
+            JSONTicketList tickets = JSONFunctionality.GetTickets();
+            ticketList.Clear();
+
             int index = 0;
             foreach (var transaction in transactions.Transactions)
             {
@@ -26,8 +26,9 @@ namespace Festivity
                         if (festival.FestivalID == transaction.FestivalID)
                         {
                             tempList.Add(festival.FestivalName);
-                            tempList.Add(Convert.ToString(festival.FestivalDate.Day + "/" + festival.FestivalDate.Month + "/" + festival.FestivalDate.Year));
-                            tempList.Add(festival.CheckStatus());
+                            tempList.Add(festival.FestivalDate.ToShortDateString());
+                            tempList.Add(festival.CheckStatusTicketTable());
+                            tempList.Add(festival.IsRefundable().ToString());
                         }
                     }
                     foreach (var ticket in tickets.Tickets)
@@ -52,10 +53,9 @@ namespace Festivity
                 return true;
             }
             Console.WriteLine("Sorry, you don't have any Tickets");
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             ConsoleHelperFunctions.ClearCurrentConsole();
             return false;
-
         }
     }
 }
