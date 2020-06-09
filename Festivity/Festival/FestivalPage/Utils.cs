@@ -1,26 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Transactions;
 
 namespace Festivity.Festival
 {
     internal class Utils
     {
-        public static int TicketsLeft(int ticketId, int maxTickets) // Checks how many tickets there are left
+        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
+
+        public static int TicketsLeft(int ticketId, int maxTickets)
         {
-            foreach (var ticket in JSONFunctionality.GetTickets().Tickets)
+            List<TransactionModel> TransactionList = new List<TransactionModel>();
+            int ticketsLeft = maxTickets;
+
+            foreach (var transaction in transactions.Transactions)
             {
-                if (ticket.TicketID == ticketId)
+                if (transaction.TicketID == ticketId)
                 {
-                    foreach (var transaction in JSONFunctionality.GetTransactions().Transactions)
-                    {
-                        if (transaction.TicketID == ticket.TicketID)
-                        {
-                            int ticketsLeft = ticket.MaxTickets - transaction.TicketAmount;
-                            return ticketsLeft;
-                        }
-                    }
+                    TransactionList.Add(transaction);
                 }
             }
-            return maxTickets;
+            foreach (var transaction in TransactionList)
+            {
+                ticketsLeft -= transaction.TicketAmount;
+            }
+
+            return ticketsLeft;
         }
 
         public static bool AgeCheck(int festivalId) // Checks if the user is old enough to use the program
