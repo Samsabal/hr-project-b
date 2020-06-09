@@ -19,7 +19,9 @@ namespace Festivity.Utils
         public static string InputLoop(string printString)
         {
             string userInput;
-            Console.Write(printString); userInput = Console.ReadLine();
+            Console.Write(printString); 
+            userInput = Console.ReadLine();
+            RegexUtils.MakesUserQuitIfCalled(userInput);
             return userInput;
         }
 
@@ -36,17 +38,11 @@ namespace Festivity.Utils
             }
         }
 
-        public static string InputLoopString()
+        public static string InputLoopWithoutPrint()
         {
             string userInput;
             userInput = Console.ReadLine();
-            return userInput;
-        }
-
-        public static ConsoleKey InputLoopKey()
-        {
-            ConsoleKey userInput;
-            userInput = Console.ReadKey(true).Key;
+            RegexUtils.MakesUserQuitIfCalled(userInput);
             return userInput;
         }
     }
