@@ -25,7 +25,7 @@ namespace Festivity.Festival
 
                         Writer.Tickets();
 
-                        Menu.Draw(FestivalPageMenu.FestivalPageMenuBuilder());
+                        Menu.Draw(new FestivalPageMenu().FestivalPageMenuBuilder());
                     }
                 }
             }

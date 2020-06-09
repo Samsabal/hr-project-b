@@ -6,7 +6,7 @@ namespace Festivity
 {
     internal class FestivalMenus : MenuBuilder
     {
-        public static List<MenuOption> SelectFestival()
+        public List<MenuOption> SelectFestival()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
             JSONFestivalList festivals = JSONFunctionality.GetFestivals();
@@ -33,7 +33,7 @@ namespace Festivity
             return newMenuOptions;
         }
 
-        public static List<MenuOption> ChangeFestival(FestivalModel festival)
+        public List<MenuOption> ChangeFestival(FestivalModel festival)
         {
             int currentValueStartingPoint = 30;
             List<MenuOption> newMenuOptions = new List<MenuOption>
@@ -92,7 +92,7 @@ namespace Festivity
                     Console.Clear();
                     Menu.OptionReset();
                     Loop = true;
-                    do { Menu.Draw(TicketMenus.SelectTicket(festival)); }
+                    do { Menu.Draw(new TicketMenus().SelectTicket(festival)); }
                     while(Loop);
                     Loop = true;
                 }),
