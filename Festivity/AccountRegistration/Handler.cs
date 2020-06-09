@@ -34,12 +34,12 @@
             {
                 if (user.AccountType == 1)
                 {
-                    Menu.Draw(UserRegisterMenu.UserRegisterMenuBuilder(user, newUser));
+                    Menu.Draw(new UserRegisterMenu().UserRegisterMenuBuilder(user, newUser));
                 }
 
                 if (user.AccountType == 2)
                 {
-                    Menu.Draw(UserRegisterMenu.UserRegisterMenuBuilder(user, newUser));
+                    Menu.Draw(new UserRegisterMenu().UserRegisterMenuBuilder(user, newUser));
                 }
             }
         }

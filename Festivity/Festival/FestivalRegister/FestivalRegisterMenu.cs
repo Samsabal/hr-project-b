@@ -8,7 +8,7 @@ namespace Festivity
     {
         public static List<TicketModel> savedTicketList = new List<TicketModel>();
 
-        public static List<MenuOption> FestivalRegisterMenuBuilder(FestivalModel festival)
+        public List<MenuOption> FestivalRegisterMenuBuilder(FestivalModel festival)
         {
             int currentValueStartingPoint = 30;
 

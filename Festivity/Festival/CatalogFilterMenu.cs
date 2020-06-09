@@ -7,7 +7,7 @@ namespace Festivity
 {
     internal class CatalogFilterMenu : MenuBuilder
     {
-        public static List<MenuOption> CatalogFilterMenuBuilder()
+        public List<MenuOption> CatalogFilterMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {

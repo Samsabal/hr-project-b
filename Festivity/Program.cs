@@ -20,11 +20,11 @@ namespace Festivity
                 {
                     if (LoggedInModel.User.AccountType == 2)
                     {
-                        Menu.Draw(MainMenuUser.MainMenuUserBuilder());
+                        Menu.Draw(new MainMenuUser().MainMenuUserBuilder());
                     }
                     if (LoggedInModel.User.AccountType == 1)
                     {
-                        Menu.Draw(MainMenuOrganiser.MainMenuOrganiserBuilder());
+                        Menu.Draw(new MainMenuOrganiser().MainMenuOrganiserBuilder());
                     }
                 }
             }

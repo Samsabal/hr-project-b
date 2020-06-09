@@ -7,7 +7,7 @@ namespace Festivity
 {
     internal class CatalogMainMenu : MenuBuilder
     {
-        public static List<MenuOption> CatalogMainMenuBuilder()
+        public List<MenuOption> CatalogMainMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
             int lastpage = CatalogPage.FestivalArray.Length / 5;

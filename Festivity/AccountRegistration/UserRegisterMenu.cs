@@ -7,7 +7,7 @@ namespace Festivity
 {
     internal class UserRegisterMenu : MenuBuilder
     {
-        public static List<MenuOption> UserRegisterMenuBuilder(UserModel user, bool newUser)
+        public List<MenuOption> UserRegisterMenuBuilder(UserModel user, bool newUser)
 
         {
             int currentValueStartingPoint = 30;

@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class LoginMenu
     {
-        public static List<MenuOption> LoginBuilder()
+        public List<MenuOption> LoginBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {

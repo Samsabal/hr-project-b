@@ -107,7 +107,7 @@ namespace Festivity.FestivalRegister
             while (true)
             {
                 Console.WriteLine("Select the genre of your festival. If it is not in the list it is not a real genre! ");
-                Menu.Draw(FestivalGenreMenu.GenreMenuBuilder(festival));
+                Menu.Draw(new FestivalGenreMenu().GenreMenuBuilder(festival));
             }
         }
 

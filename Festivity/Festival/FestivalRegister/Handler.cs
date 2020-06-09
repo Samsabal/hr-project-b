@@ -36,7 +36,7 @@
             // Makes sure the console keeps refreshing, allowing input.
             while (true)
             {
-                Menu.Draw(FestivalRegisterMenu.FestivalRegisterMenuBuilder(festival));
+                Menu.Draw(new FestivalRegisterMenu().FestivalRegisterMenuBuilder(festival));
             }
         }
 

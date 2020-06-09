@@ -5,7 +5,7 @@ namespace Festivity
 {
     internal class AccountPageMenu : MenuBuilder
     {
-        public static List<MenuOption> Build()
+        public List<MenuOption> Build()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {

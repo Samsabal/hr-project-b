@@ -6,7 +6,7 @@ namespace Festivity
 {
     internal class FestivalGenreMenu : MenuBuilder
     {
-        public static List<MenuOption> GenreMenuBuilder(FestivalModel festival)
+        public List<MenuOption> GenreMenuBuilder(FestivalModel festival)
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {

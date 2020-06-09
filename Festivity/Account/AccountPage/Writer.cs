@@ -21,7 +21,7 @@ namespace Festivity.AccountPage
                     Console.WriteLine($"    Total amount earned: {Utils.AmountEarned()} Euro");
                 }
                 Console.WriteLine();
-                Menu.Draw(AccountPageMenu.Build());
+                Menu.Draw(new AccountPageMenu().Build());
             }
         }
 
