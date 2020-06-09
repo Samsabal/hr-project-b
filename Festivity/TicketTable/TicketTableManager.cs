@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Festivity
+﻿namespace Festivity
 {
-    class TicketTableManager
+    internal class TicketTableManager
     {
         public static void Initiate()
         {
             if (TicketTableListBuilder.Build())
             {
                 DrawTicketTable.CreateTable();
-                DrawTicketTable.Draw();
+                DrawTicketTable.Menu();
             }
-        }
-
-        public static void RefundTicket()
-        {
-
         }
     }
 }

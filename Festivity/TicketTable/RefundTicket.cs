@@ -1,51 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class RefundTicket
+    internal class RefundTicket
     {
         private static string userInput;
         private static List<string> TransactionIDList = new List<string>();
-        private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
-        private static JSONTransactionList newTransactions = new JSONTransactionList();
+        private static List<string> TransactionIsRefundable = new List<string>();
 
         public static void InitiateRefund()
         {
+            JSONTransactionList OldTransactionsList = JSONFunctionality.GetTransactions();
+            JSONTransactionList NewTransactionsList = JSONFunctionality.GetTransactions();
+
             do
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
-                DrawTicketTable.DrawRefund(); 
-                userInput = UserRegisterPage.InputLoop("\nInput Transaction ID of ticket you want to refund: "); }
+                DrawTicketTable.Draw();
+                userInput = Utils.General.InputLoop("\nInput Transaction ID of the order you want to refund: ");
+            }
             while (!IsValidTransactionID(userInput));
 
-            // Remove ticket here
+            NewTransactionsList.Transactions.Clear();
 
-            JSONFunctionality.WriteTransactions(newTransactions);
+            foreach (var item in OldTransactionsList.Transactions)
+            {
+                if (item.TransactionID != int.Parse(userInput))
+                {
+                    TransactionModel transaction = new TransactionModel
+                    {
+                        TransactionID = item.TransactionID,
+                        FestivalID = item.FestivalID,
+                        TicketID = item.TicketID,
+                        BuyerID = item.BuyerID,
+                        TicketAmount = item.TicketAmount,
+                        OrderDate = item.OrderDate
+                    };
+                    NewTransactionsList.Transactions.Add(transaction);
+                }
+            }
+            JSONFunctionality.WriteTransactions(NewTransactionsList);
+            Console.WriteLine("Ticket Succesfully refunded");
+            Thread.Sleep(2000);
         }
 
         private static bool IsValidTransactionID(string value)
         {
             if (Int32.TryParse(value, out int result))
             {
-                if (TransactionIDList.Contains(result.ToString()))
+                for (int i = 0; i < TransactionIDList.Count; i++)
                 {
-                    return true;
+                    if (TransactionIDList[i] == result.ToString())
+                    {
+                        if (TransactionIsRefundable[i].ToLower() == "true")
+                        {
+                            TransactionIDList.RemoveAt(i);
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ticket is not refundable.");
+                            Thread.Sleep(2000);
+                            return false;
+                        }
+                    }
                 }
                 Console.WriteLine("Transaction ID does not exist, please try again");
+                Thread.Sleep(2000);
                 return false;
             }
+            Console.WriteLine("Invalid input, please try again");
+            Thread.Sleep(2000);
             return false;
         }
 
         public static void SetTicketIDs(List<List<string>> ticketList)
         {
-            
-            for (int i = 0; i < ticketList.Count; i ++)
+            for (int i = 0; i < ticketList.Count; i++)
             {
-                TransactionIDList.Add(ticketList[i][6]);
+                TransactionIDList.Add(ticketList[i][7]);
+                TransactionIsRefundable.Add(ticketList[i][3]);
             }
         }
     }

@@ -3,13 +3,9 @@
     {
       "festivalId": 1,
       "festivalName": "Robin's Festival",
-      "festivalDate": {
-        "day": 29,
-        "month": 3,
-        "year": 2020
-      },
-      "festivalStartingTime": "1500",
-      "festivalEndTime": "1600",
+      "festivalDate": "2023-07-29T00:00:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -19,21 +15,17 @@
       },
       "festivalDescription": "This party is hella cool for real",
       "festivalAgeRestriction": 23,
-      "festivalGenre": "Drum & Bass",
+      "festivalGenre": "Pop",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganiserID": 0
+      "festivalOrganiserID": 3
     },
     {
       "festivalId": 2,
       "festivalName": "Mark's Festival",
-      "festivalDate": {
-        "day": 26,
-        "month": 5,
-        "year": 2020
-      },
-      "festivalStartingTime": "1700",
-      "festivalEndTime": "1800",
+      "festivalDate": "2023-07-29T00:00:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -46,18 +38,14 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganiserID": 0
+      "festivalOrganiserID": 3
     },
     {
       "festivalId": 3,
       "festivalName": "Enny's Festival",
-      "festivalDate": {
-        "day": 1,
-        "month": 1,
-        "year": 2021
-      },
-      "festivalStartingTime": "1999",
-      "festivalEndTime": "2359",
+      "festivalDate": "2023-07-29T00:00:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -70,18 +58,14 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganiserID": 0
+      "festivalOrganiserID": 3
     },
     {
       "festivalId": 4,
       "festivalName": "Kelvin's Festival",
-      "festivalDate": {
-        "day": 12,
-        "month": 10,
-        "year": 2020
-      },
-      "festivalStartingTime": "1999",
-      "festivalEndTime": "2359",
+      "festivalDate": "2023-07-29T00:00:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -94,18 +78,14 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganiserID": 0
+      "festivalOrganiserID": 3
     },
     {
       "festivalId": 5,
       "festivalName": "Samuel's Party",
-      "festivalDate": {
-        "day": 30,
-        "month": 6,
-        "year": 2020
-      },
-      "festivalStartingTime": "1999",
-      "festivalEndTime": "2359",
+      "festivalDate": "2023-07-29T00:00:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -118,18 +98,14 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganiserID": 0
+      "festivalOrganiserID": 3
     },
     {
       "festivalId": 6,
       "festivalName": "Page 2 testparty",
-      "festivalDate": {
-        "day": 30,
-        "month": 6,
-        "year": 2025
-      },
-      "festivalStartingTime": "1999",
-      "festivalEndTime": "2359",
+      "festivalDate": "2023-07-29T00:00:00",
+      "festivalStartingTime": "2023-07-29T00:15:00",
+      "festivalEndTime": "2023-07-29T00:23:00",
       "festivalLocation": {
         "country": "Nederland",
         "city": "Rotterdam",
@@ -142,7 +118,7 @@
       "festivalGenre": "Drum & Bass",
       "festivalCancelTime": 0,
       "festivalStatus": null,
-      "festivalOrganiserID": 0
+      "festivalOrganiserID": 3
     }
   ]
 }
