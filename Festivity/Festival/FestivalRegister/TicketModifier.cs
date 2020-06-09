@@ -21,6 +21,10 @@ namespace Festivity.FestivalRegister
             string tempTicketPrice;
             do { tempTicketPrice = InputLoop("Fill in the price of the ticket in euros: "); }
             while (!RegexUtils.IsValidPrice(tempTicketPrice));
+            if (tempTicketPrice.Contains(","))
+            {
+                tempTicketPrice = tempTicketPrice.Replace(@",", @".");
+            }
             ticket.TicketPrice = double.Parse(tempTicketPrice);
         }
 
