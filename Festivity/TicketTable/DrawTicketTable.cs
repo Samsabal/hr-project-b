@@ -30,9 +30,7 @@ namespace Festivity
         }
 
         public static void DrawTicketTablePage()
-        {
-            MenuFunction.option = 0;
-            
+        {       
             while (TicketTableListBuilder.Build())
             {
                 DrawTable();

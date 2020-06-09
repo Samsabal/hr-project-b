@@ -6,7 +6,6 @@ namespace Festivity.AccountPage
     {
         public static void AccountPage()
         {
-            MenuFunction.option = 0;
             while (true)
             {
                 Console.WriteLine("Your account Information: ");

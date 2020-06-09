@@ -17,11 +17,11 @@ namespace Festivity.Transaction
         public static void PaymentOption()
         {
             Console.Clear();
-            MenuFunction.option = 0;
+            Menu.OptionReset();
             while (true)
             {
                 Console.WriteLine("Choose your payment method:");
-                MenuFunction.Menu(new string[] { "iDEAL", "Paypal", "Creditcard", "Cancel Order" });
+                Menu.Draw(new PaymentOptionMenu().Build());
             }
         }
 
