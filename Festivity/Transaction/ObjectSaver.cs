@@ -8,15 +8,14 @@ namespace Festivity.Transaction
 
         public static void WriteToDatabase(Ticket ticket)
         {
-            DateTime now = DateTime.Now;
-            string timeStamp = "" + now;
+            string timeStamp = "" + DateTime.Now;
 
             TransactionModel transaction = new TransactionModel
             {
                 TransactionID = GetTransactionID(),
-                FestivalID = SelectedFestival.festival.FestivalID,
+                FestivalID = ticket.FestivalID,
                 TicketID = ticket.TicketID,
-                BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID,
+                BuyerID = LoggedInAccount.GetID(),
                 TicketAmount = DisplayManager.GetTicketAmount(),
                 OrderDate = timeStamp
             };

@@ -6,19 +6,19 @@ namespace Festivity.Transaction
     internal class DisplayManager
     {
         private static int TicketAmount { get; set; }
-        private static int indexTicket;
+        private static Ticket selectedTicket;
 
-        public static void Initiate(int option)
+        public static void Initiate(int selectedOption)
         {
-            indexTicket = option;
             TicketAmount = InputReader.TicketAmount();
-            Writer.Overview(TicketListBuilder.GetSelectedTicket(indexTicket), TicketAmount);
+            selectedTicket = TicketListBuilder.GetSelectedTicket(selectedOption);
+            Writer.Overview(selectedTicket, TicketAmount);
             if (InputReader.ConfirmTransaction()) { InputReader.PaymentOption(); }
         }
 
         public static void Complete()
         {
-            ObjectSaver.WriteToDatabase(TicketListBuilder.GetSelectedTicket(indexTicket));
+            ObjectSaver.WriteToDatabase(selectedTicket);
             Console.WriteLine("Ordered Succesfully!");
             Thread.Sleep(2000);
             Console.Clear();
