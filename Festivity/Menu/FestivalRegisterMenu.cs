@@ -38,10 +38,6 @@ namespace Festivity
                     {
                         Console.Clear();
                         Modifier.InputEndTime(festival);
-                        if (festival.FestivalEndTime < festival.FestivalStartingTime)
-                            {
-                                festival.FestivalEndTime.AddDays(1);
-                            }
                     }),
                     new MenuOption("Festival Adress: ".PadRight(currentValueStartingPoint) + $"{festival.FestivalLocation}", () =>
                     {

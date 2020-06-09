@@ -95,6 +95,10 @@ namespace Festivity.FestivalRegister
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempEndTime.Substring(0, 2)),
                                                          int.Parse(tempEndTime.Substring(3, 2)), 0);
+                        if (festival.FestivalEndTime < festival.FestivalStartingTime)
+                        {
+                            festival.FestivalEndTime = festival.FestivalEndTime.AddDays(1);
+                        }
         }
 
         public static void InputGenre(FestivalModel festival)
@@ -156,7 +160,7 @@ namespace Festivity.FestivalRegister
                 festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalEndTime.Hour, festival.FestivalEndTime.Minute, festival.FestivalEndTime.Second);
                 if (festival.FestivalEndTime < festival.FestivalStartingTime)
                 {
-                    festival.FestivalEndTime.AddDays(1);
+                    festival.FestivalEndTime = festival.FestivalEndTime.AddDays(1);
                 }
             }
         }
