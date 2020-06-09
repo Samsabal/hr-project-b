@@ -10,7 +10,7 @@ namespace Festivity.Transaction
 
         public static void Initiate(int selectedOption)
         {
-            TicketAmount = InputReader.TicketAmount();
+            TicketAmount = InputReader.TicketAmount(selectedOption);
             selectedTicket = TicketListBuilder.GetSelectedTicket(selectedOption);
             Writer.Overview(selectedTicket, TicketAmount);
             if (InputReader.ConfirmTransaction()) { InputReader.PaymentOption(); }
