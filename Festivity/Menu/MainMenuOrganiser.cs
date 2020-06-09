@@ -21,7 +21,7 @@ namespace Festivity
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()) };
+                    FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()), FestivalOrganiserID = LoggedInAccount.GetID() };
                     RegisterHandler.ActiveScreen = true;
                     RegisterHandler.InitiateFestivalRegister(festival);
                 }),

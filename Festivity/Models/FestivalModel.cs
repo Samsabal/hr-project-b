@@ -117,7 +117,7 @@ namespace Festivity
                 {
                     return "Ended";
                 }
-                else if (FestivalStartingTime < DateTime.Now && FestivalEndTime < DateTime.Now)
+                else if (FestivalStartingTime < DateTime.Now && FestivalEndTime > DateTime.Now)
                 {
                     return "Ongoing";
                 }
