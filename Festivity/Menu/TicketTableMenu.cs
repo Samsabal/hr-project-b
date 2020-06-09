@@ -12,6 +12,7 @@ namespace Festivity
                 new MenuOption( "Exit to Main Menu", () =>
                 {
                     Console.Clear();
+                    Menu.OptionReset();
                     Program.Main();
                 }),
                 new MenuOption("Refund Ticket", () =>
