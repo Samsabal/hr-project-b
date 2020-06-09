@@ -1,12 +1,9 @@
-﻿using Festivity.AccountLogin;
-using Festivity.AccountRegistration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class MainMenu : MenuBuilder
+    internal class MainMenu : MenuBuilder
     {
         public static List<MenuOption> MainMenuBuilder()
         {

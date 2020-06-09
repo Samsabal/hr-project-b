@@ -2,7 +2,7 @@
 
 namespace Festivity.FestivalRegister
 {
-    class TicketModifier
+    internal class TicketModifier
     {
         public static void InputTicketName(Ticket ticket, int ticketAmount)
         {

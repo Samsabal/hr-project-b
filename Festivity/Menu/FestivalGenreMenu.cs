@@ -1,11 +1,10 @@
 ﻿using Festivity.FestivalRegister;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class FestivalGenreMenu : MenuBuilder
+    internal class FestivalGenreMenu : MenuBuilder
     {
         public static List<MenuOption> GenreMenuBuilder(FestivalModel festival)
         {

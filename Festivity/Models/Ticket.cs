@@ -56,7 +56,6 @@ namespace Festivity
             do { MaxTicketsPerPerson = int.Parse(TicketModifier.InputLoop("Fill in the maximum amount of tickets a single person may buy: ")); }
             while (!RegexUtils.IsValidMaxTicketsPerPerson(MaxTicketsPerPerson.ToString()));
         }
-
     }
 
     internal class JSONTicketList

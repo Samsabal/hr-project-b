@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    class CatalogFilterMenu : MenuBuilder
+    internal class CatalogFilterMenu : MenuBuilder
     {
         public static List<MenuOption> CatalogFilterMenuBuilder()
         {

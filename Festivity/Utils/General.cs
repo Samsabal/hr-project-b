@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity.Utils
 {
-    class General
+    internal class General
     {
         public static string SetStringLength(string input, int maxLength)
         {
@@ -37,7 +35,6 @@ namespace Festivity.Utils
                 return false;
             }
         }
-
 
         public static string InputLoopString()
         {

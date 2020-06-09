@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class CatalogMainMenu : MenuBuilder
+    internal class CatalogMainMenu : MenuBuilder
     {
         public static List<MenuOption> CatalogMainMenuBuilder()
         {
