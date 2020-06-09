@@ -8,7 +8,6 @@ namespace Festivity.Festival
     {
         private static readonly JSONTransactionList transactions = JSONFunctionality.GetTransactions();
 
-
         public static int TicketsLeft(int ticketId, int maxTickets)
         {
             List<TransactionModel> TransactionList = new List<TransactionModel>();
