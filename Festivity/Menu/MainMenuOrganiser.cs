@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class MainMenuOrganiser :MenuBuilder
+    internal class MainMenuOrganiser : MenuBuilder
     {
         public static List<MenuOption> MainMenuOrganiserBuilder()
         {
