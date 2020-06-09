@@ -95,22 +95,27 @@ namespace Festivity.FestivalRegister
                                                          festival.FestivalDate.Day,
                                                          int.Parse(tempEndTime.Substring(0, 2)),
                                                          int.Parse(tempEndTime.Substring(3, 2)), 0);
+                        if (festival.FestivalEndTime < festival.FestivalStartingTime)
+                        {
+                            festival.FestivalEndTime = festival.FestivalEndTime.AddDays(1);
+                        }
         }
 
         public static void InputGenre(FestivalModel festival)
         {
             Menu.OptionReset();
-            Console.WriteLine("Select the genre of you festival. If it is not in the list it is not a real festival! ");
             while (true)
             {
+                Console.WriteLine("Select the genre of your festival. If it is not in the list it is not a real genre! ");
                 Menu.Draw(FestivalGenreMenu.GenreMenuBuilder(festival));
             }
         }
 
         public static List<Ticket> InputFestivalTickets(List<Ticket> savedTicketList)
         {
+            int alreadySavedTicketsCount = savedTicketList.Count;
             int variousTickets = TicketModifier.InputTicketAmount();
-            for (int i = 0; i < variousTickets; i++)
+            for (int i = savedTicketList.Count; i < alreadySavedTicketsCount + variousTickets; i++)
             {
                 Ticket ticket = new Ticket
                 {
@@ -145,6 +150,19 @@ namespace Festivity.FestivalRegister
             Console.Write(printString); userInput = Console.ReadLine();
             Console.Clear();
             return userInput;
+        }
+
+        public static void ModifyUpdateDateByTime(FestivalModel festival)
+        {
+            if(festival.FestivalStartingTime.Date != festival.FestivalDate.Date)
+            {
+                festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalStartingTime.Hour, festival.FestivalStartingTime.Minute, festival.FestivalStartingTime.Second );
+                festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalEndTime.Hour, festival.FestivalEndTime.Minute, festival.FestivalEndTime.Second);
+                if (festival.FestivalEndTime < festival.FestivalStartingTime)
+                {
+                    festival.FestivalEndTime = festival.FestivalEndTime.AddDays(1);
+                }
+            }
         }
     }
 }
