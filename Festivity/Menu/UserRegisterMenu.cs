@@ -6,7 +6,7 @@ namespace Festivity
 {
     class UserRegisterMenu : MenuBuilder
     {
-        public static List<MenuOption> UserOrganisatorRegisterMenuBuilder(UserModel user)
+        public static List<MenuOption> UserOrganiserRegisterMenuBuilder(UserModel user)
         {
             int currentValueStartingPoint = 30;
             ConsoleHelperFunctions.ClearCurrentConsole();

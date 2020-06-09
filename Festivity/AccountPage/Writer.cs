@@ -33,7 +33,7 @@ namespace Festivity.AccountPage
             Console.WriteLine($"2.  Lastname:               {LoggedInAccount.User.LastName}");
             Console.WriteLine($"3.  Email:                  {LoggedInAccount.User.Email}");
 
-            if (LoggedInAccount.User.AccountType == 1) // Organisator
+            if (LoggedInAccount.User.AccountType == 1) // Organiser
             {
                 Console.WriteLine($"4.  Street address:         {LoggedInAccount.User.userAddress.StreetName} {LoggedInAccount.User.userAddress.StreetNumber}");
                 Console.WriteLine($"5.  City:                   {LoggedInAccount.User.userAddress.City}");
