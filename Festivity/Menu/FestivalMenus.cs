@@ -77,6 +77,7 @@ namespace Festivity
                 new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
                 {
                     Console.Clear();
+                    Console.WriteLine("Please select the genre of your festival");
                     Loop = true;
                     do {Menu.Draw(FestivalGenreMenu.GenreMenuModify(festival)); }
                     while(Loop);

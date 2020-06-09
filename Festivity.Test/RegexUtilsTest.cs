@@ -51,7 +51,7 @@ namespace Festivity.Test
         [TestCase("??", false)]
         public void IsValidUserDay_ShouldOnlyValidateDays(string day, bool expected)
         {
-            Assert.AreEqual(expected, RegexUtils.IsValidUserDay(day));
+            Assert.AreEqual(expected, RegexUtils.IsValidDay(day));
         }
         #endregion
     }
