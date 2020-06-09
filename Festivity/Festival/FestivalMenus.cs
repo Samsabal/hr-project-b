@@ -91,12 +91,13 @@ namespace Festivity
                 new MenuOption("Tickets", () =>
                 {
                     Console.Clear();
+                    Menu.OptionReset();
                     Loop = true;
                     do { Menu.Draw(TicketMenus.SelectTicket(festival)); }
                     while(Loop);
                     Loop = true;
                 }),
-                new MenuOption("Save festival", () =>
+                new MenuOption("\nSave changes", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
@@ -104,7 +105,7 @@ namespace Festivity
                     festival.FestivalStatus = "Changed";
                     Loop = false;
                 }),
-                new MenuOption("Cancel festival modification", () =>
+                new MenuOption("Cancel", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();

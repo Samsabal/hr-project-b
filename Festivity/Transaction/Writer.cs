@@ -14,7 +14,7 @@ namespace Festivity.Transaction
             Console.WriteLine(amount + " x " + selectedTicket.TicketName);
             Console.WriteLine(selectedTicket.TicketDescription);
             Console.WriteLine("€" + selectedTicket.TicketPrice + " / Ticket");
-            Console.WriteLine("Total: €" + (Convert.ToInt32(selectedTicket.TicketPrice) * amount));
+            Console.WriteLine($"Total: €{selectedTicket.TicketPrice * amount}");
             Console.WriteLine("----------------------------------------------------------------------");
         }
     }

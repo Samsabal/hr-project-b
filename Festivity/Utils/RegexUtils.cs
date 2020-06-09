@@ -160,7 +160,7 @@ namespace Festivity
         /// <returns> Returns true if price conforms to regex. </returns>
         public static bool IsValidPrice(string price)
         {
-            return RegexCheck(price, new Regex(@"^[0-9]*(\,)?[0-9]?[0-9]?$"));
+            return RegexCheck(price, new Regex(@"^[0-9]*((,)?|(.)?)[0-9]?[0-9]?$"));
         }
 
         /// <summary> Checks if string conforms to time structure. </summary>

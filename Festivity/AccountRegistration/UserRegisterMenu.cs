@@ -105,7 +105,7 @@ namespace Festivity
                             Program.Main();
                         }
                     }));
-            newMenuOptions.Add(new MenuOption("Cancel user Registration", () =>
+            newMenuOptions.Add(new MenuOption(newUser ? "Cancel user Registration" : "Cancel" , () =>
                     {
                         Console.Clear();
                         Menu.OptionReset();
