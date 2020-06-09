@@ -5,7 +5,7 @@ namespace Festivity.Transaction
 {
     internal class Writer
     {
-        public static void Overview(Ticket selectedTicket, int amount)
+        public static void Overview(TicketModel selectedTicket, int amount)
         {
             Console.Clear();
             Console.OutputEncoding = Encoding.UTF8;
