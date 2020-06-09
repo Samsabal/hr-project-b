@@ -115,15 +115,15 @@ namespace Festivity
             {
                 if (FestivalEndTime < DateTime.Now)
                 {
-                    return "This festival has ended";
+                    return "Ended";
                 }
                 else if (FestivalStartingTime < DateTime.Now && FestivalEndTime < DateTime.Now)
                 {
-                    return "This festival is ongoing";
+                    return "Ongoing";
                 }
                 else
                 {
-                    return "This festival is upcoming";
+                    return "Upcoming";
                 }
             }
             else

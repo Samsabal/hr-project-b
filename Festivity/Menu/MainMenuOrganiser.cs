@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity
 {
-    class MainMenuOrganiser :MenuBuilder
+    internal class MainMenuOrganiser : MenuBuilder
     {
         public static List<MenuOption> MainMenuOrganiserBuilder()
         {
@@ -22,7 +21,7 @@ namespace Festivity
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()) };
+                    FestivalModel festival = new FestivalModel { FestivalID = RegisterHandler.SetFestivalId(JSONFunctionality.GetFestivals()), FestivalOrganiserID = LoggedInAccount.GetID() };
                     RegisterHandler.ActiveScreen = true;
                     RegisterHandler.InitiateFestivalRegister(festival);
                 }),

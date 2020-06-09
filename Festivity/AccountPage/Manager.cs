@@ -9,8 +9,8 @@
 
         public static void InitateInfoChange()
         {
-            Writer.ChangeInfoPage();
-            PageBuilder.ChangeInfo(Reader.AccountOption());
+            Menu.OptionReset();
+            UserRegisterHandler.ShowUserRegister(LoggedInAccount.User, false);
         }
     }
 }

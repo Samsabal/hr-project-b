@@ -52,8 +52,8 @@ namespace Festivity
                 DrawTicketTable.SetTicketList(ticketList);
                 return true;
             }
-            Console.WriteLine("Sorry, you don't have any Tickets");
-            Thread.Sleep(3000);
+            ErrorMessage.WriteLine("Sorry, you don't have any Tickets");
+            Thread.Sleep(2000);
             ConsoleHelperFunctions.ClearCurrentConsole();
             return false;
         }

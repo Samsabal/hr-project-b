@@ -276,11 +276,6 @@ namespace Festivity
                         AccountPage.Manager.InitateInfoChange();
                         break;
 
-                    case "Preference for e-mails":
-                        Console.Clear();
-                        Account.ChangeEmailPreference.Initate();
-                        break;
-
                     case "Change password":
                         Console.Clear();
                         Account.ChangePassword.Initiate();
