@@ -7,7 +7,7 @@
             if (TicketTableListBuilder.Build())
             {
                 DrawTicketTable.CreateTable();
-                DrawTicketTable.Menu();
+                DrawTicketTable.DrawTicketTablePage();
             }
         }
     }
