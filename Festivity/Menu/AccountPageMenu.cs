@@ -21,12 +21,6 @@ namespace Festivity
                     Console.Clear();
                     Account.ChangePassword.Initiate();
                 }),
-                new MenuOption("Preference for e-mails", () =>
-                {
-                    Menu.OptionReset();
-                    Console.Clear();
-                    Account.ChangeEmailPreference.Initate();
-                }),
                 new MenuOption("Exit to Main Menu", () =>
                 {
                     Menu.OptionReset();
