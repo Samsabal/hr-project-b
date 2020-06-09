@@ -11,7 +11,7 @@ namespace Festivity.Test
         [TestCase("Babe is big", true)]
         [TestCase("12343", false)]
         [TestCase("", false)]
-        [TestCase("Dog-Man", true)]
+        [TestCase("DogMan", true)]
         public void IsValidName_ShouldValidateNormalNames(string name, bool expected)
         {
             // Arrange
