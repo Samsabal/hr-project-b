@@ -211,15 +211,15 @@ namespace Festivity
         /// <returns> Returns true if ticketAmount is between 1 and 100000. </returns>
         public static bool IsValidMaxTickets(string ticketAmount)
         {
-            return NumberCheck(ticketAmount, 1, 25);
+            return NumberCheck(ticketAmount, 1, 100000);
         }
 
         /// <summary> Checks if string conforms to maximum tickets per person rules. </summary>
         /// <param name="ticketAmount"> Ticket amount to check. </param>
-        /// <returns> Returns true if ticketAmount is between 1 and 100. </returns>
+        /// <returns> Returns true if ticketAmount is between 1 and 25. </returns>
         public static bool IsValidMaxTicketsPerPerson(string ticketAmount)
         {
-            return NumberCheck(ticketAmount, 1, 100);
+            return NumberCheck(ticketAmount, 1, 25);
         }
 
         /// <summary> Checks if string conforms to password structure. </summary>
