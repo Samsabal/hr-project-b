@@ -72,35 +72,6 @@ namespace Festivity
             }
         }
 
-        /// <summary> This method takes a festivalID and checks all the associated tickets for the
-        /// lowest and highest price. </summary> <param name="festivalId">A festivalID to check
-        /// prices for</param> <returns> A Tuple<double,double> with the first item being the lowest
-        /// found price and the second item being the highest found price </returns>
-        private static Tuple<double, double> MinMaxPrice(int festivalId)
-        {
-            JSONTicketList tickets = JSONFunctionality.GetTickets();
-            Ticket[] ticketArray = tickets.Tickets.ToArray();
-            double minPrice = -1;
-            double maxPrice = -1;
-            foreach (Ticket t in ticketArray)
-            {
-                if ((t.FestivalID == festivalId) && (minPrice == -1))
-                {
-                    minPrice = t.TicketPrice;
-                    maxPrice = t.TicketPrice;
-                }
-                else if ((t.FestivalID == festivalId) && (t.TicketPrice < minPrice))
-                {
-                    minPrice = t.TicketPrice;
-                }
-                else if ((t.FestivalID == festivalId) && (t.TicketPrice > maxPrice))
-                {
-                    maxPrice = t.TicketPrice;
-                }
-            }
-            return new Tuple<double, double>(minPrice, maxPrice);
-        }
-
         /// <summary>
         /// This method gives a string representing the current status of the Festival to be
         /// displayed on the TicketTable.
@@ -117,7 +88,7 @@ namespace Festivity
                 {
                     return "This festival has ended";
                 }
-                else if (FestivalStartingTime < DateTime.Now && FestivalEndTime < DateTime.Now)
+                else if (FestivalStartingTime < DateTime.Now && FestivalEndTime > DateTime.Now)
                 {
                     return "This festival is ongoing";
                 }
@@ -136,7 +107,7 @@ namespace Festivity
         /// <returns> Returns true if there are tickets available, returns false if there aren't </returns>
         private bool TicketsLeft()
         {
-            foreach (Ticket t in this.GetTickets())
+            foreach (Ticket t in GetTickets())
             {
                 if (Festival.Utils.TicketsLeft(t.TicketID, t.MaxTickets) > 0)
                 {
@@ -156,7 +127,7 @@ namespace Festivity
 
             foreach (Ticket t in tickets.Tickets)
             {
-                if (t.FestivalID == this.FestivalID)
+                if (t.FestivalID == FestivalID)
                 {
                     resultList.Add(t);
                 }
@@ -229,7 +200,7 @@ namespace Festivity
             }
             else
             {
-                return FestivalDescription.PadRight(maxLength);
+                return FestivalDescription.PadRight(maxLength, ' ');
             }
         }
     }
