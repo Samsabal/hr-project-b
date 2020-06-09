@@ -27,6 +27,7 @@ namespace Festivity
                     {
                         Console.Clear();
                         Modifier.InputFestivalDate(festival);
+                        Modifier.ModifyUpdateDateByTime(festival);
                     }),
                     new MenuOption("Starting Time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime}", () =>
                     {

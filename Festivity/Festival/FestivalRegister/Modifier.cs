@@ -147,5 +147,18 @@ namespace Festivity.FestivalRegister
             Console.Clear();
             return userInput;
         }
+
+        public static void ModifyUpdateDateByTime(FestivalModel festival)
+        {
+            if(festival.FestivalStartingTime.Date != festival.FestivalDate.Date)
+            {
+                festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalStartingTime.Hour, festival.FestivalStartingTime.Minute, festival.FestivalStartingTime.Second );
+                festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year, festival.FestivalDate.Month, festival.FestivalDate.Day, festival.FestivalEndTime.Hour, festival.FestivalEndTime.Minute, festival.FestivalEndTime.Second);
+                if (festival.FestivalEndTime < festival.FestivalStartingTime)
+                {
+                    festival.FestivalEndTime.AddDays(1);
+                }
+            }
+        }
     }
 }
