@@ -1,5 +1,5 @@
-﻿using System;
-using Festivity.Utils;
+﻿using Festivity.Utils;
+using System;
 
 namespace Festivity.Transaction
 {
@@ -50,7 +50,5 @@ namespace Festivity.Transaction
             ErrorMessage.WriteLine("Invalid input, please try again");
             return false;
         }
-
-
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace Festivity.Festival
 {
     public class PageManager

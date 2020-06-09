@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity.Festival
 {
-    class FestivalTableBuilder
+    internal class FestivalTableBuilder
     {
         //private static List<List<string>> FestivalTableList = new List<List<string>>();
 

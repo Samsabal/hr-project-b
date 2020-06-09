@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Festivity
 {
-    class MainMenuUser : MenuBuilder
+    internal class MainMenuUser : MenuBuilder
     {
         public static List<MenuOption> MainMenuUserBuilder()
         {

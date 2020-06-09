@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Festivity.Account
 {
-    class ForgotPassword
+    internal class ForgotPassword
     {
         private static readonly JSONUserList userList = JSONFunctionality.GetUserList();
+
         public static void Initiate()
         {
             bool accountExists = false;
