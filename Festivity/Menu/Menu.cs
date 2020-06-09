@@ -12,6 +12,7 @@ namespace Festivity
         public static void Draw(List<MenuOption> consoleOptions)
         {
             Console.CursorVisible = false;
+            Loop = true;
 
             for (int i = 0; i < consoleOptions.Count; i++)
             {
