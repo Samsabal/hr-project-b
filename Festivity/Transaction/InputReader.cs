@@ -5,12 +5,12 @@ namespace Festivity.Transaction
 {
     internal class InputReader
     {
-        public static int TicketAmount()
+        public static int TicketAmount(int selectedOption)
         {
             string userInput;
             Console.WriteLine("How many tickets would you like to buy? ");
             do { userInput = General.InputLoopString(); }
-            while (!NumberCheck(userInput, 1, 10));
+            while (!NumberCheck(userInput, 1, TicketListBuilder.GetSelectedTicket(selectedOption).MaxTicketsPerPerson));
             return Int32.Parse(userInput);
         }
 
