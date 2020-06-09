@@ -73,7 +73,7 @@ namespace Festivity
 
         public static bool IsValidYesOrNo(string name)
         {
-            return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]|[N-n][O-o]$"));
+            return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]$|^[N-n][O-o]$"));
         }
 
         public static bool EqualsYesRegex(string input)
@@ -96,7 +96,7 @@ namespace Festivity
         /// <returns> Returns true if day is a real day. </returns>
         public static bool IsValidDay(string day)
         {
-            return NumberCheck(day, 0, 31);
+            return NumberCheck(day, 1, 31);
         }
 
         /// <summary> Checks if string conforms to a month structure. </summary>
@@ -104,7 +104,7 @@ namespace Festivity
         /// <returns> Returns true if month is a real month. </returns>
         public static bool IsValidMonth(string month)
         {
-            return NumberCheck(month, 0, 12);
+            return NumberCheck(month, 1, 12);
         }
 
         /// <summary> Checks if string conforms to a year structure for user age. </summary>
@@ -152,7 +152,7 @@ namespace Festivity
         /// <returns> Returns true if phoneNumber conforms to regex. </returns>
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            return RegexCheck(phoneNumber, new Regex(@"^06\d{8}$"));
+            return RegexCheck(phoneNumber, new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"));
         }
 
         /// <summary> Checks if string conforms to price structure. </summary>
@@ -216,10 +216,10 @@ namespace Festivity
 
         /// <summary> Checks if string conforms to maximum tickets per person rules. </summary>
         /// <param name="ticketAmount"> Ticket amount to check. </param>
-        /// <returns> Returns true if ticketAmount is between 1 and 100. </returns>
+        /// <returns> Returns true if ticketAmount is between 1 and 25. </returns>
         public static bool IsValidMaxTicketsPerPerson(string ticketAmount)
         {
-            return NumberCheck(ticketAmount, 1, 100);
+            return NumberCheck(ticketAmount, 1, 25);
         }
 
         /// <summary> Checks if string conforms to password structure. </summary>
