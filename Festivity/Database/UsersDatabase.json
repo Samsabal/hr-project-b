@@ -12,14 +12,14 @@
       "accountID": 1,
       "firstName": "Mark",
       "lastName": "Bergsma",
-      "email": "Mbergsma@gmail.com",
-      "password": "MarkWachtwoord!1",
+      "email": "admin",
+      "password": "admin",
       "companyContactperson": "Mark Bergsma",
       "companyPhoneNumber": "0612345678",
       "companyName": "MarkCompany",
       "companyIBAN": "NL01ABNA0123456789",
       "birthDate": "0001-01-01T00:00:00",
-      "newsLetter": false,
+      "newsLetter": true,
       "phoneNumber": null
     },
     {
