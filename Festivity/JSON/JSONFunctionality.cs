@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Festivity.JSON;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace Festivity
@@ -8,10 +9,10 @@ namespace Festivity
     /// </summary>
     internal static class JSONFunctionality
     {
-        private static readonly string PathFestival = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"FestivalsDatabase.json");
-        private static readonly string PathUser = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UsersDatabase.json");
-        private static readonly string PathTicket = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TicketDatabase.json");
-        private static readonly string PathTransaction = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"TransactionDatabase.json");
+        private static readonly string PathFestival = CreateFestivalDatabase.Check();
+        private static readonly string PathUser = CreateUserDatabase.Check();
+        private static readonly string PathTicket = CreateTicketDatabase.Check();
+        private static readonly string PathTransaction = CreateTransactionDatabase.Check();
 
         /// <summary> Gets the festivals from our Festival database </summary>
         /// <returns> Returns a JSONFestivalList containing all Festivals in the Festival database </returns>
