@@ -25,7 +25,7 @@ namespace Festivity
                     }));
                 }
             }
-            newMenuOptions.Add(new MenuOption("Return to main menu: ", () =>
+            newMenuOptions.Add(new MenuOption("Return to main menu", () =>
             {
                 Console.Clear();
                 Loop = false;
