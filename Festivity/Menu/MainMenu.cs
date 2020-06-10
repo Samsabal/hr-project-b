@@ -1,12 +1,9 @@
-﻿using Festivity.AccountLogin;
-using Festivity.AccountRegistration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
-    class MainMenu : MenuBuilder
+    internal class MainMenu : MenuBuilder
     {
         private static UIElements UI = new UIElements();
         public static List<MenuOption> MainMenuBuilder()
@@ -18,18 +15,22 @@ namespace Festivity
                 {
                     Console.Clear();
                     Menu.OptionReset();
-                    UserModel user = new UserModel(){AccountID = JSONFunctionality.GenerateUserID()};
-                    UserRegisterHandler.InitiateUserRegister(user);
+                    UserModel user = new UserModel(){AccountID = JSONFunctions.GenerateUserID()};
+                    AccountRegistration.Handler.InitiateUserRegister(user);
                 }),
                 new MenuOption(UI.SpaceStringInMiddle(". Log In ."), () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
-                    LoginManager.InitiateLogin();
+                    Loop = true;
+                    do {Menu.Draw(new LoginMenu().LoginBuilder()); }
+                    while (Loop);
                 }),
                 new MenuOption(UI.SpaceStringInMiddle(". Festivals ."), () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
-                    CatalogPage.CatalogMain();
+                    Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption(UI.SpaceStringInMiddle(". Exit ."), () =>
                 {

@@ -1,28 +1,28 @@
-﻿using System;
+﻿using Festivity.Account;
+using System;
 
 namespace Festivity.Transaction
 {
     internal class ObjectSaver
     {
-        private static readonly JSONTransactionList transactionList = JSONFunctionality.GetTransactions();
+        private static readonly JSONTransactionList transactionList = JSONFunctions.GetTransactions();
 
-        public static void WriteToDatabase(Ticket ticket)
+        public static void WriteToDatabase(TicketModel ticket)
         {
-            DateTime now = DateTime.Now;
-            string timeStamp = "" + now;
+            string timeStamp = "" + DateTime.Now;
 
             TransactionModel transaction = new TransactionModel
             {
                 TransactionID = GetTransactionID(),
-                FestivalID = (int)CatalogPage.selectedFestival,
+                FestivalID = ticket.FestivalID,
                 TicketID = ticket.TicketID,
-                BuyerID = LoggedInAccount.GetID(),//(int)UserLoginPage.currentUserID,
-                TicketAmount = DisplayManager.GetTicketAmount(),
+                BuyerID = LoggedInModel.GetID(),
+                TicketAmount = Handler.GetTicketAmount(),
                 OrderDate = timeStamp
             };
 
             transactionList.Transactions.Add(transaction);
-            JSONFunctionality.WriteTransactions(transactionList);
+            JSONFunctions.WriteTransactions(transactionList);
         }
 
         private static int GetTransactionID()

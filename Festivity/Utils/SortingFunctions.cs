@@ -62,12 +62,12 @@ namespace Festivity.Utils
         {
             Tuple<FestivalModel, double>[] festivalsWithPrices = new Tuple<FestivalModel, double>[festivalArray.Length];
 
-            Ticket[] ticketArray = JSONFunctionality.GetTickets().Tickets.ToArray();
+            TicketModel[] ticketArray = JSONFunctions.GetTickets().Tickets.ToArray();
 
             for (int i = 0; i < festivalArray.Length; i++)
             {
                 double minPrice = int.MaxValue;
-                foreach (Ticket t in ticketArray)
+                foreach (TicketModel t in ticketArray)
                 {
                     if (festivalArray[i].FestivalID == t.FestivalID)
                     {
@@ -82,7 +82,9 @@ namespace Festivity.Utils
             return festivalsWithPrices;
         }
 
-        /// <summary> Sorts a given Festival[] from earliest to latest by the dates of the festivals. </summary>
+        /// <summary>
+        /// Sorts a given Festival[] from earliest to latest by the dates of the festivals.
+        /// </summary>
         /// <param name="festivalArray"> Festival array to be sorted. </param>
         /// <returns> Returns a Festival[] sorted by FestivalDate </returns>
         public static FestivalModel[] SortDate(FestivalModel[] festivalArray)

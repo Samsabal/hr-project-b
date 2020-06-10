@@ -27,6 +27,8 @@ namespace Festivity
                 ErrorMessage.WriteLine("Invalid input, please  try again");
                 return false;
             }
+            MakesUserQuitIfCalled(value);
+            Console.WriteLine("Invalid input, please  try again");
             return false;
         }
 
@@ -38,6 +40,7 @@ namespace Festivity
         {
             if (!regex.IsMatch(input))
             {
+                MakesUserQuitIfCalled(input);
                 ErrorMessage.WriteLine("Invalid input, please  try again");
                 return false;
             }
@@ -51,6 +54,7 @@ namespace Festivity
         {
             if (!regex.IsMatch(input))
             {
+                MakesUserQuitIfCalled(input);
                 return false;
             }
             else
@@ -64,12 +68,12 @@ namespace Festivity
         /// <returns> Returns true if name conforms to regex. </returns>
         public static bool IsValidName(string name)
         {
-            return RegexCheck(name, new Regex(@"^[A-Za-z,.' -]{2,33}$"));
+            return RegexCheck(name, new Regex(@"^[A-Za-z,.' ]{2,33}$"));
         }
 
         public static bool IsValidYesOrNo(string name)
         {
-            return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]|[N-n][O-o]$"));
+            return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]$|^[N-n][O-o]$"));
         }
 
         public static bool EqualsYesRegex(string input)
@@ -92,7 +96,7 @@ namespace Festivity
         /// <returns> Returns true if day is a real day. </returns>
         public static bool IsValidDay(string day)
         {
-            return NumberCheck(day, 0, 31);
+            return NumberCheck(day, 1, 31);
         }
 
         /// <summary> Checks if string conforms to a month structure. </summary>
@@ -100,7 +104,7 @@ namespace Festivity
         /// <returns> Returns true if month is a real month. </returns>
         public static bool IsValidMonth(string month)
         {
-            return NumberCheck(month, 0, 12);
+            return NumberCheck(month, 1, 12);
         }
 
         /// <summary> Checks if string conforms to a year structure for user age. </summary>
@@ -148,7 +152,7 @@ namespace Festivity
         /// <returns> Returns true if phoneNumber conforms to regex. </returns>
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            return RegexCheck(phoneNumber, new Regex(@"^06\d{8}$"));
+            return RegexCheck(phoneNumber, new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"));
         }
 
         /// <summary> Checks if string conforms to price structure. </summary>
@@ -156,7 +160,7 @@ namespace Festivity
         /// <returns> Returns true if price conforms to regex. </returns>
         public static bool IsValidPrice(string price)
         {
-            return RegexCheck(price, new Regex(@"^[0-9]*(\,)?[0-9]?[0-9]?$"));
+            return RegexCheck(price, new Regex(@"^[0-9]*((,)?|(.)?)[0-9]?[0-9]?$"));
         }
 
         /// <summary> Checks if string conforms to time structure. </summary>
@@ -212,10 +216,10 @@ namespace Festivity
 
         /// <summary> Checks if string conforms to maximum tickets per person rules. </summary>
         /// <param name="ticketAmount"> Ticket amount to check. </param>
-        /// <returns> Returns true if ticketAmount is between 1 and 100. </returns>
+        /// <returns> Returns true if ticketAmount is between 1 and 25. </returns>
         public static bool IsValidMaxTicketsPerPerson(string ticketAmount)
         {
-            return NumberCheck(ticketAmount, 1, 100);
+            return NumberCheck(ticketAmount, 1, 25);
         }
 
         /// <summary> Checks if string conforms to password structure. </summary>
@@ -236,9 +240,10 @@ namespace Festivity
 
             if (!hasLowerChar.IsMatch(password) || !hasUpperChar.IsMatch(password) || !hasMiniMaxChars.IsMatch(password) || !hasSymbols.IsMatch(password) || !hasNumber.IsMatch(password))
             {
+                MakesUserQuitIfCalled(password);
                 ErrorMessage.WriteLine("Password should contain the following rules: ");
                 ErrorMessage.WriteLine(" - Must be between 8 and 15 characters long. ");
-                ErrorMessage.WriteLine(" - Must contain at least one number. . ");
+                ErrorMessage.WriteLine(" - Must contain at least one number. ");
                 ErrorMessage.WriteLine(" - Must contain at least one uppercase letter. ");
                 ErrorMessage.WriteLine(" - Must contain at least one lowercase letter. ");
                 ErrorMessage.WriteLine(" - Must contain at least one symbol. ");
@@ -247,6 +252,14 @@ namespace Festivity
             else
             {
                 return true;
+            }
+        }
+
+        public static void MakesUserQuitIfCalled(string input)
+        {
+            if (new Regex(@"^(\-[Q-q][U-u][I-i][T-t])|(\-[Q-q])$").IsMatch(input)) //Matches -q / -Quit (Match is not case sensitive)
+            {
+                Program.Main();
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class UserModel // base class (parent)
+    internal class UserModel
     {
         [JsonProperty("accountType")]
         public int AccountType { get; set; }
@@ -47,12 +47,12 @@ namespace Festivity
         [JsonProperty("phoneNumber")]
         public string PhoneNumber { get; set; }
 
-        public Address userAddress = new Address();
+        public AddressModel userAddress = new AddressModel();
     }
 
     internal class JSONUserList
     {
         [JsonProperty("users")]
-        public List<UserModel> Users { get; set; } // Change this to change back to userOrganisator/Visitor
+        public List<UserModel> Users { get; set; }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Festivity.Account;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
 namespace Festivity
 {
-    class MainMenuUser : MenuBuilder
+    internal class MainMenuUser : MenuBuilder
     {
-        public static List<MenuOption> MainMenuUserBuilder()
+        public List<MenuOption> MainMenuUserBuilder()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
@@ -15,19 +16,19 @@ namespace Festivity
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    CatalogPage.CatalogMain();
+                    Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption("My Account", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    AccountPage.Manager.DrawPage();
+                    AccountPage.Handler.DrawPage();
                 }),
                 new MenuOption("My Tickets", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
-                    TicketTableManager.Initiate();
+                    TicketTable.Handler.Initiate();
                 }),
                 new MenuOption("Logout", () =>
                 {
@@ -36,7 +37,7 @@ namespace Festivity
                     Thread.Sleep(1000);
                     Console.Clear();
                     Menu.OptionReset();
-                    LoggedInAccount.LogOut();
+                    LoggedInModel.LogOut();
                     Program.Main();
                 }),
                 new MenuOption("Exit", () =>
