@@ -67,7 +67,14 @@ namespace Festivity.AccountRegistration
 
             do { userYear = General.InputLoop("Year of birth: "); }
             while (!RegexUtils.IsValidUserYear(userYear));
-            user.BirthDate = new DateTime(int.Parse(userYear), int.Parse(userMonth), int.Parse(userDay));
+            try
+            {
+                user.BirthDate = new DateTime(int.Parse(userYear), int.Parse(userMonth), int.Parse(userDay));
+            } catch (ArgumentOutOfRangeException e)
+            {
+                ErrorMessage.InvalidDateError();
+                InputBirthday(user);
+            }
         }
 
         public static void InputVisitorPhonenumber(UserModel user)
