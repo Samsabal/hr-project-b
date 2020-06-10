@@ -77,5 +77,10 @@ namespace Festivity.AccountRegistration
         {
             return RegexUtils.EqualsYesRegex(input);
         }
+
+        public static bool IsInputVisitor(string input)
+        {
+            return RegexUtils.EqualsVisitorRegex(input);
+        }
     }
 }

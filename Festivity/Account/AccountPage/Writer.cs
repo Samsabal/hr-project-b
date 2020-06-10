@@ -20,7 +20,7 @@ namespace Festivity.AccountPage
                 Console.WriteLine();
                 if (LoggedInModel.User.AccountType == 1)
                 {
-                    Console.WriteLine($" Total amount earned: {Utils.AmountEarned()} Euro");
+                    Console.WriteLine($" Total amount earned: {Utils.AmountEarned():F2} Euro");
                 }
                 Console.WriteLine();
                 UI.Line();
