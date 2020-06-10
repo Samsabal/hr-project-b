@@ -24,6 +24,7 @@ namespace Festivity.AccountPage
                 }
                 Console.WriteLine();
                 UI.Line();
+                Console.WriteLine();
                 Menu.Draw(new AccountPageMenu().Build());
             }
         }
