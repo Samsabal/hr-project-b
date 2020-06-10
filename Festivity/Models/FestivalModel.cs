@@ -205,11 +205,11 @@ namespace Festivity
             }
             else if (MinMaxPrice().Item1 == MinMaxPrice().Item2)
             {
-                return $"\u20AC{MinMaxPrice().Item1}";
+                return $"\u20AC{String.Format("{0:0.00}", MinMaxPrice().Item1)}";
             }
             else
             {
-                return $"\u20AC{MinMaxPrice().Item1} - \u20AC{MinMaxPrice().Item2}";
+                return $"\u20AC{String.Format("{0:0.00}", MinMaxPrice().Item1)} - \u20AC{String.Format("{0:0.00}", MinMaxPrice().Item1)}";
             }
         }
 
@@ -230,6 +230,18 @@ namespace Festivity
             else
             {
                 return FestivalDescription.PadRight(maxLength);
+            }
+        }
+
+        public string DescriptionTooShort(int maxLength)
+        {
+            if (FestivalDescription.Length > maxLength)
+            {
+                return FestivalDescription.Substring(0, maxLength - 3) + "...";
+            }
+            else
+            {
+                return FestivalDescription;
             }
         }
     }

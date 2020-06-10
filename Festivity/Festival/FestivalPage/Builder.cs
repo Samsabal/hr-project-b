@@ -32,16 +32,16 @@ namespace Festivity.FestivalPage
             int DescriptionLength = Festival.SelectedFestival.Festival.FestivalDescription.Length;
             int LineCount = 0;
 
-            while (DescriptionLength > 75 * LineCount)
+            while (DescriptionLength > 65 * LineCount)
             {
-                if (DescriptionLength - 75 * LineCount > 75)
+                if (DescriptionLength - 65 * LineCount > 65)
                 {
-                    Console.WriteLine("| " + Festival.SelectedFestival.Festival.FestivalDescription.Substring(75 * LineCount, 75) + " |");
+                    Console.WriteLine("  " + Festival.SelectedFestival.Festival.FestivalDescription.Substring(65 * LineCount, 65));
                     LineCount += 1;
                 }
                 else
                 {
-                    Console.WriteLine($"| {Festival.SelectedFestival.Festival.FestivalDescription.Substring(75 * LineCount)}".PadRight(78) + "|");
+                    Console.WriteLine($"  {Festival.SelectedFestival.Festival.FestivalDescription.Substring(65 * LineCount)}");
                     LineCount += 1;
                 }
             }
@@ -56,16 +56,16 @@ namespace Festivity.FestivalPage
                     int DescriptionLength = ticket.TicketDescription.Length;
                     int LineCount = 0;
 
-                    while (DescriptionLength > 75 * LineCount)
+                    while (DescriptionLength > 65 * LineCount)
                     {
-                        if (DescriptionLength - 75 * LineCount > 75)
+                        if (DescriptionLength - 65 * LineCount > 65)
                         {
-                            Console.WriteLine("| " + ticket.TicketDescription.Substring(75 * LineCount, 75) + " |");
+                            Console.WriteLine("  " + ticket.TicketDescription.Substring(65 * LineCount, 65));
                             LineCount += 1;
                         }
                         else
                         {
-                            Console.WriteLine($"| {ticket.TicketDescription.Substring(75 * LineCount)}".PadRight(78) + "|");
+                            Console.WriteLine($"  {ticket.TicketDescription.Substring(65 * LineCount)}");
                             LineCount += 1;
                         }
                     }

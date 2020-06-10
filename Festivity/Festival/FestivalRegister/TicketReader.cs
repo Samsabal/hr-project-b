@@ -22,10 +22,8 @@ namespace Festivity.FestivalRegister
             string tempTicketPrice;
             do { tempTicketPrice = General.InputLoop(" Ticket price: "); }
             while (!RegexUtils.IsValidPrice(tempTicketPrice));
-            if (tempTicketPrice.Contains(","))
-            {
-                tempTicketPrice = tempTicketPrice.Replace(@",", @".");
-            }
+            
+            tempTicketPrice = tempTicketPrice.Replace(@".", @",");
             ticket.TicketPrice = double.Parse(tempTicketPrice);
         }
 

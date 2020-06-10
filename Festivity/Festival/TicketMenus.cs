@@ -26,7 +26,7 @@ namespace Festivity
                 Menu.OptionReset();
                 Console.Clear();
                 UI.PathLine();
-                UI.InfoLine("Wat moet heir komen dan hoertje");
+                UI.InfoLine("");
                 UI.Pom("Change Festival Informatoin");
                 new FestivalMenus().ChangeFestival(festival);
                 Loop = false;

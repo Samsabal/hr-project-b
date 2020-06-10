@@ -24,8 +24,8 @@ namespace Festivity
                         do 
                         {
                             UI.PathLine();
-                            UI.InfoLine("Wat moet heir komen dan hoertje");
-                            UI.Pom("Change Festival Informatoin");
+                            UI.InfoLine(festival.FestivalName + " Information:");
+                            UI.Pom("Change Festival Information");
                             Menu.Draw(ChangeFestival(festival)); 
                         }
                         while (Loop);
@@ -72,13 +72,13 @@ namespace Festivity
                     FestivalReader.InputEndTime(festival);
                     Console.Clear();
                 }),
-                new MenuOption($" Address:".PadRight(PadRightValue) + $"{festival.FestivalLocation}".PadLeft(PadLeftValue), () =>
+                new MenuOption($" Address:".PadRight(PadRightValue - 20) + $"{festival.FestivalLocation}".PadLeft(PadLeftValue + 20), () =>
                 {
                     
                     FestivalReader.InputFestivalAdress(festival);
                     Console.Clear();
                 }),
-                new MenuOption($" Description:".PadRight(PadRightValue) + $"{festival.SetDescriptionLength(50)}".PadLeft(PadLeftValue), () =>
+                new MenuOption($" Description:".PadRight(PadRightValue - 23) + $"{festival.DescriptionTooShort(50)}".PadLeft(PadLeftValue + 17), () =>
                 {
                     
                     FestivalReader.ModifyFestivalDescription(festival);

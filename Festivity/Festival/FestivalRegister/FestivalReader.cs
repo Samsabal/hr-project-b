@@ -69,7 +69,16 @@ namespace Festivity.FestivalRegister
             while (!RegexUtils.IsValidMonth(festivalMonth));
             do { festivalYear = General.InputLoop(" Year: "); }
             while (!RegexUtils.IsValidFestivalYear(festivalYear));
-            festival.FestivalDate = new DateTime(int.Parse(festivalYear), int.Parse(festivalMonth), int.Parse(festivalDay));
+            try
+            {
+                festival.FestivalDate = new DateTime(int.Parse(festivalYear), int.Parse(festivalMonth), int.Parse(festivalDay));
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                ErrorMessage.InvalidDateError();
+                InputFestivalDate(festival);
+            }
+
         }
 
         public static void InputStartingTime(FestivalModel festival)

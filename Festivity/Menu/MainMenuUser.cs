@@ -34,9 +34,10 @@ namespace Festivity
                 new MenuOption(UI.SpaceStringInMiddle(". Logout ."), () =>
                 {
                     Console.Clear();
-                    Console.WriteLine("Successfully logged out!");
+                    UI.Header();
+                    ErrorMessage.WriteLine(UI.SpaceStringInMiddle("Successfully logged out!"));
+                    UI.Line();
                     Thread.Sleep(1000);
-                    Console.Clear();
                     Menu.OptionReset();
                     LoggedInModel.LogOut();
                     Program.Main();

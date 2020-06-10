@@ -138,7 +138,7 @@ namespace Festivity
         /// <returns> Returns true if addressName conforms to regex. </returns>
         public static bool IsValidAddressName(string addressName)
         {
-            return RegexCheck(addressName, new Regex(@"^[A-Za-z ]{1,60}$"));
+            return RegexCheck(addressName, new Regex(@"^[A-Za-z -]{1,60}$"));
         }
 
         /// <summary> Checks if string conforms to zipcode structure. </summary>
@@ -162,7 +162,7 @@ namespace Festivity
         /// <returns> Returns true if phoneNumber conforms to regex. </returns>
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            return RegexCheck(phoneNumber, new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"));
+            return RegexCheck(phoneNumber, new Regex(@"^[0-9]{9,14}$"));
         }
 
         /// <summary> Checks if string conforms to price structure. </summary>
