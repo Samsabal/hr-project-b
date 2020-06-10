@@ -10,7 +10,10 @@ namespace Festivity.Account
         public static void Initiate()
         {
             bool accountExists = false;
-            Console.WriteLine("Enter Email: "); string userEmail = Console.ReadLine();
+            Console.Write("Enter Email: "); 
+            
+            string userEmail = Console.ReadLine();
+            RegexUtils.MakesUserQuitIfCalled(userEmail);
             Console.Clear();
 
             foreach (var user in userList.Users)
@@ -18,7 +21,7 @@ namespace Festivity.Account
                 if (user.Email.ToLower() == userEmail.ToLower())
                 {
                     accountExists = true;
-                    Console.WriteLine("Your password = " + user.Password + "\n");
+                    Console.WriteLine($"Your password = {user.Password}");
                     Console.WriteLine("Press <Enter> to go back");
                     Console.ReadLine();
                     ConsoleHelperFunctions.ClearCurrentConsole();

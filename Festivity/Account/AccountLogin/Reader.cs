@@ -6,14 +6,19 @@ namespace Festivity.AccountLogin
     {
         public static string GetEmailInput()
         {
+            
             Console.Write("Enter Email: ");
-            return Console.ReadLine();
+            string input = Console.ReadLine();
+            RegexUtils.MakesUserQuitIfCalled(input);
+            return input;
         }
 
         public static string GetPasswordInput()
         {
             Console.Write("Enter Password: ");
-            return Console.ReadLine();
+            string input = Console.ReadLine();
+            RegexUtils.MakesUserQuitIfCalled(input);
+            return input;
         }
     }
 }

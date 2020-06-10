@@ -32,6 +32,7 @@ namespace Festivity.Account
         private static bool UserInputIsCorrectPassword()
         {
             string userInput = Console.ReadLine();
+            RegexUtils.MakesUserQuitIfCalled(userInput);
             return userInput == LoggedInModel.User.Password;
         }
 
