@@ -1,4 +1,5 @@
 ﻿using System;
+using Festivity.Account;
 
 namespace Festivity
 {
@@ -6,25 +7,24 @@ namespace Festivity
     {
         public static void Main()
         {
-            //string[] args
             Console.Clear();
             while (true)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
-                Console.SetWindowSize(150, 36);
-                if (!LoggedInAccount.IsLoggedIn())
+
+                if (!LoggedInModel.IsLoggedIn())
                 {
-                    MenuFunction.Menu(new string[] { "Register", "Login", "Festivals", "Exit" });
+                    Menu.Draw(new MainMenu().MainMenuBuilder());
                 }
-                if (LoggedInAccount.IsLoggedIn())
+                if (LoggedInModel.IsLoggedIn())
                 {
-                    if (LoggedInAccount.User.AccountType == 2)
+                    if (LoggedInModel.User.AccountType == 2)
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "Account", "My Festivals", "Logout", "Exit" });
+                        Menu.Draw(new MainMenuUser().MainMenuUserBuilder());
                     }
-                    if (LoggedInAccount.User.AccountType == 1)
+                    if (LoggedInModel.User.AccountType == 1)
                     {
-                        MenuFunction.Menu(new string[] { "Festivals", "Register festival", "Account", "My Festivals", "Logout", "Exit" });
+                        Menu.Draw(new MainMenuOrganiser().MainMenuOrganiserBuilder());
                     }
                 }
             }
