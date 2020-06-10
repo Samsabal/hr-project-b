@@ -33,7 +33,7 @@ namespace Festivity
                         Console.Clear();
                         FestivalReader.InputStartingTime(festival);
                     }),
-                    new MenuOption("End Time:".PadRight(PadRightValue) + $"{festival.FestivalEndTime}".PadLeft(PadLeftValue), () =>
+                    new MenuOption(" End Time:".PadRight(PadRightValue) + $"{festival.FestivalEndTime}".PadLeft(PadLeftValue), () =>
                     {
                         Console.Clear();
                         FestivalReader.InputEndTime(festival);
