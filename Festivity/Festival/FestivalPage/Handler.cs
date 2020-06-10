@@ -8,8 +8,7 @@ namespace Festivity.FestivalPage
             {
                 if (festival.FestivalID == festivalId)
                 {
-                    Menu.OptionReset();
-                    while (true)
+                    do
                     {
                         Writer.FestivalName(festival);
 
@@ -27,6 +26,7 @@ namespace Festivity.FestivalPage
 
                         Menu.Draw(new FestivalPageMenu().FestivalPageMenuBuilder());
                     }
+                    while (Menu.IsLooping);
                 }
             }
         }

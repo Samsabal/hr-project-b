@@ -11,21 +11,18 @@ namespace Festivity
             {
                 new MenuOption("Login to your account", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
                     AccountLogin.LoginHandler.InitiateLogin();
                 }),
                 new MenuOption("Forgot password", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
                     AccountLogin.LoginHandler.InitiateForgotPassword();
                 }),
                 new MenuOption("Return to main menu", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
-                    MenuBuilder.Loop = false;
+                    Program.Main();
                 })
             };
             return newMenuOptions;

@@ -33,11 +33,10 @@
         /// inputs. </summary
         public static void ShowFestivalRegister(FestivalModel festival)
         {
-            // Makes sure the console keeps refreshing, allowing input.
-            while (true)
+            do
             {
                 Menu.Draw(new FestivalRegisterMenu().FestivalRegisterMenuBuilder(festival));
-            }
+            } while (Menu.IsLooping);
         }
 
         /// <summary>

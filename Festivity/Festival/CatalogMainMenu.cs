@@ -1,70 +1,74 @@
-﻿using Festivity.FestivalPage;
-using Festivity.Festival;
+﻿using Festivity.Festival;
 using System;
 using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class CatalogMainMenu : MenuBuilder
+    internal class CatalogMainMenu
     {
-        public List<MenuOption> CatalogMainMenuBuilder()
+        public static List<MenuOption> CatalogMainMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
             int lastpage = CatalogPage.FestivalArray.Length / 5;
 
             if (CatalogPage.CurrentPage == lastpage)
             {
-                for (int i = 0; i < CatalogPage.FestivalArray.Length % 5; i++)
+                FestivalModel[] smallArray = CatalogPage.FestivalArray[(CatalogPage.CurrentPage * 5)..(CatalogPage.CurrentPage * 5 + CatalogPage.FestivalArray.Length % 5)];
+                foreach (FestivalModel f in smallArray)
                 {
-                    newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i + CatalogPage.CurrentPage * 5].FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption($"Select festival: {f.FestivalName}", () =>
                     {
                         Console.Clear();
-                        SelectedFestival.Festival = CatalogPage.FestivalArray[Menu.Option + 5 * CatalogPage.CurrentPage];
-                        Menu.OptionReset();
+                        SelectedFestival.Festival = f;
                         FestivalPage.Handler.Display(SelectedFestival.Festival.FestivalID);
                     }));
                 }
             }
             else
             {
-                for (int i = 0; i < 5; i++)
+                FestivalModel[] smallArray = CatalogPage.FestivalArray[(CatalogPage.CurrentPage * 5)..(CatalogPage.CurrentPage * 5 + 5)];
+                foreach (FestivalModel f in smallArray)
                 {
-                    newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i].FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption($"Select festival: {f.FestivalName}", () =>
                     {
                         Console.Clear();
-                        SelectedFestival.Festival = CatalogPage.FestivalArray[Menu.Option + 5 * CatalogPage.CurrentPage];
-                        Menu.OptionReset();
+                        SelectedFestival.Festival = f;
                         FestivalPage.Handler.Display(SelectedFestival.Festival.FestivalID);
                     }));
                 }
             }
-            newMenuOptions.Add(new MenuOption("Next page", () =>
+            if (CatalogPage.CurrentPage * 5 + 5 < CatalogPage.FestivalArray.Length)
             {
-                if (CatalogPage.CurrentPage * 5 + 5 < CatalogPage.FestivalArray.Length)
+                newMenuOptions.Add(new MenuOption("Next page", () =>
                 {
-                    Menu.OptionReset();
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CurrentPage++;
-                }
-            }));
-            newMenuOptions.Add(new MenuOption("Previous page", () =>
+                    do
+                    {
+                        CatalogPage.CatalogMain();
+                    } while (Menu.IsLooping);
+                }));
+            }
+            if (CatalogPage.CurrentPage > 0)
             {
-                if (CatalogPage.CurrentPage > 0)
+                newMenuOptions.Add(new MenuOption("Previous page", () =>
                 {
-                    Menu.OptionReset();
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CurrentPage--;
-                }
-            }));
+                    do
+                    {
+                        CatalogPage.CatalogMain();
+                    } while (Menu.IsLooping);
+                }));
+            }
             newMenuOptions.Add(new MenuOption("Filter festivals", () =>
             {
-                Menu.OptionReset();
+                ConsoleHelperFunctions.ClearCurrentConsole();
                 CatalogPage.CurrentCatalogNavigation = "filter";
-                Console.Clear();
+                CatalogPage.CatalogMain();
             }));
             newMenuOptions.Add(new MenuOption("Exit to main menu", () =>
             {
-                Menu.OptionReset();
                 Console.Clear();
                 Program.Main();
             }));

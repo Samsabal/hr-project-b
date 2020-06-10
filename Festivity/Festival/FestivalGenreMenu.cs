@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class FestivalGenreMenu : MenuBuilder
+    internal class FestivalGenreMenu
     {
         public List<MenuOption> GenreMenuBuilder(FestivalModel festival)
         {
@@ -45,39 +45,44 @@ namespace Festivity
             return newMenuOptions;
         }
 
-        public static List<MenuOption> GenreMenuModify(FestivalModel festival)
+        public List<MenuOption> GenreMenuModify(FestivalModel festival)
         {
+            void ChangeFestivalMenu(){
+                do { Menu.Draw(new FestivalMenus().ChangeFestival(festival)); }
+                while (Menu.IsLooping);
+            }
+
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
                 new MenuOption("Techno", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Techno");
-                    Loop = false;
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Drum & Bass", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Drum & Bass");
-                    Loop = false;
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Pop", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Pop");
-                    Loop = false;
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Rock", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Rock");
-                    Loop = false;
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Hip-Hop", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");
-                    Loop = false;
+                    ChangeFestivalMenu();
                 }),
             };
             return newMenuOptions;

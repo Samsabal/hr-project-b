@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class MainMenu : MenuBuilder
+    internal class MainMenu
     {
         public List<MenuOption> MainMenuBuilder()
         {
@@ -13,22 +13,19 @@ namespace Festivity
                 new MenuOption("Register", () =>
                 {
                     Console.Clear();
-                    Menu.OptionReset();
                     UserModel user = new UserModel(){AccountID = JSONFunctions.GenerateUserID()};
                     AccountRegistration.Handler.InitiateUserRegister(user);
                 }),
                 new MenuOption("Login", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
-                    Loop = true;
                     do {Menu.Draw(new LoginMenu().LoginBuilder()); }
-                    while (Loop);
+                    while (Menu.IsLooping);
                 }),
                 new MenuOption("Festivals", () =>
                 {
-                    Menu.OptionReset();
                     Console.Clear();
+                    Festival.CatalogPage.CatalogSetup();
                     Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Exit", () =>
