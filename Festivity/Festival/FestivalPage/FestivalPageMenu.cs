@@ -10,7 +10,7 @@ namespace Festivity
         public List<MenuOption> FestivalPageMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
-            if (LoggedInModel.User.AccountType == 2)
+            if (!LoggedInModel.IsLoggedIn() || LoggedInModel.User.AccountType == 2)
             {
                 foreach (var ticket in Transaction.TicketListBuilder.Get())
                 {
