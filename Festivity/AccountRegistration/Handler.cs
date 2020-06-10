@@ -2,8 +2,11 @@
 {
     internal class Handler
     {
+        private static UIElements UI = new UIElements("Register");
         public static void InitiateUserRegister(UserModel user)
         {
+            UI.PathLine();
+            UI.Pom("User Information");
             Reader.InputFirstName(user);
             Reader.InputLastName(user);
             Reader.InputEmail(user);

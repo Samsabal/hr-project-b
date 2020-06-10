@@ -41,7 +41,7 @@ namespace Festivity
                     break;
                 case "Two":
                     Console.WriteLine(LineStringInMiddleWith($"< Home:{PathOne} >"));
-                    //Console.WriteLine($"--------------------------< Home:{PathOne} >--------------------------");
+                    Console.WriteLine(SpaceStringInMiddle("Command -q or -quit to go back."));
                     break;
                 case "Three":
                     Console.WriteLine(LineStringInMiddleWith($"< Home:{PathOne}:{PathTwo} >"));
