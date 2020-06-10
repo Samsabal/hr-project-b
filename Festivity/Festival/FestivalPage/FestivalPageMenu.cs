@@ -9,26 +9,28 @@ namespace Festivity
         public List<MenuOption> FestivalPageMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
-
-            foreach (var ticket in Transaction.TicketListBuilder.Get())
+            if (LoggedInModel.User.AccountType == 2)
             {
-                newMenuOptions.Add(new MenuOption("Buy Ticket: " + ticket.TicketName, () =>
+                foreach (var ticket in Transaction.TicketListBuilder.Get())
                 {
-                    if (LoggedInModel.IsLoggedIn())
+                    newMenuOptions.Add(new MenuOption("Buy Ticket: " + ticket.TicketName, () =>
                     {
-                        ConsoleHelperFunctions.ClearCurrentConsole();
-                        Menu.OptionReset();
-                        Console.Clear();
-                        Transaction.Handler.Initiate(ticket.TicketID);
-                    }
-                    else
-                    {
-                        ConsoleHelperFunctions.ClearCurrentConsole();
-                        Menu.OptionReset();
-                        Console.Clear();
-                        AccountLogin.LoginHandler.InitiateLogin(true);
-                    }
-                }));
+                        if (LoggedInModel.IsLoggedIn())
+                        {
+                            ConsoleHelperFunctions.ClearCurrentConsole();
+                            Menu.OptionReset();
+                            Console.Clear();
+                            Transaction.Handler.Initiate(ticket.TicketID);
+                        }
+                        else
+                        {
+                            ConsoleHelperFunctions.ClearCurrentConsole();
+                            Menu.OptionReset();
+                            Console.Clear();
+                            AccountLogin.LoginHandler.InitiateLogin(true);
+                        }
+                    }));
+                }
             }
             newMenuOptions.Add(new MenuOption("Return to Catalog", () =>
             {
