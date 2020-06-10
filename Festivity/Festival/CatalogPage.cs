@@ -100,7 +100,7 @@ namespace Festivity.Festival
         private static void DrawFestival(FestivalModel festival)
         {
             Console.Write($"| Name: {festival.FestivalName}");
-            Console.SetCursorPosition(49, Console.CursorTop);
+            Console.SetCursorPosition(60 - festival.FestivalGenre.Length, Console.CursorTop);
             Console.Write($"Genre: {festival.FestivalGenre} |\n");
             Console.WriteLine($"| Description: {festival.SetDescriptionLength(52)} |");
             Console.Write($"| City: {festival.FestivalLocation.City}");
