@@ -255,7 +255,7 @@ namespace Festivity
             }
         }
 
-        private static void MakesUserQuitIfCalled(string input)
+        public static void MakesUserQuitIfCalled(string input)
         {
             if (new Regex(@"^(\-[Q-q][U-u][I-i][T-t])|(\-[Q-q])$").IsMatch(input)) //Matches -q / -Quit (Match is not case sensitive)
             {

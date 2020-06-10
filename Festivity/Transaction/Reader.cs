@@ -9,7 +9,7 @@ namespace Festivity.Transaction
         {
             string userInput;
             Console.WriteLine("How many tickets would you like to buy? ");
-            do { userInput = General.InputLoopString(); }
+            do { userInput = General.InputLoopWithoutPrint(); }
             while (!NumberCheck(userInput, 1, TicketListBuilder.GetSelectedTicket(selectedOption).MaxTicketsPerPerson));
             return Int32.Parse(userInput);
         }
@@ -26,13 +26,12 @@ namespace Festivity.Transaction
 
         public static bool ConfirmTransaction()
         {
-            ConsoleKey input;
-            Console.WriteLine("Confirm Order? [y/n]");
-            do { input = General.InputLoopKey(); }
-            while (General.YesOrNoCheck(input));
+            string input;
 
-            Console.Clear();
-            return input == ConsoleKey.Y;
+            do { input = General.InputLoop("Confirm Order? ('yes' or 'no'): "); }
+            while (!RegexUtils.IsValidYesOrNo(input));
+
+            return AccountRegistration.Handler.IsInputYes(input);
         }
 
         private static bool NumberCheck(string value, int min, int max)
