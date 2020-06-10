@@ -1,5 +1,4 @@
 ﻿using Festivity.Account;
-using System;
 using System.Collections.Generic;
 
 namespace Festivity.AccountPage
@@ -40,25 +39,6 @@ namespace Festivity.AccountPage
                 }
             }
             return amountEarned;
-        }
-
-        public static string InputLoop(string printString)
-        {
-            string userInput;
-            Console.Write(printString); userInput = Console.ReadLine();
-            return userInput;
-        }
-
-        public static bool IsValidAccountChange(string userInput, int max)
-        {
-            return RegexUtils.NumberCheck(userInput, 1, max);
-        }
-
-        public static int GetOptionAmount()
-        // Returns 8 if logged in user is a Visitor, if not it returns 9. For the amount of Account
-        // Changing options.
-        {
-            return LoggedInModel.User.AccountType == 2 ? 8 : 9;
         }
     }
 }

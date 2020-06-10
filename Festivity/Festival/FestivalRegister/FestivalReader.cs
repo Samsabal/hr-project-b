@@ -136,23 +136,11 @@ namespace Festivity.FestivalRegister
             return savedTicketList;
         }
 
-        public static string GetFestivalGenre(FestivalModel festival)
-        {
-            return festival.FestivalGenre;
-        }
-
         public static void SetFestivalGenre(FestivalModel festival, string genre)
         {
             festival.FestivalGenre = genre;
         }
 
-        //private static string InputLoop(string printString)
-        //{
-        //    string userInput;
-        //    Console.Write(printString); userInput = Console.ReadLine();
-        //    Console.Clear();
-        //    return userInput;
-        //}
 
         public static void ModifyUpdateDateByTime(FestivalModel festival)
         {

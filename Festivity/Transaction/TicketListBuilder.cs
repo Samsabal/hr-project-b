@@ -35,10 +35,5 @@ namespace Festivity.Transaction
         {
             return TicketList;
         }
-
-        public static int GetLength()
-        {
-            return TicketList.ToArray().Length;
-        }
     }
 }

@@ -25,19 +25,6 @@ namespace Festivity.Utils
             return userInput;
         }
 
-        public static bool YesOrNoCheck(ConsoleKey input)
-        {
-            if (input != ConsoleKey.Y && input != ConsoleKey.N)
-            {
-                ErrorMessage.WriteLine("Wrong input, please press 'y' or 'n'");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public static string InputLoopWithoutPrint()
         {
             string userInput;

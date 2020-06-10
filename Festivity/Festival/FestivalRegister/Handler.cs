@@ -7,12 +7,6 @@
         // Variables that manage the functionality of the registration.
         public static bool ActiveScreen { private get; set; }
 
-        public static string CurrentRegisterSelection { private get; set; }
-
-        // Database arrays.
-        private static readonly JSONFestivalList festivals = JSONFunctions.GetFestivals();
-
-        private static readonly JSONTicketList tickets = JSONFunctions.GetTickets();
 
         /// <summary> This function initiate the festival register </summary>
         /// <param name="festival"> </param>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Festivity
 {
@@ -54,11 +52,6 @@ namespace Festivity
         public void InfoLine(string message)
         {
             Console.WriteLine(SpaceStringInMiddle(message));
-        }
-
-        public void Draw()
-        {
-            PathLine();
         }
 
         public void Pom(string message)
@@ -118,16 +111,6 @@ namespace Festivity
         public string TicketTableLineStringInMiddleWith(string middle)
         {
             return new string('-', LENGTH - middle.Length / 2) + middle + new string('-', LENGTH - middle.Length / 2) + "\n";
-        }
-
-        public void TicketTablePom(string message)
-        {
-            Console.WriteLine(TicketTableLineStringInMiddleWith($"[ {message} ]"));
-        }
-
-        public void TickeTableLine()
-        {
-            Console.WriteLine("-------------------------------------------------------------------------------------------");
         }
     }
 }
