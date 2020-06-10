@@ -32,7 +32,7 @@ namespace Festivity.AccountPage
                     Console.WriteLine($" Phone Number:           {LoggedInModel.User.CompanyPhoneNumber}");
                     Console.WriteLine($" IBAN:                   {LoggedInModel.User.CompanyIBAN}");
                     Console.WriteLine();
-                    Console.WriteLine($" Total amount earned:    {Utils.AmountEarned()} Euro");
+                    Console.WriteLine($" Total amount earned:    {Utils.AmountEarned():F2} Euro");
                 }
                         
                 Console.WriteLine();

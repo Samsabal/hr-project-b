@@ -86,10 +86,10 @@ namespace Festivity.AccountRegistration
         {
             string input;
 
-            do { input = General.InputLoop(" Are you a visitor?(yes/no): "); }
-            while (!RegexUtils.IsValidYesOrNo(input));
+            do { input = General.InputLoop(" Are you a visitor or an organiser? (visitor/organiser): "); }
+            while (!RegexUtils.isValidVisitorOrOrganiser(input));
 
-            if (Handler.IsInputYes(input))
+            if (Handler.IsInputVisitor(input))
             {
                 user.AccountType = 2;
             }

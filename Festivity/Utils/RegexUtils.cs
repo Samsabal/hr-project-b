@@ -76,10 +76,19 @@ namespace Festivity
         {
             return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]$|^[N-n][O-o]$"));
         }
+        public static bool isValidVisitorOrOrganiser(string name)
+        {
+            return RegexCheck(name, new Regex(@"^[O-o][R-r][G-g][A-a][N-n][I-i][S-s][E-e][R-r]$|^[V-v][I-i][S-s][I-i][T-t][O-o][R-r]$"));
+        }
 
         public static bool EqualsYesRegex(string input)
         {
             return RegexCheckNoError(input, new Regex(@"^[Y-y][E-e][S-s]$"));
+        }
+
+        public static bool EqualsVisitorRegex(string input)
+        {
+            return RegexCheckNoError(input, new Regex(@"^[V-v][I-i][S-s][I-i][T-t][O-o][R-r]$"));
         }
 
         /// <summary> Checks if string conforms to an IBAN structure </summary>

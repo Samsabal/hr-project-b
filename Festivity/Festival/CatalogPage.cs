@@ -12,6 +12,7 @@ namespace Festivity.Festival
         public static int CurrentPage { get; set; }
         public static FestivalModel[] FestivalArray { get; set; }
         public static string CurrentCatalogNavigation { get; set; }
+        public static int FestivalsPerPage { get; set; }
 
         /// <summary>
         /// The main method of the Catalog class, should be used when trying to go to the Catalog screen.
@@ -42,6 +43,7 @@ namespace Festivity.Festival
             FestivalArray = festivals.Festivals.ToArray();
             FestivalArray = SortingFunctions.SortDate(FestivalArray);
             FestivalArray = SortingFunctions.SortAvailability(FestivalArray);
+            FestivalsPerPage = 3;
 
             CurrentCatalogNavigation = "main";
             CurrentPage = 0;
@@ -53,45 +55,46 @@ namespace Festivity.Festival
         /// </summary>
         private static void DrawCatalog()
         {
-            int lastpage = FestivalArray.Length / 5;
+            int lastpage = FestivalArray.Length / FestivalsPerPage;
             if (FestivalArray.Length == 0)
             {
-                Console.WriteLine("X===================================================================X");
-                Console.WriteLine("|                                                                   |");
-                Console.WriteLine("|           Sorry, there are no festivals available :(              |");
-                Console.WriteLine("|                                                                   |");
+                Console.WriteLine("=====================================================================");
+                Console.WriteLine("                                                                     ");
+                Console.WriteLine("            Sorry, there are no festivals available :(               ");
+                Console.WriteLine("                                                                     ");
             }
             else if (CurrentPage == lastpage)
             {
-                for (int i = CurrentPage * 5; i < FestivalArray.Length; i++)
+                for (int i = CurrentPage * FestivalsPerPage; i < FestivalArray.Length; i++)
                 {
-                    if (i == CurrentPage * 5)
+                    if (i == CurrentPage * FestivalsPerPage)
                     {
-                        Console.WriteLine("X===================================================================X");
+                        Console.WriteLine("=====================================================================");
                     }
                     else
                     {
-                        Console.WriteLine("|-------------------------------------------------------------------|");
+                        Console.WriteLine("---------------------------------------------------------------------");
                     }
                     DrawFestival(FestivalArray[i]);
                 }
             }
             else
             {
-                for (int i = CurrentPage * 5; i < CurrentPage * 5 + 5; i++)
+                for (int i = CurrentPage * FestivalsPerPage; i < (CurrentPage + 1) * FestivalsPerPage; i++)
                 {
-                    if (i == CurrentPage * 5)
+                    if (i == CurrentPage * FestivalsPerPage)
                     {
-                        Console.WriteLine("X===================================================================X");
+                        Console.WriteLine("=====================================================================");
                     }
                     else
                     {
-                        Console.WriteLine("|-------------------------------------------------------------------|");
+                        Console.WriteLine("---------------------------------------------------------------------");
                     }
                     DrawFestival(FestivalArray[i]);
                 }
             }
-            Console.WriteLine("X===================================================================X");
+            Console.WriteLine("=====================================================================");
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -100,16 +103,16 @@ namespace Festivity.Festival
         /// <param name="festival"> A Festival object </param>
         private static void DrawFestival(FestivalModel festival)
         {
-            Console.Write($"| Name: {festival.FestivalName}");
-            Console.SetCursorPosition(49, Console.CursorTop);
-            Console.Write($"Genre: {festival.FestivalGenre} |\n");
-            Console.WriteLine($"| Description: {festival.SetDescriptionLength(52)} |");
-            Console.Write($"| City: {festival.FestivalLocation.City}");
+            Console.Write($"  Name: {festival.FestivalName}");
+            Console.SetCursorPosition(60 - festival.FestivalGenre.Length, Console.CursorTop);
+            Console.Write($"Genre: {festival.FestivalGenre}  \n");
+            Console.WriteLine($"  Description: {festival.SetDescriptionLength(52)}  ");
+            Console.Write($"  City: {festival.FestivalLocation.City}");
             Console.SetCursorPosition(60 - festival.PricesToString().Length, Console.CursorTop);
-            Console.Write($"Price: {festival.PricesToString()} |\n");
-            Console.Write($"| Status: {festival.CheckAvailability()}");
+            Console.Write($"Price: {festival.PricesToString()}  \n");
+            Console.Write($"  Status: {festival.CheckAvailability()}");
             Console.SetCursorPosition(51, Console.CursorTop);
-            Console.Write($"Date: {festival.FestivalDate.ToShortDateString()} |\n");
+            Console.Write($"Date: {festival.FestivalDate.ToShortDateString()}  \n");
         }
     }
 }
