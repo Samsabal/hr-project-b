@@ -24,8 +24,8 @@ namespace Festivity
                         do 
                         {
                             UI.PathLine();
-                            UI.InfoLine("Wat moet heir komen dan hoertje");
-                            UI.Pom("Change Festival Informatoin");
+                            UI.InfoLine(festival.FestivalName + " Information:");
+                            UI.Pom("Change Festival Information");
                             Menu.Draw(ChangeFestival(festival)); 
                         }
                         while (Loop);
