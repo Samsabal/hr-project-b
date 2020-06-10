@@ -6,7 +6,7 @@ namespace Festivity
     internal class Menu
     {
         private static UIElements UI = new UIElements();
-        private static int Option { get; set; }
+        public static int Option { get; set; }
 
 
         public static void Draw(List<MenuOption> consoleOptions)
