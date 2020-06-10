@@ -21,8 +21,8 @@ namespace Festivity.FestivalPage
         public static void Festival(FestivalModel festival) // Displays information about the current festival
         {
             Console.WriteLine($"|-----------------------------------------------------------------------------|");
-            Console.WriteLine($"| Starts at {festival.FestivalStartingTime.Hour}:{festival.FestivalStartingTime.Minute} and ends on {festival.FestivalEndTime.Hour}:{festival.FestivalEndTime.Minute}.".PadRight(77) + " |");
-            Console.WriteLine($"| Takes place on {festival.FestivalDate.Day}-{festival.FestivalDate.Month}-{festival.FestivalDate.Year}".PadRight(77) + " |");
+            Console.WriteLine($"| Starts at {festival.FestivalStartingTime.Hour:D2}:{festival.FestivalStartingTime.Minute:D2} and ends on {festival.FestivalEndTime.Hour:D2}:{festival.FestivalEndTime.Minute:D2}.".PadRight(77) + " |");
+            Console.WriteLine($"| Takes place on {festival.FestivalDate.ToShortDateString()}".PadRight(77) + " |");
             Console.WriteLine($"| ".PadRight(77) + " |");
             Console.WriteLine($"| {festival.FestivalLocation.StreetName} {festival.FestivalLocation.StreetNumber}, {festival.FestivalLocation.ZipCode}".PadRight(77) + " |");
             Console.WriteLine($"| {festival.FestivalLocation.City}, {festival.FestivalLocation.Country}".PadRight(77) + " |");
@@ -37,7 +37,7 @@ namespace Festivity.FestivalPage
                 int maxTickets = ticket.MaxTickets;
                 Console.WriteLine($"| {ticket.TicketName}".PadRight(77) + " |");
                 Builder.TicketDescription(ticketId);
-                Console.WriteLine($"| This ticket cost {ticket.TicketPrice} euros.".PadRight(77) + " |");
+                Console.WriteLine($"| This ticket costs \u20AC{String.Format("{0:0.00}", ticket.TicketPrice)}.".PadRight(77) + " |");
                 Console.WriteLine($"| There are {ticket.MaxTickets} tickets in total of which there are {Builder.TicketsLeft(ticketId, maxTickets)} left.".PadRight(77) + " |");
                 Console.WriteLine($"|-----------------------------------------------------------------------------|");
             }

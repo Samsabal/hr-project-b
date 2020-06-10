@@ -33,5 +33,10 @@ namespace Festivity
             Thread.Sleep(5000);
             Menu.OptionReset();
         }
+
+        public static void InvalidDateError()
+        {
+            Write("You didn't select a valid date, please try again.\n\n");
+        }
     }
 }
