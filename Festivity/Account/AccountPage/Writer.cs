@@ -23,7 +23,7 @@ namespace Festivity.AccountPage
                 Console.WriteLine();
                 Menu.Draw(new AccountPageMenu().Build());
             }
-            while (Menu.Loop);
+            while (Menu.IsLooping);
         }
 
         public static void ChangeInfoPage()

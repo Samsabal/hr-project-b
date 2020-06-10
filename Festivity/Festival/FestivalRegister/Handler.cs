@@ -36,7 +36,7 @@
             do
             {
                 Menu.Draw(new FestivalRegisterMenu().FestivalRegisterMenuBuilder(festival));
-            } while (Menu.Loop);
+            } while (Menu.IsLooping);
         }
 
         /// <summary>

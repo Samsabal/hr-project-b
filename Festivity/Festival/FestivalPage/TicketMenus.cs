@@ -14,14 +14,14 @@ namespace Festivity
                 {
                     Console.Clear();
                     do { Menu.Draw(ChangeTicket(ticket)); }
-                    while (Menu.Loop);
+                    while (Menu.IsLooping);
 
                 }));
             }
             newMenuOptions.Add(new MenuOption($"Return to {festival.FestivalName}", () =>
             {
                 Console.Clear();
-                new FestivalMenus().ChangeFestival(festival);
+                Menu.Draw(new FestivalMenus().ChangeFestival(festival));
             }
                 ));
             return newMenuOptions;

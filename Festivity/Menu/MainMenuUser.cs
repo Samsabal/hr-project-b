@@ -15,6 +15,7 @@ namespace Festivity
                 new MenuOption("Festivals", () =>
                 {
                     Console.Clear();
+                    Festival.CatalogPage.CatalogSetup();
                     Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption("My Account", () =>

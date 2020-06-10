@@ -45,34 +45,44 @@ namespace Festivity
             return newMenuOptions;
         }
 
-        public static List<MenuOption> GenreMenuModify(FestivalModel festival)
+        public List<MenuOption> GenreMenuModify(FestivalModel festival)
         {
+            void ChangeFestivalMenu(){
+                do { Menu.Draw(new FestivalMenus().ChangeFestival(festival)); }
+                while (Menu.IsLooping);
+            }
+
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
                 new MenuOption("Techno", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Techno");
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Drum & Bass", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Drum & Bass");
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Pop", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Pop");
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Rock", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Rock");
+                    ChangeFestivalMenu();
                 }),
                 new MenuOption("Hip-Hop", () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");
+                    ChangeFestivalMenu();
                 }),
             };
             return newMenuOptions;

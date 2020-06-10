@@ -42,7 +42,7 @@
                     Menu.Draw(new UserRegisterMenu().UserRegisterMenuBuilder(user, newUser));
                 }
             }
-            while (Menu.Loop);
+            while (Menu.IsLooping);
         }
 
         public static bool CheckIfEmailExists(string email)

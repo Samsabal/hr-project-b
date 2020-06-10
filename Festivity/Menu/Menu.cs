@@ -7,12 +7,12 @@ namespace Festivity
     {
         public static int Option { get; set; }
 
-        public static bool Loop;
+        public static bool IsLooping;
 
         public static void Draw(List<MenuOption> consoleOptions)
         {
             Console.CursorVisible = false;
-            Loop = true;
+            IsLooping = true;
 
             for (int i = 0; i < consoleOptions.Count; i++)
             {

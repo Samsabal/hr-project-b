@@ -15,7 +15,7 @@ namespace Festivity.FestivalTable
                     string Table = Builder.ConvertToString(Builder.BuildTableList());
                     Console.WriteLine(Table);
                     Menu.Draw(new FestivalMenus().SelectFestival());
-                } while (Menu.Loop);
+                } while (Menu.IsLooping);
             }
             else
             {

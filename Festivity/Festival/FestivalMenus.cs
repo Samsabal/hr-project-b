@@ -20,7 +20,7 @@ namespace Festivity
                     {
                         Console.Clear();
                         do { Menu.Draw(ChangeFestival(festival)); }
-                        while (Menu.Loop);
+                        while (Menu.IsLooping);
                     }));
                 }
             }
@@ -75,8 +75,8 @@ namespace Festivity
                 new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
                 {
                     Console.Clear();
-                    do {Menu.Draw(FestivalGenreMenu.GenreMenuModify(festival)); }
-                    while(Menu.Loop);
+                    do {Menu.Draw(new FestivalGenreMenu().GenreMenuModify(festival)); }
+                    while(Menu.IsLooping);
                 }),
                 new MenuOption($"Cancel time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
                 {
@@ -87,7 +87,7 @@ namespace Festivity
                 {
                     Console.Clear();
                     do { Menu.Draw(new TicketMenus().SelectTicket(festival)); }
-                    while(Menu.Loop);
+                    while(Menu.IsLooping);
                 }),
                 new MenuOption("\nSave changes", () =>
                 {

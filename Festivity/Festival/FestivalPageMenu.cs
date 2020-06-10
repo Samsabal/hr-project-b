@@ -31,8 +31,7 @@ namespace Festivity
             newMenuOptions.Add(new MenuOption("Return to Catalog", () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
-                Console.Clear();
-                Festival.CatalogPage.CurrentCatalogNavigation = "main";
+                Festival.CatalogPage.CatalogSetup();
                 Festival.CatalogPage.CatalogMain();
             }));
             newMenuOptions.Add(new MenuOption("Exit to Main Menu", () =>

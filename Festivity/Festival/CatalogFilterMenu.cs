@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class CatalogFilterMenu
+    internal static class CatalogFilterMenu
     {
-        public List<MenuOption> CatalogFilterMenuBuilder()
+        public static List<MenuOption> CatalogFilterMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
@@ -17,6 +17,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Sort by date", () =>
                 {
@@ -24,6 +25,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Sort by price", () =>
                 {
@@ -31,6 +33,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Sort by availability", () =>
                 {
@@ -38,6 +41,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Filter by name", () =>
                 {
@@ -46,6 +50,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Filter by genre", () =>
                 {
@@ -53,6 +58,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Filter by loctaion", () =>
                 {
@@ -60,6 +66,7 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Clear by filters", () =>
                 {
@@ -67,11 +74,12 @@ namespace Festivity
                     CatalogPage.CurrentCatalogNavigation = "main";
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Return to catalog", () =>
                 {
-                    CatalogPage.CurrentCatalogNavigation = "main";
                     ConsoleHelperFunctions.ClearCurrentConsole();
+                    CatalogPage.CatalogSetup();
                     CatalogPage.CatalogMain();
                 })
             };

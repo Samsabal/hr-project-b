@@ -18,25 +18,24 @@ namespace Festivity.Festival
         /// </summary>
         public static void CatalogMain()
         {
-            CatalogSetup();
             do
             {
                 Console.SetCursorPosition(0, 0);
                 DrawCatalog();
                 if (CurrentCatalogNavigation == "main")
                 {
-                    Menu.Draw(new CatalogMainMenu().CatalogMainMenuBuilder());
+                    Menu.Draw(CatalogMainMenu.CatalogMainMenuBuilder());
                 }
                 else
                 {
-                    Menu.Draw(new CatalogFilterMenu().CatalogFilterMenuBuilder());
+                    Menu.Draw(CatalogFilterMenu.CatalogFilterMenuBuilder());
                 }
             }
-            while (Menu.Loop);
+            while (Menu.IsLooping);
         }
 
         /// <summary> This method handles the initial setup of the Catalog screen variables. </summary>
-        private static void CatalogSetup()
+        public static void CatalogSetup()
         {
             JSONFestivalList festivals = JSONFunctions.GetFestivals();
             FestivalArray = festivals.Festivals.ToArray();

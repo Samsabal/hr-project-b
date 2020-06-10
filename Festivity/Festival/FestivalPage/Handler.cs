@@ -26,7 +26,7 @@ namespace Festivity.FestivalPage
 
                         Menu.Draw(new FestivalPageMenu().FestivalPageMenuBuilder());
                     }
-                    while (Menu.Loop);
+                    while (Menu.IsLooping);
                 }
             }
         }

@@ -6,7 +6,7 @@ namespace Festivity
 {
     internal class CatalogMainMenu
     {
-        public List<MenuOption> CatalogMainMenuBuilder()
+        public static List<MenuOption> CatalogMainMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
             int lastpage = CatalogPage.FestivalArray.Length / 5;
@@ -37,26 +37,35 @@ namespace Festivity
                     }));
                 }
             }
-            newMenuOptions.Add(new MenuOption("Next page", () =>
+            if (CatalogPage.CurrentPage * 5 + 5 < CatalogPage.FestivalArray.Length)
             {
-                if (CatalogPage.CurrentPage * 5 + 5 < CatalogPage.FestivalArray.Length)
+                newMenuOptions.Add(new MenuOption("Next page", () =>
                 {
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CurrentPage++;
-                }
-            }));
-            newMenuOptions.Add(new MenuOption("Previous page", () =>
+                    do
+                    {
+                        CatalogPage.CatalogMain();
+                    } while (Menu.IsLooping);
+                }));
+            }
+            if (CatalogPage.CurrentPage > 0)
             {
-                if (CatalogPage.CurrentPage > 0)
+                newMenuOptions.Add(new MenuOption("Previous page", () =>
                 {
                     ConsoleHelperFunctions.ClearCurrentConsole();
                     CatalogPage.CurrentPage--;
-                }
-            }));
+                    do
+                    {
+                        CatalogPage.CatalogMain();
+                    } while (Menu.IsLooping);
+                }));
+            }
             newMenuOptions.Add(new MenuOption("Filter festivals", () =>
             {
+                ConsoleHelperFunctions.ClearCurrentConsole();
                 CatalogPage.CurrentCatalogNavigation = "filter";
-                Console.Clear();
+                CatalogPage.CatalogMain();
             }));
             newMenuOptions.Add(new MenuOption("Exit to main menu", () =>
             {

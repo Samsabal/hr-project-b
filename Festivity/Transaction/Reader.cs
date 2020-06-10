@@ -21,7 +21,7 @@ namespace Festivity.Transaction
             {
                 Console.WriteLine("Choose your payment method:");
                 Menu.Draw(new PaymentOptionMenu().Build());
-            } while (Menu.Loop);
+            } while (Menu.IsLooping);
         }
 
         public static bool ConfirmTransaction()

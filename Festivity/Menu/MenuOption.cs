@@ -17,8 +17,11 @@
         public void Select()
         {
             Menu.Option = 0;
+            
             action();
-            Menu.Loop = false;
+
+            Menu.IsLooping = false;
+
         }
     }
 }

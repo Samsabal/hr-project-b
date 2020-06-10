@@ -20,11 +20,12 @@ namespace Festivity
                 {
                     Console.Clear();
                     do {Menu.Draw(new LoginMenu().LoginBuilder()); }
-                    while (Menu.Loop);
+                    while (Menu.IsLooping);
                 }),
                 new MenuOption("Festivals", () =>
                 {
                     Console.Clear();
+                    Festival.CatalogPage.CatalogSetup();
                     Festival.CatalogPage.CatalogMain();
                 }),
                 new MenuOption("Exit", () =>

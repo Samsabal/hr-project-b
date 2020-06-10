@@ -26,7 +26,7 @@ namespace Festivity
                         Menu.Draw(new MainMenuOrganiser().MainMenuOrganiserBuilder());
                     }
                 }
-            } while (Menu.Loop);
+            } while (Menu.IsLooping);
         }
     }
 }
