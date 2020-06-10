@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class TicketMenus
+    internal class TicketMenus : MenuBuilder
     {
         public List<MenuOption> SelectTicket(FestivalModel festival)
         {
@@ -12,16 +12,20 @@ namespace Festivity
             {
                 newMenuOptions.Add(new MenuOption($"Edit ticket: {ticket.TicketName}", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
+                    Loop = true;
                     do { Menu.Draw(ChangeTicket(ticket)); }
-                    while (Menu.IsLooping);
-
+                    while (Loop);
+                    Loop = true;
                 }));
             }
             newMenuOptions.Add(new MenuOption($"Return to {festival.FestivalName}", () =>
             {
+                Menu.OptionReset();
                 Console.Clear();
-                Menu.Draw(new FestivalMenus().ChangeFestival(festival));
+                new FestivalMenus().ChangeFestival(festival);
+                Loop = false;
             }
                 ));
             return newMenuOptions;
@@ -54,12 +58,16 @@ namespace Festivity
                 }),
                 new MenuOption("Save changes", () =>
                 {
+                    Menu.OptionReset();
                     JSONFunctions.UpdateTicket(ticket);
                     Console.Clear();
+                    Loop = false;
                 }),
                 new MenuOption("Return to tickets", () =>
                 {
+                    Menu.OptionReset();
                     Console.Clear();
+                    Loop = false;
                 }),
             };
 

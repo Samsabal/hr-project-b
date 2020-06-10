@@ -31,13 +31,10 @@ namespace Festivity.TicketTable
 
         public static void DrawTicketTablePage()
         {
-            if (Builder.Build())
+            while (Builder.Build())
             {
-                do
-                {
-                    DrawTable();
-                    Menu.Draw(new TicketTableMenu().GenreMenuBuilder());
-                } while (Menu.IsLooping);
+                DrawTable();
+                Menu.Draw(new TicketTableMenu().GenreMenuBuilder());
             }
         }
 

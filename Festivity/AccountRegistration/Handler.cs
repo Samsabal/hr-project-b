@@ -30,7 +30,7 @@
 
         public static void ShowUserRegister(UserModel user, bool newUser)
         {
-            do
+            while (true)
             {
                 if (user.AccountType == 1)
                 {
@@ -42,7 +42,6 @@
                     Menu.Draw(new UserRegisterMenu().UserRegisterMenuBuilder(user, newUser));
                 }
             }
-            while (Menu.IsLooping);
         }
 
         public static bool CheckIfEmailExists(string email)

@@ -16,12 +16,7 @@
 
         public void Select()
         {
-            Menu.Option = 0;
-            
             action();
-
-            Menu.IsLooping = false;
-
         }
     }
 }

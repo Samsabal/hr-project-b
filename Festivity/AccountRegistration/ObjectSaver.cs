@@ -7,6 +7,7 @@
             JSONUserList users = JSONFunctions.GetUserList();
             users.Users.Add(user);
             JSONFunctions.WriteToUserList(users);
+            Menu.OptionReset();
             AccountLogin.LoginHandler.InitiateAutomaticLogin(user);
         }
     }

@@ -25,7 +25,6 @@ namespace Festivity.Account
                     Console.WriteLine("Press <Enter> to go back");
                     Console.ReadLine();
                     ConsoleHelperFunctions.ClearCurrentConsole();
-                    Program.Main();
                 }
             }
             if (!accountExists)
