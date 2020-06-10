@@ -23,7 +23,11 @@ namespace Festivity
                     Menu.OptionReset();
                     Console.Clear();
                     Loop = true;
-                    do {Menu.Draw(new LoginMenu().LoginBuilder()); }
+                    do 
+                    {
+                        UI.PathLine();
+                        Menu.Draw(new LoginMenu().LoginBuilder()); 
+                    }
                     while (Loop);
                 }),
                 new MenuOption(UI.SpaceStringInMiddle(". Festivals ."), () =>

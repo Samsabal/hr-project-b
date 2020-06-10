@@ -6,18 +6,19 @@ namespace Festivity
 {
     internal class MainMenuOrganiser : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> MainMenuOrganiserBuilder()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Festivals", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Festivals ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     Festival.CatalogPage.CatalogMain();
                 }),
-                new MenuOption("Register Festivals", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Register Festivals ."), () =>
                 {
                     Console.Clear();
                     Menu.OptionReset();
@@ -25,25 +26,25 @@ namespace Festivity
                     FestivalRegister.Handler.ActiveScreen = true;
                     FestivalRegister.Handler.InitiateFestivalRegister(festival);
                 }),
-                new MenuOption("My Account", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". My Account ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountPage.Handler.DrawPage();
                 }),
-                new MenuOption("My Tickets", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". My Tickets ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     TicketTable.Handler.Initiate();
                 }),
-                new MenuOption("My Festivals", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". My Festivals ."), () =>
                 {
                     Console.Clear();
                     Menu.OptionReset();
                     FestivalTable.Drawer.Draw();
                 }),
-                new MenuOption("Logout", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Logout ."), () =>
                 {
                     Console.Clear();
                     Console.WriteLine("Successfully logged out!");
@@ -53,7 +54,7 @@ namespace Festivity
                     Account.LoggedInModel.LogOut();
                     Program.Main();
                 }),
-                new MenuOption("Exit", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Exit ."), () =>
                 {
                     Environment.Exit(0);
                 })

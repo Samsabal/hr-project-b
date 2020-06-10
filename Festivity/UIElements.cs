@@ -41,7 +41,6 @@ namespace Festivity
                     break;
                 case "Two":
                     Console.WriteLine(LineStringInMiddleWith($"< Home:{PathOne} >"));
-                    Console.WriteLine(SpaceStringInMiddle("Command -q or -quit to go back."));
                     break;
                 case "Three":
                     Console.WriteLine(LineStringInMiddleWith($"< Home:{PathOne}:{PathTwo} >"));
@@ -53,12 +52,22 @@ namespace Festivity
             }
         }
 
+        public void InfoLine(string message)
+        {
+            Console.WriteLine(SpaceStringInMiddle(message));
+        }
+
         public void Draw()
         {
             PathLine();
         }
 
         public void Pom(string message)
+        {
+            Console.WriteLine(LineStringInMiddleWith($"[ {message} ]"));
+        }
+
+        public void WhiteLinePom(string message)
         {
             Console.WriteLine();
             Console.WriteLine(LineStringInMiddleWith($"[ {message} ]"));
@@ -74,7 +83,7 @@ namespace Festivity
             return new string('-', LENGTH - middle.Length / 2) +  middle +  new string('-', LENGTH - middle.Length / 2) + "\n";
         }
 
-        public void DrawMainMenu()
+        public void Header()
         {
             Line();
             Console.WriteLine("               ______        _   _       _ _         ");

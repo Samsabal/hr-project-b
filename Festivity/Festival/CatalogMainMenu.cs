@@ -7,6 +7,7 @@ namespace Festivity
 {
     internal class CatalogMainMenu : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> CatalogMainMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
@@ -16,7 +17,7 @@ namespace Festivity
             {
                 for (int i = 0; i < CatalogPage.FestivalArray.Length % 5; i++)
                 {
-                    newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i + CatalogPage.CurrentPage * 5].FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle($". Select festival: {CatalogPage.FestivalArray[i + CatalogPage.CurrentPage * 5].FestivalName} ."), () =>
                     {
                         Console.Clear();
                         SelectedFestival.Festival = CatalogPage.FestivalArray[Menu.Option + 5 * CatalogPage.CurrentPage];
@@ -29,7 +30,7 @@ namespace Festivity
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    newMenuOptions.Add(new MenuOption($"Select festival: {CatalogPage.FestivalArray[i].FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle($". Select festival: {CatalogPage.FestivalArray[i].FestivalName} ."), () =>
                     {
                         Console.Clear();
                         SelectedFestival.Festival = CatalogPage.FestivalArray[Menu.Option + 5 * CatalogPage.CurrentPage];
@@ -38,7 +39,7 @@ namespace Festivity
                     }));
                 }
             }
-            newMenuOptions.Add(new MenuOption("Next page", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Next page ."), () =>
             {
                 if (CatalogPage.CurrentPage * 5 + 5 < CatalogPage.FestivalArray.Length)
                 {
@@ -47,7 +48,7 @@ namespace Festivity
                     CatalogPage.CurrentPage++;
                 }
             }));
-            newMenuOptions.Add(new MenuOption("Previous page", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Previous page ."), () =>
             {
                 if (CatalogPage.CurrentPage > 0)
                 {
@@ -56,13 +57,13 @@ namespace Festivity
                     CatalogPage.CurrentPage--;
                 }
             }));
-            newMenuOptions.Add(new MenuOption("Filter festivals", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Filter festivals ."), () =>
             {
                 Menu.OptionReset();
                 CatalogPage.CurrentCatalogNavigation = "filter";
                 Console.Clear();
             }));
-            newMenuOptions.Add(new MenuOption("Exit to main menu", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Exit to main menu ."), () =>
             {
                 Menu.OptionReset();
                 Console.Clear();

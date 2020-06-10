@@ -7,7 +7,7 @@ namespace Festivity.AccountLogin
         public static string GetEmailInput()
         {
             
-            Console.Write("Enter Email: ");
+            Console.Write(" Enter Email: ");
             string input = Console.ReadLine();
             RegexUtils.MakesUserQuitIfCalled(input);
             return input;
@@ -15,7 +15,7 @@ namespace Festivity.AccountLogin
 
         public static string GetPasswordInput()
         {
-            Console.Write("Enter Password: ");
+            Console.Write(" Enter Password: ");
             string input = Console.ReadLine();
             RegexUtils.MakesUserQuitIfCalled(input);
             return input;

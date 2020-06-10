@@ -46,24 +46,22 @@ namespace Festivity.AccountLogin
         private static void LetUserLogIn(UserModel user)
         {
             LoggedInModel.SetUser(user.AccountID);
-            Console.WriteLine("You are logged in!");
+            ErrorMessage.WriteLine(" You are logged in!");
             Thread.Sleep(1000);
             ConsoleHelperFunctions.ClearCurrentConsole();
         }
 
         private static void WrongPasswordTryAgain(bool ticketLogin)
         {
-            Console.WriteLine("Wrong password, please try again");
+            ErrorMessage.WriteLine(" Wrong password, please try again");
             Thread.Sleep(1000);
-            Console.Clear();
             Initiate(ticketLogin);
         }
 
         private static void AccountDoesNotExistTryAgain(bool ticketLogin)
         {
-            Console.WriteLine("Account exists does not exist, please try again");
+            ErrorMessage.WriteLine(" Account exists does not exist, please try again");
             Thread.Sleep(1000);
-            Console.Clear();
             Initiate(ticketLogin);
         }
 

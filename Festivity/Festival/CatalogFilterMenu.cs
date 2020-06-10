@@ -7,11 +7,12 @@ namespace Festivity
 {
     internal class CatalogFilterMenu : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> CatalogFilterMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Sort by name", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Sort by name ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortName(CatalogPage.FestivalArray);
@@ -19,7 +20,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Sort by date", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Sort by date ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortDate(CatalogPage.FestivalArray);
@@ -27,7 +28,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Sort by price", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Sort by price ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortPrice(CatalogPage.FestivalArray);
@@ -35,7 +36,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Sort by availability", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Sort by availability ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = SortingFunctions.SortAvailability(CatalogPage.FestivalArray);
@@ -43,7 +44,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Filter by name", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Filter by name ."), () =>
                 {
                     Menu.OptionReset();
                     string namesearch = Console.ReadLine();
@@ -52,7 +53,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Filter by genre", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Filter by genre ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = FilterFunctions.FilterGenre(CatalogPage.FestivalArray, Console.ReadLine());
@@ -60,7 +61,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Filter by loctaion", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Filter by loctaion ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = FilterFunctions.FilterLocation(CatalogPage.FestivalArray, Console.ReadLine());
@@ -68,7 +69,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Clear by filters", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Clear by filters ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.FestivalArray = JSONFunctions.GetFestivals().Festivals.ToArray();
@@ -76,7 +77,7 @@ namespace Festivity
                     CatalogPage.CurrentPage = 0;
                     ConsoleHelperFunctions.ClearCurrentConsole();
                 }),
-                new MenuOption("Return to catalog", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Return to catalog ."), () =>
                 {
                     Menu.OptionReset();
                     CatalogPage.CurrentCatalogNavigation = "main";

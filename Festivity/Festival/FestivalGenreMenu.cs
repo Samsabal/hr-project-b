@@ -6,35 +6,36 @@ namespace Festivity
 {
     internal class FestivalGenreMenu : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> GenreMenuBuilder(FestivalModel festival)
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Techno", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Techno ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Techno");
                     FestivalRegister.Handler.ShowFestivalRegister(festival);
                 }),
-                new MenuOption("Drum & Bass", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Drum & Bass ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Drum & Bass");
                     FestivalRegister.Handler.ShowFestivalRegister(festival);
                 }),
-                new MenuOption("Pop", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Pop ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Pop");
                     FestivalRegister.Handler.ShowFestivalRegister(festival);
                 }),
-                new MenuOption("Rock", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Rock ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Rock");
                     FestivalRegister.Handler.ShowFestivalRegister(festival);
                 }),
-                new MenuOption("Hip-Hop", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Hip-Hop ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");
@@ -49,31 +50,31 @@ namespace Festivity
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Techno", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Techno ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Techno");
                     Loop = false;
                 }),
-                new MenuOption("Drum & Bass", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Drum & Bass ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Drum & Bass");
                     Loop = false;
                 }),
-                new MenuOption("Pop", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Pop ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Pop");
                     Loop = false;
                 }),
-                new MenuOption("Rock", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Rock ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Rock");
                     Loop = false;
                 }),
-                new MenuOption("Hip-Hop", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Hip-Hop ."), () =>
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");

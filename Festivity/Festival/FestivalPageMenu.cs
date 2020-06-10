@@ -6,13 +6,14 @@ namespace Festivity
 {
     internal class FestivalPageMenu : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> FestivalPageMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
 
             foreach (var ticket in Transaction.TicketListBuilder.Get())
             {
-                newMenuOptions.Add(new MenuOption("Buy Ticket: " + ticket.TicketName, () =>
+                newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Buy Ticket: " + ticket.TicketName + " ."), () =>
                 {
                     if (LoggedInModel.IsLoggedIn())
                     {
@@ -30,7 +31,7 @@ namespace Festivity
                     }
                 }));
             }
-            newMenuOptions.Add(new MenuOption("Return to Catalog", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Return to Catalog ."), () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
                 Menu.OptionReset();
@@ -38,7 +39,7 @@ namespace Festivity
                 Festival.CatalogPage.CurrentCatalogNavigation = "main";
                 Festival.CatalogPage.CatalogMain();
             }));
-            newMenuOptions.Add(new MenuOption("Exit to Main Menu", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Exit to Main Menu ."), () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
                 Menu.OptionReset();

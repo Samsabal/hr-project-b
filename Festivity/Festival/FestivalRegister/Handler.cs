@@ -3,6 +3,7 @@
     /// <summary> This class is used to register a festival. </summary>
     internal class Handler
     {
+        private static UIElements UI = new UIElements("Register");
         // Variables that manage the functionality of the registration.
         public static bool ActiveScreen { private get; set; }
 
@@ -17,15 +18,23 @@
         /// <param name="festival"> </param>
         public static void InitiateFestivalRegister(FestivalModel festival)
         {
+            UI.PathLine();
+            UI.InfoLine("Command -q or -quit to go back.");
+            UI.Pom("Name");
             FestivalReader.InputFestivalName(festival);
+            UI.WhiteLinePom("Date");
             FestivalReader.InputFestivalDate(festival);
             FestivalReader.InputStartingTime(festival);
             FestivalReader.InputEndTime(festival);
-            FestivalReader.InputFestivalAdress(festival);
-            FestivalReader.ModifyFestivalDescription(festival);
-            FestivalReader.ModifyFestivalAgeRestriction(festival);
             FestivalReader.InputCancelTime(festival);
+            UI.WhiteLinePom("Address");
+            FestivalReader.InputFestivalAdress(festival);
+            UI.WhiteLinePom("Description");
+            FestivalReader.ModifyFestivalDescription(festival);
+            UI.WhiteLinePom("Restrictions");
+            FestivalReader.ModifyFestivalAgeRestriction(festival);    
             FestivalRegisterMenu.savedTicketList = FestivalReader.InputFestivalTickets(FestivalRegisterMenu.savedTicketList);
+            ConsoleHelperFunctions.ClearCurrentConsole();
             FestivalReader.InputGenre(festival);
         }
 
@@ -36,6 +45,9 @@
             // Makes sure the console keeps refreshing, allowing input.
             while (true)
             {
+                UI.Header();
+                UI.InfoLine("Edit your festival information");
+                UI.Pom("Confirm Registration");
                 Menu.Draw(new FestivalRegisterMenu().FestivalRegisterMenuBuilder(festival));
             }
         }

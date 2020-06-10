@@ -4,23 +4,24 @@ namespace Festivity
 {
     internal class PaymentOptionMenu : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> Build()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("IDeal", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". IDeal ."), () =>
                 {
                     Transaction.Handler.Complete();
                 }),
-                new MenuOption("PayPal", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". PayPal ."), () =>
                 {
                     Transaction.Handler.Complete();
                 }),
-                new MenuOption("Creditcard", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Creditcard ."), () =>
                 {
                     Transaction.Handler.Complete();
                 }),
-                new MenuOption("Cancel Order", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Cancel Order ."), () =>
                 {
                     Transaction.Handler.Complete();
                 })

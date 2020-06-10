@@ -7,6 +7,7 @@ namespace Festivity
 {
     internal class FestivalMenus : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> SelectFestival()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
@@ -16,7 +17,7 @@ namespace Festivity
             {
                 if (LoggedInModel.GetID() == festival.FestivalOrganiserID)
                 {
-                    newMenuOptions.Add(new MenuOption($"Edit festival: {festival.FestivalName}", () =>
+                    newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle($". Edit festival: {festival.FestivalName} ."), () =>
                     {
                         Menu.OptionReset();
                         Console.Clear();
@@ -26,7 +27,7 @@ namespace Festivity
                     }));
                 }
             }
-            newMenuOptions.Add(new MenuOption("Return to main menu", () =>
+            newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle(". Return to main menu ."), () =>
             {
                 Console.Clear();
                 Loop = false;
@@ -36,46 +37,47 @@ namespace Festivity
 
         public List<MenuOption> ChangeFestival(FestivalModel festival)
         {
-            int currentValueStartingPoint = 30;
+            int PadRightValue = 30;
+            int PadLeftValue = 38;
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption($"Festival name:".PadRight(currentValueStartingPoint) + $"{festival.FestivalName}", () =>
+                new MenuOption($" Name:".PadRight(PadRightValue) + $"{festival.FestivalName}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.InputFestivalName(festival);
                 }),
-                new MenuOption($"Festival date:".PadRight(currentValueStartingPoint) + $"{festival.FestivalDate.ToShortDateString()}", () =>
+                new MenuOption($" Date:".PadRight(PadRightValue) + $"{festival.FestivalDate.ToShortDateString()}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.InputFestivalDate(festival);
                 }),
-                new MenuOption($"Starting time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalStartingTime.ToShortTimeString()}", () =>
+                new MenuOption($" Starting time:".PadRight(PadRightValue) + $"{festival.FestivalStartingTime.ToShortTimeString()}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.InputStartingTime(festival);
                 }),
-                new MenuOption($"End time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalEndTime.ToShortTimeString()}", () =>
+                new MenuOption($" End time:".PadRight(PadRightValue) + $"{festival.FestivalEndTime.ToShortTimeString()}".PadLeft(PadLeftValue), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     FestivalReader.InputEndTime(festival);
                 }),
-                new MenuOption($"Festival address:".PadRight(currentValueStartingPoint) + $"{festival.FestivalLocation}", () =>
+                new MenuOption($" Address:".PadRight(PadRightValue) + $"{festival.FestivalLocation}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.InputFestivalAdress(festival);
                 }),
-                new MenuOption($"Festival description:".PadRight(currentValueStartingPoint) + $"{festival.SetDescriptionLength(50)}", () =>
+                new MenuOption($" Description:".PadRight(PadRightValue) + $"{festival.SetDescriptionLength(50)}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.ModifyFestivalDescription(festival);
                 }),
-                new MenuOption($"Age restriction:".PadRight(currentValueStartingPoint) + $"{festival.FestivalAgeRestriction}", () =>
+                new MenuOption($" Age restriction:".PadRight(PadRightValue) + $"{festival.FestivalAgeRestriction}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.ModifyFestivalAgeRestriction(festival);
                 }),
-                new MenuOption($"Festival genre:".PadRight(currentValueStartingPoint) + $"{festival.FestivalGenre}", () =>
+                new MenuOption($" Genre:".PadRight(PadRightValue) + $"{festival.FestivalGenre}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     Loop = true;
@@ -83,12 +85,12 @@ namespace Festivity
                     while(Loop);
                     Loop = true;
                 }),
-                new MenuOption($"Cancel time:".PadRight(currentValueStartingPoint) + $"{festival.FestivalCancelTime}", () =>
+                new MenuOption($" Cancel time:".PadRight(PadRightValue) + $"{festival.FestivalCancelTime}".PadLeft(PadLeftValue), () =>
                 {
                     Console.Clear();
                     FestivalReader.InputCancelTime(festival);
                 }),
-                new MenuOption("Tickets", () =>
+                new MenuOption(" Tickets", () =>
                 {
                     Console.Clear();
                     Menu.OptionReset();
@@ -97,15 +99,15 @@ namespace Festivity
                     while(Loop);
                     Loop = true;
                 }),
-                new MenuOption("\nSave changes", () =>
+                new MenuOption("\n Save changes", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     JSONFunctions.UpdateFestival(festival);
-                    festival.FestivalStatus = "Changed";
+                    festival.FestivalStatus = " Changed";
                     Loop = false;
                 }),
-                new MenuOption("Cancel", () =>
+                new MenuOption(" Cancel", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();

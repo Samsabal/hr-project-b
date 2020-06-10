@@ -15,17 +15,19 @@ namespace Festivity
 
                 if (!LoggedInModel.IsLoggedIn())
                 {
-                    UI.DrawMainMenu();
+                    UI.Header();
                     Menu.Draw(new MainMenu().MainMenuBuilder());
                 }
                 if (LoggedInModel.IsLoggedIn())
                 {
                     if (LoggedInModel.User.AccountType == 2)
                     {
+                        UI.Header();
                         Menu.Draw(new MainMenuUser().MainMenuUserBuilder());
                     }
                     if (LoggedInModel.User.AccountType == 1)
                     {
+                        UI.Header();
                         Menu.Draw(new MainMenuOrganiser().MainMenuOrganiserBuilder());
                     }
                 }

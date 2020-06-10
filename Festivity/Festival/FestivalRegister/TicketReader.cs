@@ -1,4 +1,5 @@
 ﻿using System;
+using Festivity.Utils;
 
 namespace Festivity.FestivalRegister
 {
@@ -6,20 +7,20 @@ namespace Festivity.FestivalRegister
     {
         public static void InputTicketName(TicketModel ticket, int ticketAmount)
         {
-            do { ticket.TicketName = InputLoop($"Fill in the ticket name of ticket {(ticketAmount + 1)} : "); }
+            do { ticket.TicketName = General.InputLoop($" Ticket name #{(ticketAmount + 1)} : "); }
             while (!RegexUtils.IsValidAddressName(ticket.TicketName));
         }
 
         public static void InputTicketDescription(TicketModel ticket)
         {
-            do { ticket.TicketDescription = InputLoop("Fill in the ticket description: "); }
+            do { ticket.TicketDescription = General.InputLoop(" Description: "); }
             while (!RegexUtils.IsValidDescription(ticket.TicketDescription));
         }
 
         public static void InputTickePrice(TicketModel ticket)
         {
             string tempTicketPrice;
-            do { tempTicketPrice = InputLoop("Fill in the price of the ticket in euros: "); }
+            do { tempTicketPrice = General.InputLoop(" Ticket price: "); }
             while (!RegexUtils.IsValidPrice(tempTicketPrice));
             if (tempTicketPrice.Contains(","))
             {
@@ -31,7 +32,7 @@ namespace Festivity.FestivalRegister
         public static void InputMaxTickets(TicketModel ticket)
         {
             string tempMaxTickets;
-            do { tempMaxTickets = InputLoop("Fill in the maximum amount of available tikets of this ticket type: "); }
+            do { tempMaxTickets = General.InputLoop(" Total amount of tickets: "); }
             while (!RegexUtils.IsValidMaxTickets(tempMaxTickets));
             ticket.MaxTickets = int.Parse(tempMaxTickets);
         }
@@ -39,7 +40,7 @@ namespace Festivity.FestivalRegister
         public static void InputTicketMaxPerPerson(TicketModel ticket)
         {
             string tempTicketMaxPerPerson;
-            do { tempTicketMaxPerPerson = InputLoop("Fill in the maximum amount of tickets a single person may buy: "); }
+            do { tempTicketMaxPerPerson = General.InputLoop(" Max tickets per order: "); }
             while (!RegexUtils.IsValidMaxTicketsPerPerson(tempTicketMaxPerPerson));
             ticket.MaxTicketsPerPerson = int.Parse(tempTicketMaxPerPerson);
         }
@@ -47,19 +48,10 @@ namespace Festivity.FestivalRegister
         public static int InputTicketAmount()
         {
             string festivalAmountVariousTickets;
-            Console.Clear();
-            do { festivalAmountVariousTickets = InputLoop("Fill in the amount of various tickets as a number: "); }
+            do { festivalAmountVariousTickets = General.InputLoop(" Amount of ticket types: "); }
             while (!RegexUtils.NumberCheck(festivalAmountVariousTickets, 1, 20));
-
+            ConsoleHelperFunctions.ClearCurrentConsole();
             return int.Parse(festivalAmountVariousTickets);
-        }
-
-        public static string InputLoop(string printString)
-        {
-            string userInput;
-            Console.Write(printString); userInput = Console.ReadLine();
-            Console.Clear();
-            return userInput;
         }
     }
 }

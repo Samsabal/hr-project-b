@@ -33,37 +33,38 @@ namespace Festivity
 
         public List<MenuOption> ChangeTicket(TicketModel ticket)
         {
-            int currentValueStartingPoint = 30;
+            int PadRightValue = 30;
+            int PadLeftValue = 38;
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption($"Ticket name:".PadRight(currentValueStartingPoint) + $"{ticket.TicketName}", () =>
+                new MenuOption($" Name:".PadRight(PadRightValue) + $"{ticket.TicketName}".PadLeft(PadLeftValue), () =>
                 {
                     ticket.EditName();
                 }),
-                new MenuOption($"Ticket description:".PadRight(currentValueStartingPoint) + $"{ticket.TicketDescription}", () =>
+                new MenuOption($" Description:".PadRight(PadRightValue) + $"{ticket.TicketDescription}".PadLeft(PadLeftValue), () =>
                 {
                     ticket.EditDescription();
                 }),
-                new MenuOption($"Ticket price:".PadRight(currentValueStartingPoint) + $"{ticket.TicketPrice}", () =>
+                new MenuOption($" Price:".PadRight(PadRightValue) + $"{ticket.TicketPrice}".PadLeft(PadLeftValue), () =>
                 {
                     ticket.EditPrice();
                 }),
-                new MenuOption($"Max tickets to sell:".PadRight(currentValueStartingPoint) + $"{ticket.MaxTickets}", () =>
+                new MenuOption($" Max tickets:".PadRight(PadRightValue) + $"{ticket.MaxTickets}".PadLeft(PadLeftValue), () =>
                 {
                     ticket.EditMaxTickets();
                 }),
-                new MenuOption($"Max tickets per person:".PadRight(currentValueStartingPoint) + $"{ticket.MaxTicketsPerPerson}", () =>
+                new MenuOption($" Max tickets per person:".PadRight(PadRightValue) + $"{ticket.MaxTicketsPerPerson}".PadLeft(PadLeftValue), () =>
                 {
                     ticket.EditMaxTicketsPerPerson();
                 }),
-                new MenuOption("Save changes", () =>
+                new MenuOption(" Save changes", () =>
                 {
                     Menu.OptionReset();
                     JSONFunctions.UpdateTicket(ticket);
                     Console.Clear();
                     Loop = false;
                 }),
-                new MenuOption("Return to tickets", () =>
+                new MenuOption(" Return to tickets", () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();

@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using Festivity.Utils;
 
 namespace Festivity.FestivalRegister
 {
     internal class FestivalReader
     {
+        private static UIElements UI = new UIElements("Register");
         public static void InputFestivalName(FestivalModel festival)
         {
-            do { festival.FestivalName = InputLoop("Fill in the name of the festival: "); }
+            do { festival.FestivalName = General.InputLoop(" Festival Name: "); }
             while (!RegexUtils.IsValidName(festival.FestivalName));
         }
 
         public static void InputCancelTime(FestivalModel festival)
         {
             string tempCancelTime;
-            do { tempCancelTime = InputLoop("Fill in the amount of weeks before the start of the festival a customer is allowed to cancel their order: "); }
+            do { tempCancelTime = General.InputLoop(" Maximum cancel time in weeks: "); }
             while (!RegexUtils.IsValidCancelTime(tempCancelTime));
             festival.FestivalCancelTime = int.Parse(tempCancelTime);
         }
@@ -23,20 +25,19 @@ namespace Festivity.FestivalRegister
         {
             AddressModel address = new AddressModel();
 
-            Console.WriteLine("Fill in the adress of the location.");
-            do { address.Country = InputLoop("Fill in the country: "); }
+            do { address.Country = General.InputLoop(" Country: "); }
             while (!RegexUtils.IsValidAddressName(address.Country));
 
-            do { address.City = InputLoop("Fill in the city: "); }
+            do { address.City = General.InputLoop(" City: "); }
             while (!RegexUtils.IsValidAddressName(address.City));
 
-            do { address.ZipCode = InputLoop("Fill in the zipcode: "); }
+            do { address.ZipCode = General.InputLoop(" ZipCode: "); }
             while (!RegexUtils.IsValidZipCode(address.ZipCode));
 
-            do { address.StreetName = InputLoop("Fill in the street: "); }
+            do { address.StreetName = General.InputLoop(" Street: "); }
             while (!RegexUtils.IsValidAddressName(address.StreetName));
 
-            do { address.StreetNumber = InputLoop("Fill in the house number: "); }
+            do { address.StreetNumber = General.InputLoop(" House number: "); }
             while (!RegexUtils.IsValidStreetNumber(address.StreetNumber));
 
             festival.FestivalLocation = address;
@@ -45,14 +46,14 @@ namespace Festivity.FestivalRegister
         public static void ModifyFestivalAgeRestriction(FestivalModel festival)
         {
             string tempAge;
-            do { tempAge = InputLoop("Fill in the age restriction as a number(if there is no age restriction please fill in 0): "); }
+            do { tempAge = General.InputLoop(" Festival age restriction as a number(if there is no age restriction please fill in 0): "); }
             while (!RegexUtils.IsValidAge(tempAge));
             festival.FestivalAgeRestriction = int.Parse(tempAge);
         }
 
         public static void ModifyFestivalDescription(FestivalModel festival)
         {
-            do { festival.FestivalDescription = InputLoop("Fill in the festival description: "); }
+            do { festival.FestivalDescription = General.InputLoop(" Festival description: "); }
             while (!RegexUtils.IsValidDescription(festival.FestivalDescription));
         }
 
@@ -62,12 +63,11 @@ namespace Festivity.FestivalRegister
             string festivalMonth;
             string festivalYear;
 
-            Console.WriteLine("Fill in the festival date(dd:mm:yyyy): ");
-            do { festivalDay = InputLoop("Fill in the day: "); }
+            do { festivalDay = General.InputLoop(" Day: "); }
             while (!RegexUtils.IsValidDay(festivalDay));
-            do { festivalMonth = InputLoop("Fill in the month: "); }
+            do { festivalMonth = General.InputLoop(" Month: "); }
             while (!RegexUtils.IsValidMonth(festivalMonth));
-            do { festivalYear = InputLoop("Fill in the year: "); }
+            do { festivalYear = General.InputLoop(" Year: "); }
             while (!RegexUtils.IsValidFestivalYear(festivalYear));
             festival.FestivalDate = new DateTime(int.Parse(festivalYear), int.Parse(festivalMonth), int.Parse(festivalDay));
         }
@@ -75,7 +75,7 @@ namespace Festivity.FestivalRegister
         public static void InputStartingTime(FestivalModel festival)
         {
             string tempStartingTime;
-            do { tempStartingTime = InputLoop("Fill in starting time(hh:mm): "); }
+            do { tempStartingTime = General.InputLoop(" Starting Time(hh:mm): "); }
             while (!RegexUtils.IsValidTimeFormat(tempStartingTime));
 
             festival.FestivalStartingTime = new DateTime(festival.FestivalDate.Year,
@@ -88,7 +88,7 @@ namespace Festivity.FestivalRegister
         public static void InputEndTime(FestivalModel festival)
         {
             string tempEndTime;
-            do { tempEndTime = InputLoop("Fill in the expected end time(hh:mm): "); }
+            do { tempEndTime = General.InputLoop(" Ending Time(hh:mm): "); }
             while (!RegexUtils.IsValidTimeFormat(tempEndTime));
             festival.FestivalEndTime = new DateTime(festival.FestivalDate.Year,
                   /*Woosh I am a helicopter too!*/       festival.FestivalDate.Month,
@@ -106,7 +106,7 @@ namespace Festivity.FestivalRegister
             Menu.OptionReset();
             while (true)
             {
-                Console.WriteLine("Select the genre of your festival. If it is not in the list it is not a real genre! ");
+                UI.Pom("Select your Festival genre");
                 Menu.Draw(new FestivalGenreMenu().GenreMenuBuilder(festival));
             }
         }
@@ -122,7 +122,9 @@ namespace Festivity.FestivalRegister
                     FestivalID = Handler.SetFestivalId(JSONFunctions.GetFestivals()),
                     TicketID = Handler.SetTicketID(JSONFunctions.GetTickets()) + i
                 };
-
+                UI.PathLine();
+                UI.InfoLine("Command -q or -quit to go back.");
+                UI.Pom($"Ticket {i+1}");
                 TicketReader.InputTicketName(ticket, i);
                 TicketReader.InputTicketDescription(ticket);
                 TicketReader.InputTickePrice(ticket);
@@ -144,13 +146,13 @@ namespace Festivity.FestivalRegister
             festival.FestivalGenre = genre;
         }
 
-        private static string InputLoop(string printString)
-        {
-            string userInput;
-            Console.Write(printString); userInput = Console.ReadLine();
-            Console.Clear();
-            return userInput;
-        }
+        //private static string InputLoop(string printString)
+        //{
+        //    string userInput;
+        //    Console.Write(printString); userInput = Console.ReadLine();
+        //    Console.Clear();
+        //    return userInput;
+        //}
 
         public static void ModifyUpdateDateByTime(FestivalModel festival)
         {

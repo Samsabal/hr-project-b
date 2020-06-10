@@ -1,6 +1,7 @@
 ﻿using Festivity.FestivalRegister;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Festivity.Utils;
 
 namespace Festivity
 {
@@ -29,31 +30,31 @@ namespace Festivity
 
         public void EditName()
         {
-            do { TicketName = TicketReader.InputLoop("Fill in the new ticket name: "); }
+            do { TicketName = General.InputLoop("Fill in the new ticket name: "); }
             while (!RegexUtils.IsValidName(TicketName));
         }
 
         public void EditDescription()
         {
-            do { TicketDescription = TicketReader.InputLoop("Fill in the new ticket description: "); }
+            do { TicketDescription = General.InputLoop("Fill in the new ticket description: "); }
             while (!RegexUtils.IsValidDescription(TicketDescription));
         }
 
         public void EditPrice()
         {
-            do { TicketPrice = double.Parse(TicketReader.InputLoop("Fill in the new ticket price: ")); }
+            do { TicketPrice = double.Parse(General.InputLoop("Fill in the new ticket price: ")); }
             while (!RegexUtils.IsValidPrice(TicketPrice.ToString()));
         }
 
         public void EditMaxTickets()
         {
-            do { MaxTickets = int.Parse(TicketReader.InputLoop("Fill in the maximum amount of available tikets of this ticket type: ")); }
+            do { MaxTickets = int.Parse(General.InputLoop("Fill in the maximum amount of available tikets of this ticket type: ")); }
             while (!RegexUtils.IsValidMaxTickets(MaxTickets.ToString()));
         }
 
         public void EditMaxTicketsPerPerson()
         {
-            do { MaxTicketsPerPerson = int.Parse(TicketReader.InputLoop("Fill in the maximum amount of tickets a single person may buy: ")); }
+            do { MaxTicketsPerPerson = int.Parse(General.InputLoop("Fill in the maximum amount of tickets a single person may buy: ")); }
             while (!RegexUtils.IsValidMaxTicketsPerPerson(MaxTicketsPerPerson.ToString()));
         }
     }
