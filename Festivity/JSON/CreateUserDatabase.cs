@@ -2,11 +2,12 @@
 
 namespace Festivity.JSON
 {
-    internal class CreateUserDatabase
+    class CreateUserDatabase
     {
         public static string Check()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Database", @"UserDatabase.json");
+            string[] paths = { Directory.GetCurrentDirectory(), "UserDatabase.json" };
+            string path = Path.Combine(paths);
             if (!File.Exists(path))
             {
                 using StreamWriter file = File.CreateText(path);

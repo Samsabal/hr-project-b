@@ -21,8 +21,8 @@ namespace Festivity.FestivalPage
         public static void Festival(FestivalModel festival) // Displays information about the current festival
         {
             Console.WriteLine($"---------------------------------------------------------------------");
-            Console.WriteLine($"  Starts at {festival.FestivalStartingTime.Hour}:{festival.FestivalStartingTime.Minute} and ends on {festival.FestivalEndTime.Hour}:{festival.FestivalEndTime.Minute}.");
-            Console.WriteLine($"  Takes place on {festival.FestivalDate.Day}-{festival.FestivalDate.Month}-{festival.FestivalDate.Year}");
+            Console.WriteLine($"  Starts at {festival.FestivalStartingTime.Hour:D2}:{festival.FestivalStartingTime.Minute:D2} and ends on {festival.FestivalEndTime.Hour:D2}:{festival.FestivalEndTime.Minute:D2}.");
+            Console.WriteLine($"  Takes place on {festival.FestivalDate.ToShortDateString()}");
             Console.WriteLine($"");
             Console.WriteLine($"  {festival.FestivalLocation.StreetName} {festival.FestivalLocation.StreetNumber}, {festival.FestivalLocation.ZipCode}");
             Console.WriteLine($"  {festival.FestivalLocation.City}, {festival.FestivalLocation.Country}");
@@ -37,7 +37,7 @@ namespace Festivity.FestivalPage
                 int maxTickets = ticket.MaxTickets;
                 Console.WriteLine($"  {ticket.TicketName}");
                 Builder.TicketDescription(ticketId);
-                Console.WriteLine($"  This ticket cost {ticket.TicketPrice} euros.");
+                Console.WriteLine($"  This ticket costs \u20AC{String.Format("{0:0.00}", ticket.TicketPrice)}.");
                 Console.WriteLine($"  There are {ticket.MaxTickets} tickets in total of which there are {Builder.TicketsLeft(ticketId, maxTickets)} left.");
                 Console.WriteLine($"---------------------------------------------------------------------");
             }

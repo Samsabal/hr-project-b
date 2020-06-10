@@ -23,7 +23,8 @@ namespace Festivity
                 }),
                 new MenuOption(UI.SpaceStringInMiddle(". Cancel Order ."), () =>
                 {
-                    Transaction.Handler.Complete();
+                    ConsoleHelperFunctions.ClearCurrentConsole();
+                    FestivalPage.Handler.Display(Festival.SelectedFestival.Festival.FestivalID);
                 })
             };
 

@@ -7,7 +7,7 @@ namespace Festivity
     {
         private static UIElements UI = new UIElements();
 
-        public List<MenuOption> GenreMenuBuilder()
+        public List<MenuOption> TicketTableMenuBuilder()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {

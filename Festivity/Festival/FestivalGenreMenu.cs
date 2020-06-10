@@ -41,6 +41,42 @@ namespace Festivity
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");
                     FestivalRegister.Handler.ShowFestivalRegister(festival);
                 }),
+                new MenuOption("Hardcore", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Hardcore");
+                    FestivalRegister.Handler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Soul", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Soul");
+                    FestivalRegister.Handler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Classical", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Classical");
+                    FestivalRegister.Handler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Disco", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Disco");
+                    FestivalRegister.Handler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Dutch", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Dutch");
+                    FestivalRegister.Handler.ShowFestivalRegister(festival);
+                }),
+                new MenuOption("Dance", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Dance");
+                    FestivalRegister.Handler.ShowFestivalRegister(festival);
+                }),
             };
 
             return newMenuOptions;
@@ -78,6 +114,42 @@ namespace Festivity
                 {
                     Console.Clear();
                     FestivalReader.SetFestivalGenre(festival, "Hip-Hop");
+                    Loop = false;
+                }),
+                new MenuOption("Hardcore", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Hardcore");
+                    Loop = false;
+                }),
+                new MenuOption("Soul", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Soul");
+                    Loop = false;
+                }),
+                new MenuOption("Classical", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Classical");
+                    Loop = false;
+                }),
+                new MenuOption("Disco", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Disco");
+                    Loop = false;
+                }),
+                new MenuOption("Dutch", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Dutch");
+                    Loop = false;
+                }),
+                new MenuOption("Dance", () =>
+                {
+                    Console.Clear();
+                    FestivalReader.SetFestivalGenre(festival, "Dance");
                     Loop = false;
                 }),
             };
