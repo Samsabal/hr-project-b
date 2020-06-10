@@ -5,12 +5,14 @@ namespace Festivity.Transaction
 {
     internal class Reader
     {
+        private static UIElements UI = new UIElements("Festivals", "Transaction");
         public static int TicketAmount(int selectedOption)
         {
             string userInput;
-            Console.WriteLine("How many tickets would you like to buy? ");
+            Console.Write(" How many tickets would you like to buy?: ");
             do { userInput = General.InputLoopWithoutPrint(); }
             while (!NumberCheck(userInput, 1, TicketListBuilder.GetSelectedTicket(selectedOption).MaxTicketsPerPerson));
+            Console.WriteLine();
             return Int32.Parse(userInput);
         }
 
@@ -20,7 +22,7 @@ namespace Festivity.Transaction
             Menu.OptionReset();
             while (true)
             {
-                Console.WriteLine("Choose your payment method:");
+                UI.Pom("Choose payment method");
                 Menu.Draw(new PaymentOptionMenu().Build());
             }
         }
@@ -29,7 +31,7 @@ namespace Festivity.Transaction
         {
             string input;
 
-            do { input = General.InputLoop("Confirm Order? ('yes' or 'no'): "); }
+            do { input = General.InputLoop(" Confirm Order? (yes/no): "); }
             while (!RegexUtils.IsValidYesOrNo(input));
 
             return AccountRegistration.Handler.IsInputYes(input);
@@ -43,10 +45,10 @@ namespace Festivity.Transaction
                 {
                     return true;
                 }
-                ErrorMessage.WriteLine("Invalid input, please try again");
+                ErrorMessage.WriteLine(" Invalid input, please try again");
                 return false;
             }
-            ErrorMessage.WriteLine("Invalid input, please try again");
+            ErrorMessage.WriteLine(" Invalid input, please try again");
             return false;
         }
     }

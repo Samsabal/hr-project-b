@@ -10,87 +10,87 @@ namespace Festivity
         public List<MenuOption> UserRegisterMenuBuilder(UserModel user, bool newUser)
 
         {
-            int currentValueStartingPoint = 30;
-            ConsoleHelperFunctions.ClearCurrentConsole();
+            int PadRightValue = 30;
+            int PadLeftValue = 38;
 
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                    new MenuOption("First name: ".PadRight(currentValueStartingPoint) + $"{user.FirstName}", () =>
+                    new MenuOption(" First name: ".PadRight(PadRightValue) + $"{user.FirstName}".PadLeft(PadLeftValue), () =>
                     {
-                        Console.Clear();
                         Reader.InputFirstName(user);
-                    }),
-                    new MenuOption("Last name: ".PadRight(currentValueStartingPoint) + $"{user.LastName}", () =>
-                    {
                         Console.Clear();
+                    }),
+                    new MenuOption(" Last name: ".PadRight(PadRightValue) + $"{user.LastName}".PadLeft(PadLeftValue), () =>
+                    {
                         Reader.InputLastName(user);
-                    }),
-                    new MenuOption("Email: ".PadRight(currentValueStartingPoint) + $"{user.Email}", () =>
-                    {
                         Console.Clear();
+                    }),
+                    new MenuOption(" Email: ".PadRight(PadRightValue) + $"{user.Email}".PadLeft(PadLeftValue), () =>
+                    {                
                         Reader.InputEmail(user);
+                        Console.Clear();
                     })
             };
 
             if (newUser)
             {
-                newMenuOptions.Add(new MenuOption("Password: ".PadRight(currentValueStartingPoint) + $"{user.Password}", () =>
-                {
-                    Console.Clear();
+                newMenuOptions.Add(new MenuOption(" Password: ".PadRight(PadRightValue) + $"{user.Password}".PadLeft(PadLeftValue), () =>
+                {                 
                     Reader.InputPassword(user);
+                    Console.Clear();
                 }));
             }
 
-            newMenuOptions.Add(new MenuOption("Address: ".PadRight(currentValueStartingPoint) + $"{user.userAddress.ToString()}", () =>
-                    {
-                        Console.Clear();
+            newMenuOptions.Add(new MenuOption(" Address: ".PadRight(PadRightValue-20) + $"{user.userAddress.ToString()}".PadLeft(PadLeftValue+20), () =>
+                    {                     
                         Reader.InputUserAdress(user);
+                        Console.Clear();
                     }));
 
             if (user.AccountType == 1)
             {
-                newMenuOptions.Add(new MenuOption("Contactperson: ".PadRight(currentValueStartingPoint) + $"{user.ContactPerson}", () =>
-                {
-                    Console.Clear();
+                newMenuOptions.Add(new MenuOption(" Contactperson: ".PadRight(PadRightValue) + $"{user.ContactPerson}".PadLeft(PadLeftValue), () =>
+                {                   
                     Reader.InputCompanyContactperson(user);
-                }));
-                newMenuOptions.Add(new MenuOption("Company PhoneNumber: ".PadRight(currentValueStartingPoint) + $"{user.CompanyPhoneNumber}", () =>
-                {
                     Console.Clear();
+                }));
+                newMenuOptions.Add(new MenuOption(" Company PhoneNumber: ".PadRight(PadRightValue) + $"{user.CompanyPhoneNumber}".PadLeft(PadLeftValue), () =>
+                {                   
                     Reader.InputCompanyPhonenumber(user);
-                }));
-                newMenuOptions.Add(new MenuOption("Company name: ".PadRight(currentValueStartingPoint) + $"{user.CompanyName}", () =>
-                {
                     Console.Clear();
+                }));
+                newMenuOptions.Add(new MenuOption(" Company name: ".PadRight(PadRightValue) + $"{user.CompanyName}".PadLeft(PadLeftValue), () =>
+                {                   
                     Reader.InputCompanyName(user);
-                }));
-                newMenuOptions.Add(new MenuOption("IBAN: ".PadRight(currentValueStartingPoint) + $"{user.CompanyIBAN}", () =>
-                {
                     Console.Clear();
+                }));
+                newMenuOptions.Add(new MenuOption(" IBAN: ".PadRight(PadRightValue) + $"{user.CompanyIBAN}".PadLeft(PadLeftValue), () =>
+                {                    
                     Reader.InputIBAN(user);
+                    Console.Clear();
                 }));
             }
 
             if (user.AccountType == 2)
             {
-                newMenuOptions.Add(new MenuOption("Birthday: ".PadRight(currentValueStartingPoint) + $"{user.BirthDate.ToShortDateString()}", () =>
-                {
-                    Console.Clear();
+                newMenuOptions.Add(new MenuOption(" Birthday: ".PadRight(PadRightValue) + $"{user.BirthDate.ToShortDateString().PadLeft(PadLeftValue)}".PadLeft(PadLeftValue), () =>
+                {                  
                     Reader.InputBirthday(user);
-                }));
-                newMenuOptions.Add(new MenuOption("Phonenumber: ".PadRight(currentValueStartingPoint) + $"{user.PhoneNumber}", () =>
-                {
                     Console.Clear();
+                }));
+                newMenuOptions.Add(new MenuOption(" Phonenumber: ".PadRight(PadRightValue) + $"{user.PhoneNumber}".PadLeft(PadLeftValue), () =>
+                {                   
                     Reader.InputVisitorPhonenumber(user);
+                    Console.Clear();
                 }));
             }
 
-            newMenuOptions.Add(new MenuOption("Newsletter Preference: ".PadRight(currentValueStartingPoint) + $"{(user.NewsLetter ? "Yes" : "No")}", () =>
-                    {
-                        Console.Clear();
+            newMenuOptions.Add(new MenuOption(" Newsletter Preference: ".PadRight(PadRightValue) + $"{(user.NewsLetter ? "Yes" : "No")}".PadLeft(PadLeftValue), () =>
+                    {                     
                         Reader.InputNewsLetter(user);
+                        Console.Clear();
                     }));
-            newMenuOptions.Add(new MenuOption(newUser ? "Save User" : "Save Changes", () =>
+            newMenuOptions.Add(new MenuOption(newUser ? "\n Save User" : "\n Save Changes".PadLeft(PadLeftValue), () =>
                     {
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         if (newUser)
@@ -105,7 +105,7 @@ namespace Festivity
                             Program.Main();
                         }
                     }));
-            newMenuOptions.Add(new MenuOption(newUser ? "Cancel user Registration" : "Cancel" , () =>
+            newMenuOptions.Add(new MenuOption(newUser ? " Cancel user Registration" : " Cancel".PadLeft(PadLeftValue), () =>
                     {
                         Console.Clear();
                         Menu.OptionReset();

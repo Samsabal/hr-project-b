@@ -5,23 +5,25 @@ namespace Festivity
 {
     internal class LoginMenu
     {
+        private static UIElements UI = new UIElements("Login");
         public List<MenuOption> LoginBuilder()
         {
+            UI.Header();
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Login to your account", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Login to your account ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountLogin.LoginHandler.InitiateLogin();
                 }),
-                new MenuOption("Forgot password", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Forgot password ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountLogin.LoginHandler.InitiateForgotPassword();
                 }),
-                new MenuOption("Return to main menu", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Return to main menu ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();

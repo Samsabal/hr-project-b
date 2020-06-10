@@ -7,40 +7,42 @@ namespace Festivity
 {
     internal class MainMenuUser : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> MainMenuUserBuilder()
         {
             // Create List of menu options
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Festivals", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Festivals ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     Festival.CatalogPage.CatalogMain();
                 }),
-                new MenuOption("My Account", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". My Account ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountPage.Handler.DrawPage();
                 }),
-                new MenuOption("My Tickets", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". My Tickets ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     TicketTable.Handler.Initiate();
                 }),
-                new MenuOption("Logout", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Logout ."), () =>
                 {
                     Console.Clear();
-                    Console.WriteLine("Successfully logged out!");
+                    UI.Header();
+                    ErrorMessage.WriteLine(UI.SpaceStringInMiddle("Successfully logged out!"));
+                    UI.Line();
                     Thread.Sleep(1000);
-                    Console.Clear();
                     Menu.OptionReset();
                     LoggedInModel.LogOut();
                     Program.Main();
                 }),
-                new MenuOption("Exit", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Exit ."), () =>
                 {
                     Environment.Exit(0);
                 })

@@ -4,8 +4,10 @@ namespace Festivity.AccountLogin
 {
     internal class LoginHandler
     {
+        private static UIElements UI = new UIElements("Login");
         public static void InitiateLogin(bool ticketLogin = false)
         {
+            UI.Header();
             LoginAccountHandler.Initiate(ticketLogin);
         }
 

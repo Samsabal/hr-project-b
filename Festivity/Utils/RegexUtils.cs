@@ -24,7 +24,7 @@ namespace Festivity
                 {
                     return true;
                 }
-                Console.WriteLine("Invalid input, please  try again");
+                ErrorMessage.WriteLine("Invalid input, please  try again");
                 return false;
             }
             MakesUserQuitIfCalled(value);
@@ -41,11 +41,12 @@ namespace Festivity
             if (!regex.IsMatch(input))
             {
                 MakesUserQuitIfCalled(input);
-                Console.WriteLine("Invalid Input, please try again");
+                ErrorMessage.WriteLine("Invalid input, please  try again");
                 return false;
             }
             else
             {
+                MakesUserQuitIfCalled(input);
                 return true;
             }
         }
@@ -75,10 +76,19 @@ namespace Festivity
         {
             return RegexCheck(name, new Regex(@"^[Y-y][E-e][S-s]$|^[N-n][O-o]$"));
         }
+        public static bool isValidVisitorOrOrganiser(string name)
+        {
+            return RegexCheck(name, new Regex(@"^[O-o][R-r][G-g][A-a][N-n][I-i][S-s][E-e][R-r]$|^[V-v][I-i][S-s][I-i][T-t][O-o][R-r]$"));
+        }
 
         public static bool EqualsYesRegex(string input)
         {
             return RegexCheckNoError(input, new Regex(@"^[Y-y][E-e][S-s]$"));
+        }
+
+        public static bool EqualsVisitorRegex(string input)
+        {
+            return RegexCheckNoError(input, new Regex(@"^[V-v][I-i][S-s][I-i][T-t][O-o][R-r]$"));
         }
 
         /// <summary> Checks if string conforms to an IBAN structure </summary>
@@ -241,12 +251,12 @@ namespace Festivity
             if (!hasLowerChar.IsMatch(password) || !hasUpperChar.IsMatch(password) || !hasMiniMaxChars.IsMatch(password) || !hasSymbols.IsMatch(password) || !hasNumber.IsMatch(password))
             {
                 MakesUserQuitIfCalled(password);
-                Console.WriteLine("Password should contain the following rules: ");
-                Console.WriteLine(" - Must be between 8 and 15 characters long. ");
-                Console.WriteLine(" - Must contain at least one number. ");
-                Console.WriteLine(" - Must contain at least one uppercase letter. ");
-                Console.WriteLine(" - Must contain at least one lowercase letter. ");
-                Console.WriteLine(" - Must contain at least one symbol. \n");
+                ErrorMessage.WriteLine("Password should contain the following rules: ");
+                ErrorMessage.WriteLine(" - Must be between 8 and 15 characters long. ");
+                ErrorMessage.WriteLine(" - Must contain at least one number. ");
+                ErrorMessage.WriteLine(" - Must contain at least one uppercase letter. ");
+                ErrorMessage.WriteLine(" - Must contain at least one lowercase letter. ");
+                ErrorMessage.WriteLine(" - Must contain at least one symbol. ");
                 return false;
             }
             else

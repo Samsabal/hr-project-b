@@ -232,6 +232,18 @@ namespace Festivity
                 return FestivalDescription.PadRight(maxLength);
             }
         }
+
+        public string DescriptionTooShort(int maxLength)
+        {
+            if (FestivalDescription.Length > maxLength)
+            {
+                return FestivalDescription.Substring(0, maxLength - 3) + "...";
+            }
+            else
+            {
+                return FestivalDescription;
+            }
+        }
     }
 
     /// <summary> JSONFestivalList class to add JSON List functionality to the Festival class </summary>

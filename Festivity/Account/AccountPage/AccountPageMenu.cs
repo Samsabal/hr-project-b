@@ -5,23 +5,24 @@ namespace Festivity
 {
     internal class AccountPageMenu : MenuBuilder
     {
+        private static UIElements UI = new UIElements();
         public List<MenuOption> Build()
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
-                new MenuOption("Change user information", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Change user information ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     AccountPage.Handler.InitateInfoChange();
                 }),
-                new MenuOption("Change password", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Change password ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();
                     Account.ChagePasswordHandler.Initiate();
                 }),
-                new MenuOption("Exit to Main Menu", () =>
+                new MenuOption(UI.SpaceStringInMiddle(". Exit to Main Menu ."), () =>
                 {
                     Menu.OptionReset();
                     Console.Clear();

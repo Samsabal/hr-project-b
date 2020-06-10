@@ -6,27 +6,27 @@ namespace Festivity.FestivalPage
     {
         public static void FestivalName(FestivalModel festival) // Displays the name of the current festival
         {
-            Console.WriteLine($"X=============================================================================X");
-            Console.WriteLine($"| {festival.FestivalName}".PadRight(77) + " |");
-            Console.SetCursorPosition(60, 1);
+            Console.WriteLine($"=====================================================================");
+            Console.WriteLine($"  {festival.FestivalName}");
+            Console.SetCursorPosition(60 - festival.FestivalGenre.Length, 1);
             Console.WriteLine($"Genre: {festival.FestivalGenre}");
         }
 
         public static void FestivalAge(FestivalModel festival) // Display how old you have to be to enter the festival
         {
-            Console.WriteLine($"|-----------------------------------------------------------------------------|");
-            Console.WriteLine($"| You need to be at least {festival.FestivalAgeRestriction} years old in order to enter.".PadRight(77) + " |");
+            Console.WriteLine($"---------------------------------------------------------------------");
+            Console.WriteLine($"  You need to be at least {festival.FestivalAgeRestriction} years old in order to enter.");
         }
 
         public static void Festival(FestivalModel festival) // Displays information about the current festival
         {
-            Console.WriteLine($"|-----------------------------------------------------------------------------|");
-            Console.WriteLine($"| Starts at {festival.FestivalStartingTime.Hour:D2}:{festival.FestivalStartingTime.Minute:D2} and ends on {festival.FestivalEndTime.Hour:D2}:{festival.FestivalEndTime.Minute:D2}.".PadRight(77) + " |");
-            Console.WriteLine($"| Takes place on {festival.FestivalDate.ToShortDateString()}".PadRight(77) + " |");
-            Console.WriteLine($"| ".PadRight(77) + " |");
-            Console.WriteLine($"| {festival.FestivalLocation.StreetName} {festival.FestivalLocation.StreetNumber}, {festival.FestivalLocation.ZipCode}".PadRight(77) + " |");
-            Console.WriteLine($"| {festival.FestivalLocation.City}, {festival.FestivalLocation.Country}".PadRight(77) + " |");
-            Console.WriteLine($"|=============================================================================|");
+            Console.WriteLine($"---------------------------------------------------------------------");
+            Console.WriteLine($"  Starts at {festival.FestivalStartingTime.Hour:D2}:{festival.FestivalStartingTime.Minute:D2} and ends on {festival.FestivalEndTime.Hour:D2}:{festival.FestivalEndTime.Minute:D2}.");
+            Console.WriteLine($"  Takes place on {festival.FestivalDate.ToShortDateString()}");
+            Console.WriteLine($"");
+            Console.WriteLine($"  {festival.FestivalLocation.StreetName} {festival.FestivalLocation.StreetNumber}, {festival.FestivalLocation.ZipCode}");
+            Console.WriteLine($"  {festival.FestivalLocation.City}, {festival.FestivalLocation.Country}");
+            Console.WriteLine($"=====================================================================");
         }
 
         public static void Tickets() // Displays the Tickets for the current Festival
@@ -35,16 +35,16 @@ namespace Festivity.FestivalPage
             {
                 int ticketId = ticket.TicketID;
                 int maxTickets = ticket.MaxTickets;
-                Console.WriteLine($"| {ticket.TicketName}".PadRight(77) + " |");
+                Console.WriteLine($"  {ticket.TicketName}");
                 Builder.TicketDescription(ticketId);
-                Console.WriteLine($"| This ticket costs \u20AC{String.Format("{0:0.00}", ticket.TicketPrice)}.".PadRight(77) + " |");
-                Console.WriteLine($"| There are {ticket.MaxTickets} tickets in total of which there are {Builder.TicketsLeft(ticketId, maxTickets)} left.".PadRight(77) + " |");
-                Console.WriteLine($"|-----------------------------------------------------------------------------|");
+                Console.WriteLine($"  This ticket costs \u20AC{String.Format("{0:0.00}", ticket.TicketPrice)}.");
+                Console.WriteLine($"  There are {ticket.MaxTickets} tickets in total of which there are {Builder.TicketsLeft(ticketId, maxTickets)} left.");
+                Console.WriteLine($"---------------------------------------------------------------------");
             }
 
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             ConsoleHelperFunctions.ClearCurrentConsoleLine();
-            Console.WriteLine($"X=============================================================================X");
+            Console.WriteLine($"=====================================================================");
         }
 
         public static void FestivalOrganiser(FestivalModel festival) // Displays the name of the organiser of the festival
@@ -53,7 +53,7 @@ namespace Festivity.FestivalPage
             {
                 if (festival.FestivalOrganiserID == user.AccountID)
                 {
-                    Console.WriteLine($"| Organised by: {user.CompanyName}".PadRight(77) + " |");
+                    Console.WriteLine($"  Organised by: {user.CompanyName}");
                 }
             }
         }

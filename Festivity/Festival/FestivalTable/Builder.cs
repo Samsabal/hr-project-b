@@ -31,9 +31,9 @@ namespace Festivity.FestivalTable
         {
             Table festivalTable = new Table("ID",
                                       "Festival name",
-                                      "Festival date",
+                                      "Date",
                                       "City",
-                                      "Ticket amount");
+                                      "Ticket amount   ");
 
             for (int i = 0; i < festivalTableList.Count; i++)
             {
