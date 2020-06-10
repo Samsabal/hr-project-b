@@ -22,7 +22,8 @@ namespace Festivity
                 }),
                 new MenuOption("Cancel Order", () =>
                 {
-                    Transaction.Handler.Complete();
+                    ConsoleHelperFunctions.ClearCurrentConsole();
+                    FestivalPage.Handler.Display(Festival.SelectedFestival.Festival.FestivalID);
                 })
             };
 

@@ -34,7 +34,7 @@ namespace Festivity.TicketTable
             while (Builder.Build())
             {
                 DrawTable();
-                Menu.Draw(new TicketTableMenu().GenreMenuBuilder());
+                Menu.Draw(new TicketTableMenu().TicketTableMenuBuilder());
             }
         }
 

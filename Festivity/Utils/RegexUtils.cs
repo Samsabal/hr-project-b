@@ -152,7 +152,7 @@ namespace Festivity
         /// <returns> Returns true if phoneNumber conforms to regex. </returns>
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            return RegexCheck(phoneNumber, new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"));
+            return RegexCheck(phoneNumber, new Regex(@"^[0-9]{9,14}$"));
         }
 
         /// <summary> Checks if string conforms to price structure. </summary>

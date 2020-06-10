@@ -31,12 +31,6 @@ namespace Festivity
                     Console.Clear();
                     AccountPage.Handler.DrawPage();
                 }),
-                new MenuOption("My Tickets", () =>
-                {
-                    Menu.OptionReset();
-                    Console.Clear();
-                    TicketTable.Handler.Initiate();
-                }),
                 new MenuOption("My Festivals", () =>
                 {
                     Console.Clear();
