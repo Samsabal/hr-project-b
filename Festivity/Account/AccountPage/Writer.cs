@@ -7,7 +7,7 @@ namespace Festivity.AccountPage
     {
         public static void AccountPage()
         {
-            do
+            while (true)
             {
                 Console.WriteLine("Your account Information: ");
                 Console.WriteLine();
@@ -23,7 +23,6 @@ namespace Festivity.AccountPage
                 Console.WriteLine();
                 Menu.Draw(new AccountPageMenu().Build());
             }
-            while (Menu.IsLooping);
         }
 
         public static void ChangeInfoPage()

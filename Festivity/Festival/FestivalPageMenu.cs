@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class FestivalPageMenu
+    internal class FestivalPageMenu : MenuBuilder
     {
         public List<MenuOption> FestivalPageMenuBuilder()
         {
@@ -17,12 +17,14 @@ namespace Festivity
                     if (LoggedInModel.IsLoggedIn())
                     {
                         ConsoleHelperFunctions.ClearCurrentConsole();
+                        Menu.OptionReset();
                         Console.Clear();
                         Transaction.Handler.Initiate(ticket.TicketID);
                     }
                     else
                     {
                         ConsoleHelperFunctions.ClearCurrentConsole();
+                        Menu.OptionReset();
                         Console.Clear();
                         AccountLogin.LoginHandler.InitiateLogin(true);
                     }
@@ -31,12 +33,15 @@ namespace Festivity
             newMenuOptions.Add(new MenuOption("Return to Catalog", () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
-                Festival.CatalogPage.CatalogSetup();
+                Menu.OptionReset();
+                Console.Clear();
+                Festival.CatalogPage.CurrentCatalogNavigation = "main";
                 Festival.CatalogPage.CatalogMain();
             }));
             newMenuOptions.Add(new MenuOption("Exit to Main Menu", () =>
             {
                 ConsoleHelperFunctions.ClearCurrentConsole();
+                Menu.OptionReset();
                 Console.Clear();
                 Program.Main();
             }));

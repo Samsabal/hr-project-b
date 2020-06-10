@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Festivity
 {
-    internal class UserRegisterMenu
+    internal class UserRegisterMenu : MenuBuilder
     {
         public List<MenuOption> UserRegisterMenuBuilder(UserModel user, bool newUser)
 
@@ -95,10 +95,12 @@ namespace Festivity
                         ConsoleHelperFunctions.ClearCurrentConsole();
                         if (newUser)
                         {
+                            Menu.OptionReset();
                             ObjectSaver.Save(user);
                         }
                         else
                         {
+                            Menu.OptionReset();
                             LoggedInModel.UpdateDatabase();
                             Program.Main();
                         }
@@ -106,6 +108,7 @@ namespace Festivity
             newMenuOptions.Add(new MenuOption(newUser ? "Cancel user Registration" : "Cancel" , () =>
                     {
                         Console.Clear();
+                        Menu.OptionReset();
                         Program.Main();
                     }));
 

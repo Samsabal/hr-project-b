@@ -8,9 +8,10 @@ namespace Festivity
         public static void Main()
         {
             Console.Clear();
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            do
+            while (true)
             {
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
+
                 if (!LoggedInModel.IsLoggedIn())
                 {
                     Menu.Draw(new MainMenu().MainMenuBuilder());
@@ -26,7 +27,7 @@ namespace Festivity
                         Menu.Draw(new MainMenuOrganiser().MainMenuOrganiserBuilder());
                     }
                 }
-            } while (Menu.IsLooping);
+            }
         }
     }
 }

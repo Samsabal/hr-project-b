@@ -2,7 +2,7 @@
 
 namespace Festivity
 {
-    internal class PaymentOptionMenu
+    internal class PaymentOptionMenu : MenuBuilder
     {
         public List<MenuOption> Build()
         {
