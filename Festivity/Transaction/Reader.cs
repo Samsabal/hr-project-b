@@ -31,7 +31,7 @@ namespace Festivity.Transaction
         {
             string input;
 
-            do { input = General.InputLoop(" Confirm Order?(yes/no): "); }
+            do { input = General.InputLoop(" Confirm Order? (yes/no): "); }
             while (!RegexUtils.IsValidYesOrNo(input));
 
             return AccountRegistration.Handler.IsInputYes(input);

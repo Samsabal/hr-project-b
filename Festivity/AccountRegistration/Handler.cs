@@ -28,7 +28,7 @@ namespace Festivity.AccountRegistration
             {
                 UI.WhiteLinePom("Birthdate");
                 Reader.InputBirthday(user);
-                UI.WhiteLinePom("Phonenumber");
+                UI.WhiteLinePom("Phone number");
                 Reader.InputVisitorPhonenumber(user);
             }          
             Reader.InputNewsLetter(user);
