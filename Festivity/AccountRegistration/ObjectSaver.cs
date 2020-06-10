@@ -4,11 +4,11 @@
     {
         public static void Save(UserModel user)
         {
-            JSONUserList users = JSONFunctionality.GetUserList();
+            JSONUserList users = JSONFunctions.GetUserList();
             users.Users.Add(user);
-            JSONFunctionality.WriteToUserList(users);
+            JSONFunctions.WriteToUserList(users);
             Menu.OptionReset();
-            AccountLogin.LoginManager.InitiateAutomaticLogin(user);
+            AccountLogin.LoginHandler.InitiateAutomaticLogin(user);
         }
     }
 }

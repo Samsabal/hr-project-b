@@ -4,13 +4,13 @@ namespace Festivity.Transaction
 {
     internal class TicketListBuilder
     {
-        private static List<Ticket> TicketList { get; set; }
+        private static List<TicketModel> TicketList { get; set; }
 
         public static void Set(int festivalId)
         {
-            TicketList = new List<Ticket>();
+            TicketList = new List<TicketModel>();
 
-            foreach (var ticket in JSONFunctionality.GetTickets().Tickets)
+            foreach (var ticket in JSONFunctions.GetTickets().Tickets)
             {
                 if (festivalId == ticket.FestivalID)
                 {
@@ -19,7 +19,7 @@ namespace Festivity.Transaction
             }
         }
 
-        public static Ticket GetSelectedTicket(int ticketIndex)
+        public static TicketModel GetSelectedTicket(int ticketIndex)
         {
             foreach (var ticket in Get())
             {
@@ -31,7 +31,7 @@ namespace Festivity.Transaction
             return Get()[0];
         }
 
-        public static List<Ticket> Get()
+        public static List<TicketModel> Get()
         {
             return TicketList;
         }

@@ -27,7 +27,7 @@ namespace Festivity.Utils
             if (resultList.Count == 0)
             {
                 ErrorMessage.NoFilterMatchesError();
-                return CatalogPage.festivalArray;
+                return Festival.CatalogPage.FestivalArray;
             }
 
             return resultList.ToArray();
@@ -58,7 +58,7 @@ namespace Festivity.Utils
             if (resultList.Count == 0)
             {
                 ErrorMessage.NoFilterMatchesError();
-                return CatalogPage.festivalArray;
+                return Festival.CatalogPage.FestivalArray;
             }
 
             return resultList.ToArray();
@@ -88,7 +88,7 @@ namespace Festivity.Utils
             if (resultList.Count == 0)
             {
                 ErrorMessage.NoFilterMatchesError();
-                return CatalogPage.festivalArray;
+                return Festival.CatalogPage.FestivalArray;
             }
 
             return resultList.ToArray();

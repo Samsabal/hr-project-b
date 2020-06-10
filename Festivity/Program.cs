@@ -1,4 +1,5 @@
 ﻿using System;
+using Festivity.Account;
 
 namespace Festivity
 {
@@ -11,19 +12,19 @@ namespace Festivity
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-                if (!LoggedInAccount.IsLoggedIn())
+                if (!LoggedInModel.IsLoggedIn())
                 {
-                    Menu.Draw(MainMenu.MainMenuBuilder());
+                    Menu.Draw(new MainMenu().MainMenuBuilder());
                 }
-                if (LoggedInAccount.IsLoggedIn())
+                if (LoggedInModel.IsLoggedIn())
                 {
-                    if (LoggedInAccount.User.AccountType == 2)
+                    if (LoggedInModel.User.AccountType == 2)
                     {
-                        Menu.Draw(MainMenuUser.MainMenuUserBuilder());
+                        Menu.Draw(new MainMenuUser().MainMenuUserBuilder());
                     }
-                    if (LoggedInAccount.User.AccountType == 1)
+                    if (LoggedInModel.User.AccountType == 1)
                     {
-                        Menu.Draw(MainMenuOrganiser.MainMenuOrganiserBuilder());
+                        Menu.Draw(new MainMenuOrganiser().MainMenuOrganiserBuilder());
                     }
                 }
             }
