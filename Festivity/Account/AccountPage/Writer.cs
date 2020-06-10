@@ -10,18 +10,31 @@ namespace Festivity.AccountPage
         {
             while (true)
             {
+                UI.PathLine();
                 UI.InfoLine("Your account Information: ");
                 UI.Pom("Account");
-                Console.WriteLine();
-                Console.WriteLine($" {LoggedInModel.User.FirstName} {LoggedInModel.User.LastName}");
-                Console.WriteLine($" {LoggedInModel.User.userAddress.StreetName} {LoggedInModel.User.userAddress.StreetNumber}");
-                Console.WriteLine($" {LoggedInModel.User.userAddress.ZipCode} {LoggedInModel.User.userAddress.City}");
-                Console.WriteLine($" {LoggedInModel.User.Email}");
+                Console.WriteLine($" Name:                   {LoggedInModel.User.FirstName} {LoggedInModel.User.LastName}");
+                Console.WriteLine($" Address:                {LoggedInModel.User.userAddress.StreetName} {LoggedInModel.User.userAddress.StreetNumber}");
+                Console.WriteLine($"                         {LoggedInModel.User.userAddress.ZipCode} {LoggedInModel.User.userAddress.City}");
+                Console.WriteLine($" Email:                  {LoggedInModel.User.Email}");
+                
+
+                if (LoggedInModel.User.AccountType == 2)
+                {
+                    Console.WriteLine($" Phone Number:           {LoggedInModel.User.PhoneNumber}");
+                }
+
                 Console.WriteLine();
                 if (LoggedInModel.User.AccountType == 1)
                 {
-                    Console.WriteLine($" Total amount earned: {Utils.AmountEarned()} Euro");
+                    Console.WriteLine($" Company name:           {LoggedInModel.User.CompanyName}");
+                    Console.WriteLine($" Contactperson:          {LoggedInModel.User.ContactPerson}");
+                    Console.WriteLine($" Phone Number:           {LoggedInModel.User.CompanyPhoneNumber}");
+                    Console.WriteLine($" IBAN:                   {LoggedInModel.User.CompanyIBAN}");
+                    Console.WriteLine();
+                    Console.WriteLine($" Total amount earned:    {Utils.AmountEarned()} Euro");
                 }
+                        
                 Console.WriteLine();
                 UI.Line();
                 Console.WriteLine();

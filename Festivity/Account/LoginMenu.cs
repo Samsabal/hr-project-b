@@ -5,9 +5,10 @@ namespace Festivity
 {
     internal class LoginMenu
     {
-        private static UIElements UI = new UIElements();
+        private static UIElements UI = new UIElements("Login");
         public List<MenuOption> LoginBuilder()
         {
+            UI.Header();
             List<MenuOption> newMenuOptions = new List<MenuOption>
             {
                 new MenuOption(UI.SpaceStringInMiddle(". Login to your account ."), () =>

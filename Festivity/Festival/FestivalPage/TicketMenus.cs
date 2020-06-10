@@ -5,6 +5,7 @@ namespace Festivity
 {
     internal class TicketMenus : MenuBuilder
     {
+        private static UIElements UI = new UIElements("Festivals");
         public List<MenuOption> SelectTicket(FestivalModel festival)
         {
             List<MenuOption> newMenuOptions = new List<MenuOption>();
@@ -24,6 +25,9 @@ namespace Festivity
             {
                 Menu.OptionReset();
                 Console.Clear();
+                UI.PathLine();
+                UI.InfoLine("Wat moet heir komen dan hoertje");
+                UI.Pom("Change Festival Informatoin");
                 new FestivalMenus().ChangeFestival(festival);
                 Loop = false;
             }

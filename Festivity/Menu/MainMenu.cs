@@ -25,7 +25,6 @@ namespace Festivity
                     Loop = true;
                     do 
                     {
-                        UI.PathLine();
                         Menu.Draw(new LoginMenu().LoginBuilder()); 
                     }
                     while (Loop);

@@ -7,7 +7,7 @@ namespace Festivity.AccountLogin
         private static UIElements UI = new UIElements("Login");
         public static void InitiateLogin(bool ticketLogin = false)
         {
-            UI.PathLine();
+            UI.Header();
             LoginAccountHandler.Initiate(ticketLogin);
         }
 

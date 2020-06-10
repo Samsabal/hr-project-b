@@ -5,25 +5,27 @@ namespace Festivity.Account
 {
     internal class ChagePasswordHandler
     {
+        private static UIElements UI = new UIElements("Login", "Change password");
         private static string Password;
 
         public static void Initiate()
         {
-            Console.Write("Input current password: ");
+            UI.Header();
+            Console.Write(" Input current password: ");
             if (UserInputIsCorrectPassword())
             {
-                Console.Write("Input new password: ");
+                Console.Write(" Input new password: ");
                 string FirstPassword = AskUserForPasswordWithValidation();
-                Console.Write("Input new password again: ");
+                Console.Write(" Input new password again: ");
                 string SecondPassword = AskForSameUserPassword(FirstPassword);
                 LoggedInModel.User.Password = SecondPassword;
-                Console.Write("Password successfully changed");
+                Console.Write(" Password successfully changed");
                 Thread.Sleep(1000);
                 ConsoleHelperFunctions.ClearCurrentConsole();
             }
             else
             {
-                Console.WriteLine("Invalid password, please try again.");
+                Console.WriteLine(" Invalid password, please try again.");
                 Initiate();
             }
             LoggedInModel.UpdateDatabase();

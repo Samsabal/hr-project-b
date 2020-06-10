@@ -46,6 +46,7 @@ namespace Festivity
             }
             else
             {
+                MakesUserQuitIfCalled(input);
                 return true;
             }
         }

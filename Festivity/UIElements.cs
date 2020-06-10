@@ -44,7 +44,6 @@ namespace Festivity
                     break;
                 case "Three":
                     Console.WriteLine(LineStringInMiddleWith($"< Home:{PathOne}:{PathTwo} >"));
-                    //Console.WriteLine($"Home > {PathOne} > {PathTwo}");
                     break;
                 default:
                     ErrorMessage.WriteLine("Draw Error");
@@ -95,6 +94,40 @@ namespace Festivity
             Console.WriteLine("                                                __/ |");
             Console.WriteLine("                                               |___/ ");
             PathLine();
+        }
+
+        public void TicketTablePathLine()
+        {
+            switch (Size)
+            {
+                case "One":
+                    Console.WriteLine(TicketTableLineStringInMiddleWith("< Home >"));
+                    break;
+                case "Two":
+                    Console.WriteLine(TicketTableLineStringInMiddleWith($"< Home:{PathOne} >"));
+                    break;
+                case "Three":
+                    Console.WriteLine(TicketTableLineStringInMiddleWith($"< Home:{PathOne}:{PathTwo} >"));
+                    break;
+                default:
+                    ErrorMessage.WriteLine("Draw Error");
+                    break;
+            }
+        }
+
+        public string TicketTableLineStringInMiddleWith(string middle)
+        {
+            return new string('-', LENGTH - middle.Length / 2) + middle + new string('-', LENGTH - middle.Length / 2) + "\n";
+        }
+
+        public void TicketTablePom(string message)
+        {
+            Console.WriteLine(TicketTableLineStringInMiddleWith($"[ {message} ]"));
+        }
+
+        public void TickeTableLine()
+        {
+            Console.WriteLine("-------------------------------------------------------------------------------------------");
         }
     }
 }

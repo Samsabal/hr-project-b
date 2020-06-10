@@ -17,11 +17,17 @@ namespace Festivity
             {
                 if (LoggedInModel.GetID() == festival.FestivalOrganiserID)
                 {
-                    newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle($". Edit festival: {festival.FestivalName} ."), () =>
+                    newMenuOptions.Add(new MenuOption(UI.SpaceStringInMiddle($". {festival.FestivalName} ."), () =>
                     {
                         Menu.OptionReset();
                         Console.Clear();
-                        do { Menu.Draw(ChangeFestival(festival)); }
+                        do 
+                        {
+                            UI.PathLine();
+                            UI.InfoLine("Wat moet heir komen dan hoertje");
+                            UI.Pom("Change Festival Informatoin");
+                            Menu.Draw(ChangeFestival(festival)); 
+                        }
                         while (Loop);
                         Loop = true;
                     }));
@@ -43,47 +49,55 @@ namespace Festivity
             {
                 new MenuOption($" Name:".PadRight(PadRightValue) + $"{festival.FestivalName}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                    
                     FestivalReader.InputFestivalName(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" Date:".PadRight(PadRightValue) + $"{festival.FestivalDate.ToShortDateString()}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                   
                     FestivalReader.InputFestivalDate(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" Starting time:".PadRight(PadRightValue) + $"{festival.FestivalStartingTime.ToShortTimeString()}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                    
                     FestivalReader.InputStartingTime(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" End time:".PadRight(PadRightValue) + $"{festival.FestivalEndTime.ToShortTimeString()}".PadLeft(PadLeftValue), () =>
                 {
                     Menu.OptionReset();
-                    Console.Clear();
+                    
                     FestivalReader.InputEndTime(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" Address:".PadRight(PadRightValue) + $"{festival.FestivalLocation}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                    
                     FestivalReader.InputFestivalAdress(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" Description:".PadRight(PadRightValue) + $"{festival.SetDescriptionLength(50)}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                    
                     FestivalReader.ModifyFestivalDescription(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" Age restriction:".PadRight(PadRightValue) + $"{festival.FestivalAgeRestriction}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                    
                     FestivalReader.ModifyFestivalAgeRestriction(festival);
+                    Console.Clear();
                 }),
                 new MenuOption($" Genre:".PadRight(PadRightValue) + $"{festival.FestivalGenre}".PadLeft(PadLeftValue), () =>
                 {
-                    Console.Clear();
+                    
                     Loop = true;
                     do {Menu.Draw(FestivalGenreMenu.GenreMenuModify(festival)); }
                     while(Loop);
                     Loop = true;
+                    Console.Clear();
                 }),
                 new MenuOption($" Cancel time:".PadRight(PadRightValue) + $"{festival.FestivalCancelTime}".PadLeft(PadLeftValue), () =>
                 {

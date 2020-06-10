@@ -8,7 +8,7 @@ namespace Festivity.TicketTable
     internal class Drawer
     {
         /// <summary> Source: https://github.com/douglasg14b/BetterConsoleTables </summary>
-
+        private static UIElements UI = new UIElements("Ticket Table");
         private static List<List<string>> TicketList;
         private static Table ticketTable;
 
@@ -33,6 +33,7 @@ namespace Festivity.TicketTable
         {
             while (Builder.Build())
             {
+                UI.TicketTablePathLine();
                 DrawTable();
                 Menu.Draw(new TicketTableMenu().GenreMenuBuilder());
             }
